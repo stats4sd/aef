@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Rename table name from "cases" to "study_cases".
-        // This is to avoid having a model name "Case", which is a PHP reserved word.
-        Schema::rename('cases', 'study_cases');
+        Schema::create('study_case_tag', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('study_case_id')->constrained('study_cases');
+            $table->foreignId('tag_id')->constrained('tags');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('study_cases', 'cases');
+        Schema::dropIfExists('study_case_tag');
     }
 };

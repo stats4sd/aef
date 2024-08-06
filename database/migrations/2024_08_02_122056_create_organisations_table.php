@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('organisations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('url');
-            $table->string('contact_person_name');
-            $table->string('contact_person_email');
-            $table->text('note');
+            $table->string('url')->nullable();
+            $table->string('contact_person_name')->nullable();
+            $table->string('contact_person_email')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
