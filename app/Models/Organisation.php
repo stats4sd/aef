@@ -12,7 +12,12 @@ class Organisation extends Model
 
     protected $guarded = ['id'];
 
-    public function studyCases(): HasMany
+    public function leadingStudyCases(): HasMany
+    {
+        return $this->hasMany(StudyCase::class, 'leading_organisation_id', 'id');
+    }
+
+    public function partnerStudyCases(): HasMany
     {
         return $this->hasMany(StudyCase::class);
     }

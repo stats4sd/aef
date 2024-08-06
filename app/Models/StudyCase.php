@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\CommunicationProduct;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StudyCase extends Model
@@ -17,8 +18,14 @@ class StudyCase extends Model
         return $this->hasMany(Claim::class);
     }
 
+    // leading organisation
+    public function leadingOrganisation(): BelongsTo
+    {
+        return $this->belongsTo(Organisation::class, 'leading_organisation_id', 'id');
+    }
+
     // partner organisations
-    public function organisations(): HasMany
+    public function partnerOrganisations(): HasMany
     {
         return $this->hasMany(Organisation::class);
     }
