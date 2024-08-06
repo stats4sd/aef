@@ -2,20 +2,21 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\TagResource\Pages;
-use App\Filament\Admin\Resources\TagResource\RelationManagers;
-use App\Models\Tag;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Indicator;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Admin\Resources\IndicatorResource\Pages;
+use App\Filament\Admin\Resources\IndicatorResource\RelationManagers;
 
-class TagResource extends Resource
+class IndicatorResource extends Resource
 {
-    protected static ?string $model = Tag::class;
+    protected static ?string $model = Indicator::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,6 +27,13 @@ class TagResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('type')
+                    ->options([
+                        'qualitative' => 'Qualitative',
+                        'quantitative' => 'Quantitative',
+                    ]),
+                Forms\Components\Textarea::make('note')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -35,9 +43,15 @@ class TagResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->searchable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('type')
+                    ->options([
+                        'qualitative' => 'Qualitative',
+                        'quantitative' => 'Quantitative',
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -59,9 +73,9 @@ class TagResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTags::route('/'),
-            'create' => Pages\CreateTag::route('/create'),
-            'edit' => Pages\EditTag::route('/{record}/edit'),
+            'index' => Pages\ListIndicators::route('/'),
+            'create' => Pages\CreateIndicator::route('/create'),
+            'edit' => Pages\EditIndicator::route('/{record}/edit'),
         ];
     }
 }
