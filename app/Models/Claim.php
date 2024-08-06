@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Claim extends Model
 {
+    protected $table = 'claims';
+
+    protected $guarded = ['id'];
+
     public function studyCase(): BelongsTo
     {
         return $this->belongsTo(StudyCase::class);

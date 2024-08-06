@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reference extends Model
 {
+    protected $table = 'references';
+
+    protected $guarded = ['id'];
+
     public function studyCase(): BelongsTo
     {
         return $this->belongsTo(StudyCase::class);
