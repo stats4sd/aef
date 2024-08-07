@@ -13,6 +13,11 @@ class StudyCase extends Model
 
     protected $guarded = ['id'];
 
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
+
     public function claims(): HasMany
     {
         return $this->hasMany(Claim::class);
