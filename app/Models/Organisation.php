@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organisation extends Model
 {
-    public function studyCases(): HasMany
+    protected $table = 'organisations';
+
+    protected $guarded = ['id'];
+
+    public function leadingStudyCases(): HasMany
+    {
+        return $this->hasMany(StudyCase::class, 'leading_organisation_id', 'id');
+    }
+
+    public function partnerStudyCases(): HasMany
     {
         return $this->hasMany(StudyCase::class);
     }

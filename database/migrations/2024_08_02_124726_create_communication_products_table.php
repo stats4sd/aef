@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('communication_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('case_id')->constrained('cases');
-            $table->string('description');
-            $table->string('url');
+            $table->foreignId('study_case_id')->constrained('study_cases')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('description')->nullable();;
+            $table->string('url')->nullable();;
             $table->timestamps();
         });
     }

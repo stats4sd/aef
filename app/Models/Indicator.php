@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Indicator extends Model
 {
+    protected $table = 'indicators';
+
+    protected $guarded = ['id'];
+
     public function evidences(): HasMany
     {
         return $this->hasMany(Evidence::class);
