@@ -41,7 +41,7 @@ class StudyCaseResource extends Resource
 
                 Forms\Components\Textarea::make('statement')
                     ->label('Case statement')
-                    ->hint('If __________ then __________')
+                    ->hint('e.g., If __________ then __________')
                     ->columnSpanFull(),
 
                 Forms\Components\RichEditor::make('target_audience')
@@ -95,7 +95,7 @@ class StudyCaseResource extends Resource
                         TextInput::make('url'),
                         // TODO: add file upload feature
                     ])
-                    ->defaultItems(3)
+                    ->defaultItems(0)
                     ->addActionLabel('Add communication product')
                     ->columnSpanFull(),
 
@@ -106,7 +106,7 @@ class StudyCaseResource extends Resource
                         TextInput::make('url'),
                         // TODO: add file upload feature
                     ])
-                    ->defaultItems(3)
+                    ->defaultItems(0)
                     ->addActionLabel('Add reference')
                     ->columnSpanFull(),
             ]);
