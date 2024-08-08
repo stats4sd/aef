@@ -112,6 +112,7 @@ class StudyCaseResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('statement')
+                    ->label(t('Statement'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')
