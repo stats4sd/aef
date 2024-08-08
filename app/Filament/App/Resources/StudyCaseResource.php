@@ -130,7 +130,10 @@ class StudyCaseResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->hidden(function ($record) {
+                    return $record->reviewed;
+                }),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -152,6 +155,7 @@ class StudyCaseResource extends Resource
             'index' => Pages\ListStudyCases::route('/'),
             'create' => Pages\CreateStudyCase::route('/create'),
             'edit' => Pages\EditStudyCase::route('/{record}/edit'),
+            'view' => Pages\ViewStudyCase::route('/{record}'),
         ];
     }
 }
