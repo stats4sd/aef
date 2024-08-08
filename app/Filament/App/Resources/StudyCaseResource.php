@@ -34,6 +34,9 @@ class StudyCaseResource extends Resource
                     ->required()
                     ->numeric(),
 
+                Forms\Components\TextInput::make('year_of_development')
+                    ->numeric(),
+
                 Forms\Components\Select::make('leading_organisation_id')
                     ->label('Leading Organisation')
                     ->options(Organisation::all()->pluck('name', 'id'))
@@ -109,6 +112,10 @@ class StudyCaseResource extends Resource
                     ->defaultItems(0)
                     ->addActionLabel('Add reference')
                     ->columnSpanFull(),
+
+                Forms\Components\Checkbox::make('ready_for_review')
+                    ->label('I confirm that all content has been filled in and it is now ready for review')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -125,6 +132,12 @@ class StudyCaseResource extends Resource
                 Tables\Columns\TextColumn::make('statement')
                     ->numeric()
                     ->sortable(),
+
+                Tables\Columns\IconColumn::make('ready_for_review')
+                    ->boolean(),
+
+                Tables\Columns\IconColumn::make('reviewed')
+                    ->boolean(),
             ])
             ->filters([
                 //

@@ -13,6 +13,11 @@ class StudyCase extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'ready_for_review' => 'boolean',
+        'reviewed' => 'boolean',
+    ];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
