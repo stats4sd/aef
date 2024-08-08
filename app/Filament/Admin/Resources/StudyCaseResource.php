@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Filament\App\Resources;
+namespace App\Filament\Admin\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
-use App\Models\Organisation;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\App\Resources\StudyCaseResource\Pages;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
+use App\Filament\Admin\Resources\StudyCaseResource\Pages;
+use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
 
 class StudyCaseResource extends Resource
 {
@@ -25,10 +26,16 @@ class StudyCaseResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Cases';
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                // TODO, hide it, get and set team_id value before saving record
+                Forms\Components\Select::make('team_id')
+                    ->relationship('team', 'name')
+                    ->required(),
                 Forms\Components\Select::make('leading_organisation_id')
                     ->relationship('leadingOrganisation', 'name')
                     ->required()
@@ -101,6 +108,9 @@ class StudyCaseResource extends Resource
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
                     ->columnSpanFull(),
+                Forms\Components\Checkbox::make('reviewed')
+                    ->label('I confirm that all content has been reviewed. This case is now ready for publishing.')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -108,6 +118,11 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
+                // Normally a team should be equavlent to an organisation, a leading organisation should enter case details by themselves.
+                // It is not necessary to show team name here, as team and organisation should be the same
+                // Tables\Columns\TextColumn::make('team.name')
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
                     ->numeric()
                     ->sortable(),
@@ -120,13 +135,11 @@ class StudyCaseResource extends Resource
                     ->boolean(),
             ])
             ->filters([
-                //
+                TernaryFilter::make('ready_for_review'),
+                TernaryFilter::make('reviewed'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->hidden(function ($record) {
-                    return $record->reviewed;
-                }),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -146,9 +159,8 @@ class StudyCaseResource extends Resource
     {
         return [
             'index' => Pages\ListStudyCases::route('/'),
-            'create' => Pages\CreateStudyCase::route('/create'),
+            // 'create' => Pages\CreateStudyCase::route('/create'),
             'edit' => Pages\EditStudyCase::route('/{record}/edit'),
-            'view' => Pages\ViewStudyCase::route('/{record}'),
         ];
     }
 }
