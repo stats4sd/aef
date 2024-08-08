@@ -115,9 +115,11 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('team.name')
-                    ->numeric()
-                    ->sortable(),
+                // Normally a team should be equavlent to an organisation, a leading organisation should enter case details by themselves.
+                // It is not necessary to show team name here, as team and organisation should be the same
+                // Tables\Columns\TextColumn::make('team.name')
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
                     ->numeric()
                     ->sortable(),
@@ -154,7 +156,7 @@ class StudyCaseResource extends Resource
     {
         return [
             'index' => Pages\ListStudyCases::route('/'),
-            'create' => Pages\CreateStudyCase::route('/create'),
+            // 'create' => Pages\CreateStudyCase::route('/create'),
             'edit' => Pages\EditStudyCase::route('/{record}/edit'),
         ];
     }

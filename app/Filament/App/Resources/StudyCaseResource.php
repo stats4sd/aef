@@ -29,10 +29,6 @@ class StudyCaseResource extends Resource
     {
         return $form
             ->schema([
-                // TODO, hide it, get and set team_id value before saving record
-                Forms\Components\Select::make('team_id')
-                    ->relationship('team', 'name')
-                    ->required(),
                 Forms\Components\Select::make('leading_organisation_id')
                     ->relationship('leadingOrganisation', 'name')
                     ->required()
@@ -112,9 +108,6 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('team_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
                     ->numeric()
                     ->sortable(),
