@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Filament\App\Resources;
+namespace App\Filament\Admin\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
-use App\Models\Organisation;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\App\Resources\StudyCaseResource\Pages;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
+use App\Filament\Admin\Resources\StudyCaseResource\Pages;
+use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
 
 class StudyCaseResource extends Resource
 {
@@ -21,12 +22,11 @@ class StudyCaseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $modelLabel = 'Case';
-
-    protected static ?string $pluralModelLabel = 'Cases';
-
     public static function form(Form $form): Form
     {
+        // TODO, disable all columns as reviewer should not be able to modify case content
+        // reviewer can contact submitter to update case content offline (e.g. by email)
+
         return $form
             ->schema([
                 // TODO, hide it, get and set team_id value before saving record
@@ -105,6 +105,9 @@ class StudyCaseResource extends Resource
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
                     ->columnSpanFull(),
+                Forms\Components\Checkbox::make('reviewed')
+                    ->label('I confirm that all content has been reviewed. This case is now ready for publishing.')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -112,7 +115,7 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('team_id')
+                Tables\Columns\TextColumn::make('team.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
@@ -127,7 +130,8 @@ class StudyCaseResource extends Resource
                     ->boolean(),
             ])
             ->filters([
-                //
+                TernaryFilter::make('ready_for_review'),
+                TernaryFilter::make('reviewed'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
