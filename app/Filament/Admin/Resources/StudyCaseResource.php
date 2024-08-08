@@ -22,11 +22,13 @@ class StudyCaseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $modelLabel = 'Case';
+
+    protected static ?string $pluralModelLabel = 'Cases';
+
+
     public static function form(Form $form): Form
     {
-        // TODO, disable all columns as reviewer should not be able to modify case content
-        // reviewer can contact submitter to update case content offline (e.g. by email)
-
         return $form
             ->schema([
                 // TODO, hide it, get and set team_id value before saving record
