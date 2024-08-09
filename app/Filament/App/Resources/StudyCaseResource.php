@@ -21,9 +21,16 @@ class StudyCaseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $modelLabel = 'Case';
+    // define translatable string in function
+    public static function getModelLabel(): string
+    {
+        return t('Case');
+    }
 
-    protected static ?string $pluralModelLabel = 'Cases';
+    public static function getPluralModelLabel(): string
+    {
+        return t('Cases');
+    }
 
     public static function form(Form $form): Form
     {
@@ -109,6 +116,7 @@ class StudyCaseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
+                    ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('statement')
@@ -116,8 +124,10 @@ class StudyCaseResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')
+                    ->label(t('Ready for review'))
                     ->boolean(),
                 Tables\Columns\IconColumn::make('reviewed')
+                    ->label(t('Reviewed'))
                     ->boolean(),
             ])
             ->filters([

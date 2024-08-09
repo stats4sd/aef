@@ -7,11 +7,71 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-08T15:43:43+00:00\n"
-"PO-Revision-Date: 2024-08-08 17:43+0200\n"
+"POT-Creation-Date: 2024-08-09T10:47:55+00:00\n"
+"PO-Revision-Date: 2024-08-09 12:47+0200\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:115
+#: app\Filament\Admin\Resources\IndicatorResource.php:26
+msgid "Indicator"
+msgstr "Indicador"
+
+#: app\Filament\Admin\Resources\IndicatorResource.php:31
+msgid "Indicators"
+msgstr "Indicadores"
+
+#: app\Filament\Admin\Resources\IndicatorResource.php:36
+#: app\Filament\Admin\Resources\OrganisationResource.php:35
+#: app\Filament\Admin\Resources\TagResource.php:35
+msgid "Definitions"
+msgstr "Definiciones"
+
+#: app\Filament\Admin\Resources\OrganisationResource.php:25
+msgid "Organisation"
+msgstr "Organización"
+
+#: app\Filament\Admin\Resources\OrganisationResource.php:30
+msgid "Organisations"
+msgstr "Organizaciones"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:28
+#: app\Filament\App\Resources\StudyCaseResource.php:27
+msgid "Case"
+msgstr "Caso"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:33
+#: app\Filament\App\Resources\StudyCaseResource.php:32
+msgid "Cases"
+msgstr "Casos"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:130
+msgid "Team name"
+msgstr "Nombre del equipo"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:134
+#: app\Filament\App\Resources\StudyCaseResource.php:119
+msgid "Leading organisation"
+msgstr "Organización líder"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:138
+#: app\Filament\App\Resources\StudyCaseResource.php:123
 msgid "Statement"
 msgstr "Declaración"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:142
+#: app\Filament\App\Resources\StudyCaseResource.php:127
+msgid "Ready for review"
+msgstr "Listo para revisión"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:145
+#: app\Filament\App\Resources\StudyCaseResource.php:130
+msgid "Reviewed"
+msgstr "Revisado"
+
+#: app\Filament\Admin\Resources\TagResource.php:25
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: app\Filament\Admin\Resources\TagResource.php:30
+msgid "Tags"
+msgstr "Etiquetas"
