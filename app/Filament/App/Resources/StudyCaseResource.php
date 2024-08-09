@@ -105,6 +105,13 @@ class StudyCaseResource extends Resource
                     ->defaultItems(0)
                     ->addActionLabel('Add reference')
                     ->columnSpanFull(),
+
+                // TODO: add file size limitation
+                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                    ->collection('photos')
+                    ->multiple()
+                    ->maxFiles(5),
+
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
                     ->columnSpanFull(),

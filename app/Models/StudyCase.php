@@ -6,9 +6,15 @@ use App\Models\CommunicationProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class StudyCase extends Model
+class StudyCase extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = 'study_cases';
 
     protected $guarded = ['id'];
@@ -53,5 +59,14 @@ class StudyCase extends Model
     public function tags(): HasMany
     {
         return $this->hasMany(Reference::class);
+    }
+
+    // for Spatie media library
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }
