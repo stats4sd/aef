@@ -19,14 +19,19 @@ use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
 class StudyCaseResource extends Resource
 {
     protected static ?string $model = StudyCase::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $modelLabel = 'Case';
-
-    protected static ?string $pluralModelLabel = 'Cases';
-
     protected static ?int $navigationSort = 1;
+
+    // define translatable string in function
+    public static function getModelLabel(): string
+    {
+        return t('Case');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return t('Cases');
+    }
 
     public static function form(Form $form): Form
     {
@@ -118,25 +123,31 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                // Normally a team should be equavlent to an organisation, a leading organisation should enter case details by themselves.
-                // It is not necessary to show team name here, as team and organisation should be the same
-                // Tables\Columns\TextColumn::make('team.name')
-                //     ->numeric()
-                //     ->sortable(),
+                // To be discussed
+                // Normally a team should be equavlent to an organisation, a leading organisation should enter case content by themselves.
+                // Suppose it is not necessary to show team name here, as team and organisation should be the same
+                Tables\Columns\TextColumn::make('team.name')
+                    ->label(t('Team name'))
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('leadingOrganisation.name')
+                    ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('statement')
+                    ->label(t('Statement'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')
+                    ->label(t('Ready for review'))
                     ->boolean(),
                 Tables\Columns\IconColumn::make('reviewed')
+                    ->label(t('Reviewed'))
                     ->boolean(),
             ])
             ->filters([
-                TernaryFilter::make('ready_for_review'),
-                TernaryFilter::make('reviewed'),
+                TernaryFilter::make('ready_for_review')->label(t('Ready for review')),
+                TernaryFilter::make('reviewed')->label(t('Reviewed')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

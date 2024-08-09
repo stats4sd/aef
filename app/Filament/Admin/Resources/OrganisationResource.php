@@ -16,11 +16,24 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class OrganisationResource extends Resource
 {
     protected static ?string $model = Organisation::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Defintitons';
     protected static ?int $navigationSort = 12;
+
+    // define translatable string in function
+    public static function getModelLabel(): string
+    {
+        return t('Organisation');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return t('Organisations');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return t('Definitions');
+    }
 
     public static function form(Form $form): Form
     {

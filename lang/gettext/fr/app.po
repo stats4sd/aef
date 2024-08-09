@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AEF Case\n"
+"Report-Msgid-Bugs-To: contact@translation.io\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-08-09T10:47:55+00:00\n"
+"PO-Revision-Date: 2024-08-09 12:47+0200\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#: app\Filament\Admin\Resources\IndicatorResource.php:26
+msgid "Indicator"
+msgstr "Indicateur"
+
+#: app\Filament\Admin\Resources\IndicatorResource.php:31
+msgid "Indicators"
+msgstr "Indicateurs"
+
+#: app\Filament\Admin\Resources\IndicatorResource.php:36
+#: app\Filament\Admin\Resources\OrganisationResource.php:35
+#: app\Filament\Admin\Resources\TagResource.php:35
+msgid "Definitions"
+msgstr "Définitions"
+
+#: app\Filament\Admin\Resources\OrganisationResource.php:25
+msgid "Organisation"
+msgstr "Organisation"
+
+#: app\Filament\Admin\Resources\OrganisationResource.php:30
+msgid "Organisations"
+msgstr "Organisations"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:28
+#: app\Filament\App\Resources\StudyCaseResource.php:27
+msgid "Case"
+msgstr "Cas"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:33
+#: app\Filament\App\Resources\StudyCaseResource.php:32
+msgid "Cases"
+msgstr "Cas"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:130
+msgid "Team name"
+msgstr "Nom de l'équipe"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:134
+#: app\Filament\App\Resources\StudyCaseResource.php:119
+msgid "Leading organisation"
+msgstr "Organisation chef de file"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:138
+#: app\Filament\App\Resources\StudyCaseResource.php:123
+msgid "Statement"
+msgstr "Déclaration"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:142
+#: app\Filament\App\Resources\StudyCaseResource.php:127
+msgid "Ready for review"
+msgstr "Prêt à être examiné"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:145
+#: app\Filament\App\Resources\StudyCaseResource.php:130
+msgid "Reviewed"
+msgstr "Examiné"
+
+#: app\Filament\Admin\Resources\TagResource.php:25
+msgid "Tag"
+msgstr "Étiquette"
+
+#: app\Filament\Admin\Resources\TagResource.php:30
+msgid "Tags"
+msgstr "Étiquette"
