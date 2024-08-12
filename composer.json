@@ -15,6 +15,7 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "orangehill/iseed": "^3.0",
+        "sentry/sentry-laravel": "^4.7",
         "spatie/laravel-medialibrary": "^11.8",
         "spatie/laravel-permission": "^6.9",
         "tio/laravel": "^1.23"
