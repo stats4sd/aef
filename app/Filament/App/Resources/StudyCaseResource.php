@@ -85,26 +85,40 @@ class StudyCaseResource extends Resource
                     ]),
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
+
                 Forms\Components\Repeater::make('communicationProducts')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
                         TextInput::make('url'),
-                        // TODO: add file upload feature
+                        // TODO: add restriction for file size
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->collection('file'),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add communication product')
                     ->columnSpanFull(),
+
                 Forms\Components\Repeater::make('references')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
                         TextInput::make('url'),
-                        // TODO: add file upload feature
+                        // TODO: add restriction for file size
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->collection('file'),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add reference')
                     ->columnSpanFull(),
+
+                // TODO: add restriction for file size
+                // TODO: add restriction for image files only
+                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                    ->collection('photos')
+                    ->multiple()
+                    ->maxFiles(5),
+
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
                     ->columnSpanFull(),
