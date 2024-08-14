@@ -93,20 +93,25 @@ class StudyCaseResource extends Resource
                         TextInput::make('url'),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                            ->collection('file'),
+                            ->collection('file')
+                            ->preserveFilenames()
+                            ->downloadable(),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add communication product')
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('references')
+                    ->label('Bibliography and references')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
                         TextInput::make('url'),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                            ->collection('file'),
+                            ->collection('file')
+                            ->preserveFilenames()
+                            ->downloadable(),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add reference')
@@ -115,9 +120,13 @@ class StudyCaseResource extends Resource
                 // TODO: add restriction for file size
                 // TODO: add restriction for image files only
                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                    ->hint('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!')
                     ->collection('photos')
                     ->multiple()
-                    ->maxFiles(5),
+                    ->preserveFilenames()
+                    ->downloadable()
+                    ->maxFiles(5)
+                    ->columnSpanFull(),
 
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
