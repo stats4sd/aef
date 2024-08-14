@@ -37,10 +37,6 @@ class StudyCaseResource extends Resource
     {
         return $form
             ->schema([
-                // TODO, hide it, get and set team_id value before saving record
-                Forms\Components\Select::make('team_id')
-                    ->relationship('team', 'name')
-                    ->required(),
                 Forms\Components\Select::make('leading_organisation_id')
                     ->relationship('leadingOrganisation', 'name')
                     ->required()
@@ -73,7 +69,7 @@ class StudyCaseResource extends Resource
                         'strike',
                     ]),
                 Forms\Components\RichEditor::make('framing')
-                    ->label('Frameing of the case')
+                    ->label('Framing of the case')
                     ->hint('based on your audience\'s priorities and way of understanding the issues at hand')
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -90,31 +86,45 @@ class StudyCaseResource extends Resource
                     ]),
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
+
                 Forms\Components\Repeater::make('communicationProducts')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
                         TextInput::make('url'),
-                        // TODO: add file upload feature
+                        // TODO: add restriction for file size
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->collection('file'),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add communication product')
                     ->columnSpanFull(),
+
                 Forms\Components\Repeater::make('references')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
                         TextInput::make('url'),
-                        // TODO: add file upload feature
+                        // TODO: add restriction for file size
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->collection('file'),
                     ])
                     ->defaultItems(0)
                     ->addActionLabel('Add reference')
                     ->columnSpanFull(),
+
+                // TODO: add restriction for file size
+                // TODO: add restriction for image files only
+                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                    ->collection('photos')
+                    ->multiple()
+                    ->maxFiles(5),
+
                 Forms\Components\Checkbox::make('ready_for_review')
                     ->label('I confirm that all content are correct. This case is now ready for review.')
                     ->columnSpanFull(),
                 Forms\Components\Checkbox::make('reviewed')
-                    ->label('I confirm that all content has been reviewed. This case is now ready for publishing.')
+                    ->label('I confirm that all content have been reviewed. This case is now ready for publishing.')
                     ->columnSpanFull(),
             ]);
     }

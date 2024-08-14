@@ -68,7 +68,7 @@ class StudyCaseResource extends Resource
                         'strike',
                     ]),
                 Forms\Components\RichEditor::make('framing')
-                    ->label('Frameing of the case')
+                    ->label('Framing of the case')
                     ->hint('based on your audience\'s priorities and way of understanding the issues at hand')
                     ->columnSpanFull()
                     ->disableToolbarButtons([
