@@ -39,55 +39,83 @@ class StudyCaseResource extends Resource
             ->schema([
                 Forms\Components\Select::make('leading_organisation_id')
                     ->relationship('leadingOrganisation', 'name')
+                    ->label('Leading organisation')
                     ->required()
                     ->searchable()
                     ->preload(),
+
                 Forms\Components\TextInput::make('year_of_development')
+                    ->label('Year of development')
                     ->numeric(),
-                Forms\Components\Textarea::make('statement')
-                    ->label('Case statement')
-                    ->hint('e.g., If __________ then __________')
+
+                Forms\Components\Textarea::make('title')
+                    ->label('Title')
+                    ->rows(10)
                     ->columnSpanFull(),
+
+                Forms\Components\RichEditor::make('statement')
+                    ->label('Statement(s)')
+                    ->hint('e.g., If __________ then __________')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                    ->columnSpanFull()
+                    ->disableToolbarButtons([
+                        'attachFiles',
+                        'strike',
+                    ]),
+
                 Forms\Components\RichEditor::make('target_audience')
+                    ->label('Target audience(s)')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
                         'attachFiles',
                         'strike',
                     ]),
+
                 Forms\Components\RichEditor::make('call_to_action')
+                    ->label('Call to action(s)')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
                         'attachFiles',
                         'strike',
                     ]),
+
                 Forms\Components\RichEditor::make('target_audience_priorities_and_values')
-                    ->label('Target audience\'s priorities and values')
+                    ->label('Target audience(s)\'s priorities and values')
                     ->hint('if you have more than one target audience/s, you can list them separately')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
                         'attachFiles',
                         'strike',
                     ]),
+
                 Forms\Components\RichEditor::make('framing')
-                    ->label('Framing of the case')
+                    ->label('Framing(s) of the case')
                     ->hint('based on your audience\'s priorities and way of understanding the issues at hand')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
                         'attachFiles',
                         'strike',
                     ]),
+
                 Forms\Components\RichEditor::make('strategy_to_argue')
-                    ->label('Strategy to argue the case')
+                    ->label('Strategy(ies) to argue the case')
                     ->hint('e.g., is it a comparison? A value and rights-based argument?')
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
                         'attachFiles',
                         'strike',
                     ]),
+
                 Forms\Components\Textarea::make('note')
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('communicationProducts')
+                    ->label('Communication products')
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->required(),
@@ -115,12 +143,13 @@ class StudyCaseResource extends Resource
                             ->downloadable(),
                     ])
                     ->defaultItems(0)
-                    ->addActionLabel('Add reference')
+                    ->addActionLabel('Add bibliography and reference')
                     ->columnSpanFull(),
 
                 // TODO: add restriction for file size
                 // TODO: add restriction for image files only
                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                    ->label('Catalogue photos')
                     ->hint('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!')
                     ->collection('photos')
                     ->multiple()
@@ -129,9 +158,12 @@ class StudyCaseResource extends Resource
                     ->maxFiles(5)
                     ->columnSpanFull(),
 
+                // TODO: check why it is disabled
                 Forms\Components\Checkbox::make('ready_for_review')
-                    ->label('I confirm that all content are correct. This case is now ready for review.')
+                    ->label('I confirm that all content is correct. This case is now ready for reviewer to review.')
                     ->columnSpanFull(),
+
+                // TODO: show it in admin panel only
                 Forms\Components\Checkbox::make('reviewed')
                     ->label('I confirm that all content have been reviewed. This case is now ready for publishing.')
                     ->columnSpanFull(),
@@ -153,9 +185,9 @@ class StudyCaseResource extends Resource
                     ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('statement')
-                    ->label(t('Statement'))
-                    ->numeric()
+                Tables\Columns\TextColumn::make('title')
+                    ->label(t('Title'))
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')
                     ->label(t('Ready for review'))
