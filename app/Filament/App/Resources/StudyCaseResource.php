@@ -61,16 +61,7 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('target_audience')
-                    ->label(t('Target audience(s)'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
-
-                Forms\Components\RichEditor::make('call_to_action')
-                    ->label(t('Call to action(s)'))
+                    ->label(t('Description of the target audience(s)'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -99,8 +90,19 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('strategy_to_argue')
-                    ->label(t('Strategy(ies) to argue the case'))
+                    ->label(t('Description of the strategy(ies) to argue the case'))
                     ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
+                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                    ->columnSpanFull()
+                    ->disableToolbarButtons([
+                        'attachFiles',
+                        'strike',
+                    ]),
+
+
+
+                Forms\Components\RichEditor::make('call_to_action')
+                    ->label(t('Call to action(s)'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -114,10 +116,11 @@ class StudyCaseResource extends Resource
 
                 Forms\Components\Repeater::make('communicationProducts')
                     ->label(t('Communication products'))
+                    ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->label(t('Description'))->required(),
-                        TextInput::make('url')->label(t('Url')),
+                        TextInput::make('url')->label(t('URL')),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
@@ -131,10 +134,11 @@ class StudyCaseResource extends Resource
 
                 Forms\Components\Repeater::make('references')
                     ->label(t('Bibliography and references'))
+                    ->hint(t('This lists the sources of the evidence that was gathered. If the source can be found online, please provide a URL. If the source is a publication or published media, please provide a full reference and URL if available. If the source not published, please describe it and, if possible, give contact details of the person who has access to them.'))
                     ->relationship()
                     ->schema([
                         TextInput::make('description')->label(t('Description'))->required(),
-                        TextInput::make('url')->label(t('Url')),
+                        TextInput::make('url')->label(t('URL')),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
@@ -166,7 +170,7 @@ class StudyCaseResource extends Resource
 
                 // TODO: show it in admin panel only
                 Forms\Components\Checkbox::make('reviewed')
-                    ->label(t('I confirm that all content have been reviewed. This case is now ready for publishing.'))
+                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
                     ->columnSpanFull(),
             ]);
     }
