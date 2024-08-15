@@ -37,25 +37,23 @@ class StudyCaseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('leading_organisation_id')
-                    ->relationship('leadingOrganisation', 'name')
-                    ->label('Leading organisation')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
+                // TODO: add selection box to select partner organisations
+                // Forms\Components\Select::make('partnerOrgnisations')
+                //     ->multiple()
+                //     ->relationship('partnerOrgnisations', 'name'),
 
                 Forms\Components\TextInput::make('year_of_development')
-                    ->label('Year of development')
+                    ->label(t('Year of development'))
                     ->numeric(),
 
                 Forms\Components\Textarea::make('title')
-                    ->label('Title')
+                    ->label(t('Title'))
                     ->rows(10)
                     ->columnSpanFull(),
 
                 Forms\Components\RichEditor::make('statement')
-                    ->label('Statement(s)')
-                    ->hint('e.g., If __________ then __________')
+                    ->label(t('Statement(s)'))
+                    ->hint(t('e.g., If __________ then __________'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -64,7 +62,7 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('target_audience')
-                    ->label('Target audience(s)')
+                    ->label(t('Target audience(s)'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -73,7 +71,7 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('call_to_action')
-                    ->label('Call to action(s)')
+                    ->label(t('Call to action(s)'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -82,8 +80,8 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('target_audience_priorities_and_values')
-                    ->label('Target audience(s)\'s priorities and values')
-                    ->hint('if you have more than one target audience/s, you can list them separately')
+                    ->label(t('Target audience(s)\'s priorities and values'))
+                    ->hint(t('if you have more than one target audience/s, you can list them separately'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -92,8 +90,8 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('framing')
-                    ->label('Framing(s) of the case')
-                    ->hint('based on your audience\'s priorities and way of understanding the issues at hand')
+                    ->label(t('Framing(s) of the case'))
+                    ->hint(t('based on your audience\'s priorities and way of understanding the issues at hand'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -102,8 +100,8 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\RichEditor::make('strategy_to_argue')
-                    ->label('Strategy(ies) to argue the case')
-                    ->hint('e.g., is it a comparison? A value and rights-based argument?')
+                    ->label(t('Strategy(ies) to argue the case'))
+                    ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull()
                     ->disableToolbarButtons([
@@ -112,45 +110,48 @@ class StudyCaseResource extends Resource
                     ]),
 
                 Forms\Components\Textarea::make('note')
+                    ->label(t('Note'))
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('communicationProducts')
-                    ->label('Communication products')
+                    ->label(t('Communication products'))
                     ->relationship()
                     ->schema([
-                        TextInput::make('description')->required(),
-                        TextInput::make('url'),
+                        TextInput::make('description')->label(t('Description'))->required(),
+                        TextInput::make('url')->label(t('Url')),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->label(t('File'))
                             ->collection('file')
                             ->preserveFilenames()
                             ->downloadable(),
                     ])
                     ->defaultItems(0)
-                    ->addActionLabel('Add communication product')
+                    ->addActionLabel(t('Add communication product'))
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('references')
-                    ->label('Bibliography and references')
+                    ->label(t('Bibliography and references'))
                     ->relationship()
                     ->schema([
-                        TextInput::make('description')->required(),
-                        TextInput::make('url'),
+                        TextInput::make('description')->label(t('Description'))->required(),
+                        TextInput::make('url')->label(t('Url')),
                         // TODO: add restriction for file size
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                            ->label(t('File'))
                             ->collection('file')
                             ->preserveFilenames()
                             ->downloadable(),
                     ])
                     ->defaultItems(0)
-                    ->addActionLabel('Add bibliography and reference')
+                    ->addActionLabel(t('Add bibliography and reference'))
                     ->columnSpanFull(),
 
                 // TODO: add restriction for file size
                 // TODO: add restriction for image files only
                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
-                    ->label('Catalogue photos')
-                    ->hint('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!')
+                    ->label(t('Catalogue photos'))
+                    ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
                     ->collection('photos')
                     ->multiple()
                     ->preserveFilenames()
@@ -158,14 +159,15 @@ class StudyCaseResource extends Resource
                     ->maxFiles(5)
                     ->columnSpanFull(),
 
-                // TODO: check why it is disabled
+
+                // TODO: it is not working if it is located below file upload component
                 Forms\Components\Checkbox::make('ready_for_review')
-                    ->label('I confirm that all content is correct. This case is now ready for reviewer to review.')
+                    ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
                     ->columnSpanFull(),
 
                 // TODO: show it in admin panel only
                 Forms\Components\Checkbox::make('reviewed')
-                    ->label('I confirm that all content have been reviewed. This case is now ready for publishing.')
+                    ->label(t('I confirm that all content have been reviewed. This case is now ready for publishing.'))
                     ->columnSpanFull(),
             ]);
     }
@@ -174,17 +176,10 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                // To be discussed
-                // Normally a team should be equavlent to an organisation, a leading organisation should enter case content by themselves.
-                // Suppose it is not necessary to show team name here, as team and organisation should be the same
                 Tables\Columns\TextColumn::make('team.name')
                     ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable(),
-                // Tables\Columns\TextColumn::make('leadingOrganisation.name')
-                //     ->label(t('Leading organisation'))
-                //     ->numeric()
-                //     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(t('Title'))
                     ->wrap()
@@ -225,7 +220,13 @@ class StudyCaseResource extends Resource
     {
         return [
             'index' => Pages\ListStudyCases::route('/'),
+
+            // disable route for creating a new study case
+            // reviewer should not be able to create new study case.
+            // study case should be created by leading organisation member.
+
             // 'create' => Pages\CreateStudyCase::route('/create'),
+
             'edit' => Pages\EditStudyCase::route('/{record}/edit'),
         ];
     }

@@ -40,16 +40,21 @@ class OrganisationResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(t('Name'))
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
+                    ->label(t('Website'))
                     ->maxLength(255),
                 Forms\Components\TextInput::make('contact_person_name')
+                    ->label(t('Contact person name'))
                     ->maxLength(255),
                 Forms\Components\TextInput::make('contact_person_email')
+                    ->label(t('Contact person email'))
                     ->email()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('note')
+                    ->label(t('Note'))
                     ->columnSpanFull(),
             ]);
     }
@@ -59,21 +64,17 @@ class OrganisationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(t('Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
+                    ->label(t('Website'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_person_name')
+                    ->label(t('Contact person name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_person_email')
+                    ->label(t('Contact person email'))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
