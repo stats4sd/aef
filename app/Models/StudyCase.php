@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\CommunicationProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -24,6 +25,7 @@ class StudyCase extends Model implements HasMedia
         'reviewed' => 'boolean',
     ];
 
+    // leading organisation
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
@@ -34,16 +36,10 @@ class StudyCase extends Model implements HasMedia
         return $this->hasMany(Claim::class);
     }
 
-    // leading organisation
-    public function leadingOrganisation(): BelongsTo
-    {
-        return $this->belongsTo(Organisation::class, 'leading_organisation_id', 'id');
-    }
-
     // partner organisations
-    public function partnerOrganisations(): HasMany
+    public function organisations(): BelongsToMany
     {
-        return $this->hasMany(Organisation::class);
+        return $this->belongsToMany(Organisation::class);
     }
 
     public function communicationProducts(): HasMany

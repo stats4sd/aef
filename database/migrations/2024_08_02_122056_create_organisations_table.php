@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->constrained('teams');
             $table->string('name');
-            $table->string('url')->nullable();
+            $table->string('website')->nullable();
             $table->string('contact_person_name')->nullable();
             $table->string('contact_person_email')->nullable();
             $table->text('note')->nullable();

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('indicators', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('claim_id')->constrained('claims')->onUpdate('cascade')->onDelete('cascade');;
+            $table->longText('name');
             $table->string('type');
             $table->text('note')->nullable();
             $table->timestamps();

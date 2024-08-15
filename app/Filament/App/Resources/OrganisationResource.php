@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Admin\Resources;
+namespace App\Filament\App\Resources;
 
-use App\Filament\Admin\Resources\OrganisationResource\Pages;
-use App\Filament\Admin\Resources\OrganisationResource\RelationManagers;
+use App\Filament\App\Resources\OrganisationResource\Pages;
+use App\Filament\App\Resources\OrganisationResource\RelationManagers;
 use App\Models\Organisation;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,17 +17,17 @@ class OrganisationResource extends Resource
 {
     protected static ?string $model = Organisation::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?int $navigationSort = 12;
+    protected static ?int $navigationSort = 13;
 
     // define translatable string in function
     public static function getModelLabel(): string
     {
-        return t('Organisation');
+        return t('Partner Organisation');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return t('Organisations');
+        return t('Partner Organisations');
     }
 
     public static function getNavigationGroup(): string
@@ -42,7 +42,7 @@ class OrganisationResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('url')
+                Forms\Components\TextInput::make('website')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('contact_person_name')
                     ->maxLength(255),
@@ -60,12 +60,20 @@ class OrganisationResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('url')
+                Tables\Columns\TextColumn::make('website')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_person_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('contact_person_email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

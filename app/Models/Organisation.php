@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\StudyCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Organisation extends Model
 {
@@ -12,13 +14,13 @@ class Organisation extends Model
 
     protected $guarded = ['id'];
 
-    public function leadingStudyCases(): HasMany
+    public function team(): BelongsTo
     {
-        return $this->hasMany(StudyCase::class, 'leading_organisation_id', 'id');
+        return $this->belongsTo(Team::class);
     }
 
-    public function partnerStudyCases(): HasMany
+    public function studyCases(): BelongsToMany
     {
-        return $this->hasMany(StudyCase::class);
+        return $this->belongsToMany(StudyCase::class);
     }
 }

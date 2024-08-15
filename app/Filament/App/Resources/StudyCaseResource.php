@@ -18,8 +18,8 @@ use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
 class StudyCaseResource extends Resource
 {
     protected static ?string $model = StudyCase::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
 
     // define translatable string in function
     public static function getModelLabel(): string
@@ -36,12 +36,18 @@ class StudyCaseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('leading_organisation_id')
-                    ->relationship('leadingOrganisation', 'name')
-                    ->label('Leading organisation')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
+                // TODO: leading organisation is team. It is no longer pointing to organisation
+                // Forms\Components\Select::make('leading_organisation_id')
+                //     ->relationship('leadingOrganisation', 'name')
+                //     ->label('Leading organisation')
+                //     ->required()
+                //     ->searchable()
+                //     ->preload(),
+
+                // TODO: add selection box to select partner organisations
+                // Forms\Components\Select::make('partnerOrgnisations')
+                //     ->multiple()
+                //     ->relationship('partnerOrgnisations', 'name'),
 
                 Forms\Components\TextInput::make('year_of_development')
                     ->label('Year of development')
@@ -173,11 +179,18 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('leadingOrganisation.name')
-                    ->label(t('Leading organisation'))
-                    ->sortable(),
+                // TODO: list view shows all cases belong to this team.
+                // Team is the leading organisation implicitly.
+                // It is no longer necessary to show leading organisation
+                // Tables\Columns\TextColumn::make('leadingOrganisation.name')
+                //     ->label(t('Leading organisation'))
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(t('Title'))
+                    ->wrap()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('year_of_development')
+                    ->label(t('Year of development'))
                     ->wrap()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')

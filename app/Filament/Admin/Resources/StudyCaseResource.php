@@ -178,15 +178,19 @@ class StudyCaseResource extends Resource
                 // Normally a team should be equavlent to an organisation, a leading organisation should enter case content by themselves.
                 // Suppose it is not necessary to show team name here, as team and organisation should be the same
                 Tables\Columns\TextColumn::make('team.name')
-                    ->label(t('Team name'))
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('leadingOrganisation.name')
                     ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable(),
+                // Tables\Columns\TextColumn::make('leadingOrganisation.name')
+                //     ->label(t('Leading organisation'))
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(t('Title'))
+                    ->wrap()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('year_of_development')
+                    ->label(t('Year of development'))
                     ->wrap()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('ready_for_review')

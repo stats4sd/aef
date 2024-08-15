@@ -29,18 +29,13 @@ class TestModel extends Command
     {
         $this->info('start');
 
-        $studyCase = StudyCase::find(2);
+        $studyCase = StudyCase::first();
         $this->comment('Study case ID: ' . $studyCase->id);
         $this->comment('Study case leading organisation: ' . $studyCase->leadingOrganisation->name);
 
-        $organisation = Organisation::find(1);
-        $this->comment('==========');
-        $this->comment('Organisation id: ' . $organisation->id);
-
-        $leadingStudyCases = $organisation->leadingStudyCases;
-
-        foreach ($leadingStudyCases as $leadingStudyCase) {
-            $this->comment('Organisation leading study cases ID: ' . $leadingStudyCase->id);
+        $partnerOrganisations = $studyCase->partnerOrganisations;
+        foreach ($partnerOrganisations as $partnerOrganisation) {
+            $this->comment('Organisation id: ' . $partnerOrganisation->id);
         }
 
         $this->info('end');
