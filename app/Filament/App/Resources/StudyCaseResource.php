@@ -114,6 +114,52 @@ class StudyCaseResource extends Resource
                     ->label(t('Note'))
                     ->columnSpanFull(),
 
+                Forms\Components\Repeater::make('claims')
+                    ->label(t('Claims'))
+                    ->hint(t('You will be able to enter as many claims and pieces of evidence as needed. If one piece of evidence is used to support multiple claims, please copy it again.'))
+                    ->relationship()
+                    ->schema([
+
+                        Forms\Components\RichEditor::make('claim_statement')
+                            ->label(t('Claim statement'))
+                            ->hint(t('Claim made in the case statement'))
+                            ->required(),
+
+                        Forms\Components\Repeater::make('indicators')
+                            ->label(t('Indicator(s)'))
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')->label(t('Name'))->required(),
+                                Forms\Components\Select::make('type')
+                                    ->label(t('Type'))
+                                    ->required()
+                                    ->options([
+                                        'qualitative' => 'Qualitative',
+                                        'quantitative' => 'Quantitative',
+                                    ]),
+                            ])
+                            ->defaultItems(0)
+                            ->addActionLabel(t('Add indicator'))
+                            ->columnSpanFull(),
+
+                        Forms\Components\Repeater::make('evidences')
+                            ->label(t('Evidence(s)'))
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\RichEditor::make('matching_evidence')
+                                    ->label(t('Evidence'))
+                                    ->hint(t('Evidence that supports this claim statement'))
+                                    ->required(),
+                            ])
+                            ->defaultItems(0)
+                            ->addActionLabel(t('Add evidence'))
+                            ->columnSpanFull(),
+
+                    ])
+                    ->defaultItems(0)
+                    ->addActionLabel(t('Add claim'))
+                    ->columnSpanFull(),
+
                 Forms\Components\Repeater::make('communicationProducts')
                     ->label(t('Communication products'))
                     ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
