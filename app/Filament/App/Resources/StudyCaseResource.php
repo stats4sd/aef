@@ -150,6 +150,25 @@ class StudyCaseResource extends Resource
                                     ->label(t('Evidence'))
                                     ->hint(t('Evidence that supports this claim statement'))
                                     ->required(),
+
+                                Forms\Components\Repeater::make('evidenceAttachments')
+                                    ->label(t('Evidence attachment(s)'))
+                                    ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
+                                    ->relationship()
+                                    ->schema([
+                                        TextInput::make('description')->label(t('Description'))->required(),
+                                        TextInput::make('url')->label(t('URL')),
+                                        // TODO: add restriction for file size
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                            ->label(t('File'))
+                                            ->collection('file')
+                                            ->preserveFilenames()
+                                            ->downloadable(),
+                                    ])
+                                    ->defaultItems(0)
+                                    ->addActionLabel(t('Add evidence attachment'))
+                                    ->columnSpanFull(),
+
                             ])
                             ->defaultItems(0)
                             ->addActionLabel(t('Add evidence'))
@@ -161,7 +180,7 @@ class StudyCaseResource extends Resource
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('communicationProducts')
-                    ->label(t('Communication products'))
+                    ->label(t('Communication product(s)'))
                     ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
                     ->relationship()
                     ->schema([
@@ -179,7 +198,7 @@ class StudyCaseResource extends Resource
                     ->columnSpanFull(),
 
                 Forms\Components\Repeater::make('references')
-                    ->label(t('Bibliography and references'))
+                    ->label(t('Bibliography and reference(s)'))
                     ->hint(t('This lists the sources of the evidence that was gathered. If the source can be found online, please provide a URL. If the source is a publication or published media, please provide a full reference and URL if available. If the source not published, please describe it and, if possible, give contact details of the person who has access to them.'))
                     ->relationship()
                     ->schema([
