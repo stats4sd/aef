@@ -2,9 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\CountryResource\Pages;
-use App\Filament\Admin\Resources\CountryResource\RelationManagers;
-use App\Models\Country;
+use App\Filament\Admin\Resources\LanguageResource\Pages;
+use App\Filament\Admin\Resources\LanguageResource\RelationManagers;
+use App\Models\Language;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,22 +13,22 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CountryResource extends Resource
+class LanguageResource extends Resource
 {
-    protected static ?string $model = Country::class;
+    protected static ?string $model = Language::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 12;
 
     // define translatable string in function
     public static function getModelLabel(): string
     {
-        return t('Country');
+        return t('Language');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return t('Countries');
+        return t('Languages');
     }
 
     public static function getNavigationGroup(): string
@@ -36,24 +36,13 @@ class CountryResource extends Resource
         return t('Definitions');
     }
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('iso_alpha3')
-                    ->label('Iso alpha3')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('region_id')
-                    ->label('Region id')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('iso_alpha2')
-                    ->label('Iso alpha3')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -65,15 +54,6 @@ class CountryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('iso_alpha3')
-                    ->label('Iso alpha3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('region_id')
-                    ->label('Region id')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('iso_alpha2')
-                    ->label('Iso alpha2')
                     ->searchable(),
             ])
             ->filters([
@@ -99,9 +79,9 @@ class CountryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCountries::route('/'),
-            // 'create' => Pages\CreateCountry::route('/create'),
-            // 'edit' => Pages\EditCountry::route('/{record}/edit'),
+            'index' => Pages\ListLanguages::route('/'),
+            // 'create' => Pages\CreateLanguage::route('/create'),
+            // 'edit' => Pages\EditLanguage::route('/{record}/edit'),
         ];
     }
 }

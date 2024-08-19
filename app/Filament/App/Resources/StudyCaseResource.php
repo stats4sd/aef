@@ -44,7 +44,12 @@ class StudyCaseResource extends Resource
                             ->label(t('Basic Information'))
                             ->schema([
 
-                                // TODO
+                                Forms\Components\Select::make('languages')
+                                    ->label(t('Language(s)'))
+                                    ->hint(t('An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it.'))
+                                    ->multiple()
+                                    ->relationship('languages', 'name')
+                                    ->preload(),
 
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))

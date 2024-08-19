@@ -36,6 +36,11 @@ class StudyCase extends Model implements HasMedia
         return $this->belongsToMany(Country::class)->withTimestamps();
     }
 
+    public function languages(): BelongsToMany
+    {
+        return $this->belongsToMany(Language::class)->withTimestamps();
+    }
+
     public function claims(): HasMany
     {
         return $this->hasMany(Claim::class);

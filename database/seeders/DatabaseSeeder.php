@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TeamMembersTableSeeder::class);
         $this->call(OrganisationsTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
+        $this->call(LanguagesTableSeeder::class);
     }
 }
