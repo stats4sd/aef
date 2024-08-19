@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('study_cases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained('teams');
+            $table->text('geographic_area')->nullable();
             $table->text('title')->nullable();
             $table->integer('year_of_development')->nullable();
             $table->longText('statement')->nullable();;

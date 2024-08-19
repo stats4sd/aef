@@ -47,11 +47,23 @@ class StudyCaseResource extends Resource
                                 // TODO
 
                                 Forms\Components\Select::make('tags')
-                                    ->label(t('Tag(s)'))
-                                    ->hint(t('Tag(s) or keyword(s)'))
+                                    ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
                                     ->relationship('tags', 'name')
                                     ->preload(),
+
+                                Forms\Components\Select::make('countries')
+                                    ->label(t('Country(ies) covered'))
+                                    ->hint(t('Select the country(ies) covered in your case'))
+                                    ->multiple()
+                                    ->relationship('countries', 'name')
+                                    ->preload(),
+
+                                Forms\Components\Textarea::make('geographic_area')
+                                    ->label(t('Geographic area'))
+                                    ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
+                                    ->rows(3)
+                                    ->columnSpanFull(),
 
                                 Forms\Components\Select::make('organisations')
                                     ->label(t('Partner Organisation(s)'))
