@@ -279,15 +279,14 @@ class StudyCaseResource extends Resource
                         Tabs\Tab::make('tab-5')
                             ->label(t('Confirmation'))
                             ->schema([
-                                // TODO: it is not working if it is located below file upload component
                                 Forms\Components\Checkbox::make('ready_for_review')
                                     ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
                                     ->columnSpanFull(),
 
-                                // TODO: show it in admin panel only
-                                Forms\Components\Checkbox::make('reviewed')
-                                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                                    ->columnSpanFull(),
+                                // This checkbox is for reviewer only
+                                // Forms\Components\Checkbox::make('reviewed')
+                                //     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                //     ->columnSpanFull(),
                             ]),
 
 

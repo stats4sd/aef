@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,138 +38,263 @@ class StudyCaseResource extends Resource
     {
         return $form
             ->schema([
-                // TODO: add selection box to select partner organisations
-                // Forms\Components\Select::make('partnerOrgnisations')
-                //     ->multiple()
-                //     ->relationship('partnerOrgnisations', 'name'),
 
-                Forms\Components\TextInput::make('year_of_development')
-                    ->label(t('Year of development'))
-                    ->numeric(),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tabs\Tab::make('tab-1')
+                            ->label(t('Basic Information'))
+                            ->schema([
 
-                Forms\Components\Textarea::make('title')
-                    ->label(t('Title'))
-                    ->rows(10)
-                    ->columnSpanFull(),
+                                Forms\Components\Select::make('languages')
+                                    ->label(t('Language(s)'))
+                                    ->hint(t('An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it.'))
+                                    ->multiple()
+                                    ->relationship('languages', 'name')
+                                    ->preload(),
 
-                Forms\Components\RichEditor::make('statement')
-                    ->label(t('Statement(s)'))
-                    ->hint(t('e.g., If __________ then __________'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                                Forms\Components\Select::make('tags')
+                                    ->label(t('Tag(s) / keyword(s)'))
+                                    ->multiple()
+                                    ->relationship('tags', 'name')
+                                    ->preload(),
 
-                Forms\Components\RichEditor::make('target_audience')
-                    ->label(t('Target audience(s)'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                                Forms\Components\Select::make('countries')
+                                    ->label(t('Country(ies) covered'))
+                                    ->hint(t('Select the country(ies) covered in your case'))
+                                    ->multiple()
+                                    ->relationship('countries', 'name')
+                                    ->preload(),
 
-                Forms\Components\RichEditor::make('call_to_action')
-                    ->label(t('Call to action(s)'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                                Forms\Components\Textarea::make('geographic_area')
+                                    ->label(t('Geographic area'))
+                                    ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
+                                    ->rows(3)
+                                    ->columnSpanFull(),
 
-                Forms\Components\RichEditor::make('target_audience_priorities_and_values')
-                    ->label(t('Target audience(s)\'s priorities and values'))
-                    ->hint(t('if you have more than one target audience/s, you can list them separately'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                                Forms\Components\Select::make('organisations')
+                                    ->label(t('Partner Organisation(s)'))
+                                    ->hint(t('List of partner organisation(s) that worked in the development of the case'))
+                                    ->multiple()
+                                    ->relationship('organisations', 'name')
+                                    ->preload(),
 
-                Forms\Components\RichEditor::make('framing')
-                    ->label(t('Framing(s) of the case'))
-                    ->hint(t('based on your audience\'s priorities and way of understanding the issues at hand'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                            ]),
 
-                Forms\Components\RichEditor::make('strategy_to_argue')
-                    ->label(t('Strategy(ies) to argue the case'))
-                    ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
-                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                        Tabs\Tab::make('tab-2')
+                            ->label(t('Case Details'))
+                            ->schema([
+                                Forms\Components\TextInput::make('year_of_development')
+                                    ->label(t('Year of development'))
+                                    ->numeric(),
 
-                Forms\Components\Textarea::make('note')
-                    ->label(t('Note'))
-                    ->columnSpanFull(),
+                                Forms\Components\Textarea::make('title')
+                                    ->label(t('Title'))
+                                    ->rows(10)
+                                    ->columnSpanFull(),
 
-                Forms\Components\Repeater::make('communicationProducts')
-                    ->label(t('Communication products'))
-                    ->relationship()
-                    ->schema([
-                        TextInput::make('description')->label(t('Description'))->required(),
-                        TextInput::make('url')->label(t('Url')),
-                        // TODO: add restriction for file size
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                            ->label(t('File'))
-                            ->collection('file')
-                            ->preserveFilenames()
-                            ->downloadable(),
-                    ])
-                    ->defaultItems(0)
-                    ->addActionLabel(t('Add communication product'))
-                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('statement')
+                                    ->label(t('Statement(s)'))
+                                    ->hint(t('e.g., If __________ then __________'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
 
-                Forms\Components\Repeater::make('references')
-                    ->label(t('Bibliography and references'))
-                    ->relationship()
-                    ->schema([
-                        TextInput::make('description')->label(t('Description'))->required(),
-                        TextInput::make('url')->label(t('Url')),
-                        // TODO: add restriction for file size
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                            ->label(t('File'))
-                            ->collection('file')
-                            ->preserveFilenames()
-                            ->downloadable(),
-                    ])
-                    ->defaultItems(0)
-                    ->addActionLabel(t('Add bibliography and reference'))
-                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('target_audience')
+                                    ->label(t('Description of the target audience(s)'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
 
-                // TODO: add restriction for file size
-                // TODO: add restriction for image files only
-                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
-                    ->label(t('Catalogue photos'))
-                    ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
-                    ->collection('photos')
-                    ->multiple()
-                    ->preserveFilenames()
-                    ->downloadable()
-                    ->maxFiles(5)
-                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('target_audience_priorities_and_values')
+                                    ->label(t('Target audience(s)\'s priorities and values'))
+                                    ->hint(t('if you have more than one target audience/s, you can list them separately'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
+
+                                Forms\Components\RichEditor::make('framing')
+                                    ->label(t('Framing(s) of the case'))
+                                    ->hint(t('based on your audience\'s priorities and way of understanding the issues at hand'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
+
+                                Forms\Components\RichEditor::make('strategy_to_argue')
+                                    ->label(t('Description of the strategy(ies) to argue the case'))
+                                    ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
+
+                                Forms\Components\RichEditor::make('call_to_action')
+                                    ->label(t('Call to action(s)'))
+                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                    ->columnSpanFull()
+                                    ->disableToolbarButtons([
+                                        'attachFiles',
+                                        'strike',
+                                    ]),
+
+                                Forms\Components\Textarea::make('note')
+                                    ->label(t('Note'))
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tabs\Tab::make('tab-3')
+                            ->label(t('Claims and Evidences'))
+                            ->schema([
+                                Forms\Components\Repeater::make('claims')
+                                    ->label(t('Claims'))
+                                    ->hint(t('You will be able to enter as many claims and pieces of evidence as needed. If one piece of evidence is used to support multiple claims, please copy it again.'))
+                                    ->relationship()
+                                    ->schema([
+
+                                        Forms\Components\RichEditor::make('claim_statement')
+                                            ->label(t('Claim statement'))
+                                            ->hint(t('Claim made in the case statement'))
+                                            ->required(),
+
+                                        Forms\Components\Repeater::make('indicators')
+                                            ->label(t('Indicator(s)'))
+                                            ->relationship()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')->label(t('Name'))->required(),
+                                                Forms\Components\Select::make('type')
+                                                    ->label(t('Type'))
+                                                    ->required()
+                                                    ->options([
+                                                        'qualitative' => 'Qualitative',
+                                                        'quantitative' => 'Quantitative',
+                                                    ]),
+                                            ])
+                                            ->defaultItems(0)
+                                            ->addActionLabel(t('Add indicator'))
+                                            ->columnSpanFull(),
+
+                                        Forms\Components\Repeater::make('evidences')
+                                            ->label(t('Evidence(s)'))
+                                            ->relationship()
+                                            ->schema([
+                                                Forms\Components\RichEditor::make('matching_evidence')
+                                                    ->label(t('Evidence'))
+                                                    ->hint(t('Evidence that supports this claim statement'))
+                                                    ->required(),
+
+                                                Forms\Components\Repeater::make('evidenceAttachments')
+                                                    ->label(t('Evidence attachment(s)'))
+                                                    ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
+                                                    ->relationship()
+                                                    ->schema([
+                                                        TextInput::make('description')->label(t('Description'))->required(),
+                                                        TextInput::make('url')->label(t('URL')),
+                                                        // TODO: add restriction for file size
+                                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                                            ->label(t('File'))
+                                                            ->collection('file')
+                                                            ->preserveFilenames()
+                                                            ->downloadable(),
+                                                    ])
+                                                    ->defaultItems(0)
+                                                    ->addActionLabel(t('Add evidence attachment'))
+                                                    ->columnSpanFull(),
+
+                                            ])
+                                            ->defaultItems(0)
+                                            ->addActionLabel(t('Add evidence'))
+                                            ->columnSpanFull(),
+
+                                    ])
+                                    ->defaultItems(0)
+                                    ->addActionLabel(t('Add claim'))
+                                    ->columnSpanFull(),
+
+                            ]),
+
+                        Tabs\Tab::make('tab-4')
+                            ->label(t('Others'))
+                            ->schema([
+                                Forms\Components\Repeater::make('communicationProducts')
+                                    ->label(t('Communication product(s)'))
+                                    ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
+                                    ->relationship()
+                                    ->schema([
+                                        TextInput::make('description')->label(t('Description'))->required(),
+                                        TextInput::make('url')->label(t('URL')),
+                                        // TODO: add restriction for file size
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                            ->label(t('File'))
+                                            ->collection('file')
+                                            ->preserveFilenames()
+                                            ->downloadable(),
+                                    ])
+                                    ->defaultItems(0)
+                                    ->addActionLabel(t('Add communication product'))
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Repeater::make('references')
+                                    ->label(t('Bibliography and reference(s)'))
+                                    ->hint(t('This lists the sources of the evidence that was gathered. If the source can be found online, please provide a URL. If the source is a publication or published media, please provide a full reference and URL if available. If the source not published, please describe it and, if possible, give contact details of the person who has access to them.'))
+                                    ->relationship()
+                                    ->schema([
+                                        TextInput::make('description')->label(t('Description'))->required(),
+                                        TextInput::make('url')->label(t('URL')),
+                                        // TODO: add restriction for file size
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                            ->label(t('File'))
+                                            ->collection('file')
+                                            ->preserveFilenames()
+                                            ->downloadable(),
+                                    ])
+                                    ->defaultItems(0)
+                                    ->addActionLabel(t('Add bibliography and reference'))
+                                    ->columnSpanFull(),
+
+                                // TODO: add restriction for file size
+                                // TODO: add restriction for image files only
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
+                                    ->label(t('Catalogue photos'))
+                                    ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
+                                    ->collection('photos')
+                                    ->multiple()
+                                    ->preserveFilenames()
+                                    ->downloadable()
+                                    ->maxFiles(5)
+                                    ->columnSpanFull(),
+                            ]),
+
+                        Tabs\Tab::make('tab-5')
+                            ->label(t('Confirmation'))
+                            ->schema([
+                                // This checkbox is for user only, not for reviewer
+                                Forms\Components\Checkbox::make('ready_for_review')
+                                    ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                    ->disabled()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Checkbox::make('reviewed')
+                                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                    ->columnSpanFull(),
+                            ]),
 
 
-                // TODO: it is not working if it is located below file upload component
-                Forms\Components\Checkbox::make('ready_for_review')
-                    ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
-                    ->columnSpanFull(),
+                    ])->columnSpanFull()
+                    ->persistTabInQueryString()
 
-                // TODO: show it in admin panel only
-                Forms\Components\Checkbox::make('reviewed')
-                    ->label(t('I confirm that all content have been reviewed. This case is now ready for publishing.'))
-                    ->columnSpanFull(),
             ]);
     }
 
