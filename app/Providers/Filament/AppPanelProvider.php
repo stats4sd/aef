@@ -36,8 +36,12 @@ class AppPanelProvider extends PanelProvider
                 SetLatestTeamMiddleware::class,
             ])
             ->login()
+            ->passwordReset()
+            ->profile() // TODO: Implement more full-featured profile page
+            ->darkMode(false)
             ->colors([
                 'primary' => Color::Amber,
+                'grey' => Color::Gray,
             ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
