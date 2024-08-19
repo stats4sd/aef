@@ -1,14 +1,21 @@
 <?php
 
-namespace App\Filament\Admin\Resources\OrganisationResource\Pages;
+namespace App\Filament\App\Resources\OrganisationResource\Pages;
 
-use App\Filament\Admin\Resources\OrganisationResource;
+use App\Filament\App\Resources\OrganisationResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateOrganisation extends CreateRecord
 {
     protected static string $resource = OrganisationResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['team_id'] = auth()->user()->latestTeam->id;
+
+        return $data;
+    }
 
     protected function getRedirectUrl(): string
     {

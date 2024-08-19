@@ -24,4 +24,9 @@ class Team extends Model
     {
         return $this->hasMany(StudyCase::class);
     }
+
+    public function organisations(): HasMany
+    {
+        return $this->hasMany(Organisation::class);
+    }
 }

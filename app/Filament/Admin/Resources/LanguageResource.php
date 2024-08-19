@@ -2,9 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\OrganisationResource\Pages;
-use App\Filament\Admin\Resources\OrganisationResource\RelationManagers;
-use App\Models\Organisation;
+use App\Filament\Admin\Resources\LanguageResource\Pages;
+use App\Filament\Admin\Resources\LanguageResource\RelationManagers;
+use App\Models\Language;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,21 +13,22 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class OrganisationResource extends Resource
+class LanguageResource extends Resource
 {
-    protected static ?string $model = Organisation::class;
+    protected static ?string $model = Language::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?int $navigationSort = 12;
 
     // define translatable string in function
     public static function getModelLabel(): string
     {
-        return t('Organisation');
+        return t('Language');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return t('Organisations');
+        return t('Languages');
     }
 
     public static function getNavigationGroup(): string
@@ -35,22 +36,15 @@ class OrganisationResource extends Resource
         return t('Definitions');
     }
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('url')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_person_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_person_email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('note')
-                    ->columnSpanFull(),
             ]);
     }
 
@@ -59,23 +53,18 @@ class OrganisationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('url')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('contact_person_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('contact_person_email')
+                    ->label('Name')
                     ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -90,9 +79,9 @@ class OrganisationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOrganisations::route('/'),
-            'create' => Pages\CreateOrganisation::route('/create'),
-            'edit' => Pages\EditOrganisation::route('/{record}/edit'),
+            'index' => Pages\ListLanguages::route('/'),
+            // 'create' => Pages\CreateLanguage::route('/create'),
+            // 'edit' => Pages\EditLanguage::route('/{record}/edit'),
         ];
     }
 }

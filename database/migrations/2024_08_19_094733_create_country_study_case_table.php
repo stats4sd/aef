@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evidence_indicator', function (Blueprint $table) {
+        Schema::create('country_study_case', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evidence_id')->constrained('evidences');
-            $table->foreignId('indicator_id')->constrained('indicators');
+            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('study_case_id')->constrained('study_cases');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evidence_indicator');
+        Schema::dropIfExists('country_studycase');
     }
 };

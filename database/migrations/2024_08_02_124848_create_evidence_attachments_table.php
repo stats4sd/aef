@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('evidence_attachments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('website')->nullable();
-            $table->string('contact_person_name')->nullable();
-            $table->string('contact_person_email')->nullable();
-            $table->text('description')->nullable();
-            $table->string('avatar')->nullable();
+            $table->foreignId('evidence_id')->constrained('evidences')->onUpdate('cascade')->onDelete('cascade');;
+            $table->string('description')->nullable();;
+            $table->string('url')->nullable();;
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('evidence_attachments');
     }
 };

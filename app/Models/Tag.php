@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\StudyCase;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
@@ -12,8 +12,8 @@ class Tag extends Model
 
     protected $guarded = ['id'];
 
-    public function studyCases(): HasMany
+    public function studyCases(): BelongsToMany
     {
-        return $this->hasMany(StudyCase::class);
+        return $this->belongsToMany(StudyCase::class)->withTimestamps();
     }
 }

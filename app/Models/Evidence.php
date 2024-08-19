@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Indicator;
+use App\Models\Claim;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Evidence extends Model
 {
@@ -12,8 +13,13 @@ class Evidence extends Model
 
     protected $guarded = ['id'];
 
-    public function indicators(): HasMany
+    public function claim(): BelongsTo
     {
-        return $this->hasMany(Indicator::class);
+        return $this->belongsTo(Claim::class);
+    }
+
+    public function evidenceAttachments(): HasMany
+    {
+        return $this->hasMany(EvidenceAttachment::class);
     }
 }

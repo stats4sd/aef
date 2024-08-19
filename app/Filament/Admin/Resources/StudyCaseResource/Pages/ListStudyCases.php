@@ -12,6 +12,12 @@ class ListStudyCases extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [];
+        return [
+            // hide "Create" button
+            // reviewer should not be able to create new study case.
+            // study case should be created by leading organisation member.
+
+            // Actions\CreateAction::make(),
+        ];
     }
 }

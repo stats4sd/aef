@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('indicators', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('website')->nullable();
-            $table->string('contact_person_name')->nullable();
-            $table->string('contact_person_email')->nullable();
-            $table->text('description')->nullable();
-            $table->string('avatar')->nullable();
+            $table->foreignId('claim_id')->constrained('claims')->onUpdate('cascade')->onDelete('cascade');;
+            $table->longText('name');
+            $table->string('type');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('indicators');
     }
 };

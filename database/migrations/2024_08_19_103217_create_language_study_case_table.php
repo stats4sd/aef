@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('study_cases', function (Blueprint $table) {
-            $table->text('title')->nullable()->after('leading_organisation_id');
+        Schema::create('language_study_case', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('language_id')->constrained('languages');
+            $table->foreignId('study_case_id')->constrained('study_cases');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('study_cases', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('language_study_case');
     }
 };
