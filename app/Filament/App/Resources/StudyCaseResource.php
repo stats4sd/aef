@@ -43,8 +43,23 @@ class StudyCaseResource extends Resource
                         Tabs\Tab::make('tab-1')
                             ->label(t('Basic Information'))
                             ->schema([
-                                // ...
+
                                 // TODO
+
+                                Forms\Components\Select::make('tags')
+                                    ->label(t('Tag(s)'))
+                                    ->hint(t('Tag(s) or keyword(s)'))
+                                    ->multiple()
+                                    ->relationship('tags', 'name')
+                                    ->preload(),
+
+                                Forms\Components\Select::make('organisations')
+                                    ->label(t('Partner Organisation(s)'))
+                                    ->hint(t('List of partner organisation(s) that worked in the development of the case'))
+                                    ->multiple()
+                                    ->relationship('organisations', 'name')
+                                    ->preload(),
+
                             ]),
 
                         Tabs\Tab::make('tab-2')

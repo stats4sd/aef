@@ -39,7 +39,7 @@ class StudyCase extends Model implements HasMedia
     // partner organisations
     public function organisations(): BelongsToMany
     {
-        return $this->belongsToMany(Organisation::class);
+        return $this->belongsToMany(Organisation::class)->withTimestamps();
     }
 
     public function communicationProducts(): HasMany
@@ -52,9 +52,9 @@ class StudyCase extends Model implements HasMedia
         return $this->hasMany(Reference::class);
     }
 
-    public function tags(): HasMany
+    public function tags(): BelongsToMany
     {
-        return $this->hasMany(Reference::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     // for Spatie media library

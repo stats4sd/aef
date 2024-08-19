@@ -21,6 +21,6 @@ class Organisation extends Model
 
     public function studyCases(): BelongsToMany
     {
-        return $this->belongsToMany(StudyCase::class);
+        return $this->belongsToMany(StudyCase::class)->withTimestamps();
     }
 }
