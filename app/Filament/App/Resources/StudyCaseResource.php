@@ -55,7 +55,13 @@ class StudyCaseResource extends Resource
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
                                     ->relationship('tags', 'name')
-                                    ->preload(),
+                                    ->preload()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label(t('Name'))
+                                            ->unique()
+                                            ->required(),
+                                    ]),
 
                                 Forms\Components\Select::make('countries')
                                     ->label(t('Country(ies) covered'))
@@ -75,7 +81,27 @@ class StudyCaseResource extends Resource
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
-                                    ->preload(),
+                                    ->preload()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label(t('Name'))
+                                            ->unique()
+                                            ->required()
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('website')
+                                            ->label(t('Website'))
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('contact_person_name')
+                                            ->label(t('Contact person name'))
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('contact_person_email')
+                                            ->label(t('Contact person email'))
+                                            ->email()
+                                            ->maxLength(255),
+                                        Forms\Components\Textarea::make('note')
+                                            ->label(t('Note'))
+                                            ->columnSpanFull(),
+                                    ]),
 
                             ]),
 
