@@ -14,6 +14,16 @@ class Organisation extends Model
 
     protected $guarded = ['id'];
 
+    protected static function booted(): void
+    {
+        parent::booted();
+
+        // find and assign team_id value before creating new record
+        static::creating(static function ($organisation) {
+            $organisation->team_id = auth()->user()->latestTeam->id;
+        });
+    }
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
