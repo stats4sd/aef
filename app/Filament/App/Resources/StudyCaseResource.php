@@ -81,6 +81,7 @@ class StudyCaseResource extends Resource
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
+                                    ->options(auth()->user()->latestTeam->organisations->pluck('name', 'id'))
                                     ->preload()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
