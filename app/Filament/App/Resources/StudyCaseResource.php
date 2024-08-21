@@ -81,7 +81,6 @@ class StudyCaseResource extends Resource
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
-                                    ->options(auth()->user()->latestTeam->organisations->pluck('name', 'id'))
                                     ->preload()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -182,7 +181,7 @@ class StudyCaseResource extends Resource
                             ]),
 
                         Tabs\Tab::make('tab-3')
-                            ->label(t('Claims and Evidences'))
+                            ->label(t('Claims and Evidence'))
                             ->schema([
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
@@ -213,7 +212,7 @@ class StudyCaseResource extends Resource
                                             ->columnSpanFull(),
 
                                         Forms\Components\Repeater::make('evidences')
-                                            ->label(t('Evidence(s)'))
+                                            ->label(t('Evidence'))
                                             ->relationship()
                                             ->schema([
                                                 Forms\Components\RichEditor::make('matching_evidence')
