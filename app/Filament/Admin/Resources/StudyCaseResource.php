@@ -56,7 +56,13 @@ class StudyCaseResource extends Resource
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
                                     ->relationship('tags', 'name')
-                                    ->preload(),
+                                    ->preload()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label(t('Name'))
+                                            ->unique()
+                                            ->required(),
+                                    ]),
 
                                 Forms\Components\Select::make('countries')
                                     ->label(t('Country(ies) covered'))
@@ -76,7 +82,27 @@ class StudyCaseResource extends Resource
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
-                                    ->preload(),
+                                    ->preload()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label(t('Name'))
+                                            ->unique()
+                                            ->required()
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('website')
+                                            ->label(t('Website'))
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('contact_person_name')
+                                            ->label(t('Contact person name'))
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('contact_person_email')
+                                            ->label(t('Contact person email'))
+                                            ->email()
+                                            ->maxLength(255),
+                                        Forms\Components\Textarea::make('note')
+                                            ->label(t('Note'))
+                                            ->columnSpanFull(),
+                                    ]),
 
                             ]),
 
@@ -156,7 +182,7 @@ class StudyCaseResource extends Resource
                             ]),
 
                         Tabs\Tab::make('tab-3')
-                            ->label(t('Claims and Evidences'))
+                            ->label(t('Claims and Evidence'))
                             ->schema([
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
@@ -169,31 +195,24 @@ class StudyCaseResource extends Resource
                                             ->hint(t('Claim made in the case statement'))
                                             ->required(),
 
-                                        Forms\Components\Repeater::make('indicators')
-                                            ->label(t('Indicator(s)'))
-                                            ->relationship()
-                                            ->schema([
-                                                Forms\Components\TextInput::make('name')->label(t('Name'))->required(),
-                                                Forms\Components\Select::make('type')
-                                                    ->label(t('Type'))
-                                                    ->required()
-                                                    ->options([
-                                                        'qualitative' => 'Qualitative',
-                                                        'quantitative' => 'Quantitative',
-                                                    ]),
-                                            ])
-                                            ->defaultItems(0)
-                                            ->addActionLabel(t('Add indicator'))
-                                            ->columnSpanFull(),
-
                                         Forms\Components\Repeater::make('evidences')
-                                            ->label(t('Evidence(s)'))
+                                            ->label(t('Evidence'))
                                             ->relationship()
                                             ->schema([
                                                 Forms\Components\RichEditor::make('matching_evidence')
                                                     ->label(t('Evidence'))
                                                     ->hint(t('Evidence that supports this claim statement'))
                                                     ->required(),
+
+                                                Forms\Components\Repeater::make('aspects')
+                                                    ->label(t('Aspect(s)'))
+                                                    ->relationship()
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('name')->label(t('Aspect'))->required(),
+                                                    ])
+                                                    ->defaultItems(0)
+                                                    ->addActionLabel(t('Add aspect'))
+                                                    ->columnSpanFull(),
 
                                                 Forms\Components\Repeater::make('evidenceAttachments')
                                                     ->label(t('Evidence attachment(s)'))
@@ -286,6 +305,7 @@ class StudyCaseResource extends Resource
                                     ->disabled()
                                     ->columnSpanFull(),
 
+                                // This checkbox is for reviewer only
                                 Forms\Components\Checkbox::make('reviewed')
                                     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
                                     ->columnSpanFull(),
