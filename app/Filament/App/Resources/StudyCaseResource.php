@@ -43,6 +43,7 @@ class StudyCaseResource extends Resource
                     ->tabs([
                         Tabs\Tab::make('tab-1')
                             ->label(t('Basic Information'))
+                            ->icon('heroicon-m-information-circle')
                             ->schema([
 
                                 Forms\Components\Select::make('languages')
@@ -114,6 +115,8 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-2')
                             ->label(t('Case Details'))
+                            ->icon('heroicon-m-document-text')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
                                 Forms\Components\TextInput::make('year_of_development')
                                     ->label(t('Year of development'))
@@ -189,6 +192,8 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-3')
                             ->label(t('Claims and Evidence'))
+                            ->icon('heroicon-m-sparkles')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
@@ -227,12 +232,12 @@ class StudyCaseResource extends Resource
                                                     ->schema([
                                                         TextInput::make('description')->label(t('Description'))->required(),
                                                         TextInput::make('url')->label(t('URL')),
-                                                        // TODO: add restriction for file size
                                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                                             ->label(t('File'))
                                                             ->collection('file')
                                                             ->preserveFilenames()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->maxSize(10240),
                                                     ])
                                                     ->defaultItems(0)
                                                     ->addActionLabel(t('Add evidence attachment'))
@@ -252,6 +257,8 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-4')
                             ->label(t('Others'))
+                            ->icon('heroicon-m-paper-clip')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
 
                                 Forms\Components\Repeater::make('communicationProducts')
@@ -261,12 +268,12 @@ class StudyCaseResource extends Resource
                                     ->schema([
                                         TextInput::make('description')->label(t('Description'))->required(),
                                         TextInput::make('url')->label(t('URL')),
-                                        // TODO: add restriction for file size
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('file')
                                             ->preserveFilenames()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add communication product'))
@@ -279,12 +286,12 @@ class StudyCaseResource extends Resource
                                     ->schema([
                                         TextInput::make('description')->label(t('Description'))->required(),
                                         TextInput::make('url')->label(t('URL')),
-                                        // TODO: add restriction for file size
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('file')
                                             ->preserveFilenames()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add bibliography and reference'))
@@ -309,6 +316,8 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-5')
                             ->label(t('Confirmation'))
+                            ->icon('heroicon-m-check-circle')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
                                 // This checkbox is for submitter only, not for reviewer
                                 // It should be disabled in admin panel
