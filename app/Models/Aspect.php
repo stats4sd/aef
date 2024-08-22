@@ -6,14 +6,14 @@ use App\Models\Claim;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Indicator extends Model
+class Aspect extends Model
 {
-    protected $table = 'indicators';
+    protected $table = 'aspects';
 
     protected $guarded = ['id'];
 
-    public function claim(): BelongsTo
+    public function evidence(): BelongsTo
     {
-        return $this->belongsTo(Claim::class);
+        return $this->belongsTo(Evidence::class);
     }
 }

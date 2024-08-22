@@ -18,6 +18,11 @@ class Evidence extends Model
         return $this->belongsTo(Claim::class);
     }
 
+    public function aspects(): HasMany
+    {
+        return $this->hasMany(Aspect::class);
+    }
+
     public function evidenceAttachments(): HasMany
     {
         return $this->hasMany(EvidenceAttachment::class);
