@@ -73,6 +73,12 @@ class StudyCaseResource extends Resource
                                 Forms\Components\Textarea::make('geographic_area')
                                     ->label(t('Geographic area'))
                                     ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
+                                    // TODO: try to change border and/or background color to show structure visually
+                                    // ->extraInputAttributes(['class' => 'bg-gray-501'])
+                                    // ->extraInputAttributes(['class' => 'border-rose-600'])
+                                    // ->extraInputAttributes(['class' => 'border-2'])
+                                    // ->extraInputAttributes(['class' => 'bg-red'])
+                                    // ->extraAttributes(['class' => 'bg-gray-50'])
                                     ->rows(3)
                                     ->columnSpanFull(),
 
@@ -194,23 +200,6 @@ class StudyCaseResource extends Resource
                                             ->hint(t('Claim made in the case statement'))
                                             ->required(),
 
-                                        Forms\Components\Repeater::make('indicators')
-                                            ->label(t('Indicator(s)'))
-                                            ->relationship()
-                                            ->schema([
-                                                Forms\Components\TextInput::make('name')->label(t('Name'))->required(),
-                                                Forms\Components\Select::make('type')
-                                                    ->label(t('Type'))
-                                                    ->required()
-                                                    ->options([
-                                                        'qualitative' => 'Qualitative',
-                                                        'quantitative' => 'Quantitative',
-                                                    ]),
-                                            ])
-                                            ->defaultItems(0)
-                                            ->addActionLabel(t('Add indicator'))
-                                            ->columnSpanFull(),
-
                                         Forms\Components\Repeater::make('evidences')
                                             ->label(t('Evidence'))
                                             ->relationship()
@@ -219,6 +208,16 @@ class StudyCaseResource extends Resource
                                                     ->label(t('Evidence'))
                                                     ->hint(t('Evidence that supports this claim statement'))
                                                     ->required(),
+
+                                                Forms\Components\Repeater::make('aspects')
+                                                    ->label(t('Aspect(s)'))
+                                                    ->relationship()
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('name')->label(t('Aspect'))->required(),
+                                                    ])
+                                                    ->defaultItems(0)
+                                                    ->addActionLabel(t('Add aspect'))
+                                                    ->columnSpanFull(),
 
                                                 Forms\Components\Repeater::make('evidenceAttachments')
                                                     ->label(t('Evidence attachment(s)'))

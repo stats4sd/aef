@@ -18,11 +18,6 @@ class Claim extends Model
         return $this->belongsTo(StudyCase::class);
     }
 
-    public function indicators(): HasMany
-    {
-        return $this->hasMany(Indicator::class);
-    }
-
     public function evidences(): HasMany
     {
         return $this->hasMany(Evidence::class);
