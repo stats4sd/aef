@@ -299,18 +299,22 @@ class StudyCaseResource extends Resource
                         Tabs\Tab::make('tab-5')
                             ->label(t('Confirmation'))
                             ->schema([
-                                // This checkbox is for user only, not for reviewer
+                                // This checkbox is for submitter only, not for reviewer
+                                // It should be disabled in admin panel
                                 Forms\Components\Checkbox::make('ready_for_review')
                                     ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                    ->hint(t('This is to be confirmed by case submitter'))
                                     ->disabled()
                                     ->columnSpanFull(),
 
-                                // This checkbox is for reviewer only
+                                // This checkbox is for reviewer only, not for submitter
+                                // It should be disabled in app panel
                                 Forms\Components\Checkbox::make('reviewed')
                                     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                    ->hint(t('This is to be confirmed by case reviewer'))
+                                    // ->disabled()
                                     ->columnSpanFull(),
                             ]),
-
 
                     ])->columnSpanFull()
                     ->persistTabInQueryString()

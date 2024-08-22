@@ -7,11 +7,12 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Tabs;
 use App\Models\Organisation;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Builder\Block;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
 use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
@@ -252,6 +253,7 @@ class StudyCaseResource extends Resource
                         Tabs\Tab::make('tab-4')
                             ->label(t('Others'))
                             ->schema([
+
                                 Forms\Components\Repeater::make('communicationProducts')
                                     ->label(t('Communication product(s)'))
                                     ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
@@ -288,34 +290,42 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add bibliography and reference'))
                                     ->columnSpanFull(),
 
-                                // TODO: add restriction for file size
-                                // TODO: add restriction for image files only
+                                // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
+                                // TODO: unable to add restriction to only accept image files, because acceptsMimeTypes() is not supported in filament plugins
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
                                     ->label(t('Catalogue photos'))
                                     ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
                                     ->collection('photos')
                                     ->multiple()
-                                    ->preserveFilenames()
+                                    ->reorderable()
                                     ->downloadable()
+                                    ->preserveFilenames()
+                                    // ->acceptsMimeTypes(['image/jpeg'])
                                     ->maxFiles(5)
+                                    // set maximum file size is 10 MB
+                                    ->maxSize(10240)
                                     ->columnSpanFull(),
                             ]),
 
                         Tabs\Tab::make('tab-5')
                             ->label(t('Confirmation'))
                             ->schema([
-                                // This checkbox is for user only, not for reviewer
+                                // This checkbox is for submitter only, not for reviewer
+                                // It should be disabled in admin panel
                                 Forms\Components\Checkbox::make('ready_for_review')
                                     ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                    ->hint(t('This is to be confirmed by case submitter'))
                                     // ->disabled()
                                     ->columnSpanFull(),
 
-                                // This checkbox is for reviewer only
-                                // Forms\Components\Checkbox::make('reviewed')
-                                //     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                                //     ->columnSpanFull(),
+                                // This checkbox is for reviewer only, not for submitter
+                                // It should be disabled in app panel
+                                Forms\Components\Checkbox::make('reviewed')
+                                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                    ->hint(t('This is to be confirmed by case reviewer'))
+                                    ->disabled()
+                                    ->columnSpanFull(),
                             ]),
-
 
                     ])->columnSpanFull()
                     ->persistTabInQueryString()
