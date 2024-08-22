@@ -28,6 +28,33 @@ class TeamMembersTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            1 => 
+            array (
+                'id' => 2,
+                'team_id' => 2,
+                'user_id' => 2,
+                'is_admin' => 0,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+            2 => 
+            array (
+                'id' => 3,
+                'team_id' => 2,
+                'user_id' => 3,
+                'is_admin' => 0,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+            3 => 
+            array (
+                'id' => 4,
+                'team_id' => 2,
+                'user_id' => 4,
+                'is_admin' => 0,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
         ));
         
         

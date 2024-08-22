@@ -31,6 +31,18 @@ class TeamsTableSeeder extends Seeder
                 'created_at' => '2024-08-15 10:22:09',
                 'updated_at' => '2024-08-15 10:22:09',
             ),
+            1 => 
+            array (
+                'id' => 2,
+                'name' => 'Reviewer Team',
+                'website' => NULL,
+                'contact_person_name' => NULL,
+                'contact_person_email' => NULL,
+                'description' => NULL,
+                'avatar' => NULL,
+                'created_at' => '2024-08-22 09:09:22',
+                'updated_at' => '2024-08-22 09:09:22',
+            ),
         ));
         
         
