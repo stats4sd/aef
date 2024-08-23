@@ -43,19 +43,32 @@ class StudyCaseResource extends Resource
                     ->tabs([
                         Tabs\Tab::make('tab-1')
                             ->label(t('Basic Information'))
+                            ->icon('heroicon-m-information-circle')
                             ->schema([
+
+                                Forms\Components\TextInput::make('title')
+                                    ->label(t('Title'))
+                                    ->required()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('year_of_development')
+                                    ->label(t('Year of development'))
+                                    ->required()
+                                    ->numeric(),
 
                                 Forms\Components\Select::make('languages')
                                     ->label(t('Language(s)'))
                                     ->hint(t('An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it.'))
                                     ->multiple()
                                     ->relationship('languages', 'name')
+                                    ->required()
                                     ->preload(),
 
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
                                     ->relationship('tags', 'name')
+                                    ->required()
                                     ->preload()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -69,12 +82,20 @@ class StudyCaseResource extends Resource
                                     ->hint(t('Select the country(ies) covered in your case'))
                                     ->multiple()
                                     ->relationship('countries', 'name')
+                                    ->required()
                                     ->preload(),
 
                                 Forms\Components\Textarea::make('geographic_area')
                                     ->label(t('Geographic area'))
                                     ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
+                                    // TODO: try to change border and/or background color to show structure visually
+                                    // ->extraInputAttributes(['class' => 'bg-gray-501'])
+                                    // ->extraInputAttributes(['class' => 'border-rose-600'])
+                                    // ->extraInputAttributes(['class' => 'border-2'])
+                                    // ->extraInputAttributes(['class' => 'bg-red'])
+                                    // ->extraAttributes(['class' => 'bg-gray-50'])
                                     ->rows(3)
+                                    ->required()
                                     ->columnSpanFull(),
 
                                 Forms\Components\Select::make('organisations')
@@ -83,6 +104,7 @@ class StudyCaseResource extends Resource
                                     ->multiple()
                                     ->relationship('organisations', 'name')
                                     ->preload()
+                                    ->required()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
                                             ->label(t('Name'))
@@ -108,15 +130,9 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-2')
                             ->label(t('Case Details'))
+                            ->icon('heroicon-m-document-text')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
-                                Forms\Components\TextInput::make('year_of_development')
-                                    ->label(t('Year of development'))
-                                    ->numeric(),
-
-                                Forms\Components\Textarea::make('title')
-                                    ->label(t('Title'))
-                                    ->rows(10)
-                                    ->columnSpanFull(),
 
                                 Forms\Components\RichEditor::make('statement')
                                     ->label(t('Statement(s)'))
@@ -183,6 +199,8 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-3')
                             ->label(t('Claims and Evidence'))
+                            ->icon('heroicon-m-sparkles')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
@@ -215,21 +233,21 @@ class StudyCaseResource extends Resource
                                                     ->columnSpanFull(),
 
                                                 Forms\Components\Repeater::make('evidenceAttachments')
-                                                    ->label(t('Evidence attachment(s)'))
+                                                    ->label(t('Source(s) of the evidence'))
                                                     ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
                                                     ->relationship()
                                                     ->schema([
                                                         TextInput::make('description')->label(t('Description'))->required(),
                                                         TextInput::make('url')->label(t('URL')),
-                                                        // TODO: add restriction for file size
                                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                                             ->label(t('File'))
                                                             ->collection('file')
                                                             ->preserveFilenames()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->maxSize(10240),
                                                     ])
                                                     ->defaultItems(0)
-                                                    ->addActionLabel(t('Add evidence attachment'))
+                                                    ->addActionLabel(t('Add source of the evidence'))
                                                     ->columnSpanFull(),
 
                                             ])
@@ -246,7 +264,10 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-4')
                             ->label(t('Others'))
+                            ->icon('heroicon-m-paper-clip')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
+
                                 Forms\Components\Repeater::make('communicationProducts')
                                     ->label(t('Communication product(s)'))
                                     ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
@@ -254,12 +275,12 @@ class StudyCaseResource extends Resource
                                     ->schema([
                                         TextInput::make('description')->label(t('Description'))->required(),
                                         TextInput::make('url')->label(t('URL')),
-                                        // TODO: add restriction for file size
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('file')
                                             ->preserveFilenames()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add communication product'))
@@ -272,45 +293,55 @@ class StudyCaseResource extends Resource
                                     ->schema([
                                         TextInput::make('description')->label(t('Description'))->required(),
                                         TextInput::make('url')->label(t('URL')),
-                                        // TODO: add restriction for file size
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('file')
                                             ->preserveFilenames()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add bibliography and reference'))
                                     ->columnSpanFull(),
 
-                                // TODO: add restriction for file size
-                                // TODO: add restriction for image files only
+                                // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
+                                // TODO: unable to add restriction to only accept image files, because acceptsMimeTypes() is not supported in filament plugins
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
                                     ->label(t('Catalogue photos'))
                                     ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
                                     ->collection('photos')
                                     ->multiple()
-                                    ->preserveFilenames()
+                                    ->reorderable()
                                     ->downloadable()
+                                    ->preserveFilenames()
+                                    // ->acceptsMimeTypes(['image/jpeg'])
                                     ->maxFiles(5)
+                                    // set maximum file size is 10 MB
+                                    ->maxSize(10240)
                                     ->columnSpanFull(),
                             ]),
 
                         Tabs\Tab::make('tab-5')
                             ->label(t('Confirmation'))
+                            ->icon('heroicon-m-check-circle')
+                            ->disabled($form->getRecord() == null)
                             ->schema([
-                                // This checkbox is for user only, not for reviewer
+                                // This checkbox is for submitter only, not for reviewer
+                                // It should be disabled in admin panel
                                 Forms\Components\Checkbox::make('ready_for_review')
                                     ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                    ->hint(t('This is to be confirmed by case submitter'))
                                     ->disabled()
                                     ->columnSpanFull(),
 
-                                // This checkbox is for reviewer only
+                                // This checkbox is for reviewer only, not for submitter
+                                // It should be disabled in app panel
                                 Forms\Components\Checkbox::make('reviewed')
                                     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                    ->hint(t('This is to be confirmed by case reviewer'))
+                                    // ->disabled()
                                     ->columnSpanFull(),
                             ]),
-
 
                     ])->columnSpanFull()
                     ->persistTabInQueryString()

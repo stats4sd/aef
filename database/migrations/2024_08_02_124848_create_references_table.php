@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('study_case_id')->constrained('study_cases')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreignId('study_case_id')->constrained('study_cases')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('description')->nullable();;
             $table->string('url')->nullable();;
             $table->timestamps();

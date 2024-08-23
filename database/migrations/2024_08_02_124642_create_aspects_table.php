@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('aspects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('evidence_id')->constrained('evidences')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreignId('evidence_id')->constrained('evidences')->cascadeOnDelete()->cascadeOnUpdate();
             $table->longText('name');
             $table->timestamps();
         });
