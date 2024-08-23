@@ -60,11 +60,11 @@ class LanguageResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    // Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -80,8 +80,8 @@ class LanguageResource extends Resource
     {
         return [
             'index' => Pages\ListLanguages::route('/'),
-            // 'create' => Pages\CreateLanguage::route('/create'),
-            // 'edit' => Pages\EditLanguage::route('/{record}/edit'),
+            'create' => Pages\CreateLanguage::route('/create'),
+            'edit' => Pages\EditLanguage::route('/{record}/edit'),
         ];
     }
 }
