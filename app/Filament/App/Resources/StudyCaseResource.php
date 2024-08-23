@@ -46,17 +46,29 @@ class StudyCaseResource extends Resource
                             ->icon('heroicon-m-information-circle')
                             ->schema([
 
+                                Forms\Components\TextInput::make('title')
+                                    ->label(t('Title'))
+                                    ->required()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('year_of_development')
+                                    ->label(t('Year of development'))
+                                    ->required()
+                                    ->numeric(),
+
                                 Forms\Components\Select::make('languages')
                                     ->label(t('Language(s)'))
                                     ->hint(t('An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it.'))
                                     ->multiple()
                                     ->relationship('languages', 'name')
+                                    ->required()
                                     ->preload(),
 
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
                                     ->relationship('tags', 'name')
+                                    ->required()
                                     ->preload()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -70,6 +82,7 @@ class StudyCaseResource extends Resource
                                     ->hint(t('Select the country(ies) covered in your case'))
                                     ->multiple()
                                     ->relationship('countries', 'name')
+                                    ->required()
                                     ->preload(),
 
                                 Forms\Components\Textarea::make('geographic_area')
@@ -82,6 +95,7 @@ class StudyCaseResource extends Resource
                                     // ->extraInputAttributes(['class' => 'bg-red'])
                                     // ->extraAttributes(['class' => 'bg-gray-50'])
                                     ->rows(3)
+                                    ->required()
                                     ->columnSpanFull(),
 
                                 Forms\Components\Select::make('organisations')
@@ -90,6 +104,7 @@ class StudyCaseResource extends Resource
                                     ->multiple()
                                     ->relationship('organisations', 'name')
                                     ->preload()
+                                    ->required()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
                                             ->label(t('Name'))
@@ -118,14 +133,6 @@ class StudyCaseResource extends Resource
                             ->icon('heroicon-m-document-text')
                             ->disabled($form->getRecord() == null)
                             ->schema([
-                                Forms\Components\TextInput::make('year_of_development')
-                                    ->label(t('Year of development'))
-                                    ->numeric(),
-
-                                Forms\Components\Textarea::make('title')
-                                    ->label(t('Title'))
-                                    ->rows(10)
-                                    ->columnSpanFull(),
 
                                 Forms\Components\RichEditor::make('statement')
                                     ->label(t('Statement(s)'))
@@ -226,7 +233,7 @@ class StudyCaseResource extends Resource
                                                     ->columnSpanFull(),
 
                                                 Forms\Components\Repeater::make('evidenceAttachments')
-                                                    ->label(t('Evidence attachment(s)'))
+                                                    ->label(t('Source(s) of the evidence'))
                                                     ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
                                                     ->relationship()
                                                     ->schema([
@@ -240,7 +247,7 @@ class StudyCaseResource extends Resource
                                                             ->maxSize(10240),
                                                     ])
                                                     ->defaultItems(0)
-                                                    ->addActionLabel(t('Add evidence attachment'))
+                                                    ->addActionLabel(t('Add source of the evidence'))
                                                     ->columnSpanFull(),
 
                                             ])
