@@ -218,6 +218,8 @@ class StudyCaseResource extends Resource
                             ->icon('heroicon-m-sparkles')
                             ->disabled($form->getRecord() == null)
                             ->schema([
+
+                                /*
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
                                     ->hint(t('You will be able to enter as many claims and pieces of evidence as needed. If one piece of evidence is used to support multiple claims, please copy it again.'))
@@ -276,7 +278,7 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add claim'))
                                     ->columnSpanFull(),
 
-                            ]),
+                                */]),
 
                         Tabs\Tab::make('tab-4')
                             ->label(t('Others'))
@@ -403,7 +405,7 @@ class StudyCaseResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ClaimsRelationManager::class,
         ];
     }
 
