@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class LanguageResource extends Resource
 {
     protected static ?string $model = Language::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-language';
 
     protected static ?int $navigationSort = 12;
 
