@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('team_id')->constrained('teams')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->boolean('is_admin')->default(false);
             $table->timestamps();
         });

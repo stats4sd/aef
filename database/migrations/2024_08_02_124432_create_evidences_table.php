@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('evidences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('claim_id')->constrained('claims')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreignId('claim_id')->constrained('claims')->cascadeOnDelete()->cascadeOnUpdate();
             $table->longText('matching_evidence');
             $table->timestamps();
         });
