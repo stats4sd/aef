@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Builder\Block;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
@@ -64,6 +65,10 @@ class StudyCaseResource extends Resource
                                     ->required()
                                     ->preload(),
 
+                                Forms\Components\TextInput::make('other_languages')
+                                    ->label(t('Other language(s)'))
+                                    ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above')),
+
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
@@ -98,8 +103,20 @@ class StudyCaseResource extends Resource
                                     ->required()
                                     ->columnSpanFull(),
 
+                                Placeholder::make('leading_organisation')
+                                    ->label(t('Leading organisation'))
+                                    ->content(fn(?StudyCase $record): string => $record === null ? auth()->user()->latestTeam->name : $record->team->name),
+
+                                Forms\Components\TextInput::make('contact_person_name')
+                                    ->label(t('Leading organisation contact person name'))
+                                    ->required(),
+
+                                Forms\Components\TextInput::make('contact_person_email')
+                                    ->label(t('Leading organisation contact person email'))
+                                    ->required(),
+
                                 Forms\Components\Select::make('organisations')
-                                    ->label(t('Partner Organisation(s)'))
+                                    ->label(t('Partner organisation(s)'))
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
