@@ -104,7 +104,6 @@ class StudyCaseResource extends Resource
                                     ->multiple()
                                     ->relationship('organisations', 'name')
                                     ->preload()
-                                    ->required()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
                                             ->label(t('Name'))
