@@ -17,28 +17,9 @@ class ClaimsRelationManager extends RelationManager
 {
     protected static string $relationship = 'claims';
 
-
-    // We cannot determine to show or hide relation manager by checking tab id in URL,
-    // because it does not send a new request to server when changing tabs.
-    // This approach is not practical...
-    // We may need to investigate how to move relation manager inside a tab page
-    // public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
-    // {
-    //     logger('ClaimsRelationManager.canViewForRecord() starts...');
-
-    //     $tab3 = 'tab=-tab-3-tab';
-    //     $result = Str::endsWith(url()->full(), $tab3);
-
-    //     logger(url()->full());
-    //     logger($result);
-
-    //     return $result;
-    // }
-
     public function form(Form $form): Form
     {
         // how to show modal popup with a bigger size?
-
         return $form
             ->schema([
 
