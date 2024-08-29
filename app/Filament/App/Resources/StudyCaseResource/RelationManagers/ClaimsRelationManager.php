@@ -38,16 +38,6 @@ class ClaimsRelationManager extends RelationManager
                             ->hint(t('Evidence that supports this claim statement'))
                             ->required(),
 
-                        Forms\Components\Repeater::make('aspects')
-                            ->label(t('Aspect(s)'))
-                            ->relationship()
-                            ->schema([
-                                Forms\Components\TextInput::make('name')->label(t('Aspect'))->required(),
-                            ])
-                            ->defaultItems(1)
-                            ->addActionLabel(t('Add aspect'))
-                            ->columnSpanFull(),
-
                         Forms\Components\Repeater::make('evidenceAttachments')
                             ->label(t('Source(s) of the evidence'))
                             ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
@@ -62,8 +52,18 @@ class ClaimsRelationManager extends RelationManager
                                     ->downloadable()
                                     ->maxSize(10240),
                             ])
-                            ->defaultItems(0)
+                            ->defaultItems(1)
                             ->addActionLabel(t('Add source of the evidence'))
+                            ->columnSpanFull(),
+
+                        Forms\Components\Repeater::make('indicators')
+                            ->label(t('Indicator(s)'))
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')->label(t('Indicator'))->required(),
+                            ])
+                            ->defaultItems(1)
+                            ->addActionLabel(t('Add indicator'))
                             ->columnSpanFull(),
 
                     ])

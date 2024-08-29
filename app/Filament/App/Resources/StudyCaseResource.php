@@ -93,12 +93,6 @@ class StudyCaseResource extends Resource
                                 Forms\Components\Textarea::make('geographic_area')
                                     ->label(t('Geographic area'))
                                     ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
-                                    // TODO: try to change border and/or background color to show structure visually
-                                    // ->extraInputAttributes(['class' => 'bg-gray-501'])
-                                    // ->extraInputAttributes(['class' => 'border-rose-600'])
-                                    // ->extraInputAttributes(['class' => 'border-2'])
-                                    // ->extraInputAttributes(['class' => 'bg-red'])
-                                    // ->extraAttributes(['class' => 'bg-gray-50'])
                                     ->rows(3)
                                     ->required()
                                     ->columnSpanFull(),
@@ -213,10 +207,14 @@ class StudyCaseResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
+
+                        // hide tab-3 as claims will be entered via relation manager
+                        // we can consider to remove tab-3 after final confirmed that this tab is no longer necessary
                         Tabs\Tab::make('tab-3')
                             ->label(t('Claims and Evidence'))
                             ->icon('heroicon-m-sparkles')
                             ->disabled($form->getRecord() == null)
+                            ->hidden()
                             ->schema([
 
                                 /*
