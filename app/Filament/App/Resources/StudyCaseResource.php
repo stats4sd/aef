@@ -279,7 +279,7 @@ class StudyCaseResource extends Resource
                                 */]),
 
                         Tabs\Tab::make('tab-4')
-                            ->label(t('Others'))
+                            ->label(t('Communication Product(s)'))
                             ->icon('heroicon-m-paper-clip')
                             ->disabled($form->getRecord() == null)
                             ->schema([
@@ -302,6 +302,34 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add communication product'))
                                     ->columnSpanFull(),
 
+                            ]),
+
+                        Tabs\Tab::make('tab-5')
+                            ->label(t('Photos'))
+                            ->icon('heroicon-m-paper-clip')
+                            ->disabled($form->getRecord() == null)
+                            ->schema([
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('cover_photo')
+                                    ->label(t('Cover photo'))
+                                    ->hint(t('Please upload 1 cover photo for the case entry.'))
+                                    ->collection('cover_photo')
+                                    ->downloadable()
+                                    ->preserveFilenames()
+                                    ->maxFiles(1)
+                                    ->maxSize(10240)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
+                                    ->label(t('Organisation or project logo image'))
+                                    ->hint(t('Please upload 1 organisation or project logo image for the case entry.'))
+                                    ->collection('logo_image')
+                                    ->downloadable()
+                                    ->preserveFilenames()
+                                    ->maxFiles(1)
+                                    ->maxSize(10240)
+                                    ->columnSpanFull(),
+
                                 // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
                                 // TODO: unable to add restriction to only accept image files, because acceptsMimeTypes() is not supported in filament plugins
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
@@ -319,7 +347,7 @@ class StudyCaseResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
-                        Tabs\Tab::make('tab-5')
+                        Tabs\Tab::make('tab-6')
                             ->label(t('Confirmation'))
                             ->icon('heroicon-m-check-circle')
                             ->disabled($form->getRecord() == null)
