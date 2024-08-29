@@ -6,9 +6,9 @@ use App\Models\Claim;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Aspect extends Model
+class Indicator extends Model
 {
-    protected $table = 'aspects';
+    protected $table = 'indicators';
 
     protected $guarded = ['id'];
 

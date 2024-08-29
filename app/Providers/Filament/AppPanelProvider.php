@@ -8,6 +8,7 @@ use App\Models\Team;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use App\Filament\App\Pages\RegisterTeam;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
@@ -54,6 +55,10 @@ class AppPanelProvider extends PanelProvider
                 Widgets\FilamentInfoWidget::class,
             ])
             ->plugin(new LocalLogins())
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_END,
+                fn() => view('languageSelector'),
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

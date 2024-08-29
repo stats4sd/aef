@@ -18,9 +18,9 @@ class Evidence extends Model
         return $this->belongsTo(Claim::class);
     }
 
-    public function aspects(): HasMany
+    public function indicators(): HasMany
     {
-        return $this->hasMany(Aspect::class);
+        return $this->hasMany(Indicator::class);
     }
 
     public function evidenceAttachments(): HasMany
