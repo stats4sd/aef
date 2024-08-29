@@ -302,24 +302,6 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add communication product'))
                                     ->columnSpanFull(),
 
-                                Forms\Components\Repeater::make('references')
-                                    ->label(t('Bibliography and reference(s)'))
-                                    ->hint(t('This lists the sources of the evidence that was gathered. If the source can be found online, please provide a URL. If the source is a publication or published media, please provide a full reference and URL if available. If the source not published, please describe it and, if possible, give contact details of the person who has access to them.'))
-                                    ->relationship()
-                                    ->schema([
-                                        TextInput::make('description')->label(t('Description'))->required(),
-                                        TextInput::make('url')->label(t('URL')),
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                            ->label(t('File'))
-                                            ->collection('file')
-                                            ->preserveFilenames()
-                                            ->downloadable()
-                                            ->maxSize(10240),
-                                    ])
-                                    ->defaultItems(0)
-                                    ->addActionLabel(t('Add bibliography and reference'))
-                                    ->columnSpanFull(),
-
                                 // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
                                 // TODO: unable to add restriction to only accept image files, because acceptsMimeTypes() is not supported in filament plugins
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
