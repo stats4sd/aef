@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class LanguageResource extends Resource
 {
     protected static ?string $model = Language::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-language';
 
     protected static ?int $navigationSort = 12;
 
@@ -60,11 +60,11 @@ class LanguageResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    // Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -80,8 +80,8 @@ class LanguageResource extends Resource
     {
         return [
             'index' => Pages\ListLanguages::route('/'),
-            // 'create' => Pages\CreateLanguage::route('/create'),
-            // 'edit' => Pages\EditLanguage::route('/{record}/edit'),
+            'create' => Pages\CreateLanguage::route('/create'),
+            'edit' => Pages\EditLanguage::route('/{record}/edit'),
         ];
     }
 }

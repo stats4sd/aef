@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Builder\Block;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
@@ -64,6 +65,10 @@ class StudyCaseResource extends Resource
                                     ->required()
                                     ->preload(),
 
+                                Forms\Components\TextInput::make('other_languages')
+                                    ->label(t('Other language(s)'))
+                                    ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above')),
+
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))
                                     ->multiple()
@@ -88,23 +93,28 @@ class StudyCaseResource extends Resource
                                 Forms\Components\Textarea::make('geographic_area')
                                     ->label(t('Geographic area'))
                                     ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
-                                    // TODO: try to change border and/or background color to show structure visually
-                                    // ->extraInputAttributes(['class' => 'bg-gray-501'])
-                                    // ->extraInputAttributes(['class' => 'border-rose-600'])
-                                    // ->extraInputAttributes(['class' => 'border-2'])
-                                    // ->extraInputAttributes(['class' => 'bg-red'])
-                                    // ->extraAttributes(['class' => 'bg-gray-50'])
                                     ->rows(3)
                                     ->required()
                                     ->columnSpanFull(),
 
+                                Placeholder::make('leading_organisation')
+                                    ->label(t('Leading organisation'))
+                                    ->content(fn(?StudyCase $record): string => $record === null ? auth()->user()->latestTeam->name : $record->team->name),
+
+                                Forms\Components\TextInput::make('contact_person_name')
+                                    ->label(t('Leading organisation contact person name'))
+                                    ->required(),
+
+                                Forms\Components\TextInput::make('contact_person_email')
+                                    ->label(t('Leading organisation contact person email'))
+                                    ->required(),
+
                                 Forms\Components\Select::make('organisations')
-                                    ->label(t('Partner Organisation(s)'))
+                                    ->label(t('Partner organisation(s)'))
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
                                     ->preload()
-                                    ->required()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
                                             ->label(t('Name'))
@@ -197,11 +207,17 @@ class StudyCaseResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
+
+                        // hide tab-3 as claims will be entered via relation manager
+                        // we can consider to remove tab-3 after final confirmed that this tab is no longer necessary
                         Tabs\Tab::make('tab-3')
                             ->label(t('Claims and Evidence'))
                             ->icon('heroicon-m-sparkles')
                             ->disabled($form->getRecord() == null)
+                            ->hidden()
                             ->schema([
+
+                                /*
                                 Forms\Components\Repeater::make('claims')
                                     ->label(t('Claims'))
                                     ->hint(t('You will be able to enter as many claims and pieces of evidence as needed. If one piece of evidence is used to support multiple claims, please copy it again.'))
@@ -260,10 +276,10 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add claim'))
                                     ->columnSpanFull(),
 
-                            ]),
+                                */]),
 
                         Tabs\Tab::make('tab-4')
-                            ->label(t('Others'))
+                            ->label(t('Communication Product(s)'))
                             ->icon('heroicon-m-paper-clip')
                             ->disabled($form->getRecord() == null)
                             ->schema([
@@ -286,22 +302,32 @@ class StudyCaseResource extends Resource
                                     ->addActionLabel(t('Add communication product'))
                                     ->columnSpanFull(),
 
-                                Forms\Components\Repeater::make('references')
-                                    ->label(t('Bibliography and reference(s)'))
-                                    ->hint(t('This lists the sources of the evidence that was gathered. If the source can be found online, please provide a URL. If the source is a publication or published media, please provide a full reference and URL if available. If the source not published, please describe it and, if possible, give contact details of the person who has access to them.'))
-                                    ->relationship()
-                                    ->schema([
-                                        TextInput::make('description')->label(t('Description'))->required(),
-                                        TextInput::make('url')->label(t('URL')),
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                            ->label(t('File'))
-                                            ->collection('file')
-                                            ->preserveFilenames()
-                                            ->downloadable()
-                                            ->maxSize(10240),
-                                    ])
-                                    ->defaultItems(0)
-                                    ->addActionLabel(t('Add bibliography and reference'))
+                            ]),
+
+                        Tabs\Tab::make('tab-5')
+                            ->label(t('Photos'))
+                            ->icon('heroicon-m-paper-clip')
+                            ->disabled($form->getRecord() == null)
+                            ->schema([
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('cover_photo')
+                                    ->label(t('Cover photo'))
+                                    ->hint(t('Please upload 1 cover photo for the case entry.'))
+                                    ->collection('cover_photo')
+                                    ->downloadable()
+                                    ->preserveFilenames()
+                                    ->maxFiles(1)
+                                    ->maxSize(10240)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
+                                    ->label(t('Organisation or project logo image'))
+                                    ->hint(t('Please upload 1 organisation or project logo image for the case entry.'))
+                                    ->collection('logo_image')
+                                    ->downloadable()
+                                    ->preserveFilenames()
+                                    ->maxFiles(1)
+                                    ->maxSize(10240)
                                     ->columnSpanFull(),
 
                                 // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
@@ -321,21 +347,28 @@ class StudyCaseResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
-                        Tabs\Tab::make('tab-5')
+                        Tabs\Tab::make('tab-6')
                             ->label(t('Confirmation'))
                             ->icon('heroicon-m-check-circle')
                             ->disabled($form->getRecord() == null)
                             ->schema([
+
+                                // This form in app panel is commonly used in admin panel.
+                                // We cannot determine whether user is in app panel or in admin panel by checking current class name.
+                                // (because class name will be app panel class name when admin panel called this form in app panel)
+                                // TODO: We need to disable checkbox by checking whether the logged in user is a reviewer
+
                                 // This checkbox is for submitter only, not for reviewer
                                 // It should be disabled in admin panel
+                                // TODO: disable it if logged in user is a reviewer
                                 Forms\Components\Checkbox::make('ready_for_review')
                                     ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
                                     ->hint(t('This is to be confirmed by case submitter'))
-                                    // ->disabled()
                                     ->columnSpanFull(),
 
                                 // This checkbox is for reviewer only, not for submitter
                                 // It should be disabled in app panel
+                                // TODO: disable it if logged in user is not a reviewer
                                 Forms\Components\Checkbox::make('reviewed')
                                     ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
                                     ->hint(t('This is to be confirmed by case reviewer'))
@@ -387,7 +420,7 @@ class StudyCaseResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ClaimsRelationManager::class,
         ];
     }
 

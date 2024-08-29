@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\CommunicationProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -55,11 +54,6 @@ class StudyCase extends Model implements HasMedia
     public function communicationProducts(): HasMany
     {
         return $this->hasMany(CommunicationProduct::class);
-    }
-
-    public function references(): HasMany
-    {
-        return $this->hasMany(Reference::class);
     }
 
     public function tags(): BelongsToMany
