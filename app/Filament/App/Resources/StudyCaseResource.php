@@ -286,7 +286,7 @@ class StudyCaseResource extends Resource
 
                         Tabs\Tab::make('tab-5')
                             ->label(t('Photos'))
-                            ->icon('heroicon-m-paper-clip')
+                            ->icon('heroicon-m-camera')
                             ->disabled($form->getRecord() == null)
                             ->schema([
 
