@@ -49,21 +49,26 @@ class StudyCaseResource extends Resource
                 Tables\Columns\TextColumn::make('team.name')
                     ->label(t('Leading organisation'))
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(t('Title'))
                     ->wrap()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('year_of_development')
                     ->label(t('Year of development'))
                     ->wrap()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\IconColumn::make('ready_for_review')
                     ->label(t('Ready for review'))
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('reviewed')
                     ->label(t('Reviewed'))
-                    ->boolean(),
+                    ->boolean()
+                    ->sortable(),
             ])
             ->filters([
                 TernaryFilter::make('ready_for_review')->label(t('Ready for review')),

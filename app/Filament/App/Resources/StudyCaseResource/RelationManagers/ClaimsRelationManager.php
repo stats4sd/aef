@@ -17,6 +17,11 @@ class ClaimsRelationManager extends RelationManager
 {
     protected static string $relationship = 'claims';
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return t('Claims and Evidence');
+    }
+
     public function form(Form $form): Form
     {
         // how to show modal popup with a bigger size?
@@ -81,17 +86,42 @@ class ClaimsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('claim_statement')
             ->columns([
-                Tables\Columns\TextColumn::make('claim_statement'),
+
+                // do not show row index, as it will be confusing in keyword search result
+                // TextColumn::make('index')
+                //     ->rowIndex(),
+
+                // customise TextColumn content to show claim statement without markdown
+                Tables\Columns\TextColumn::make('claim_statement')
+                    ->getStateUsing(function (Model $record) {
+                        return strip_tags($record->claim_statement);
+                    })
+                    ->label(t('Claim statement'))
+                    ->wrap()
+                    ->limit(100)
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('evidences_count')
+                    ->label(t('Evidence count'))
+                    ->counts('evidences'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                // hide "Create & create another" button in popup modal
+                Tables\Actions\CreateAction::make()
+                    ->createAnother(false),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                // customise modal heading in popup modal
+                // claim statement is a long rich text which is not suitable to be showed as modal heading
+                Tables\Actions\EditAction::make()
+                    ->modalHeading(t('Edit claim')),
+                Tables\Actions\ViewAction::make()
+                    ->modalHeading(t('View claim')),
+                Tables\Actions\DeleteAction::make()
+                    ->modalHeading(t('Delete claim')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

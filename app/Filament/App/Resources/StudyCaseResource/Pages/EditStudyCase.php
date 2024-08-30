@@ -12,7 +12,7 @@ class EditStudyCase extends EditRecord
 
     public function getSubheading(): ?string
     {
-        return __(t('Please fill in details in all tabs, and create claims of your case'));
+        return __(t('Please fill in details in all tabs, then create claims and evidence of your case'));
     }
 
     protected function getHeaderActions(): array
@@ -22,6 +22,7 @@ class EditStudyCase extends EditRecord
         ];
     }
 
+    // to show relation manager in tabs
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;

@@ -10,11 +10,15 @@ class CreateStudyCase extends CreateRecord
 {
     protected static string $resource = StudyCaseResource::class;
 
+    // hide "Create & create another" button
+    protected static bool $canCreateAnother = false;
+
     public function getSubheading(): ?string
     {
         return __(t('Please fill in all basic information first. After creating a new case, you can fill in details in all other tabs.'));
     }
 
+    // add latest team Id to the submitted request form, the newly created model will belong to this team
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['team_id'] = auth()->user()->latestTeam->id;
@@ -32,5 +36,12 @@ class CreateStudyCase extends CreateRecord
         $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $recordId . '/edit?tab=-tab-2-tab';
 
         return $redirectUrl;
+    }
+
+    // customise the label of "Create" button
+    protected function getCreateFormAction(): \Filament\Actions\Action
+    {
+        return parent::getCreateFormAction()
+            ->label(t('Create & continue'));
     }
 }
