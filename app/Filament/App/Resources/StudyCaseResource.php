@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use App\Models\Organisation;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\Placeholder;
@@ -97,25 +98,32 @@ class StudyCaseResource extends Resource
                                     ->required()
                                     ->columnSpanFull(),
 
-                                Placeholder::make('leading_organisation')
-                                    ->label(t('Leading organisation'))
-                                    ->content(fn(?StudyCase $record): string => $record === null ? auth()->user()->latestTeam->name : $record->team->name),
+                                Section::make(t('Leading organisation'))
+                                    ->schema([
+                                        Placeholder::make('leading_organisation')
+                                            ->label(t('Organisation name'))
+                                            ->content(fn(?StudyCase $record): string => $record === null ? auth()->user()->latestTeam->name : $record->team->name),
 
-                                Forms\Components\TextInput::make('contact_person_name')
-                                    ->label(t('Leading organisation contact person name'))
-                                    ->required(),
+                                        Forms\Components\TextInput::make('contact_person_name')
+                                            ->label(t('Contact person name'))
+                                            ->required(),
 
-                                Forms\Components\TextInput::make('contact_person_email')
-                                    ->label(t('Leading organisation contact person email'))
-                                    ->required(),
+                                        Forms\Components\TextInput::make('contact_person_email')
+                                            ->label(t('Contact person email'))
+                                            ->required(),
+                                    ]),
 
-                                // TODO: normalise partner organisation and contact person, show all contact person with organisation as options
-                                Forms\Components\Select::make('organisations')
-                                    ->label(t('Partner organisation(s)'))
-                                    ->hint(t('List of partner organisation(s) that worked in the development of the case'))
-                                    ->multiple()
-                                    ->relationship('organisations', 'name')
-                                    ->preload(),
+                                Section::make(t('Partner organisation(s)'))
+                                    ->schema([
+                                        // TODO: normalise partner organisation and contact person, show all contact person with organisation as options
+                                        Forms\Components\Select::make('organisations')
+                                            ->label(t('Partner organisation(s)'))
+                                            ->hint(t('List of partner organisation(s) that worked in the development of the case'))
+                                            ->multiple()
+                                            ->relationship('organisations', 'name')
+                                            ->preload(),
+
+                                    ]),
                             ]),
 
                         Tabs\Tab::make('tab-2')

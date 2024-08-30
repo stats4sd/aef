@@ -43,6 +43,7 @@ class ClaimsRelationManager extends RelationManager
                             ->label(t('Evidence'))
                             ->relationship()
                             ->schema([
+
                                 Forms\Components\RichEditor::make('matching_evidence')
                                     ->label(t('Evidence'))
                                     ->hint(t('Evidence that supports this claim statement'))
@@ -55,14 +56,21 @@ class ClaimsRelationManager extends RelationManager
                                             ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
                                             ->relationship()
                                             ->schema([
-                                                TextInput::make('description')->label(t('Description'))->required(),
-                                                TextInput::make('url')->label(t('URL')),
+
+                                                TextInput::make('description')
+                                                    ->label(t('Description'))
+                                                    ->required(),
+
+                                                TextInput::make('url')
+                                                    ->label(t('URL')),
+
                                                 Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                                     ->label(t('File'))
                                                     ->collection('file')
                                                     ->preserveFilenames()
                                                     ->downloadable()
                                                     ->maxSize(10240),
+
                                             ])
                                             ->defaultItems(1)
                                             ->addActionLabel(t('Add source of the evidence'))
