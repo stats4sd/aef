@@ -10,6 +10,11 @@ class EditStudyCase extends EditRecord
 {
     protected static string $resource = StudyCaseResource::class;
 
+    public function getSubheading(): ?string
+    {
+        return __(t('Please fill in details in all tabs, and create claims of your case'));
+    }
+
     protected function getHeaderActions(): array
     {
         return [

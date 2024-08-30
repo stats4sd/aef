@@ -109,33 +109,13 @@ class StudyCaseResource extends Resource
                                     ->label(t('Leading organisation contact person email'))
                                     ->required(),
 
+                                // TODO: normalise partner organisation and contact person, show all contact person with organisation as options
                                 Forms\Components\Select::make('organisations')
                                     ->label(t('Partner organisation(s)'))
                                     ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                     ->multiple()
                                     ->relationship('organisations', 'name')
-                                    ->preload()
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label(t('Name'))
-                                            ->unique()
-                                            ->required()
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('website')
-                                            ->label(t('Website'))
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('contact_person_name')
-                                            ->label(t('Contact person name'))
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('contact_person_email')
-                                            ->label(t('Contact person email'))
-                                            ->email()
-                                            ->maxLength(255),
-                                        Forms\Components\Textarea::make('note')
-                                            ->label(t('Note'))
-                                            ->columnSpanFull(),
-                                    ]),
-
+                                    ->preload(),
                             ]),
 
                         Tabs\Tab::make('tab-2')
