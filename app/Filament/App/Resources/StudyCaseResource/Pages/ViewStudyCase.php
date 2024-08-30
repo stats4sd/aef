@@ -9,4 +9,10 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewStudyCase extends ViewRecord
 {
     protected static string $resource = StudyCaseResource::class;
+
+    // to show relation manager in tabs
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
 }

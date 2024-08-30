@@ -17,6 +17,7 @@ class EditStudyCase extends EditRecord
         ];
     }
 
+    // to show relation manager in tabs
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;
