@@ -7,6 +7,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
@@ -29,85 +30,114 @@ class ClaimsRelationManager extends RelationManager
         return $form
             ->schema([
 
-                Forms\Components\RichEditor::make('claim_statement')
-                    ->label(t('Claim statement'))
-                    ->hint(t('Claim made in the case statement'))
-                    ->required()
-                    ->columnSpanFull(),
+                Wizard::make([
 
-                // add section to embed form elements with a bigger border, change section background color by adding CSS attribute
-                Section::make()
-                    ->schema([
+                    Wizard\Step::make('Claim statement')
+                        ->schema([
+                            Forms\Components\RichEditor::make('claim_statement')
+                                ->label(t('Claim statement'))
+                                ->hint(t('Claim made in the case statement'))
+                                ->required()
+                                ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+                                ->columnSpanFull()
+                                ->disableToolbarButtons([
+                                    'attachFiles',
+                                    'strike',
+                                ]),
 
-                        Forms\Components\Repeater::make('evidences')
-                            ->label(t('Evidence'))
-                            ->relationship()
-                            ->schema([
+                        ]),
 
-                                Forms\Components\RichEditor::make('matching_evidence')
-                                    ->label(t('Evidence'))
-                                    ->hint(t('Evidence that supports this claim statement'))
-                                    ->required(),
+                    Wizard\Step::make('Evidence')
+                        ->schema([
 
-                                Section::make()
-                                    ->schema([
-                                        Forms\Components\Repeater::make('evidenceAttachments')
-                                            ->label(t('Source(s) of the evidence'))
-                                            ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
-                                            ->relationship()
-                                            ->schema([
+                            // add section to embed form elements with a bigger border, change section background color by adding CSS attribute
+                            // Section::make()
+                            //     ->schema([
 
-                                                TextInput::make('description')
-                                                    ->label(t('Description'))
-                                                    ->required(),
+                            Forms\Components\Repeater::make('evidences')
+                                ->label(t('Evidence'))
+                                ->relationship()
+                                ->schema([
 
-                                                TextInput::make('url')
-                                                    ->label(t('URL')),
+                                    Forms\Components\RichEditor::make('matching_evidence')
+                                        ->label(t('Evidence'))
+                                        ->hint(t('Evidence that supports this claim statement'))
+                                        ->required(),
 
-                                                Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                                    ->label(t('File'))
-                                                    ->collection('file')
-                                                    ->preserveFilenames()
-                                                    ->downloadable()
-                                                    ->maxSize(10240),
+                                    // Section::make()
+                                    //     ->schema([
+                                    Forms\Components\Repeater::make('evidenceAttachments')
+                                        ->label(t('Evidence source(s)'))
+                                        ->relationship()
+                                        ->schema([
 
-                                            ])
-                                            ->defaultItems(1)
-                                            ->addActionLabel(t('Add source of the evidence'))
-                                            ->columnSpanFull(),
+                                            TextInput::make('description')
+                                                ->label(t('Description'))
+                                                ->required(),
 
-                                    ])
-                                    ->extraAttributes([
-                                        'style' => 'background-color: #ffb;'
-                                    ]),
+                                            TextInput::make('url')
+                                                ->label(t('URL')),
 
-                                Section::make()
-                                    ->schema([
-                                        Forms\Components\Repeater::make('indicators')
-                                            ->label(t('Indicator(s)'))
-                                            ->relationship()
-                                            ->schema([
-                                                Forms\Components\TextInput::make('name')
-                                                    ->label(t('Indicator'))
-                                                    ->required(),
-                                            ])
-                                            ->defaultItems(1)
-                                            ->addActionLabel(t('Add indicator'))
-                                            ->columnSpanFull(),
-                                    ])
-                                    ->extraAttributes([
-                                        'style' => 'background-color: #fcf;'
-                                    ]),
+                                            Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                                ->label(t('File'))
+                                                ->collection('file')
+                                                ->preserveFilenames()
+                                                ->downloadable()
+                                                ->maxSize(10240),
 
-                            ])
-                            ->defaultItems(1)
-                            ->addActionLabel(t('Add evidence'))
-                            ->columnSpanFull(),
+                                        ])
+                                        ->defaultItems(1)
+                                        ->addActionLabel(t('Add another source'))
+                                        ->columnSpanFull(),
 
-                    ])
-                    ->extraAttributes([
-                        'style' => 'background-color: #af6;'
-                    ]),
+                                    // ])
+                                    // ->extraAttributes([
+                                    //     'style' => 'background-color: #ffb;'
+                                    // ]),
+
+                                    // Section::make()
+                                    //     ->schema([
+                                    Forms\Components\Repeater::make('indicators')
+                                        ->label(t('Indicator(s)'))
+                                        ->hint(t('What indicators does this evidence give information on? Indicators can be qualitative or quantitative, and may describe characteristics or other aspects of the problem that is addressed.'))
+                                        ->relationship()
+                                        ->schema([
+                                            Forms\Components\TextInput::make('name')
+                                                ->label(t('Indicator'))
+                                                ->required(),
+                                        ])
+                                        ->defaultItems(1)
+                                        ->addActionLabel(t('Add another indicator'))
+                                        ->columnSpanFull(),
+                                    // ])
+                                    // ->extraAttributes([
+                                    //     'style' => 'background-color: #fcf;'
+                                    // ]),
+
+
+                                    // add an empty section, use it as a separator
+                                    Section::make('')
+                                        ->schema([])
+                                        ->extraAttributes([
+                                            'style' => 'background-color: #777; height: 2px',
+                                        ]),
+
+
+                                ])
+                                ->defaultItems(1)
+                                ->addActionLabel(t('Add another evidence'))
+                                ->columnSpanFull(),
+
+                            // ])
+                            // ->extraAttributes([
+                            //     'style' => 'background-color: #af6;'
+                            // ]),
+
+                        ]),
+
+                ])
+                    ->columnSpanFull()
+
 
             ]);
     }
