@@ -115,13 +115,25 @@ class StudyCaseResource extends Resource
 
                                 Section::make(t('Partner organisation(s)'))
                                     ->schema([
-                                        // TODO: normalise partner organisation and contact person, show all contact person with organisation as options
                                         Forms\Components\Select::make('organisations')
                                             ->label(t('Partner organisation(s)'))
                                             ->hint(t('List of partner organisation(s) that worked in the development of the case'))
                                             ->multiple()
                                             ->relationship('organisations', 'name')
-                                            ->preload(),
+                                            ->preload()
+                                            ->createOptionForm([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label(t('Name'))
+                                                    ->required()
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('website')
+                                                    ->label(t('Website'))
+                                                    ->maxLength(255),
+                                                Forms\Components\Textarea::make('note')
+                                                    ->label(t('Note'))
+                                                    ->columnSpanFull(),
+                                            ]),
+
 
                                     ]),
                             ]),
