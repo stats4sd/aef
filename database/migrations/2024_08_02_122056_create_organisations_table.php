@@ -16,8 +16,6 @@ return new class extends Migration
             $table->foreignId('team_id')->constrained('teams');
             $table->string('name');
             $table->string('website')->nullable();
-            $table->string('contact_person_name')->nullable();
-            $table->string('contact_person_email')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
