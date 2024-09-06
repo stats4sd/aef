@@ -196,77 +196,8 @@ class StudyCaseResource extends Resource
                             ]),
 
 
-                        // hide tab-3 as claims will be entered via relation manager
-                        // we can consider to remove tab-3 after final confirmed that this tab is no longer necessary
+
                         Tabs\Tab::make('tab-3')
-                            ->label(t('Claims and Evidence'))
-                            ->icon('heroicon-m-sparkles')
-                            ->disabled($form->getRecord() == null)
-                            ->hidden()
-                            ->schema([
-
-                                /*
-                                Forms\Components\Repeater::make('claims')
-                                    ->label(t('Claims'))
-                                    ->hint(t('You will be able to enter as many claims and pieces of evidence as needed. If one piece of evidence is used to support multiple claims, please copy it again.'))
-                                    ->relationship()
-                                    ->schema([
-
-                                        Forms\Components\RichEditor::make('claim_statement')
-                                            ->label(t('Claim statement'))
-                                            ->hint(t('Claim made in the case statement'))
-                                            ->required(),
-
-                                        Forms\Components\Repeater::make('evidences')
-                                            ->label(t('Evidence'))
-                                            ->relationship()
-                                            ->schema([
-                                                Forms\Components\RichEditor::make('matching_evidence')
-                                                    ->label(t('Evidence'))
-                                                    ->hint(t('Evidence that supports this claim statement'))
-                                                    ->required(),
-
-                                                Forms\Components\Repeater::make('aspects')
-                                                    ->label(t('Aspect(s)'))
-                                                    ->relationship()
-                                                    ->schema([
-                                                        Forms\Components\TextInput::make('name')->label(t('Aspect'))->required(),
-                                                    ])
-                                                    ->defaultItems(0)
-                                                    ->addActionLabel(t('Add aspect'))
-                                                    ->columnSpanFull(),
-
-                                                Forms\Components\Repeater::make('evidenceAttachments')
-                                                    ->label(t('Source(s) of the evidence'))
-                                                    ->hint(t('Description, web address and link to upload evidence attachment: documents, videos and/or audio files'))
-                                                    ->relationship()
-                                                    ->schema([
-                                                        TextInput::make('description')->label(t('Description'))->required(),
-                                                        TextInput::make('url')->label(t('URL')),
-                                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                                            ->label(t('File'))
-                                                            ->collection('file')
-                                                            ->preserveFilenames()
-                                                            ->downloadable()
-                                                            ->maxSize(10240),
-                                                    ])
-                                                    ->defaultItems(0)
-                                                    ->addActionLabel(t('Add source of the evidence'))
-                                                    ->columnSpanFull(),
-
-                                            ])
-                                            ->defaultItems(0)
-                                            ->addActionLabel(t('Add evidence'))
-                                            ->columnSpanFull(),
-
-                                    ])
-                                    ->defaultItems(0)
-                                    ->addActionLabel(t('Add claim'))
-                                    ->columnSpanFull(),
-
-                                */]),
-
-                        Tabs\Tab::make('tab-4')
                             ->label(t('Communication Product(s)'))
                             ->icon('heroicon-m-paper-clip')
                             ->disabled($form->getRecord() == null)
@@ -292,7 +223,7 @@ class StudyCaseResource extends Resource
 
                             ]),
 
-                        Tabs\Tab::make('tab-5')
+                        Tabs\Tab::make('tab-4')
                             ->label(t('Photos'))
                             ->icon('heroicon-m-camera')
                             ->disabled($form->getRecord() == null)
@@ -306,6 +237,8 @@ class StudyCaseResource extends Resource
                                     ->preserveFilenames()
                                     ->maxFiles(1)
                                     ->maxSize(10240)
+                                    // TODO: save photo description as custom properties
+                                    // ->customProperties(['test' => '123'])
                                     ->columnSpanFull(),
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')

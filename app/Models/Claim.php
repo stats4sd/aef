@@ -13,6 +13,20 @@ class Claim extends Model
 
     protected $guarded = ['id'];
 
+    protected static function booted()
+    {
+        // fill in team_id when a new claim record is being created
+        static::creating(function ($item) {
+            $item['team_id'] = auth()->user()->latestTeam->id;;
+        });
+    }
+
+    // leading organisation
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class);
+    }
+
     public function studyCase(): BelongsTo
     {
         return $this->belongsTo(StudyCase::class);
