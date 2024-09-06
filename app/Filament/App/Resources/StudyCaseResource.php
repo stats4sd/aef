@@ -275,7 +275,7 @@ class StudyCaseResource extends Resource
                                             ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
-                                    ->maxItems(2)
+                                    ->maxItems(5)
                                     ->addActionLabel(t('Add photo'))
                             ]),
 
