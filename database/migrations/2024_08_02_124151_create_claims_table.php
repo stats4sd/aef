@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->constrained('teams');
             $table->foreignId('study_case_id')->constrained('study_cases')->cascadeOnDelete()->cascadeOnUpdate();
             $table->longText('claim_statement');
             $table->timestamps();

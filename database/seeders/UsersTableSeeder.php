@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'test@example.com',
                 'email_verified_at' => '2024-08-22 08:24:35',
                 'password' => '$2y$12$ojE8ci3ZPy.CBq70/A.3denaNeAaF/vJnPMvjRHdKYlP1tT25NG..',
-                'remember_token' => 'gFyKpWaJN59kcHWdwSzfLwMPRevaBgfAkKlQcwnvxJuk7PkgU0CRMi6lQwvv',
+                'remember_token' => '5hNeHZt1jzPQrZdpM06wq0BfQERkTXqAF2VS4DfIj6cmfwTGsD3Ys6v4KZML',
                 'created_at' => '2024-08-22 08:24:35',
                 'updated_at' => '2024-08-22 08:25:25',
                 'latest_team_id' => 1,
@@ -66,6 +66,42 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2024-08-22 09:07:31',
                 'updated_at' => '2024-08-22 09:07:31',
                 'latest_team_id' => NULL,
+            ),
+            4 => 
+            array (
+                'id' => 5,
+                'name' => 'Ciara McHugh',
+                'email' => 'ciara@stats4sd.org',
+                'email_verified_at' => NULL,
+                'password' => '$2y$12$LKvtCgJM8dlyHb0m12OjzOHW7QQ5V/LGm3/M9OvmvFFrPrLDFMe1m',
+                'remember_token' => NULL,
+                'created_at' => '2024-09-06 15:19:34',
+                'updated_at' => '2024-09-06 15:21:57',
+                'latest_team_id' => 2,
+            ),
+            5 => 
+            array (
+                'id' => 6,
+                'name' => 'Dave Mills',
+                'email' => 'd.e.mills@stats4sd.org',
+                'email_verified_at' => NULL,
+                'password' => '$2y$12$P5lwu7DlPE.F8p1RtxyDS.go.B4R6TCzPMwhBAQNy1yaGNGoKyH8O',
+                'remember_token' => NULL,
+                'created_at' => '2024-09-06 15:19:46',
+                'updated_at' => '2024-09-06 15:21:41',
+                'latest_team_id' => 2,
+            ),
+            6 => 
+            array (
+                'id' => 7,
+                'name' => 'Emily Nevitt',
+                'email' => 'emily@stats4sd.org',
+                'email_verified_at' => NULL,
+                'password' => '$2y$12$jXTaobcaWN9hjOt9o47z6.Tf61K5ypOaJI9w6l75aeOgUj6HsGh7y',
+                'remember_token' => NULL,
+                'created_at' => '2024-09-06 15:20:42',
+                'updated_at' => '2024-09-06 15:22:10',
+                'latest_team_id' => 2,
             ),
         ));
         

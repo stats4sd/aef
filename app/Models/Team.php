@@ -20,6 +20,11 @@ class Team extends Model
             ->wherePivot('is_admin', 0);
     }
 
+    public function claims(): HasMany
+    {
+        return $this->hasMany(Claim::class);
+    }
+
     public function studyCases(): HasMany
     {
         return $this->hasMany(StudyCase::class);

@@ -46,13 +46,6 @@ class OrganisationResource extends Resource
                 Forms\Components\TextInput::make('website')
                     ->label(t('Website'))
                     ->maxLength(255),
-                Forms\Components\TextInput::make('contact_person_name')
-                    ->label(t('Contact person name'))
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_person_email')
-                    ->label(t('Contact person email'))
-                    ->email()
-                    ->maxLength(255),
                 Forms\Components\Textarea::make('note')
                     ->label(t('Note'))
                     ->columnSpanFull(),
@@ -65,15 +58,15 @@ class OrganisationResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label(t('Name'))
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
                     ->label(t('Website'))
+                    ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('contact_person_name')
-                    ->label(t('Contact person name'))
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('contact_person_email')
-                    ->label(t('Contact person email'))
+                Tables\Columns\TextColumn::make('note')
+                    ->label(t('Note'))
+                    ->sortable()
                     ->searchable(),
             ])
             ->filters([

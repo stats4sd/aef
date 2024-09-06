@@ -56,6 +56,11 @@ class StudyCase extends Model implements HasMedia
         return $this->hasMany(CommunicationProduct::class);
     }
 
+    public function photos(): HasMany
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
