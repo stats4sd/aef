@@ -249,8 +249,6 @@ class StudyCaseResource extends Resource
                                     ->preserveFilenames()
                                     ->maxFiles(1)
                                     ->maxSize(10240)
-                                    // TODO: save photo description as custom properties
-                                    // ->customProperties(['test' => '123'])
                                     ->columnSpanFull(),
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
@@ -263,21 +261,22 @@ class StudyCaseResource extends Resource
                                     ->maxSize(10240)
                                     ->columnSpanFull(),
 
-                                // TODO: not sure how to add description as custom properties in SpatieMediaLibraryFileUpload...
-                                // TODO: unable to add restriction to only accept image files, because acceptsMimeTypes() is not supported in filament plugins
-                                Forms\Components\SpatieMediaLibraryFileUpload::make('photos')
-                                    ->label(t('Catalogue photos'))
+                                Forms\Components\Repeater::make('photos')
+                                    ->label(t('Catalogue photo(s)'))
                                     ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
-                                    ->collection('photos')
-                                    ->multiple()
-                                    ->reorderable()
-                                    ->downloadable()
-                                    ->preserveFilenames()
-                                    // ->acceptsMimeTypes(['image/jpeg'])
-                                    ->maxFiles(5)
-                                    // set maximum file size is 10 MB
-                                    ->maxSize(10240)
-                                    ->columnSpanFull(),
+                                    ->relationship()
+                                    ->schema([
+                                        TextInput::make('description')->label(t('Description'))->required(),
+                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
+                                            ->label(t('File'))
+                                            ->collection('file')
+                                            ->preserveFilenames()
+                                            ->downloadable()
+                                            ->maxSize(10240),
+                                    ])
+                                    ->defaultItems(0)
+                                    ->maxItems(2)
+                                    ->addActionLabel(t('Add photo'))
                             ]),
 
                         Tabs\Tab::make('tab-6')
