@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\App\Resources\ClaimResource\Pages;
+namespace App\Filament\Admin\Resources\ClaimResource\Pages;
 
-use App\Filament\App\Resources\ClaimResource;
+use App\Filament\Admin\Resources\ClaimResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -21,11 +21,10 @@ class EditClaim extends EditRecord
     protected function getRedirectUrl(): string
     {
         $appUrl = config('app.url');
-        $latestTeamId = auth()->user()->latestTeam->id;
 
         // ownerRecord is study case Id
         // extract ownerRecord value from previous URL, e.g.
-        // http://aef.test/app/1/claims/29/edit?ownerRecord=45
+        // http://aef.test/admin/claims/29/edit?ownerRecord=45&tenant=1
 
         $previousUrl = url()->previous();
         $queryString = parse_url($previousUrl, PHP_URL_QUERY);
@@ -33,7 +32,7 @@ class EditClaim extends EditRecord
 
         $ownerRecordId = $params['ownerRecord'];
 
-        $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
+        $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
 
         return $redirectUrl;
     }
