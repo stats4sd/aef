@@ -22,12 +22,14 @@ class TeamInvite extends Model
         'is_confirmed' => 'boolean',
     ];
 
-    protected static function booted(): void
-    {
-        static::addGlobalScope('unconfirmed', static function (Builder $builder) {
-            $builder->where('is_confirmed', false);
-        });
-    }
+    // do not use global scope, to show all invitation emails sent
+    //
+    // protected static function booted(): void
+    // {
+    //     static::addGlobalScope('unconfirmed', static function (Builder $builder) {
+    //         $builder->where('is_confirmed', false);
+    //     });
+    // }
 
     // *********** RELATIONSHIPS ************ //
     public function inviter(): BelongsTo

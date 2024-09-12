@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\TeamResource\Pages;
 use App\Filament\Admin\Resources\TeamResource\RelationManagers\UsersRelationManager;
+use App\Filament\Admin\Resources\TeamResource\RelationManagers\InvitesRelationManager;
 use App\Models\Team;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -16,7 +17,6 @@ use Filament\Forms\Form;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Resources\Resource;
-use Stats4sd\FilamentOdkLink\Filament\Resources\TeamResource\RelationManagers\XlsformsRelationManager;
 
 class TeamResource extends Resource
 {
@@ -32,6 +32,7 @@ class TeamResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required(),
+                        Forms\Components\TextInput::make('website'),
                         Forms\Components\Textarea::make('description'),
                         Forms\Components\FileUpload::make('avatar'),
                     ]),
@@ -43,11 +44,18 @@ class TeamResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('avatar'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('website')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('users_count')
                     ->label('# Users')
-                    ->counts('users'),
-                TextColumn::make('created_at'),
+                    ->counts('users')
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -77,6 +85,7 @@ class TeamResource extends Resource
     {
         return [
             UsersRelationManager::class,
+            InvitesRelationManager::class,
         ];
     }
 
