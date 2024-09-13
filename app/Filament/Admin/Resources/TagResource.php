@@ -17,7 +17,7 @@ class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    protected static ?int $navigationSort = 13;
+    protected static ?int $navigationSort = 63;
 
     // define translatable string in function
     public static function getModelLabel(): string
