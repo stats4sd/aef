@@ -287,21 +287,30 @@ class StudyCaseResource extends Resource
                             ->disabled($form->getRecord() == null)
                             ->schema([
 
-                                // This checkbox is for submitter only, not for reviewer
-                                // It should be disabled for user with admin role
-                                Forms\Components\Checkbox::make('ready_for_review')
-                                    ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
-                                    ->hint(t('This is to be confirmed by case submitter'))
-                                    ->disabled(auth()->user()->isAdmin())
-                                    ->columnSpanFull(),
+                                Section::make(t('Case Submitter Confirmation'))
+                                    ->icon('heroicon-o-check-circle')
+                                    ->schema([
+                                        // This checkbox is for submitter only, not for reviewer
+                                        // It should be disabled for user with admin role
+                                        Forms\Components\Checkbox::make('ready_for_review')
+                                            ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                            ->hint(t('This is to be confirmed by case submitter'))
+                                            ->disabled(auth()->user()->isAdmin())
+                                            ->columnSpanFull(),
+                                    ]),
 
-                                // This checkbox is for reviewer only, not for submitter
-                                // It should be disabled for user without admin role
-                                Forms\Components\Checkbox::make('reviewed')
-                                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                                    ->hint(t('This is to be confirmed by case reviewer'))
-                                    ->disabled(!auth()->user()->isAdmin())
-                                    ->columnSpanFull(),
+                                Section::make(t('Case Reviewer Confirmation'))
+                                    ->icon('heroicon-o-shield-check')
+                                    ->schema([
+                                        // This checkbox is for reviewer only, not for submitter
+                                        // It should be disabled for user without admin role
+                                        Forms\Components\Checkbox::make('reviewed')
+                                            ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                            ->hint(t('This is to be confirmed by case reviewer'))
+                                            ->disabled(!auth()->user()->isAdmin())
+                                            ->columnSpanFull(),
+                                    ]),
+
                             ]),
 
                     ])->columnSpanFull()
