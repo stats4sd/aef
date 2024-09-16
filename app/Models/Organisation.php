@@ -4,12 +4,18 @@ namespace App\Models;
 
 use App\Models\StudyCase;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Organisation extends Model
+
+class Organisation extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = 'organisations';
 
     protected $guarded = ['id'];
@@ -32,5 +38,14 @@ class Organisation extends Model
     public function studyCases(): BelongsToMany
     {
         return $this->belongsToMany(StudyCase::class)->withTimestamps();
+    }
+
+    // for Spatie media library
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }

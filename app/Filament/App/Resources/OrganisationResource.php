@@ -46,6 +46,15 @@ class OrganisationResource extends Resource
                 Forms\Components\TextInput::make('website')
                     ->label(t('Website'))
                     ->maxLength(255),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
+                    ->label(t('Logo'))
+                    ->hint(t('Please upload organisation logo image.'))
+                    ->collection('logo')
+                    ->downloadable()
+                    ->preserveFilenames()
+                    ->maxFiles(1)
+                    ->maxSize(10240)
+                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('note')
                     ->label(t('Note'))
                     ->columnSpanFull(),
