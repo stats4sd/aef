@@ -149,18 +149,28 @@ class StudyCaseResource extends Resource
                                     ->hint(t('e.g., If __________ then __________'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\RichEditor::make('target_audience')
                                     ->label(t('Description of the target audience(s)'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\RichEditor::make('target_audience_priorities_and_values')
@@ -168,9 +178,14 @@ class StudyCaseResource extends Resource
                                     ->hint(t('if you have more than one target audience/s, you can list them separately'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\RichEditor::make('framing')
@@ -178,9 +193,14 @@ class StudyCaseResource extends Resource
                                     ->hint(t('based on your audience\'s priorities and way of understanding the issues at hand'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\RichEditor::make('strategy_to_argue')
@@ -188,18 +208,28 @@ class StudyCaseResource extends Resource
                                     ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\RichEditor::make('call_to_action')
                                     ->label(t('Call to action(s)'))
                                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                                     ->columnSpanFull()
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                        'strike',
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'bulletList',
+                                        'orderedList',
+                                        'undo',
+                                        'redo',
                                     ]),
 
                                 Forms\Components\Textarea::make('note')
@@ -249,7 +279,10 @@ class StudyCaseResource extends Resource
                                     ->preserveFilenames()
                                     ->maxFiles(1)
                                     ->maxSize(10240)
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->image()
+                                    ->imageEditor()
+                                    ->imageEditorAspectRatios(['16:9']),
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
                                     ->label(t('Organisation or project logo image'))

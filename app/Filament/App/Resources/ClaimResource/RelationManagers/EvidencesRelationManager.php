@@ -24,7 +24,17 @@ class EvidencesRelationManager extends RelationManager
                     ->label(t('Evidence'))
                     ->hint(t('Evidence that supports this claim statement'))
                     ->required()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'bulletList',
+                        'orderedList',
+                        'undo',
+                        'redo',
+                        'attachFiles',
+                    ]),
 
                 Forms\Components\Repeater::make('evidenceAttachments')
                     ->label(t('Evidence source(s)'))
