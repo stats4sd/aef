@@ -9,12 +9,17 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
+use Filament\Navigation\NavigationItem;
 use App\Filament\App\Pages\RegisterTeam;
+use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
+use Filament\Navigation\NavigationBuilder;
 use Illuminate\Session\Middleware\StartSession;
 use Tio\Laravel\Middleware\SetLocaleMiddleware;
 use App\Http\Middleware\SetLatestTeamMiddleware;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Filament\App\Resources\StudyCaseResource;
+use App\Filament\App\Resources\OrganisationResource;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -68,6 +73,22 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+            //     return $builder->items([
+            //         NavigationItem::make('Admin Panel')
+            //             ->url('/admin')
+            //             ->icon('heroicon-o-adjustments-horizontal')
+            //             ->visible(fn() => auth()->user()?->can('access admin panel')),
+            //         ...StudyCaseResource::getNavigationItems(),
+            //     ])
+            //         ->groups([
+            //             NavigationGroup::make('Definitions')
+            //                 ->items([
+            //                     ...OrganisationResource::getNavigationItems(),
+            //                 ]),
+            //         ]);
+            // })
+        ;
     }
 }
