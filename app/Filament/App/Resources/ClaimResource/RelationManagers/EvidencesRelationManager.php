@@ -50,7 +50,7 @@ class EvidencesRelationManager extends RelationManager
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
-                            ->collection('file')
+                            ->collection('evidence')
                             ->preserveFilenames()
                             ->downloadable()
                             ->maxSize(10240),

@@ -254,7 +254,7 @@ class StudyCaseResource extends Resource
                                         TextInput::make('url')->label(t('URL')),
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
-                                            ->collection('file')
+                                            ->collection('comms_products')
                                             ->preserveFilenames()
                                             ->downloadable()
                                             ->maxSize(10240),
@@ -302,7 +302,7 @@ class StudyCaseResource extends Resource
                                         TextInput::make('description')->label(t('Description'))->required(),
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
-                                            ->collection('file')
+                                            ->collection('catalogue_photos')
                                             ->preserveFilenames()
                                             ->downloadable()
                                             ->maxSize(10240),
