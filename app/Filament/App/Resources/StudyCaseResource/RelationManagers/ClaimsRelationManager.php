@@ -33,16 +33,12 @@ class ClaimsRelationManager extends RelationManager
         return $form
             ->schema([
 
-                Forms\Components\RichEditor::make('claim_statement')
+                Forms\Components\Textarea::make('claim_statement')
                     ->label(t('Claim statement'))
                     ->hint(t('Claim made in the case statement'))
                     ->required()
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                    ->columnSpanFull()
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'strike',
-                    ]),
+                    ->columnSpanFull(),
 
             ]);
     }
@@ -53,11 +49,7 @@ class ClaimsRelationManager extends RelationManager
             ->recordTitleAttribute('claim_statement')
             ->columns([
 
-                // customise TextColumn content to show claim statement without markdown
                 Tables\Columns\TextColumn::make('claim_statement')
-                    ->getStateUsing(function (Model $record) {
-                        return strip_tags($record->claim_statement);
-                    })
                     ->label(t('Claim statement'))
                     ->wrap()
                     ->limit(100)

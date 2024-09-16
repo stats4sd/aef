@@ -24,7 +24,17 @@ class EvidencesRelationManager extends RelationManager
                     ->label(t('Evidence'))
                     ->hint(t('Evidence that supports this claim statement'))
                     ->required()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'bulletList',
+                        'orderedList',
+                        'undo',
+                        'redo',
+                        'attachFiles',
+                    ]),
 
                 Forms\Components\Repeater::make('evidenceAttachments')
                     ->label(t('Evidence source(s)'))
@@ -40,7 +50,7 @@ class EvidencesRelationManager extends RelationManager
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
-                            ->collection('file')
+                            ->collection('evidence')
                             ->preserveFilenames()
                             ->downloadable()
                             ->maxSize(10240),
