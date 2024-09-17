@@ -34,6 +34,7 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('app')
             ->path('app')
             ->tenant(Team::class)
@@ -74,6 +75,15 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+
+            // if below code segment is commented, user can enter app panel and admin panel via direct URL successfully:
+            // http://aef.test/app
+            // http://aef.test/admin
+            //
+            // if below code segment is commented (no need to uncomment similar code segment in AdminPanelProvider.php),
+            // once user visited admin panel, user will always be redirected to admin panel when visiting app panel...
+            // not quite sure how to trace which custom class and/or middleware class is related...
+
             // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
             //     return $builder->items([
             //         NavigationItem::make('Admin Panel')
