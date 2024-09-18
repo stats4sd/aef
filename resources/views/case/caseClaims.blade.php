@@ -36,7 +36,7 @@
                             </div>
 
                             @foreach($evidence->evidenceAttachments as $evidenceAttachment)
-                                <div class="pt-2">
+                                <div class="pt-6">
                                     {{ $evidenceAttachment->description }}
                                 </div>
                                 @if($evidenceAttachment->url)
