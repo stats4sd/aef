@@ -4,7 +4,7 @@
     <!-- Banner Section -->
     <div class="relative w-full h-[75vh]">
         <!-- Image -->
-        <img src="{{ asset('images/home_header.jpg') }}" alt="Background Image" class="w-full h-full object-cover">
+        <img src="{{ asset('/images/home_header.jpg') }}" alt="Background Image" class="w-full h-full object-cover">
         <!-- Dark Green Cover -->
         <div class="absolute top-0 right-0 w-1/2 h-full bg-dark-teal text-white flex flex-col justify-center py-8 pl-16">
             <h1 class="text-6xl font-bold pr-40 mb-4">GRASSROOTS EVIDENCE FOR AGROECOLOGY</h1>
