@@ -9,12 +9,17 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
+use Filament\Navigation\NavigationItem;
 use App\Filament\App\Pages\RegisterTeam;
+use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
+use Filament\Navigation\NavigationBuilder;
 use Illuminate\Session\Middleware\StartSession;
 use Tio\Laravel\Middleware\SetLocaleMiddleware;
 use App\Http\Middleware\SetLatestTeamMiddleware;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Filament\App\Resources\StudyCaseResource;
+use App\Filament\App\Resources\OrganisationResource;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -29,6 +34,7 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('app')
             ->path('app')
             ->tenant(Team::class)
@@ -68,6 +74,30 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->items([
+                    ...StudyCaseResource::getNavigationItems(),
+                ])
+                    ->groups([
+                        NavigationGroup::make('Definitions')
+                            ->label(t('Definitions'))
+                            ->items([
+                                ...OrganisationResource::getNavigationItems(),
+                            ]),
+                        // create a navigation group without label, nothing will be showed for non admin user
+                        NavigationGroup::make('')
+                            ->items([
+                                // Admin panel item cannot be the first item, otherwise user will be redirected to admin panel when visiting app panel
+                                NavigationItem::make('Admin Panel')
+                                    ->label(t('Admin Panel'))
+                                    ->url('/admin')
+                                    ->icon('heroicon-o-adjustments-horizontal')
+                                    ->visible(fn() => auth()->user()?->can('access admin panel')),
+                            ]),
+                    ]);
+            })
+        ;
     }
 }
