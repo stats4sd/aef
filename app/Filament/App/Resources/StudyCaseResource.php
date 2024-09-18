@@ -307,6 +307,7 @@ class StudyCaseResource extends Resource
                                             ->collection('catalogue_photos')
                                             ->preserveFilenames()
                                             ->downloadable()
+                                            ->required()
                                             ->maxSize(10240),
                                     ])
                                     ->defaultItems(0)
