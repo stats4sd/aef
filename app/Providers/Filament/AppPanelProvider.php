@@ -76,29 +76,28 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
 
-            // if below code segment is commented, user can enter app panel and admin panel via direct URL successfully:
-            // http://aef.test/app
-            // http://aef.test/admin
-            //
-            // if below code segment is commented (no need to uncomment similar code segment in AdminPanelProvider.php),
-            // once user visited admin panel, user will always be redirected to admin panel when visiting app panel...
-            // not quite sure how to trace which custom class and/or middleware class is related...
-
-            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-            //     return $builder->items([
-            //         NavigationItem::make('Admin Panel')
-            //             ->url('/admin')
-            //             ->icon('heroicon-o-adjustments-horizontal')
-            //             ->visible(fn() => auth()->user()?->can('access admin panel')),
-            //         ...StudyCaseResource::getNavigationItems(),
-            //     ])
-            //         ->groups([
-            //             NavigationGroup::make('Definitions')
-            //                 ->items([
-            //                     ...OrganisationResource::getNavigationItems(),
-            //                 ]),
-            //         ]);
-            // })
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->items([
+                    ...StudyCaseResource::getNavigationItems(),
+                ])
+                    ->groups([
+                        NavigationGroup::make('Definitions')
+                            ->label(t('Definitions'))
+                            ->items([
+                                ...OrganisationResource::getNavigationItems(),
+                            ]),
+                        // create a navigation group without label, nothing will be showed for non admin user
+                        NavigationGroup::make('')
+                            ->items([
+                                // Admin panel item cannot be the first item, otherwise user will be redirected to admin panel when visiting app panel
+                                NavigationItem::make('Admin Panel')
+                                    ->label(t('Admin Panel'))
+                                    ->url('/admin')
+                                    ->icon('heroicon-o-adjustments-horizontal')
+                                    ->visible(fn() => auth()->user()?->can('access admin panel')),
+                            ]),
+                    ]);
+            })
         ;
     }
 }

@@ -72,32 +72,42 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
                 CheckIfAdmin::class,
             ])
-            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-            //     return $builder->items([
-            //         NavigationItem::make('Return to Front-end')
-            //             ->url(url('/app'))
-            //             ->icon('heroicon-o-arrow-left'),
-            //         ...StudyCaseResource::getNavigationItems(),
-            //     ])
-            //         ->groups([
-            //             NavigationGroup::make('Teams and Users')
-            //                 ->items([
-            //                     ...TeamResource::getNavigationItems(),
-            //                     ...UserResource::getNavigationItems(),
-            //                 ]),
-            //             NavigationGroup::make('Roles and Permissions')
-            //                 ->items([
-            //                     ...RoleResource::getNavigationItems(),
-            //                     ...PermissionResource::getNavigationItems(),
-            //                 ]),
-            //             NavigationGroup::make('Definitions')
-            //                 ->items([
-            //                     ...TagResource::getNavigationItems(),
-            //                     ...LanguageResource::getNavigationItems(),
-            //                     ...CountryResource::getNavigationItems(),
-            //                 ]),
-            //         ]);
-            // })
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->items([
+                    ...StudyCaseResource::getNavigationItems(),
+                ])
+                    ->groups([
+                        NavigationGroup::make('Teams and Users')
+                            ->label(t('Teams and Users'))
+                            ->items([
+                                ...TeamResource::getNavigationItems(),
+                                ...UserResource::getNavigationItems(),
+                            ]),
+                        NavigationGroup::make('Roles and Permissions')
+                            ->label(t('Roles and Permissions'))
+                            ->items([
+                                ...RoleResource::getNavigationItems(),
+                                ...PermissionResource::getNavigationItems(),
+                            ]),
+                        NavigationGroup::make('Definitions')
+                            ->label(t('Definitions'))
+                            ->items([
+                                ...TagResource::getNavigationItems(),
+                                ...LanguageResource::getNavigationItems(),
+                                ...CountryResource::getNavigationItems(),
+                            ]),
+                        // create a navigation group without label, nothing will be showed for non admin user
+                        NavigationGroup::make('')
+                            ->items([
+                                // Return to Front-end item cannot be the first item, otherwise user will be redirected to app panel when visiting admin panel
+                                NavigationItem::make('Return to Front-end')
+                                    ->label(t('Return to Front-end'))
+                                    ->url(url('/app'))
+                                    ->icon('heroicon-o-arrow-left')
+                                    ->visible(fn() => auth()->user()?->can('access admin panel')),
+                            ]),
+                    ]);
+            })
         ;
     }
 }
