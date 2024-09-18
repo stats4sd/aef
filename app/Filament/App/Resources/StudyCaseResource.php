@@ -8,8 +8,10 @@ use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
 use App\Models\Organisation;
+use Filament\Facades\Filament;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
+use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
@@ -318,27 +320,30 @@ class StudyCaseResource extends Resource
                             ->disabled($form->getRecord() == null)
                             ->schema([
 
-                                // This form in app panel is commonly used in admin panel.
-                                // We cannot determine whether user is in app panel or in admin panel by checking current class name.
-                                // (because class name will be app panel class name when admin panel called this form in app panel)
-                                // TODO: We need to disable checkbox by checking whether the logged in user is a reviewer
+                                Section::make(t('Case Submitter Confirmation'))
+                                    ->icon('heroicon-o-check-circle')
+                                    ->schema([
+                                        // This checkbox is for submitter only, not for reviewer
+                                        // It should be disabled for user with admin role
+                                        Forms\Components\Checkbox::make('ready_for_review')
+                                            ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
+                                            ->hint(t('This is to be confirmed by case submitter'))
+                                            ->disabled(auth()->user()->isAdmin())
+                                            ->columnSpanFull(),
+                                    ]),
 
-                                // This checkbox is for submitter only, not for reviewer
-                                // It should be disabled in admin panel
-                                // TODO: disable it if logged in user is a reviewer
-                                Forms\Components\Checkbox::make('ready_for_review')
-                                    ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
-                                    ->hint(t('This is to be confirmed by case submitter'))
-                                    ->columnSpanFull(),
+                                Section::make(t('Case Reviewer Confirmation'))
+                                    ->icon('heroicon-o-shield-check')
+                                    ->schema([
+                                        // This checkbox is for reviewer only, not for submitter
+                                        // It should be disabled for user without admin role
+                                        Forms\Components\Checkbox::make('reviewed')
+                                            ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                                            ->hint(t('This is to be confirmed by case reviewer'))
+                                            ->disabled(!auth()->user()->isAdmin())
+                                            ->columnSpanFull(),
+                                    ]),
 
-                                // This checkbox is for reviewer only, not for submitter
-                                // It should be disabled in app panel
-                                // TODO: disable it if logged in user is not a reviewer
-                                Forms\Components\Checkbox::make('reviewed')
-                                    ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                                    ->hint(t('This is to be confirmed by case reviewer'))
-                                    ->disabled()
-                                    ->columnSpanFull(),
                             ]),
 
                     ])->columnSpanFull()

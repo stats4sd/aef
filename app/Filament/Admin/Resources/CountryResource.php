@@ -18,7 +18,7 @@ class CountryResource extends Resource
     protected static ?string $model = Country::class;
     protected static ?string $navigationIcon = 'heroicon-o-globe-europe-africa';
 
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 61;
 
     // define translatable string in function
     public static function getModelLabel(): string

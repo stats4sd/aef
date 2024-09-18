@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
 use Illuminate\Support\Collection;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +21,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class User extends Authenticatable implements FilamentUser, HasTenants, HasDefaultTenant
 {
     use HasFactory, Notifiable;
+
+    // The User model requires this trait
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -100,7 +104,6 @@ class User extends Authenticatable implements FilamentUser, HasTenants, HasDefau
     {
         return $this->belongsTo(Team::class, 'latest_team_id');
     }
-
 
     public function getDefaultTenant(Panel $panel): ?Model
     {
