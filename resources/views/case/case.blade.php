@@ -3,7 +3,8 @@
 @section('content')
     <!-- Image Header -->
      @php
-        $cover_photo_url = $studycase->getMedia('cover_photo')->first()->getUrl();
+        $cover_photo = $studycase->getMedia('cover_photo')->first();
+        $cover_photo_url = $cover_photo ? $cover_photo->getUrl() : null;
      @endphp
     <div class="relative h-112 bg-cover bg-center"  style="height: 600px; background-image: url('{{ $cover_photo_url }}');">
         <div class="absolute bottom-0 w-full h-1/3 bg-dark-teal-70 flex justify-left">

@@ -65,6 +65,7 @@ class OrganisationResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('logo')->collection('logo'),
                 Tables\Columns\TextColumn::make('name')
                     ->label(t('Name'))
                     ->sortable()

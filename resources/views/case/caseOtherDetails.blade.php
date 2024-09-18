@@ -48,7 +48,9 @@
         <div class="flex items-start p-4 mt-4">
             <!-- Logo -->
             @php
-                $lead_org_logo = $studycase->getMedia('logo_image')->first()->getUrl();
+                $lead_org_logo = $studycase->getMedia('logo_image')->isNotEmpty() 
+                    ? $studycase->getMedia('logo_image')->first()->getUrl() 
+                    : asset('/images/nologo.png');
             @endphp
             <div class="w-1/4 flex items-center justify-center">
                 <img src={{ $lead_org_logo }} alt="lead-org-logo" class="h-6 w-auto">
@@ -84,7 +86,9 @@
             <div class="flex items-start p-4 mt-4">
                 <!-- Logo -->
                 @php
-                    $partner_org_logo = $studycase->getMedia('logo_image')->first()->getUrl();
+                    $partner_org_logo = $partner_org->getMedia('logo')->isNotEmpty() 
+                    ? $partner_org->getMedia('logo')->first()->getUrl() 
+                    : asset('/images/nologo.png');
                 @endphp
                 <div class="w-1/4 flex items-center justify-center">
                     <img src={{ $partner_org_logo }} alt="partner-org-logo" class="h-6 w-auto">
