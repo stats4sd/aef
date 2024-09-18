@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --dark-teal: #074238;
+    --teal: #045b50;
+    --mint: #549b79;
+    --ochre:#c49954;
+    --light-yellow: #efede3;
+    --light-green: #e7f1ec;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.bg-dark-teal-70 {
+    background-color: rgba(19, 77, 80, 0.7);
+}
+
+.rounded-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+
+.hover-effect {
+    transition: all 0.2s ease-in-out;
+}
+
+.hover-effect:hover {
+    @apply shadow-lg scale-105;
+}
+
+ul {
+    @apply list-disc list-inside;
+    text-indent: -1rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+ul li {
+    position: relative;
+    padding-left: 1.25rem;
+    text-indent: -1.25rem;
+}
+
+ol {
+    @apply list-decimal list-inside;
+    text-indent: -1rem;
+    padding-left: 1.25rem;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+figure {
+    text-align: center;
+    margin: 0 auto;
+}
+
+figure img {
+    display: inline-block;
+}
+
+figcaption {
+    text-align: center;
+}
+
+#photoModal {
+    transition: opacity 0.3s ease;
+}
+
+#photoModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+#photoModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
