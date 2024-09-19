@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\StudyCase;
+use App\Filament\App\Pages\Register;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudyCaseController;
-use App\Filament\App\Pages\Register;
 
 Route::get('/', static function () {
     return redirect('/app');
 });
 
 Route::get('/home', function () {
-    return view('home');
+    $cases = StudyCase::orderBy('created_at', 'desc')->get();
+    return view('home.home', ['cases' => $cases]);
 });
 
 Route::get('/about', function () {
