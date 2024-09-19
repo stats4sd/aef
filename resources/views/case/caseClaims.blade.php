@@ -14,7 +14,7 @@
 
         <!-- Claim Header -->
         <div class="mb-4">
-            <div class="text-3xl text-dark-teal font-bold border-l-4 border-dark-teal pl-4">
+            <div class="text-2xl text-dark-teal font-bold border-l-4 border-dark-teal pl-4">
                 {{ strtoupper($claim->claim_statement) }}
             </div>
 
