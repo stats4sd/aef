@@ -366,11 +366,13 @@ class StudyCaseResource extends Resource
                     ->label(t('Year of development'))
                     ->wrap()
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->wrapHeader(),
                 Tables\Columns\IconColumn::make('ready_for_review')
                     ->label(t('Ready for review'))
                     ->boolean()
-                    ->sortable(),
+                    ->sortable()
+                    ->wrapHeader(),
                 Tables\Columns\IconColumn::make('reviewed')
                     ->label(t('Reviewed'))
                     ->boolean()
@@ -384,7 +386,15 @@ class StudyCaseResource extends Resource
                 Tables\Actions\EditAction::make()->hidden(function ($record) {
                     return $record->reviewed;
                 }),
-                Tables\Actions\ViewAction::make(),
+                // view action only available when case can no longer be edited
+                Tables\Actions\ViewAction::make()->hidden(function ($record) {
+                    return !$record->reviewed;
+                }),
+                Tables\Actions\Action::make('preview_catalogue')
+                                ->label('Preview')
+                                ->icon('heroicon-o-book-open')
+                                ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
+                                ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
