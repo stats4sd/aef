@@ -259,7 +259,8 @@ class StudyCaseResource extends Resource
                                             ->collection('comms_products')
                                             ->preserveFilenames()
                                             ->downloadable()
-                                            ->maxSize(10240),
+                                            ->maxSize(10240)
+                                            ->disk('s3'),
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add communication product'))
@@ -284,7 +285,8 @@ class StudyCaseResource extends Resource
                                     ->columnSpanFull()
                                     ->image()
                                     ->imageEditor()
-                                    ->imageEditorAspectRatios(['16:9']),
+                                    ->imageEditorAspectRatios(['16:9'])
+                                    ->disk('s3'),
 
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
                                     ->label(t('Organisation or project logo image'))
@@ -294,7 +296,8 @@ class StudyCaseResource extends Resource
                                     ->preserveFilenames()
                                     ->maxFiles(1)
                                     ->maxSize(10240)
-                                    ->columnSpanFull(),
+                                    ->columnSpanFull()
+                                    ->disk('s3'),
 
                                 Forms\Components\Repeater::make('photos')
                                     ->label(t('Catalogue photo(s)'))
@@ -308,7 +311,8 @@ class StudyCaseResource extends Resource
                                             ->preserveFilenames()
                                             ->downloadable()
                                             ->required()
-                                            ->maxSize(10240),
+                                            ->maxSize(10240)
+                                            ->disk('s3'),
                                     ])
                                     ->defaultItems(0)
                                     ->maxItems(5)
@@ -391,10 +395,10 @@ class StudyCaseResource extends Resource
                     return !$record->reviewed;
                 }),
                 Tables\Actions\Action::make('preview_catalogue')
-                                ->label('Preview')
-                                ->icon('heroicon-o-book-open')
-                                ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
-                                ->openUrlInNewTab()
+                    ->label('Preview')
+                    ->icon('heroicon-o-book-open')
+                    ->url(fn(StudyCase $record): string => '/cases/' . $record->id)
+                    ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
