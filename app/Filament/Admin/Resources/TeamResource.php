@@ -34,7 +34,15 @@ class TeamResource extends Resource
                             ->required(),
                         Forms\Components\TextInput::make('website'),
                         Forms\Components\Textarea::make('description'),
-                        Forms\Components\FileUpload::make('avatar'),
+                        Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
+                            ->label(t('Logo'))
+                            ->hint(t('Please upload organisation logo image.'))
+                            ->collection('logo')
+                            ->downloadable()
+                            ->preserveFilenames()
+                            ->maxFiles(1)
+                            ->maxSize(10240)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -43,7 +51,6 @@ class TeamResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('avatar'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
