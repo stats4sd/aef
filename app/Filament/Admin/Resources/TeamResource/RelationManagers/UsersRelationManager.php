@@ -38,17 +38,25 @@ class UsersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\IconColumn::make('is_admin')
-                    ->label('Is a Team Admin?')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable(),
+
+                // hide column "is_admin" as team admin is not being used in this application
+                // keep below commented code, it will be used in other application
+                // Tables\Columns\IconColumn::make('is_admin')
+                //     ->label('Is a Team Admin?')
+                //     ->boolean(),
+
+                Tables\Columns\TextColumn::make('created_at'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                // TODO: Show a notification after sending invitation email to new user
                 Tables\Actions\Action::make('invite users')
                     ->form([
                         Shout::make('info')
@@ -70,7 +78,10 @@ class UsersRelationManager extends RelationManager
                     ->label('Add Existing User to team'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Edit User Role'),
+                // hide "Edit User Role" button as team admin is not being used in this application
+                // keep below commented code, it will be used in other application
+                // Tables\Actions\EditAction::make()->label('Edit User Role'),
+
                 Tables\Actions\DetachAction::make()->label('Remove User')
                     ->modalSubmitActionLabel('Remove User')
                     ->modalHeading('Remove User from Team'),

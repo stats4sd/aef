@@ -11,9 +11,15 @@ use App\Mail\TeamManagement\InviteMember;
 use App\Models\TeamManagement\TeamInvite;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Team extends Model
+class Team extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = 'teams';
 
     protected $guarded = ['id'];
@@ -39,7 +45,7 @@ class Team extends Model
 
             Mail::to($invite->email)->send(new InviteMember($invite));
 
-            // TODO: show notification after sending invitation email to user
+            // show notification after sending invitation email to user
             Notification::make()
                 ->success()
                 ->title('Invitation Sent')
@@ -88,5 +94,14 @@ class Team extends Model
     public function organisations(): HasMany
     {
         return $this->hasMany(Organisation::class);
+    }
+
+    // for Spatie media library
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 }
