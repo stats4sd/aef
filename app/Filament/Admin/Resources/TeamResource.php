@@ -42,7 +42,8 @@ class TeamResource extends Resource
                             ->preserveFilenames()
                             ->maxFiles(1)
                             ->maxSize(10240)
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->disk('s3'),
                     ]),
             ]);
     }
