@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Image\Enums\Fit;
+use Laravel\Scout\Searchable;
+use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class StudyCase extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use InteractsWithMedia, Searchable;
 
     protected $table = 'study_cases';
 
@@ -73,5 +74,21 @@ class StudyCase extends Model implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Fit::Contain, 300, 300)
             ->nonQueued();
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'geographic_area' => $this->geographic_area,
+            'title' => $this->title,
+            'year_of_development' => $this->year_of_development,
+            'statement' => $this->statement,
+            'target_audience' => $this->target_audience,
+            'call_to_action' => $this->call_to_action,
+            'target_audience_priorities_and_values' => $this->target_audience_priorities_and_values,
+            'framing' => $this->framing,
+            'strategy_to_argue' => $this->strategy_to_argue,
+            'other_languages' => $this->other_languages,
+        ];
     }
 }

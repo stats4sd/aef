@@ -28,7 +28,7 @@
             <!-- Include components-->
             <div class="mt-4 px-20"> @include('home.homeRecentCases')</div>
             <div class="mt-8">@include('home.homeFindOutMore')</div>
-            <div id="cases" class="mt-4">@include('home.homeCases')</div>
+            <div id="cases" class="mt-4">@livewire('search-cases')</div>
         </div>
 
     </div>
