@@ -45,6 +45,8 @@ class InvitesRelationManager extends RelationManager
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable(),
             ])
             ->filters([
                 //
