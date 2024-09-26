@@ -6,7 +6,7 @@
 
 <!-- Recent Cases -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
-    @foreach($cases->take(3) as $case)
+    @foreach($recentCases as $case)
         @php
             $cover_photo = $case->getMedia('cover_photo')->first();
             $cover_photo_url = $cover_photo ? $cover_photo->getUrl() : null;
@@ -17,15 +17,15 @@
 
             <!-- Content -->
             <div class="bg-white p-6 flex-grow flex flex-col justify-between">
-                <p class="text-ochre font-semibold mb-2">CASE</p>
-                <h2 class="text-teal font-bold text-xl uppercase mb-2">{{ $case->title }}</h2>
+                <p class="text-ochre font-semibold">CASE</p>
+                <h2 class="text-teal font-bold text-lg uppercase mb-1">{{ $case->title }}</h2>
                 <p class="text-black">{{ $case->team->name }}, {{ $case->year_of_development }}</p>
 
                 <!-- Divider -->
-                <div class="h-1 w-full bg-teal my-4"></div>
+                <div class="h-1 w-full bg-teal my-3"></div>
 
                 <!-- First Row Metadata-->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                     <!-- Languages -->
                     <div class="flex items-start">
                         <div class="flex-shrink-0 mr-4">
@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- Second Row Metadata-->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <!-- Countries Covered -->
                     <div class="flex items-start">
                         <div class="flex-shrink-0 mr-4">
