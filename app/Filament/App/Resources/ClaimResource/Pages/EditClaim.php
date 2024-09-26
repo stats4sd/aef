@@ -2,9 +2,10 @@
 
 namespace App\Filament\App\Resources\ClaimResource\Pages;
 
-use App\Filament\App\Resources\ClaimResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Contracts\Support\Htmlable;
+use App\Filament\App\Resources\ClaimResource;
 
 class EditClaim extends EditRecord
 {
@@ -15,6 +16,19 @@ class EditClaim extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    // Remove bread crumb "Claims > Edit" to avoid user clicks "Claims" link to list all claims records of all cases.
+    //
+    // By setting an empty string as title, below items will not be showed:
+    // 1. Bread crumb "Claims > Edit"
+    // 2. Page title "Edit Claim"
+    // 3. "Delete" button in page header
+    //
+    // P.S. The only way to delete a claim record: Cases resource > Claims relation manager table
+    public function getTitle(): string | Htmlable
+    {
+        return '';
     }
 
     // redirect to Study case edit view, tab "Claims and Evidence" after record update
