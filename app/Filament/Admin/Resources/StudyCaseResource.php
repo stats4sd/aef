@@ -46,25 +46,28 @@ class StudyCaseResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                ->label(t('Title'))
+                ->wrap()
+                ->sortable()
+                ->searchable(),
                 Tables\Columns\TextColumn::make('team.name')
                     ->label(t('Leading organisation'))
                     ->numeric()
                     ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->label(t('Title'))
-                    ->wrap()
-                    ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->wrapHeader(),
                 Tables\Columns\TextColumn::make('year_of_development')
                     ->label(t('Year of development'))
                     ->wrap()
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->wrapHeader(),
                 Tables\Columns\IconColumn::make('ready_for_review')
                     ->label(t('Ready for review'))
                     ->boolean()
-                    ->sortable(),
+                    ->sortable()
+                    ->wrapHeader(),
                 Tables\Columns\IconColumn::make('reviewed')
                     ->label(t('Reviewed'))
                     ->boolean()
@@ -76,6 +79,11 @@ class StudyCaseResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('preview_catalogue')
+                                ->label('Preview')
+                                ->icon('heroicon-o-book-open')
+                                ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
+                                ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
