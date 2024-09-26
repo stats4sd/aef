@@ -112,7 +112,8 @@ class StudyCaseResource extends Resource
 
                                         Forms\Components\TextInput::make('contact_person_email')
                                             ->label(t('Contact person email'))
-                                            ->required(),
+                                            ->required()
+                                            ->email(),
                                     ]),
 
                                 Section::make(t('Partner organisation(s)'))
