@@ -9,7 +9,7 @@ class StudyCaseController extends Controller
 {
     public function getData(StudyCase $studycase) {
 
-        return view('case.case', ['studycase' => $studycase]);
+        return view('cases.index', ['studycase' => $studycase]);
     }
 
     public function index()
@@ -20,6 +20,6 @@ class StudyCaseController extends Controller
             ->take(3)
             ->get();
 
-        return view('home.home', ['recentCases' => $recentCases]);
+        return view('home.index', ['recentCases' => $recentCases]);
     }
 }

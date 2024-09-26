@@ -26,8 +26,8 @@
 
         <div class="py-8">
             <!-- Include components-->
-            <div class="mt-4 px-20"> @include('home.homeRecentCases')</div>
-            <div class="mt-8">@include('home.homeFindOutMore')</div>
+            <div class="mt-4 px-20"> @include('home.recent-cases')</div>
+            <div class="mt-8">@include('home.info')</div>
             <div id="cases" class="mt-4">@livewire('search-cases')</div>
         </div>
 

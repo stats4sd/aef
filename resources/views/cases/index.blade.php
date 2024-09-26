@@ -83,7 +83,7 @@
             <p class="text-dark-teal font-bold mr-4">Jump to...</p>
             <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Case Details</a>
             <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white">Claims and evidence</a>
-            <a href="#case-presented" class="text-xl rounded-button hover-effect bg-ochre text-white">The case as presented</a>
+            <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white">The case as presented</a>
             <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Other details</a>
         </div>
 
@@ -91,10 +91,10 @@
 
     <div class="py-8 px-12">
         <!-- Include blades for components-->
-        <div id="case-details" class="mt-4"> @include('case.caseDetails')</div>
-        <div id="case-claims" class="mt-8">@include('case.caseClaims')</div>
-        <div id="case-presented" class="mt-8">@include('case.casePresented')</div>
-        <div id="case-other-details" class="my-8">@include('case.caseOtherDetails')</div>
+        <div id="case-details" class="mt-4"> @include('cases.details')</div>
+        <div id="case-claims" class="mt-8">@include('cases.claims')</div>
+        <div id="case-products" class="mt-8">@include('cases.products')</div>
+        <div id="case-other-details" class="my-8">@include('cases.other')</div>
     </div>
 
 @endsection
