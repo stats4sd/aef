@@ -26,6 +26,7 @@ class EditClaim extends EditRecord
     // 3. "Delete" button in page header
     //
     // P.S. The only way to delete a claim record: Cases resource > Claims relation manager table
+
     public function getTitle(): string | Htmlable
     {
         return '';

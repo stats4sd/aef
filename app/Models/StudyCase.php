@@ -24,6 +24,44 @@ class StudyCase extends Model implements HasMedia
         'reviewed' => 'boolean',
     ];
 
+    protected static function booted()
+    {
+        // StudyCase has master detail relationship with CommunicationProduct, Photo and EvidenceAttachment.
+        //
+        // When user delete a StudyCase record, related records for CommunicationProduct, Photo and EvidenceAttachment
+        // are deleted by database constraint onCascadeDelete().
+        //
+        // This works well in database level, but it is not desired in cloud storage level.
+        // The uploaded files for these models remain in S3 cloud storage.
+        //
+        // There is no event to trigger to delete them, they will remain in cloud storage forever.
+        // This will introduce extra cost for paying cloud storage space that contains files which should be deleted but still remain.
+        //
+        // To avoid this happen, we can remove related models to trigger model event delete() to delete the uploaded files in S3 cloud storage.
+        //
+        // P.S. It may take a few seconds to delete all related detail records. The modal popup for Delete confirmation remains showing
+        // on screen for a longer time than usual. We may consider to put below tasks into a queue to retain the responsiveness
+        // of Delete confirmation modal popup.
+
+        static::deleting(function ($item) {
+            foreach ($item->communicationProducts as $communicationProduct) {
+                $communicationProduct->delete();
+            }
+
+            foreach ($item->photos as $photo) {
+                $photo->delete();
+            }
+
+            foreach ($item->claims as $claim) {
+                foreach ($claim->evidences as $evidence) {
+                    foreach ($evidence->evidenceAttachments as $evidenceAttachment) {
+                        $evidenceAttachment->delete();
+                    }
+                }
+            }
+        });
+    }
+
     // leading organisation
     public function team(): BelongsTo
     {
