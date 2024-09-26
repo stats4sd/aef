@@ -28,17 +28,27 @@ class SearchCases extends Component
     public function mount()
     {
         // Retrieve all cases and the related languages, tags, and countries
-        $this->cases = StudyCase::all();
+        $this->cases = StudyCase::where('reviewed', 1)->get();
         $this->caseCount = $this->cases->count();
 
-        $this->languages = Language::whereHas('studyCases')->orderBy('name')->get();
-        $this->tags = Tag::whereHas('studyCases')->orderBy('name')->get();
-        $this->countries = Country::whereHas('studyCases')->orderBy('name')->get();
+        // Retrieve languages, tags, and countries that have related reviewed cases
+        $this->languages = Language::whereHas('studyCases', function ($query) {
+            $query->where('reviewed', 1);
+        })->orderBy('name')->get();
+
+        $this->tags = Tag::whereHas('studyCases', function ($query) {
+            $query->where('reviewed', 1);
+        })->orderBy('name')->get();
+
+        $this->countries = Country::whereHas('studyCases', function ($query) {
+            $query->where('reviewed', 1);
+        })->orderBy('name')->get();
     }
 
     public function searchCases()
     {
-        $query = StudyCase::query();
+        // Setup the query and only retrieve reviewed cases
+        $query = StudyCase::query()->where('reviewed', 1);
 
         // Handle the search term (if present)
         if ($this->query) {

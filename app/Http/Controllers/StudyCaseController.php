@@ -15,7 +15,10 @@ class StudyCaseController extends Controller
     public function index()
     {
         // Retrieve 3 most recent cases
-        $recentCases = StudyCase::orderBy('created_at', 'desc')->take(3)->get();
+        $recentCases = StudyCase::where('reviewed', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
 
         return view('home.home', ['recentCases' => $recentCases]);
     }
