@@ -26,8 +26,12 @@ class AppServiceProvider extends ServiceProvider
         // hide the popup modal "Close" button at upper right corner
         Modal::closeButton(false);
 
-        // TODO: disable closing the popup modal by pressing Escape key
-        // Note: this function does not exist in filament v3.2 Modal class
-        // Modal::closedByEscaping(false);
+        // disable closing the popup modal by pressing Escape key
+        //
+        // Note: this feauture is avaiable since filament version 3.2.98.
+        // filament can be upgraded in this way:
+        // 1. remove composer.lock, remove vendor folder
+        // 2. run command "composer install"
+        Modal::closedByEscaping(false);
     }
 }

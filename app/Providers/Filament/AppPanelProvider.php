@@ -54,9 +54,16 @@ class AppPanelProvider extends PanelProvider
             ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
-            ->pages([])
+            ->pages([
+                // To show dashbaord in sidebar, we need to comment custom navigation() in bottom part
+                Pages\Dashboard::class,
+            ])
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
-            ->widgets([])
+            ->widgets([
+                // It is useful to check filament version in filament info widget in dashboard
+                Widgets\AccountWidget::class,
+                Widgets\FilamentInfoWidget::class,
+            ])
             ->plugin(new LocalLogins())
             ->renderHook(
                 PanelsRenderHook::TOPBAR_END,
