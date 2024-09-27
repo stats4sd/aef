@@ -11,7 +11,7 @@
             <p class="mt-2">Cases and evidence for agroecology from organisations and project all over the world are 
                             collected in one searchable database.
             </p>
-            <a href="#cases" class="bg-mint hover-effect text-white font-bold px-4 py-2 mt-8">BROWSE CASES</a>
+            <a href="#cases" class="bg-mint hover-effect text-white font-bold px-8 py-4 mt-8">BROWSE CASES</a>
         </div>
 
         <!-- Photo 1 -->
@@ -27,7 +27,7 @@
             <p class="mt-2">We provide grants and guidance to support grassroots organisations to develop and use strong, 
                             evidence-based ases for agroecology.
             </p>
-            <a href="/about" class="bg-mint hover-effect text-white font-bold px-4 py-2 mt-8">FIND OUT MORE</a>
+            <a href="/about" class="bg-mint hover-effect text-white font-bold px-8 py-4 mt-8">FIND OUT MORE</a>
         </div>
 
         <!-- ADVOCATING FOR AGROECOLOGY -->
@@ -37,7 +37,7 @@
             <p class="mt-2">By providing knowledge and evidence for agroecology we aim to empower researchers, cooperatives,
                             and policymakers to promote ecological balance and sustainable agriculture.
             </p>
-            <a href="#cases" class="bg-mint hover-effect text-white font-bold px-4 py-2 mt-8">BROWSE CASES</a>
+            <a href="#cases" class="bg-mint hover-effect text-white font-bold px-8 py-4 mt-8">BROWSE CASES</a>
         </div>
 
         <!-- Photo 3 -->

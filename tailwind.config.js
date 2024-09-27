@@ -10,6 +10,7 @@ export default {
         'ochre': 'var(--ochre)',
         'light-yellow': 'var(--light-yellow)',
         'light-green': 'var(--light-green)',
+        'pale-green' : 'var(--pale-green)',
       },
     },
   },
