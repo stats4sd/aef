@@ -58,7 +58,9 @@ class StudyCaseResource extends Resource
                                 Forms\Components\TextInput::make('year_of_development')
                                     ->label(t('Year of development'))
                                     ->required()
-                                    ->numeric(),
+                                    ->numeric()
+                                    ->minValue(1900)
+                                    ->maxValue(3000),
 
                                 Forms\Components\Select::make('languages')
                                     ->label(t('Language(s)'))
@@ -298,6 +300,7 @@ class StudyCaseResource extends Resource
                                     ->maxFiles(1)
                                     ->maxSize(10240)
                                     ->columnSpanFull()
+                                    ->image()
                                     ->disk('s3'),
 
                                 Forms\Components\Repeater::make('photos')
@@ -313,6 +316,7 @@ class StudyCaseResource extends Resource
                                             ->downloadable()
                                             ->required()
                                             ->maxSize(10240)
+                                            ->image()
                                             ->disk('s3'),
                                     ])
                                     ->defaultItems(0)
