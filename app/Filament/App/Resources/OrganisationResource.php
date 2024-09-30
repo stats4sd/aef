@@ -60,6 +60,7 @@ class OrganisationResource extends Resource
                     ->disk('s3'),
                 Forms\Components\Textarea::make('note')
                     ->label(t('Note'))
+                    ->maxLength(65535)
                     ->columnSpanFull(),
             ]);
     }
