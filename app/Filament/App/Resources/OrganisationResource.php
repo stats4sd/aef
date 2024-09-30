@@ -45,6 +45,7 @@ class OrganisationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
                     ->label(t('Website'))
+                    ->url()
                     ->maxLength(255),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                     ->label(t('Logo'))
@@ -55,9 +56,11 @@ class OrganisationResource extends Resource
                     ->maxFiles(1)
                     ->maxSize(10240)
                     ->columnSpanFull()
+                    ->image()
                     ->disk('s3'),
                 Forms\Components\Textarea::make('note')
                     ->label(t('Note'))
+                    ->maxLength(65535)
                     ->columnSpanFull(),
             ]);
     }

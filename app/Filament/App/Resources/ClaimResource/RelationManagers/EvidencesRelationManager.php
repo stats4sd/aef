@@ -43,10 +43,13 @@ class EvidencesRelationManager extends RelationManager
 
                         Forms\Components\TextInput::make('description')
                             ->label(t('Description'))
-                            ->required(),
+                            ->required()
+                            ->maxLength(65535),
 
                         Forms\Components\TextInput::make('url')
-                            ->label(t('URL')),
+                            ->label(t('URL'))
+                            ->url()
+                            ->maxLength(65535),
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
