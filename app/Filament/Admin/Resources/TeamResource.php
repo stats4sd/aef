@@ -31,8 +31,11 @@ class TeamResource extends Resource
                 Forms\Components\Section::make('Team Details')
                     ->schema([
                         Forms\Components\TextInput::make('name')
-                            ->required(),
-                        Forms\Components\TextInput::make('website'),
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('website')
+                            ->url()
+                            ->maxLength(255),
                         Forms\Components\Textarea::make('description'),
                         Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                             ->label(t('Logo'))
@@ -43,6 +46,7 @@ class TeamResource extends Resource
                             ->maxFiles(1)
                             ->maxSize(25600)
                             ->columnSpanFull()
+                            ->image()
                             ->disk('s3'),
                     ]),
             ]);
