@@ -260,7 +260,7 @@ class StudyCaseResource extends Resource
                                             ->collection('comms_products')
                                             ->preserveFilenames()
                                             ->downloadable()
-                                            ->maxSize(10240)
+                                            ->maxSize(25600)
                                             ->disk('s3'),
                                     ])
                                     ->defaultItems(0)
@@ -282,7 +282,7 @@ class StudyCaseResource extends Resource
                                     ->downloadable()
                                     ->preserveFilenames()
                                     ->maxFiles(1)
-                                    ->maxSize(10240)
+                                    ->maxSize(25600)
                                     ->columnSpanFull()
                                     ->image()
                                     ->imageEditor()
@@ -296,7 +296,7 @@ class StudyCaseResource extends Resource
                                     ->downloadable()
                                     ->preserveFilenames()
                                     ->maxFiles(1)
-                                    ->maxSize(10240)
+                                    ->maxSize(25600)
                                     ->columnSpanFull()
                                     ->disk('s3'),
 
@@ -312,7 +312,7 @@ class StudyCaseResource extends Resource
                                             ->preserveFilenames()
                                             ->downloadable()
                                             ->required()
-                                            ->maxSize(10240)
+                                            ->maxSize(25600)
                                             ->disk('s3'),
                                     ])
                                     ->defaultItems(0)
