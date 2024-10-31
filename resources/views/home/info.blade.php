@@ -8,7 +8,7 @@
         <div class="bg-light-yellow flex flex-col items-start justify-center py-28 px-32">
             <img src="/images/icon_evidencebase.png" alt="Icon Evidence Base" class="w-16 h-16">
             <div class="text-teal text-xl font-bold mt-4">EVIDENCE BASE</div>
-            <p class="mt-2">Cases and evidence for agroecology from organisations and project all over the world are 
+            <p class="mt-2">Cases and evidence for agroecology from organisations and projects all over the world are 
                             collected in one searchable database.
             </p>
             <a href="#cases" class="bg-mint hover-effect text-white font-bold px-8 py-4 mt-8">BROWSE CASES</a>
