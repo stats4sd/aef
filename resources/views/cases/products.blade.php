@@ -9,9 +9,9 @@
 
 <!-- Main Section -->
 <div class="bg-white shadow-xl p-4 mb-4 px-20">
-    
+
     <!-- Communication Product -->
-    @foreach($studycase->communicationProducts as $communicationProduct) 
+    @foreach($studycase->communicationProducts as $communicationProduct)
         @php
             $media = $communicationProduct->getMedia('comms_products')->first();
             if($media) {
@@ -58,7 +58,7 @@
         <div class="pb-8">
             @if($communicationProduct->url)
                 @if($contains_iframe)
-                    <div class="iframe-container itmes-center mt-8">
+                    <div class="iframe-container items-center mt-8">
                         {!! $communicationProduct->url !!}
                     </div>
                 @endif

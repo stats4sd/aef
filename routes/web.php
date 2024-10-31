@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudyCaseController;
 
 Route::get('/', static function () {
-    return redirect('/app');
+    return redirect('/home');
 });
 
 Route::get('/home', [StudyCaseController::class, 'index'])->name('home');
