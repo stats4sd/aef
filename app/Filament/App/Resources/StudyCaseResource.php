@@ -53,12 +53,15 @@ class StudyCaseResource extends Resource
                                 Forms\Components\TextInput::make('title')
                                     ->label(t('Title'))
                                     ->required()
+                                    ->maxLength(65535)
                                     ->columnSpanFull(),
 
                                 Forms\Components\TextInput::make('year_of_development')
                                     ->label(t('Year of development'))
                                     ->required()
-                                    ->numeric(),
+                                    ->numeric()
+                                    ->minValue(1900)
+                                    ->maxValue(3000),
 
                                 Forms\Components\Select::make('languages')
                                     ->label(t('Language(s)'))
@@ -70,7 +73,8 @@ class StudyCaseResource extends Resource
 
                                 Forms\Components\TextInput::make('other_languages')
                                     ->label(t('Other language(s)'))
-                                    ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above')),
+                                    ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above'))
+                                    ->maxLength(255),
 
                                 Forms\Components\Select::make('tags')
                                     ->label(t('Tag(s) / keyword(s)'))
@@ -98,6 +102,7 @@ class StudyCaseResource extends Resource
                                     ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
                                     ->rows(3)
                                     ->required()
+                                    ->maxLength(65535)
                                     ->columnSpanFull(),
 
                                 Section::make(t('Leading organisation'))
@@ -108,12 +113,14 @@ class StudyCaseResource extends Resource
 
                                         Forms\Components\TextInput::make('contact_person_name')
                                             ->label(t('Contact person name'))
-                                            ->required(),
+                                            ->required()
+                                            ->maxLength(255),
 
                                         Forms\Components\TextInput::make('contact_person_email')
                                             ->label(t('Contact person email'))
                                             ->required()
-                                            ->email(),
+                                            ->email()
+                                            ->maxLength(255),
                                     ]),
 
                                 Section::make(t('Partner organisation(s)'))
@@ -131,9 +138,11 @@ class StudyCaseResource extends Resource
                                                     ->maxLength(255),
                                                 Forms\Components\TextInput::make('website')
                                                     ->label(t('Website'))
+                                                    ->url()
                                                     ->maxLength(255),
                                                 Forms\Components\Textarea::make('note')
                                                     ->label(t('Note'))
+                                                    ->maxLength(65535)
                                                     ->columnSpanFull(),
                                             ]),
 
@@ -237,10 +246,9 @@ class StudyCaseResource extends Resource
 
                                 Forms\Components\Textarea::make('note')
                                     ->label(t('Note'))
+                                    ->maxLength(65535)
                                     ->columnSpanFull(),
                             ]),
-
-
 
                         Tabs\Tab::make('tab-3')
                             ->label(t('Communication Product(s)'))
@@ -253,8 +261,18 @@ class StudyCaseResource extends Resource
                                     ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
                                     ->relationship()
                                     ->schema([
-                                        TextInput::make('description')->label(t('Description'))->required(),
-                                        TextInput::make('url')->label(t('URL')),
+
+                                        TextInput::make('description')
+                                            ->label(t('Description'))
+                                            ->required()
+                                            ->maxLength(65535),
+
+                                        TextInput::make('url')
+                                            ->label(t('URL'))
+                                            // Note: as <iframe> may be entered here to include a Youtube video, do not enforce to enter a valid URL
+                                            // ->url()
+                                            ->maxLength(65535),
+
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('comms_products')
@@ -262,6 +280,7 @@ class StudyCaseResource extends Resource
                                             ->downloadable()
                                             ->maxSize(25600)
                                             ->disk('s3'),
+
                                     ])
                                     ->defaultItems(0)
                                     ->addActionLabel(t('Add communication product'))
@@ -298,6 +317,7 @@ class StudyCaseResource extends Resource
                                     ->maxFiles(1)
                                     ->maxSize(25600)
                                     ->columnSpanFull()
+                                    ->image()
                                     ->disk('s3'),
 
                                 Forms\Components\Repeater::make('photos')
@@ -305,7 +325,12 @@ class StudyCaseResource extends Resource
                                     ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
                                     ->relationship()
                                     ->schema([
-                                        TextInput::make('description')->label(t('Description'))->required(),
+
+                                        TextInput::make('description')
+                                            ->label(t('Description'))
+                                            ->required()
+                                            ->maxLength(65535),
+
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('catalogue_photos')
@@ -313,7 +338,9 @@ class StudyCaseResource extends Resource
                                             ->downloadable()
                                             ->required()
                                             ->maxSize(25600)
+                                            ->image()
                                             ->disk('s3'),
+
                                     ])
                                     ->defaultItems(0)
                                     ->maxItems(5)

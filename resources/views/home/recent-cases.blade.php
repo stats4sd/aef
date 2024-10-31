@@ -1,27 +1,13 @@
-<div class="bg-white pb-10 px-20">
+<!-- Divider -->
+<div class="h-1 bg-dark-teal w-full mb-4"></div>
+
+@if($recentCases->isNotEmpty())
     <!-- Heading -->
-    <div class="text-2xl font-bold text-dark-teal pt-20">BROWSE OR SEARCH CASES</div>
-    
-    <!-- Search Bar -->
-    <div class="mt-6 flex items-center space-x-4">
-        <input 
-            type="text" 
-            class="w-full border-2 border-dark-teal rounded-full px-8 py-4 focus:outline-none placeholder-dark-teal" 
-            placeholder="SEARCH CASE TITLES, KEY WORDS, DESCRIPTION TEXT"
-        >
-        <button class="p-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-10 w-10 text-dark-teal">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-            </svg>
-        </button>
-    </div>
-</div>
+    <div class="text-2xl font-bold text-dark-teal py-4">RECENTLY ADDED CASES</div>
 
-
-<!-- Cases -->
-<div class="bg-light-yellow py-20 px-20">
+    <!-- Recent Cases -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
-        @foreach($cases as $case)
+        @foreach($recentCases as $case)
             @php
                 $cover_photo = $case->getMedia('cover_photo')->first();
                 $cover_photo_url = $cover_photo ? $cover_photo->getUrl() : null;
@@ -32,15 +18,15 @@
 
                 <!-- Content -->
                 <div class="bg-white p-6 flex-grow flex flex-col justify-between">
-                    <p class="text-ochre font-semibold mb-2">CASE</p>
-                    <h2 class="text-teal font-bold text-xl uppercase mb-2">{{ $case->title }}</h2>
+                    <p class="text-ochre font-semibold">CASE</p>
+                    <h2 class="text-teal font-bold text-lg uppercase mb-1">{{ $case->title }}</h2>
                     <p class="text-black">{{ $case->team->name }}, {{ $case->year_of_development }}</p>
 
                     <!-- Divider -->
-                    <div class="h-1 w-full bg-teal my-4"></div>
+                    <div class="h-1 w-full bg-teal my-3"></div>
 
                     <!-- First Row Metadata-->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                         <!-- Languages -->
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mr-4">
@@ -70,7 +56,7 @@
                     </div>
 
                     <!-- Second Row Metadata-->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <!-- Countries Covered -->
                         <div class="flex items-start">
                             <div class="flex-shrink-0 mr-4">
@@ -104,6 +90,14 @@
             </a>
         @endforeach
     </div>
-</div>
 
+    <!-- Browse All Button -->
+    <div class="flex justify-between items-center py-4">
+        <div></div> <!-- Empty space to align the button to the right -->
+        <a href="#cases" class="bg-mint hover-effect text-white font-semibold py-4 px-8 ml-auto">BROWSE ALL CASES</a>
+    </div>
 
+    <!-- Divider -->
+    <div class="h-1 bg-dark-teal w-full"></div>
+
+@endif
