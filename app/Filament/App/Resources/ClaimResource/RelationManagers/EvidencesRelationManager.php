@@ -56,7 +56,7 @@ class EvidencesRelationManager extends RelationManager
                             ->collection('evidence')
                             ->preserveFilenames()
                             ->downloadable()
-                            ->maxSize(25600)
+                            ->maxSize(51200)
                             ->disk('s3'),
 
                     ])
