@@ -269,10 +269,13 @@ class StudyCaseResource extends Resource
 
                                         TextInput::make('url')
                                             ->label(t('URL'))
-                                            // Note: as <iframe> may be entered here to include a Youtube video, do not enforce to enter a valid URL
-                                            // ->url()
+                                            ->url()
                                             ->maxLength(65535),
 
+                                        TextInput::make('youtube_id')
+                                            ->label(t('Youtube ID'))
+                                            ->hint(t('To enbed a youtube video, add the id. On YouTube, when you hit "share", the id is the random-like string after https://youtu.be/')),
+            
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('comms_products')
