@@ -44,7 +44,7 @@ class TeamResource extends Resource
                             ->downloadable()
                             ->preserveFilenames()
                             ->maxFiles(1)
-                            ->maxSize(25600)
+                            ->maxSize(51200)
                             ->columnSpanFull()
                             ->image()
                             ->disk('s3'),
