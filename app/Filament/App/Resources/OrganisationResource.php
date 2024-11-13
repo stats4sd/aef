@@ -54,7 +54,7 @@ class OrganisationResource extends Resource
                     ->downloadable()
                     ->preserveFilenames()
                     ->maxFiles(1)
-                    ->maxSize(51200)
+                    ->maxSize(512000)
                     ->columnSpanFull()
                     ->image()
                     ->disk('s3'),

@@ -275,13 +275,13 @@ class StudyCaseResource extends Resource
                                         TextInput::make('youtube_id')
                                             ->label(t('Youtube ID'))
                                             ->hint(t('To enbed a youtube video, add the id. On YouTube, when you hit "share", the id is the random-like string after https://youtu.be/')),
-            
+
                                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                                             ->label(t('File'))
                                             ->collection('comms_products')
                                             ->preserveFilenames()
                                             ->downloadable()
-                                            ->maxSize(51200)
+                                            ->maxSize(512000)
                                             ->disk('s3'),
 
                                     ])
@@ -304,7 +304,7 @@ class StudyCaseResource extends Resource
                                     ->downloadable()
                                     ->preserveFilenames()
                                     ->maxFiles(1)
-                                    ->maxSize(51200)
+                                    ->maxSize(512000)
                                     ->columnSpanFull()
                                     ->image()
                                     ->imageEditor()
@@ -318,7 +318,7 @@ class StudyCaseResource extends Resource
                                     ->downloadable()
                                     ->preserveFilenames()
                                     ->maxFiles(1)
-                                    ->maxSize(51200)
+                                    ->maxSize(512000)
                                     ->columnSpanFull()
                                     ->image()
                                     ->disk('s3'),
@@ -340,7 +340,7 @@ class StudyCaseResource extends Resource
                                             ->preserveFilenames()
                                             ->downloadable()
                                             ->required()
-                                            ->maxSize(51200)
+                                            ->maxSize(512000)
                                             ->image()
                                             ->disk('s3'),
 
