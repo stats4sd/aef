@@ -140,7 +140,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
-                        <span class="font-semibold">{{ strtoupper($languages->find($languageId)->name) }}</span>
+                        <span class="font-semibold">{{ mb_strtoupper($languages->find($languageId)->name, 'UTF-8') }}</span>
                     </div>
                 @endif
             @endforeach
@@ -154,7 +154,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
-                        <span class="font-semibold">{{ strtoupper($tags->find($tagId)->name) }}</span>
+                        <span class="font-semibold">{{ mb_strtoupper($tags->find($tagId)->name, 'UTF-8') }}</span>
                     </div>
                 @endif
             @endforeach
@@ -168,7 +168,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
-                        <span class="font-semibold">{{ strtoupper($countries->find($countryId)->name) }}</span>
+                        <span class="font-semibold">{{ mb_strtoupper($countries->find($countryId)->name, 'UTF-8') }}</span>
                     </div>
                 @endif
             @endforeach
