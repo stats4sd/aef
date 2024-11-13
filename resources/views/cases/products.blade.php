@@ -9,9 +9,9 @@
 
 <!-- Main Section -->
 <div class="bg-white shadow-xl p-4 mb-4 px-20">
-    
+
     <!-- Communication Product -->
-    @foreach($studycase->communicationProducts as $communicationProduct) 
+    @foreach($studycase->communicationProducts as $communicationProduct)
         @php
             $media = $communicationProduct->getMedia('comms_products')->first();
             if($media) {
@@ -20,7 +20,6 @@
                 $file_url = $media->getUrl();
                 $file_type = basename($media->mime_type);
             }
-            $contains_iframe = strpos($communicationProduct->url, '<iframe') !== false;
         @endphp
 
         <div class="pt-8 pb-2 mt-4 flex items-start">
@@ -42,26 +41,29 @@
                 @endif
                 <!-- Visit Link Button -->
                 @if($communicationProduct->url)
-                    @if(!$contains_iframe)
-                        <a href="{{ $communicationProduct->url }}" target="_blank" class="bg-ochre hover-effect text-white rounded-lg px-8 py-2 h-12 flex items-center">
-                        <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 mr-8">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                                        </svg>
-                            Visit link
-                        </a>
-                    @endif
+                    <a href="{{ $communicationProduct->url }}" target="_blank" class="bg-ochre hover-effect text-white rounded-lg px-8 py-2 h-12 flex items-center">
+                    <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 mr-8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                    </svg>
+                        Visit link
+                    </a>
                 @endif
             </div>
         </div>
 
         <!-- Embedded Youtube Video -->
         <div class="pb-8">
-            @if($communicationProduct->url)
-                @if($contains_iframe)
-                    <div class="iframe-container itmes-center mt-8">
-                        {!! $communicationProduct->url !!}
-                    </div>
-                @endif
+            @if($communicationProduct->youtube_id)
+                <div class="iframe-container items-center mt-8">
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/{{ $communicationProduct->youtube_id }}"
+                        frameborder="0"
+                        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </div>
             @endif
         </div>
 
