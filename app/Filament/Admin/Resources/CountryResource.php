@@ -80,7 +80,7 @@ class CountryResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -101,7 +101,7 @@ class CountryResource extends Resource
         return [
             'index' => Pages\ListCountries::route('/'),
             // 'create' => Pages\CreateCountry::route('/create'),
-            // 'edit' => Pages\EditCountry::route('/{record}/edit'),
+            'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
     }
 }
