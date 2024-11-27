@@ -48,7 +48,7 @@ class EvidencesRelationManager extends RelationManager
 
                         Forms\Components\TextInput::make('url')
                             ->label(t('URL'))
-                            ->url()
+                            // ->url()
                             ->maxLength(65535),
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
