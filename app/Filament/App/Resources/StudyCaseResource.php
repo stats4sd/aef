@@ -138,7 +138,7 @@ class StudyCaseResource extends Resource
                                                     ->maxLength(255),
                                                 Forms\Components\TextInput::make('website')
                                                     ->label(t('Website'))
-                                                    ->url()
+                                                    // ->url()
                                                     ->maxLength(255),
                                                 Forms\Components\Textarea::make('note')
                                                     ->label(t('Note'))
@@ -269,7 +269,7 @@ class StudyCaseResource extends Resource
 
                                         TextInput::make('url')
                                             ->label(t('URL'))
-                                            ->url()
+                                            // ->url()
                                             ->maxLength(65535),
 
                                         TextInput::make('youtube_id')
