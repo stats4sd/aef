@@ -269,7 +269,7 @@ class StudyCaseResource extends Resource
 
                                         TextInput::make('url')
                                             ->label(t('URL'))
-                                            ->url()
+                                            // ->url()
                                             ->maxLength(65535),
 
                                         TextInput::make('youtube_id')
