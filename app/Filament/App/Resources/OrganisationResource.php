@@ -45,7 +45,7 @@ class OrganisationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
                     ->label(t('Website'))
-                    ->url()
+                    // ->url()
                     ->maxLength(255),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                     ->label(t('Logo'))

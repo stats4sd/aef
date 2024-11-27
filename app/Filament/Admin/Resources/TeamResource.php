@@ -34,7 +34,7 @@ class TeamResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('website')
-                            ->url()
+                            // ->url()
                             ->maxLength(255),
                         Forms\Components\Textarea::make('description'),
                         Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
