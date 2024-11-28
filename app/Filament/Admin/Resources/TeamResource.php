@@ -2,21 +2,22 @@
 
 namespace App\Filament\Admin\Resources;
 
+use Filament\Forms;
+use App\Models\Team;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
 use App\Filament\Admin\Resources\TeamResource\Pages;
 use App\Filament\Admin\Resources\TeamResource\RelationManagers\UsersRelationManager;
 use App\Filament\Admin\Resources\TeamResource\RelationManagers\InvitesRelationManager;
-use App\Models\Team;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Infolist;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\ViewEntry;
-use Filament\Resources\Resource;
 
 class TeamResource extends Resource
 {
@@ -34,8 +35,13 @@ class TeamResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('website')
-                            // ->url()
-                            ->maxLength(255),
+                            ->url()
+                            ->maxLength(255)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
+                                static::trimUrlContent($set, $get, 'website');
+                            }),
+
                         Forms\Components\Textarea::make('description'),
                         Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                             ->label(t('Logo'))
@@ -107,5 +113,16 @@ class TeamResource extends Resource
             ->schema([
                 TextEntry::make('description')->hiddenLabel(),
             ]);
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }

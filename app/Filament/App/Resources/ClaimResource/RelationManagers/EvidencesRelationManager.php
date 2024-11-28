@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -48,8 +49,12 @@ class EvidencesRelationManager extends RelationManager
 
                         Forms\Components\TextInput::make('url')
                             ->label(t('URL'))
-                            // ->url()
-                            ->maxLength(65535),
+                            ->url()
+                            ->maxLength(65535)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
+                                static::trimUrlContent($set, $get, 'url');
+                            }),
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
@@ -125,5 +130,16 @@ class EvidencesRelationManager extends RelationManager
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }
