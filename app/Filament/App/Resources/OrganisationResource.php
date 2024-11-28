@@ -2,16 +2,17 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\OrganisationResource\Pages;
-use App\Filament\App\Resources\OrganisationResource\RelationManagers;
-use App\Models\Organisation;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use App\Models\Organisation;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\App\Resources\OrganisationResource\Pages;
+use App\Filament\App\Resources\OrganisationResource\RelationManagers;
 
 class OrganisationResource extends Resource
 {
@@ -45,8 +46,12 @@ class OrganisationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
                     ->label(t('Website'))
-                    // ->url()
-                    ->maxLength(255),
+                    ->url()
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
+                        static::trimUrlContent($set, $get, 'website');
+                    }),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('logo')
                     ->label(t('Logo'))
                     ->hint(t('Please upload organisation logo image.'))
@@ -110,5 +115,16 @@ class OrganisationResource extends Resource
             'create' => Pages\CreateOrganisation::route('/create'),
             'edit' => Pages\EditOrganisation::route('/{record}/edit'),
         ];
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }

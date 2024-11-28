@@ -7,17 +7,12 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
-use App\Models\Organisation;
-use Filament\Facades\Filament;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
-use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Builder\Block;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
 use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
 
@@ -138,8 +133,12 @@ class StudyCaseResource extends Resource
                                                     ->maxLength(255),
                                                 Forms\Components\TextInput::make('website')
                                                     ->label(t('Website'))
-                                                    // ->url()
-                                                    ->maxLength(255),
+                                                    ->url()
+                                                    ->maxLength(255)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
+                                                        static::trimUrlContent($set, $get, 'website');
+                                                    }),
                                                 Forms\Components\Textarea::make('note')
                                                     ->label(t('Note'))
                                                     ->maxLength(65535)
@@ -269,8 +268,12 @@ class StudyCaseResource extends Resource
 
                                         TextInput::make('url')
                                             ->label(t('URL'))
-                                            // ->url()
-                                            ->maxLength(65535),
+                                            ->url()
+                                            ->maxLength(65535)
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
+                                                static::trimUrlContent($set, $get, 'url');
+                                            }),
 
                                         TextInput::make('youtube_id')
                                             ->label(t('Youtube ID'))
@@ -453,5 +456,16 @@ class StudyCaseResource extends Resource
             'edit' => Pages\EditStudyCase::route('/{record}/edit'),
             'view' => Pages\ViewStudyCase::route('/{record}'),
         ];
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }
