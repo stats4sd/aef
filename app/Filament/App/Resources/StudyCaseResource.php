@@ -242,11 +242,6 @@ class StudyCaseResource extends Resource
                                         'undo',
                                         'redo',
                                     ]),
-
-                                Forms\Components\Textarea::make('note')
-                                    ->label(t('Note'))
-                                    ->maxLength(65535)
-                                    ->columnSpanFull(),
                             ]),
 
                         Tabs\Tab::make('tab-3')
