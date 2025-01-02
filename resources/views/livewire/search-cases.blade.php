@@ -92,6 +92,35 @@
                 </div>
             </div>
 
+            <!-- Indicator Filter -->
+            <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'indicator' ? null : openDropdown">
+                <button @click="openDropdown = openDropdown === 'indicator' ? null : 'indicator'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
+                    INDICATOR
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <!-- Indicator Dropdown Menu -->
+                <div x-show="openDropdown === 'indicator'" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
+                        wire:click.prevent="toggleFilter('indicator', null)">
+                            All Indicators
+                        </a>
+                        @foreach($indicators as $indicator)
+                            <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
+                            wire:click.prevent="toggleFilter('indicator', {{ $indicator->id }})">
+                            {{ $indicator->name }} 
+                            @if(collect($selectedIndicators)->contains($indicator->id))
+                                <span class="ml-2 text-mint">&#x2714;</span> <!-- Adds a checkmark if selected -->
+                            @endif
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
             <!-- Country Filter -->
             <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'country' ? null : openDropdown">
                 <button @click="openDropdown = openDropdown === 'country' ? null : 'country'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
@@ -155,6 +184,20 @@
                             </svg>
                         </button>
                         <span class="font-semibold">{{ mb_strtoupper($tags->find($tagId)->name, 'UTF-8') }}</span>
+                    </div>
+                @endif
+            @endforeach
+
+            <!-- Selected Indicators -->
+            @foreach($selectedIndicators as $indicatorId)
+                @if($indicatorId && $indicators->find($indicatorId))
+                    <div class="flex items-center bg-pale-green text-dark-teal rounded-full px-4 py-2">
+                        <button wire:click.prevent="toggleFilter('indicator', {{ $indicatorId }})" class="mr-2 text-dark-teal">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <span class="font-semibold">{{ mb_strtoupper($indicators->find($indicatorId)->name, 'UTF-8') }}</span>
                     </div>
                 @endif
             @endforeach
