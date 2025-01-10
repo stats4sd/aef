@@ -1,7 +1,11 @@
 <!-- Header Section -->
 <div class="bg-dark-teal text-white py-6 px-20">
     <div class="flex flex-col items-start">
-        <h1 class="text-2xl font-bold">THE CASE AS PRESENTED</h1>
+        @php
+            $productCount = $studycase->communicationProducts()->count();
+            $productText = $productCount === 1 ? 'Communication product' : 'Communication products';
+        @endphp
+        <h1 class="text-2xl font-bold uppercase">{{ $productText }}</h1>
         <p class="text-lg mt-4">Communication products developed to present the case to the target audience.
                                 These may be videos, presentations, documents or other relevant formats.</p>
     </div>

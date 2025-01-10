@@ -10,7 +10,7 @@
         <div class="absolute bottom-0 w-full h-1/3 bg-dark-teal-70 flex justify-left">
             <div class="text-left px-12 m-4">
                 <div class="text-3xl text-ochre">CASE</div>
-                <div class="text-3xl text-white font-bold">{{ mb_strtoupper($studycase->title, 'UTF-8') }}</div>
+                <div class="text-3xl text-white font-bold">{{ $studycase->title }}</div>
                 <div class="text-2xl text-white mt-4">{{ $studycase->team->name }}, {{ $studycase->year_of_development }}</div>
             </div>
         </div>
@@ -78,12 +78,17 @@
 
         </div>
 
+        @php
+            $productCount = $studycase->communicationProducts()->count();
+            $productText = $productCount === 1 ? 'Communication product' : 'Communication products';
+        @endphp
+
         <!-- Component Buttons -->
         <div class="flex flex-wrap justify-center items-center gap-4 pt-6">
             <p class="text-dark-teal font-bold mr-4">Jump to...</p>
-            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Case Details</a>
+            <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ $productText }}</a>
+            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Case details</a>
             <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white">Claims and evidence</a>
-            <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white">The case as presented</a>
             <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Other details</a>
         </div>
 
@@ -91,9 +96,9 @@
 
     <div class="py-8 px-12">
         <!-- Include blades for components-->
+        <div id="case-products" class="mt-8">@include('cases.products')</div>
         <div id="case-details" class="mt-4"> @include('cases.details')</div>
         <div id="case-claims" class="mt-8">@include('cases.claims')</div>
-        <div id="case-products" class="mt-8">@include('cases.products')</div>
         <div id="case-other-details" class="my-8">@include('cases.other')</div>
     </div>
 

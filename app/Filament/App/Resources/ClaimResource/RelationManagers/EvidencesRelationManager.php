@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources\ClaimResource\RelationManagers;
 
+use Filament\Forms\Get;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
@@ -42,6 +43,11 @@ class EvidencesRelationManager extends RelationManager
                     ->relationship()
                     ->schema([
 
+                        Forms\Components\Checkbox::make('is_communication_product')
+                            ->label(t('Has this source already been added in the communication products section?'))
+                            ->live()
+                            ->inline(false),
+                            
                         Forms\Components\TextInput::make('description')
                             ->label(t('Description'))
                             ->required()
@@ -54,7 +60,8 @@ class EvidencesRelationManager extends RelationManager
                             ->live(onBlur: true)
                             ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
                                 static::trimUrlContent($set, $get, 'url');
-                            }),
+                            })
+                            ->visible(fn (Get $get) => $get('is_communication_product') === false),
 
                         Forms\Components\SpatieMediaLibraryFileUpload::make('file')
                             ->label(t('File'))
@@ -62,8 +69,8 @@ class EvidencesRelationManager extends RelationManager
                             ->preserveFilenames()
                             ->downloadable()
                             ->maxSize(512000)
-                            ->disk('s3'),
-
+                            ->disk('s3')
+                            ->visible(fn (Get $get) => $get('is_communication_product') === false),
                     ])
                     ->defaultItems(1)
                     ->addActionLabel(t('Add another source'))
