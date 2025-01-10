@@ -18,18 +18,29 @@ class EditClaim extends EditRecord
         ];
     }
 
-    // Remove bread crumb "Claims > Edit" to avoid user clicks "Claims" link to list all claims records of all cases.
-    //
-    // By setting an empty string as title, below items will not be showed:
-    // 1. Bread crumb "Claims > Edit"
-    // 2. Page title "Edit Claim"
-    // 3. "Delete" button in page header
-    //
-    // P.S. The only way to delete a claim record: Cases resource > Claims relation manager table
-
-    public function getTitle(): string | Htmlable
+    public function getBreadcrumbs(): array
     {
-        return '';
+        $breadcrumbs = [];
+        $studyCase = $this->record->studyCase;
+        $latestTeamId = auth()->user()->latestTeam->id;
+
+        $casesUrl = route('filament.app.resources.study-cases.index', [
+            'tenant' => $latestTeamId,
+        ]);
+        $breadcrumbs[$casesUrl] = 'Cases';
+
+        $studyCaseEditUrl = route('filament.app.resources.study-cases.edit', [
+            'tenant' => $latestTeamId,
+            'record' => $studyCase->id,
+        ]);
+        $breadcrumbs[$studyCaseEditUrl] = $studyCase->title;
+    
+        $claimsUrl = $studyCaseEditUrl . '?tab=-tab-1-tab&activeRelationManager=0';
+        $breadcrumbs[$claimsUrl] = 'Claims';
+
+        $breadcrumbs[] = 'Edit';
+
+        return $breadcrumbs;
     }
 
     // redirect to Study case edit view, tab "Claims and Evidence" after record update

@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Country;
 use Livewire\Component;
 use App\Models\Language;
+use App\Models\Indicator;
 use App\Models\StudyCase;
 use Livewire\WithPagination;
 
@@ -18,11 +19,13 @@ class SearchCases extends Component
     // Filters
     public $languages = [];
     public $tags = [];
+    public $indicators = [];
     public $countries = [];
 
     // Selected filters
     public $selectedLanguages = [];
     public $selectedTags = [];
+    public $selectedIndicators = [];
     public $selectedCountries = [];
 
     public function mount()
@@ -37,6 +40,10 @@ class SearchCases extends Component
         })->orderBy('name')->get();
 
         $this->tags = Tag::whereHas('studyCases', function ($query) {
+            $query->where('reviewed', 1);
+        })->orderBy('name')->get();
+
+        $this->indicators = Indicator::whereHas('evidence.claim.studyCase', function ($query) {
             $query->where('reviewed', 1);
         })->orderBy('name')->get();
 
@@ -77,6 +84,13 @@ class SearchCases extends Component
             });
         }
 
+        // Indicators
+        if (!empty($this->selectedIndicators)) {        
+            $query->whereHas('claims.evidences.indicators', function ($q) {
+                $q->whereIn('indicators.id', $this->selectedIndicators);
+            });
+        }
+                
         // Countries
         if (!empty($this->selectedCountries)) {
             $query->whereHas('countries', function ($q) {
@@ -123,6 +137,9 @@ class SearchCases extends Component
             case 'tag':
                 $this->toggleItem($this->selectedTags, $id);
                 break;
+            case 'indicator':
+                $this->toggleItem($this->selectedIndicators, $id);
+                break;
             case 'country':
                 $this->toggleItem($this->selectedCountries, $id);
                 break;
@@ -132,7 +149,7 @@ class SearchCases extends Component
     
     public function clearAllFilters()
     {
-        $this->reset(['selectedLanguages', 'selectedTags', 'selectedCountries']);
+        $this->reset(['selectedLanguages', 'selectedTags', 'selectedIndicators', 'selectedCountries']);
         $this->searchCases(); // update results
     }
 
@@ -141,6 +158,7 @@ class SearchCases extends Component
         return view('livewire.search-cases', [
             'languages' => $this->languages,
             'tags' => $this->tags,
+            'indicators' => $this->indicators,
             'countries' => $this->countries,
         ]);
     }

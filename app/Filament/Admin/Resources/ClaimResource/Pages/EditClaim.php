@@ -17,6 +17,25 @@ class EditClaim extends EditRecord
         ];
     }
 
+    public function getBreadcrumbs(): array
+    {
+        $breadcrumbs = [];
+        $studyCase = $this->record->studyCase;
+
+        $casesUrl = route('filament.admin.resources.study-cases.index');
+        $breadcrumbs[$casesUrl] = 'Cases';
+
+        $studyCaseEditUrl = route('filament.admin.resources.study-cases.edit', ['record' => $studyCase->id]);
+        $breadcrumbs[$studyCaseEditUrl] = $studyCase->title;
+    
+        $claimsUrl = $studyCaseEditUrl . '?tab=-tab-1-tab&activeRelationManager=0';
+        $breadcrumbs[$claimsUrl] = 'Claims';
+
+        $breadcrumbs[] = 'Edit';
+
+        return $breadcrumbs;
+    }
+
     // redirect to Study case edit view, tab "Claims and Evidence" after record update
     protected function getRedirectUrl(): string
     {
