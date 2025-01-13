@@ -1,7 +1,8 @@
 <x-filament::dropdown>
 
     <x-slot name="trigger">
-        <x-filament::button icon="heroicon-m-globe-alt">
+        <x-filament::button>
+            {{ t("Change Language") }}
         </x-filament::button>
     </x-slot>
 
