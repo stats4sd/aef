@@ -16,13 +16,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use TomatoPHP\FilamentLanguageSwitcher\Traits\InteractsWithLanguages;
-
 
 class User extends Authenticatable implements FilamentUser, HasTenants, HasDefaultTenant
 {
     use HasFactory, Notifiable;
-    use InteractsWithLanguages;
 
     // The User model requires this trait
     use HasRoles;

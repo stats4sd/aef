@@ -30,7 +30,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Althinect\FilamentSpatieRolesPermissions\Resources\RoleResource;
-use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use Althinect\FilamentSpatieRolesPermissions\Resources\PermissionResource;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 
@@ -52,7 +51,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([])
             ->plugins([
-                FilamentLanguageSwitcherPlugin::make(),
                 FilamentSpatieRolesPermissionsPlugin::make()
                 ])
             ->renderHook(
