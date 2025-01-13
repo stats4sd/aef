@@ -14,9 +14,9 @@
         <!-- Nav Items -->
         <nav>
             <ul class="flex space-x-6">
-                <li><a href="/home" class="text-gray-800 hover:text-gray-600">Home</a></li>
-                <li><a href="/about" class="text-gray-800 hover:text-gray-600">About</a></li>
-                <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">Cases</a></li>
+                <li><a href="/home" class="text-gray-800 hover:text-gray-600">{{ t("Home") }}</a></li>
+                <li><a href="/about" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
+                <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">{{ t("Cases") }}</a></li>
             </ul>
         </nav>
         

@@ -3,7 +3,7 @@
 
 @if($recentCases->isNotEmpty())
     <!-- Heading -->
-    <div class="text-2xl font-bold text-dark-teal py-4">RECENTLY ADDED CASES</div>
+    <div class="text-2xl font-bold text-dark-teal py-4">{{ t("RECENTLY ADDED CASES") }}</div>
 
     <!-- Recent Cases -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
@@ -18,7 +18,7 @@
 
                 <!-- Content -->
                 <div class="bg-white p-6 flex-grow flex flex-col justify-between">
-                    <p class="text-ochre font-semibold">CASE</p>
+                    <p class="text-ochre font-semibold">{{ t("CASE") }}</p>
                     <h2 class="text-teal font-bold text-lg uppercase mb-1">{{ $case->title }}</h2>
                     <p class="text-black">{{ $case->team->name }}, {{ $case->year_of_development }}</p>
 
@@ -33,7 +33,7 @@
                             </svg>
                         </div>
                         <div class="flex flex-col">
-                            <div class="font-semibold text-left">Languages</div>
+                            <div class="font-semibold text-left">{{ t("Languages") }}</div>
                             <div class="text-black text-left">{{ $case->languages->pluck('name')->implode(', ') }}</div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             </svg>
                         </div>
                         <div class="flex flex-col">
-                            <div class="font-semibold text-left">Countries covered</div>
+                            <div class="font-semibold text-left">{{ t("Countries covered") }}</div>
                             <div class="text-black text-left">{{ $case->countries->pluck('name')->implode(', ') }}</div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
     <!-- Browse All Button -->
     <div class="flex justify-between items-center py-4">
         <div></div> <!-- Empty space to align the button to the right -->
-        <a href="#cases" class="bg-mint hover-effect text-white font-semibold py-4 px-8 ml-auto">BROWSE ALL CASES</a>
+        <a href="#cases" class="bg-mint hover-effect text-white font-semibold py-4 px-8 ml-auto">{{ t("BROWSE ALL CASES") }}</a>
     </div>
 
     <!-- Divider -->

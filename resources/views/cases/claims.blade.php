@@ -1,9 +1,9 @@
 <!-- Header Section -->
 <div class="bg-dark-teal text-white py-6 px-20">
     <div class="flex flex-col items-start">
-        <h1 class="text-2xl font-bold">CLAIMS AND EVIDENCE</h1>
-        <p class="text-lg mt-4">This section contains each claim made by the case, along with the evidence provided to prove that claim.
-                                Evidence may be first or second hand, include any combination of qualitative and quantitative data, and can come from a variety of sources.</p>
+        <h1 class="text-2xl font-bold">{{ t("CLAIMS AND EVIDENCE") }}</h1>
+        <p class="text-lg mt-4">{{ t("This section contains each claim made by the case, along with the evidence provided to prove that claim.
+                                Evidence may be first or second hand, include any combination of qualitative and quantitative data, and can come from a variety of sources.") }}</p>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
             <!-- Evidence -->
             @foreach($claim->evidences as $evidence)
                 <div class="text-xl pt-8 font-semibold">
-                    EVIDENCE
+                    {{ t("EVIDENCE") }}
                 </div>
                 <div class="pt-4">
                     {!! $evidence->matching_evidence !!}
@@ -32,7 +32,7 @@
                     <div class="pt-8">
                         <div class="bg-light-green rounded-3xl px-8 py-6">
                             <div class="text-xl text-dark-teal font-bold">
-                                Sources
+                                {{ t("Sources") }}
                             </div>
 
                             @foreach($evidence->evidenceAttachments as $evidenceAttachment)
@@ -41,7 +41,11 @@
                                 </div>
                                 @if($evidenceAttachment->is_communication_product===1)
                                     <div class="pt-2 flex items-center">
-                                        See section  &nbsp;<a href="#case-products" class="text-ochre"> Communication products</a> &nbsp;for source details
+                                        {{ t("See section") }}
+                                        &nbsp;
+                                        <a href="#case-products" class="text-ochre"> {{ t("Communication products")}}</a>
+                                        &nbsp;
+                                        {{ t(" for source details") }}
                                     </div>
                                 @else
                                     @if($evidenceAttachment->url)
