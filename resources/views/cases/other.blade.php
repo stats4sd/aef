@@ -1,14 +1,14 @@
 <!-- Header Section -->
 <div class="bg-dark-teal text-white py-6 px-20">
     <div class="flex flex-col items-start">
-        <h1 class="text-2xl font-bold">OTHER DETAILS</h1>
+        <h1 class="text-2xl font-bold">{{ t("OTHER DETAILS") }}</h1>
     </div>
 </div>
 
 <!-- Main Section -->
 <div class="bg-white mt-4 shadow-xl px-20">
     <!-- Photos -->
-    <h1 class="text-xl font-bold text-dark-teal py-8">Photos</h1>
+    <h1 class="text-xl font-bold text-dark-teal py-8">{{ t("Photos") }}</h1>
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap justify-center gap-8">
         @foreach ($studycase->photos as $photo)
@@ -44,7 +44,7 @@
 
     <!-- Leading Organisation -->
     <div class="py-16">
-        <h1 class="text-xl font-bold text-dark-teal">Leading organisation</h1>
+        <h1 class="text-xl font-bold text-dark-teal">{{ t("Leading organisation") }}</h1>
         <div class="flex items-start p-4 mt-4">
             <!-- Logo -->
             @php
@@ -59,17 +59,17 @@
             <!-- Details -->
             <div class="w-3/4">
                 <div class="grid grid-cols-6 gap-x-2 items-center">
-                    <div class="font-semibold text-lg text-left">Name</div>
+                    <div class="font-semibold text-lg text-left">{{ t("Name") }}</div>
                     <div class="col-span-5 text-left">{{ $studycase->team->name }}</div>
 
-                    <div class="font-semibold text-lg text-left">Website</div>
+                    <div class="font-semibold text-lg text-left">{{ t("Website") }}</div>
                     <div class="col-span-5 text-ochre text-left flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 mr-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                         </svg>
                         <a href="{{ $studycase->team->website }}" class="text-ochre hover:underline" target="_blank">{{ $studycase->team->website }}</a>
                     </div>
-                    <div class="font-semibold text-lg text-left">Contact</div>
+                    <div class="font-semibold text-lg text-left">{{ t("Contact") }}</div>
                     <div class="col-span-5 text-left flex items-center">
                         <span class="text-black inline">{{ $studycase->contact_person_name }} | </span>
                         <span class="text-ochre inline ml-1">{{ $studycase->contact_person_email }}</span>
@@ -81,7 +81,11 @@
 
     <!-- Partner Organisation -->
     <div class="py-8">
-        <h1 class="text-xl font-bold text-dark-teal">Partner organisation{{ $studycase->organisations->count() > 1 ? 's' : '' }}</h1>
+        @php
+            $partnerOrganisationCount = $studycase->organisations->count();
+            $partnerOrganisationText = $partnerOrganisationCount === 1 ? t('Partner organisation') : t('Partner organisations');
+        @endphp
+        <h1 class="text-xl font-bold text-dark-teal">{{ $partnerOrganisationText}}</h1>
         @foreach($studycase->organisations as $partner_org)
             <div class="flex items-start p-4 mt-4">
                 <!-- Logo -->
@@ -96,10 +100,10 @@
                 <!-- Details -->
                 <div class="w-3/4">
                     <div class="grid grid-cols-6 gap-x-2 items-center">
-                        <div class="font-semibold text-lg text-left">Name</div>
+                        <div class="font-semibold text-lg text-left">{{ t("Name") }}</div>
                         <div class="col-span-5 text-left">{{ $partner_org->name}}</div>
 
-                        <div class="font-semibold text-lg text-left">Website</div>
+                        <div class="font-semibold text-lg text-left">{{ t("Website") }}</div>
                         <div class="col-span-5 text-ochre text-left flex items-center">
                             <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />

@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->homeUrl('/home')
             ->darkMode(false)
             ->colors([
                 'primary' => Color::Amber,
@@ -49,7 +50,9 @@ class AdminPanelProvider extends PanelProvider
             ->pages([])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([])
-            ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
+            ->plugins([
+                FilamentSpatieRolesPermissionsPlugin::make()
+                ])
             ->renderHook(
                 PanelsRenderHook::TOPBAR_END,
                 fn() => view('languageSelector'),

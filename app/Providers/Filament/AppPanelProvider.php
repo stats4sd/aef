@@ -37,6 +37,7 @@ class AppPanelProvider extends PanelProvider
             ->default()
             ->id('app')
             ->path('app')
+            ->homeUrl('/home')
             ->tenant(Team::class)
             // disable "Register New Team" option in multi-tenancy
             // new team should be created by admin, user should not be able to create a new team
@@ -64,7 +65,9 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->plugin(new LocalLogins())
+            ->plugins([
+                new LocalLogins(),
+                ])
             ->renderHook(
                 PanelsRenderHook::TOPBAR_END,
                 fn() => view('languageSelector'),

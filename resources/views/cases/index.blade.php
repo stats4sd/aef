@@ -9,7 +9,7 @@
     <div class="relative h-112 bg-cover bg-center"  style="height: 600px; background-image: url('{{ $cover_photo_url }}');">
         <div class="absolute bottom-0 w-full h-1/3 bg-dark-teal-70 flex justify-left">
             <div class="text-left px-12 m-4">
-                <div class="text-3xl text-ochre">CASE</div>
+                <div class="text-3xl text-ochre">{{ t("CASE") }}</div>
                 <div class="text-3xl text-white font-bold">{{ $studycase->title }}</div>
                 <div class="text-2xl text-white mt-4">{{ $studycase->team->name }}, {{ $studycase->year_of_development }}</div>
             </div>
@@ -28,7 +28,7 @@
                     </svg>
                 </div>
                 <div class="flex flex-col">
-                    <div class="text-lg font-semibold text-left">Languages</div>
+                    <div class="text-lg font-semibold text-left">{{ t("Languages") }}</div>
                     <div class="text-black text-left">{{ $studycase->languages->pluck('name')->implode(', ') }}</div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 
                 </div>
                 <div class="flex flex-col">
-                    <div class="text-lg font-semibold text-left">Tags</div>
+                    <div class="text-lg font-semibold text-left">{{ t("Tags") }}</div>
                     <div class="text-black text-left">{{ $studycase->tags->pluck('name')->implode(', ') }}</div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
                 </div>
                 <div class="flex flex-col">
-                    <div class="text-lg font-semibold text-left">Countries covered</div>
+                    <div class="text-lg font-semibold text-left">{{ t("Countries covered") }}</div>
                     <div class="text-black text-left">{{ $studycase->countries->pluck('name')->implode(', ') }}</div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </svg>
                 </div>
                 <div class="flex flex-col">
-                    <div class="text-lg font-semibold text-left">Geographic area</div>
+                    <div class="text-lg font-semibold text-left">{{ t("Geographic area") }}</div>
                     <div class="text-black text-left">{{ $studycase->geographic_area }}</div>
                 </div>
             </div>
@@ -80,16 +80,16 @@
 
         @php
             $productCount = $studycase->communicationProducts()->count();
-            $productText = $productCount === 1 ? 'Communication product' : 'Communication products';
+            $productText = $productCount === 1 ? t('Communication product') : t('Communication products');
         @endphp
 
         <!-- Component Buttons -->
         <div class="flex flex-wrap justify-center items-center gap-4 pt-6">
-            <p class="text-dark-teal font-bold mr-4">Jump to...</p>
+            <p class="text-dark-teal font-bold mr-4">{{ t("Jump to...") }}</p>
             <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ $productText }}</a>
-            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Case details</a>
-            <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white">Claims and evidence</a>
-            <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white">Other details</a>
+            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Case details") }}</a>
+            <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Claims and evidence") }}</a>
+            <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Other details") }}</a>
         </div>
 
     </div>
