@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-13T15:29:02+00:00\n"
-"PO-Revision-Date: 2025-01-13 16:29+0100\n"
+"POT-Creation-Date: 2025-01-13T17:12:12+00:00\n"
+"PO-Revision-Date: 2025-01-13 18:12+0100\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
@@ -24,8 +24,8 @@ msgstr "Pays"
 #: app\Filament\Admin\Resources\LanguageResource.php:36
 #: app\Filament\Admin\Resources\TagResource.php:35
 #: app\Filament\App\Resources\OrganisationResource.php:36
-#: app\Providers\Filament\AdminPanelProvider.php:95
-#: app\Providers\Filament\AppPanelProvider.php:98
+#: app\Providers\Filament\AdminPanelProvider.php:96
+#: app\Providers\Filament\AppPanelProvider.php:99
 msgid "Definitions"
 msgstr "Définitions"
 
@@ -79,6 +79,11 @@ msgstr "Prêt à être examiné"
 #: app\Filament\App\Resources\StudyCaseResource.php:410
 msgid "Reviewed"
 msgstr "Examiné"
+
+#: app\Filament\Admin\Resources\StudyCaseResource.php:83
+#: app\Filament\App\Resources\StudyCaseResource.php:427
+msgid "Preview"
+msgstr ""
 
 #: app\Filament\Admin\Resources\TagResource.php:25
 msgid "Tag"
@@ -213,6 +218,7 @@ msgstr "Nom"
 #: app\Filament\App\Resources\OrganisationResource.php:48
 #: app\Filament\App\Resources\OrganisationResource.php:83
 #: app\Filament\App\Resources\StudyCaseResource.php:135
+#: resources\views\cases\other.blade.php:65
 #: resources\views\cases\other.blade.php:106
 msgid "Website"
 msgstr "Site web"
@@ -438,19 +444,19 @@ msgstr "Nombre de preuves"
 msgid "Delete claim"
 msgstr "Supprimer l'affirmation"
 
-#: app\Providers\Filament\AdminPanelProvider.php:83
+#: app\Providers\Filament\AdminPanelProvider.php:84
 msgid "Teams and Users"
 msgstr ""
 
-#: app\Providers\Filament\AdminPanelProvider.php:89
+#: app\Providers\Filament\AdminPanelProvider.php:90
 msgid "Roles and Permissions"
 msgstr ""
 
-#: app\Providers\Filament\AdminPanelProvider.php:106
+#: app\Providers\Filament\AdminPanelProvider.php:107
 msgid "Return to Front-end"
 msgstr ""
 
-#: app\Providers\Filament\AppPanelProvider.php:107
+#: app\Providers\Filament\AppPanelProvider.php:108
 msgid "Admin Panel"
 msgstr "Panneau d'administration"
 
@@ -569,6 +575,14 @@ msgstr ""
 msgid ""
 "Communication products developed to present the case to the target audience.\n"
 "                                These may be videos, presentations, documents or other relevant formats."
+msgstr ""
+
+#: resources\views\cases\products.blade.php:43
+msgid "Download "
+msgstr ""
+
+#: resources\views\cases\products.blade.php:43
+msgid "MB"
 msgstr ""
 
 #: resources\views\cases\products.blade.php:53

@@ -80,7 +80,7 @@ class StudyCaseResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('preview_catalogue')
-                                ->label('Preview')
+                                ->label(t('Preview'))
                                 ->icon('heroicon-o-book-open')
                                 ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
                                 ->openUrlInNewTab()
