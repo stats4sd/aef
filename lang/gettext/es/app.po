@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-13T17:12:12+00:00\n"
-"PO-Revision-Date: 2025-01-13 18:12+0100\n"
+"POT-Creation-Date: 2025-01-13T17:54:17+00:00\n"
+"PO-Revision-Date: 2025-01-13 18:54+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -24,8 +24,8 @@ msgstr "Países"
 #: app\Filament\Admin\Resources\LanguageResource.php:36
 #: app\Filament\Admin\Resources\TagResource.php:35
 #: app\Filament\App\Resources\OrganisationResource.php:36
-#: app\Providers\Filament\AdminPanelProvider.php:96
-#: app\Providers\Filament\AppPanelProvider.php:99
+#: app\Providers\Filament\AdminPanelProvider.php:94
+#: app\Providers\Filament\AppPanelProvider.php:97
 msgid "Definitions"
 msgstr "Definiciones"
 
@@ -36,6 +36,7 @@ msgstr "Idioma"
 #: app\Filament\Admin\Resources\LanguageResource.php:31
 #: resources\views\cases\index.blade.php:29
 #: resources\views\home\recent-cases.blade.php:36
+#: resources\views\livewire\search-cases.blade.php:275
 msgid "Languages"
 msgstr "Idiomas"
 
@@ -444,19 +445,19 @@ msgstr "Recuento de evidencias"
 msgid "Delete claim"
 msgstr "Eliminar afirmacion"
 
-#: app\Providers\Filament\AdminPanelProvider.php:84
+#: app\Providers\Filament\AdminPanelProvider.php:82
 msgid "Teams and Users"
 msgstr "Equipos y usuarios"
 
-#: app\Providers\Filament\AdminPanelProvider.php:90
+#: app\Providers\Filament\AdminPanelProvider.php:88
 msgid "Roles and Permissions"
 msgstr "Funciones y permisos"
 
-#: app\Providers\Filament\AdminPanelProvider.php:107
+#: app\Providers\Filament\AdminPanelProvider.php:105
 msgid "Return to Front-end"
 msgstr "Regresar al front-end"
 
-#: app\Providers\Filament\AppPanelProvider.php:108
+#: app\Providers\Filament\AppPanelProvider.php:106
 msgid "Admin Panel"
 msgstr "Panel de administrador"
 
@@ -526,11 +527,13 @@ msgstr ""
 
 #: resources\views\cases\index.blade.php:10
 #: resources\views\home\recent-cases.blade.php:21
+#: resources\views\livewire\search-cases.blade.php:239
 msgid "CASE"
 msgstr "CASO"
 
 #: resources\views\cases\index.blade.php:58
 #: resources\views\home\recent-cases.blade.php:49
+#: resources\views\livewire\search-cases.blade.php:288
 msgid "Countries covered"
 msgstr ""
 
@@ -618,6 +621,7 @@ msgid "About"
 msgstr "Acerca de"
 
 #: resources\views\header.blade.php:30
+#: resources\views\languageSelector.blade.php:5
 msgid "Change Language"
 msgstr ""
 "Cambiar el \n"
@@ -685,4 +689,52 @@ msgstr ""
 
 #: resources\views\home\recent-cases.blade.php:63
 msgid "BROWSE ALL CASES"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:4
+msgid "BROWSE OR SEARCH CASES"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:41
+msgid "LANGUAGE"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:52
+msgid "All Languages"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:71
+msgid "TAG"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:83
+msgid "All Tags"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:102
+msgid "INDICATOR"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:114
+msgid "All Indicators"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:133
+msgid "COUNTRY"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:145
+msgid "All Countries"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:230
+msgid "CLEAR FILTERS"
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:239
+msgid "SHOWING "
+msgstr ""
+
+#: resources\views\livewire\search-cases.blade.php:295
+msgid "No cases found matching your search criteria."
 msgstr ""
