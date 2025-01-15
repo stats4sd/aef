@@ -1,5 +1,5 @@
 <header class="bg-white shadow-md px-4 sm:px-20" x-data="{ open: false }">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <div class="container mx-auto flex justify-between items-center py-4">
         <!-- Logos -->
         <div class="flex items-center space-x-4">
         <a href="https://agroecologyfund.org/">
@@ -50,7 +50,7 @@
                 <li><a href="/home" class="text-gray-800 hover:text-gray-600">{{ t("Home") }}</a></li>
                 <li><a href="/about" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
                 <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">{{ t("Cases") }}</a></li>
-                <li class="relative nav-item pt-2" x-data="{ open: false }">
+                <li class="relative nav-item pt-2 text-gray-800" x-data="{ open: false }">
                     <a class="nav-link" role="button" x-on:click="open = !open">
                         {{ t("Change Language") }}
                     </a>
