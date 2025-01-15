@@ -18,6 +18,7 @@ return [
         'numeric' => 'El campo :attribute debe estar entre :min y :max.',
         'string'  => 'El campo :attribute debe estar entre los caracteres :min y :max.',
     ],
+    'boolean'              => 'El campo :attribute debe ser verdadero o falso.',
     'can'                  => 'El campo :attribute contiene un valor no autorizado.',
     'confirmed'            => 'La confirmación del campo :attribute no coincide.',
     'contains'             => 'Falta un valor obligatorio en el campo :attribute.',
@@ -64,6 +65,10 @@ return [
     'in'                   => 'El :attribute seleccionado no es válido.',
     'in_array'             => 'El campo :attribute debe existir en :other.',
     'integer'              => 'El campo :attribute debe ser un número entero.',
+    'ip'                   => 'El :attribute debe ser una dirección IP válida.',
+    'ipv4'                 => 'El :attribute debe ser una dirección IPv4 válida.',
+    'ipv6'                 => 'El :attribute debe ser una dirección IPv6 válida.',
+    'json'                 => 'El :attribute debe ser una cadena JSON válida.',
     'list'                 => 'El campo :attribute debe ser una lista.',
     'lowercase'            => 'El campo :attribute debe estar en minúsculas.',
     'lt'                   => [
@@ -78,6 +83,7 @@ return [
         'numeric' => 'El campo :attribute debe ser menor o igual que :value.',
         'string'  => 'El campo :attribute debe ser menor o igual que :value caracteres.',
     ],
+    'mac_address'          => 'El :attribute debe ser una dirección MAC válida.',
     'max'                  => [
         'array'   => 'El campo :attribute no debe tener más elementos que :max.',
         'file'    => 'El campo :attribute no debe ser superior a :max kilobytes.',
@@ -140,8 +146,10 @@ return [
     'starts_with'          => 'El campo :attribute debe comenzar por uno de los siguientes: :values.',
     'string'               => 'El campo :attribute debe ser una palabra.',
     'timezone'             => 'El campo :attribute debe ser una zona horaria válida.',
+    'ulid'                 => 'El campo :attribute debe ser una ULID válida.',
     'unique'               => 'El :attribute ya está ocupado.',
     'uploaded'             => 'El :attribute no se ha podido cargar.',
     'uppercase'            => 'El campo :attribute debe estar en mayúsculas.',
     'url'                  => 'El campo :attribute debe ser una URL válida.',
+    'uuid'                 => 'El :attribute debe ser un UUID válido.',
 ];

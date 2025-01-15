@@ -1,7 +1,7 @@
 <div x-data="{ openDropdown: null }">
     <!-- Heading -->
     <div class="bg-white pb-8 px-20">
-        <div class="text-2xl font-bold text-dark-teal pt-20">BROWSE OR SEARCH CASES</div>
+        <div class="text-2xl font-bold text-dark-teal pt-20">{{ t("BROWSE OR SEARCH CASES") }}</div>
 
         <!-- Search -->
         <div class="mt-6 flex items-center space-x-4 relative w-full">
@@ -38,7 +38,7 @@
             <!-- Language Filter -->
             <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'language' ? null : openDropdown">
                 <button @click="openDropdown = openDropdown === 'language' ? null : 'language'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
-                    LANGUAGE
+                    {{ t("LANGUAGE") }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -48,7 +48,7 @@
                     <div class="py-1">
                     <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
                         wire:click.prevent="toggleFilter('language', null)">
-                        All Languages
+                        {{ t("All Languages") }}
                     </a>
                     @foreach($languages as $language)
                         <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
@@ -66,7 +66,7 @@
             <!-- Tag Filter -->
             <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'tag' ? null : openDropdown">
                 <button @click="openDropdown = openDropdown === 'tag' ? null : 'tag'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
-                    TAG
+                    {{ t("TAG") }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -77,7 +77,7 @@
                     <div class="py-1">
                         <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
                         wire:click.prevent="toggleFilter('tag', null)">
-                            All Tags
+                            {{ t("All Tags") }}
                         </a>
                         @foreach($tags as $tag)
                             <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
@@ -95,7 +95,7 @@
             <!-- Indicator Filter -->
             <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'indicator' ? null : openDropdown">
                 <button @click="openDropdown = openDropdown === 'indicator' ? null : 'indicator'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
-                    INDICATOR
+                    {{ t("INDICATOR") }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -106,7 +106,7 @@
                     <div class="py-1">
                         <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
                         wire:click.prevent="toggleFilter('indicator', null)">
-                            All Indicators
+                            {{ t("All Indicators") }}
                         </a>
                         @foreach($indicators as $indicator)
                             <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
@@ -124,7 +124,7 @@
             <!-- Country Filter -->
             <div class="relative inline-block text-left" @click.outside="openDropdown = openDropdown === 'country' ? null : openDropdown">
                 <button @click="openDropdown = openDropdown === 'country' ? null : 'country'" class="inline-flex justify-center w-full rounded-full border border-dark-teal px-4 py-2 bg-dark-teal text-white font-medium cursor-pointer">
-                    COUNTRY
+                    {{ t("COUNTRY") }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -135,7 +135,7 @@
                     <div class="py-1">
                         <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
                         wire:click.prevent="toggleFilter('country', null)">
-                            All Countries
+                            {{ t("All Countries") }}
                         </a>
                         @foreach($countries as $country)
                             <a href="#" class="block px-4 py-2 text-sm text-dark-teal hover:bg-light-green hover:text-black"
@@ -219,7 +219,7 @@
             <!-- Clear All Filters Button -->
             @if($selectedLanguages || $selectedTags || $selectedCountries)
                 <button wire:click="clearAllFilters" class="border-2 border-dark-teal text-dark-teal px-4 py-2 rounded-full hover:bg-light-green transition-colors duration-200">
-                    CLEAR FILTERS
+                    {{ t("CLEAR FILTERS") }}
                 </button>
             @endif
         </div>
@@ -227,7 +227,7 @@
         <!-- Results Count -->
         @if($caseCount > 0)
             <p class="text-dark-teal text-xl font-semibold pt-6">
-                SHOWING {{ $caseCount }} CASE{{ $caseCount > 1 ? 'S' : '' }}
+                {{ t("SHOWING ") }}{{ $caseCount }} {{ t("CASE") }}{{ $caseCount > 1 ? 'S' : '' }}
             </p>
         @endif
 
@@ -262,7 +262,7 @@
                                 </svg>
                             </div>
                             <div class="flex flex-col">
-                                <div class="font-semibold text-left">Languages</div>
+                                <div class="font-semibold text-left">{{ t("Languages") }}</div>
                                 <div class="text-black text-left">{{ $case->languages->pluck('name')->implode(', ') }}</div>
                             </div>
                         </div>
@@ -275,14 +275,14 @@
                                 </svg>
                             </div>
                             <div class="flex flex-col">
-                                <div class="font-semibold text-left">Countries covered</div>
+                                <div class="font-semibold text-left">{{ t("Countries covered") }}</div>
                                 <div class="text-black text-left">{{ $case->countries->pluck('name')->implode(', ') }}</div>
                             </div>
                         </div>
                     </div>
                 </a>
             @empty
-                <div class="py-2 text-dark-teal font-semibold">No cases found matching your search criteria.</div>
+                <div class="py-2 text-dark-teal font-semibold">{{ t("No cases found matching your search criteria.") }}</div>
             @endforelse
         </div>
     </div>
