@@ -17,7 +17,7 @@
     </div>
 
     <!-- Main Section -->
-    <div class="bg-white py-12">
+    <div class="bg-white pt-12 md:py-12">
 
         <!-- Description -->
         <div class="text-xl font-bold text-black pb-8 px-20">{{ t("An evidence base to support and promote agroecological policies 
