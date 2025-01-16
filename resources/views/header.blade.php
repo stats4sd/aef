@@ -45,8 +45,8 @@
         x-show="open"
         x-on:click.outside="open = false" 
         style="display: none;">
-        <nav class="bg-white shadow-md text-right">
-            <ul class="flex flex-col space-y-2 px-6 py-4">
+        <nav class="bg-white text-right">
+            <ul class="flex flex-col space-y-2 px-6 pb-4">
                 <li><a href="/home" class="text-gray-800 hover:text-gray-600">{{ t("Home") }}</a></li>
                 <li><a href="/about" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
                 <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">{{ t("Cases") }}</a></li>
