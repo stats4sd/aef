@@ -108,3 +108,19 @@ figcaption {
 .dropdown-menu {
     @apply absolute left-0 mt-2 p-0 rounded-md bg-white shadow-md flex-col text-black w-full z-50;
 }
+
+.matching-evidence img {
+    max-width: 560px;
+    height: auto;
+}
+
+@media (max-width: 767px) {
+    .matching-evidence img {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+.matching-evidence .attachment__size {
+    display: none;
+}
