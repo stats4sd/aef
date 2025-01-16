@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-15T10:20:36+00:00\n"
-"PO-Revision-Date: 2025-01-15 11:20+0100\n"
+"POT-Creation-Date: 2025-01-16T14:22:00+00:00\n"
+"PO-Revision-Date: 2025-01-16 15:22+0100\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
@@ -36,7 +36,7 @@ msgstr "Langue"
 #: app\Filament\Admin\Resources\LanguageResource.php:31
 #: resources\views\cases\index.blade.php:29
 #: resources\views\home\recent-cases.blade.php:36
-#: resources\views\livewire\search-cases.blade.php:275
+#: resources\views\livewire\search-cases.blade.php:284
 msgid "Languages"
 msgstr "Langues"
 
@@ -47,7 +47,8 @@ msgstr "Cas"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:36
 #: app\Filament\App\Resources\StudyCaseResource.php:33
-#: resources\views\header.blade.php:19
+#: resources\views\header.blade.php:27
+#: resources\views\header.blade.php:53
 msgid "Cases"
 msgstr "Cas"
 
@@ -59,7 +60,7 @@ msgstr "Titre"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:55
 #: app\Filament\App\Resources\StudyCaseResource.php:103
-#: resources\views\cases\other.blade.php:47
+#: resources\views\cases\other.blade.php:49
 msgid "Leading organisation"
 msgstr "Organisation principale"
 
@@ -84,7 +85,7 @@ msgstr "Examiné"
 #: app\Filament\Admin\Resources\StudyCaseResource.php:83
 #: app\Filament\App\Resources\StudyCaseResource.php:427
 msgid "Preview"
-msgstr ""
+msgstr "Aperçu"
 
 #: app\Filament\Admin\Resources\TagResource.php:25
 msgid "Tag"
@@ -140,7 +141,7 @@ msgstr "Source(s) de preuve"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:47
 msgid "Has this source already been added in the communication products section?"
-msgstr ""
+msgstr "Cette source a-t-elle déjà été ajoutée dans la section des produits de communication ?"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:52
 #: app\Filament\App\Resources\StudyCaseResource.php:260
@@ -211,16 +212,16 @@ msgstr "Organisations partenaires"
 #: app\Filament\App\Resources\OrganisationResource.php:79
 #: app\Filament\App\Resources\StudyCaseResource.php:82
 #: app\Filament\App\Resources\StudyCaseResource.php:131
-#: resources\views\cases\other.blade.php:62
-#: resources\views\cases\other.blade.php:103
+#: resources\views\cases\other.blade.php:64
+#: resources\views\cases\other.blade.php:108
 msgid "Name"
 msgstr "Nom"
 
 #: app\Filament\App\Resources\OrganisationResource.php:48
 #: app\Filament\App\Resources\OrganisationResource.php:83
 #: app\Filament\App\Resources\StudyCaseResource.php:135
-#: resources\views\cases\other.blade.php:65
-#: resources\views\cases\other.blade.php:106
+#: resources\views\cases\other.blade.php:67
+#: resources\views\cases\other.blade.php:111
 msgid "Website"
 msgstr "Site web"
 
@@ -350,18 +351,18 @@ msgstr "Description, adresse web et lien pour télécharger les produits de comm
 
 #: app\Filament\App\Resources\StudyCaseResource.php:274
 msgid "Youtube ID"
-msgstr ""
+msgstr "ID Youtube"
 
 #: app\Filament\App\Resources\StudyCaseResource.php:275
 msgid "To enbed a youtube video, add the id. On YouTube, when you hit \"share\", the id is the random-like string after https://youtu.be/"
-msgstr ""
+msgstr "Pour insérer une vidéo YouTube, ajoutez l'identifiant. Sur YouTube, lorsque vous cliquez sur \"partager/share\", l'identifiant est la chaîne de caractères aléatoire qui suit https://youtu.be/"
 
 #: app\Filament\App\Resources\StudyCaseResource.php:287
 msgid "Add communication product"
 msgstr "Ajouter un produit de communication"
 
 #: app\Filament\App\Resources\StudyCaseResource.php:293
-#: resources\views\cases\other.blade.php:11
+#: resources\views\cases\other.blade.php:12
 msgid "Photos"
 msgstr "Photos"
 
@@ -447,15 +448,15 @@ msgstr "Supprimer l'affirmation"
 
 #: app\Providers\Filament\AdminPanelProvider.php:82
 msgid "Teams and Users"
-msgstr ""
+msgstr "Conditions d'utilisation"
 
 #: app\Providers\Filament\AdminPanelProvider.php:88
 msgid "Roles and Permissions"
-msgstr ""
+msgstr "Rôles et autorisations"
 
 #: app\Providers\Filament\AdminPanelProvider.php:105
 msgid "Return to Front-end"
-msgstr ""
+msgstr "Retour au Front-end"
 
 #: app\Providers\Filament\AppPanelProvider.php:106
 msgid "Admin Panel"
@@ -463,276 +464,281 @@ msgstr "Panneau d'administration"
 
 #: resources\views\about.blade.php:3
 msgid "Coming soon..."
-msgstr ""
+msgstr "A venir..."
 
 #: resources\views\cases\claims.blade.php:4
 msgid "CLAIMS AND EVIDENCE"
-msgstr ""
+msgstr "AFFIRMATIONS ET PREUVES"
 
 #: resources\views\cases\claims.blade.php:5
 msgid ""
 "This section contains each claim made by the case, along with the evidence provided to prove that claim.\n"
 "                                Evidence may be first or second hand, include any combination of qualitative and quantitative data, and can come from a variety of sources."
 msgstr ""
+"Cette section contient chacune des affirmations du cas, ainsi que les preuves fournies pour prouver cette affirmation.\n"
+"                                Les preuves peuvent être de première ou seconde main, inclure toute combinaison de données qualitatives et quantitatives et provenir de sources diverses."
 
 #: resources\views\cases\claims.blade.php:25
 msgid "EVIDENCE"
-msgstr ""
+msgstr "PREUVES"
 
 #: resources\views\cases\claims.blade.php:38
 msgid "Sources"
-msgstr ""
+msgstr "Sources"
 
-#: resources\views\cases\claims.blade.php:49
+#: resources\views\cases\claims.blade.php:51
 msgid "See section"
-msgstr ""
+msgstr "Voir section"
 
-#: resources\views\cases\claims.blade.php:52
-#: resources\views\cases\index.blade.php:81
-#: resources\views\cases\products.blade.php:6
-msgid "Communication products"
+#: resources\views\cases\claims.blade.php:53
+msgid "communication products"
 msgstr ""
 
 #: resources\views\cases\claims.blade.php:54
 msgid " for source details"
-msgstr ""
+msgstr " pour les informations concernant la source"
 
 #: resources\views\cases\details.blade.php:4
 msgid "CASE DETAILS"
-msgstr ""
+msgstr "INFORMATIONS DU CAS"
 
 #: resources\views\cases\details.blade.php:12
 msgid "STATEMENT"
-msgstr ""
+msgstr "ÉNONCÉ"
 
 #: resources\views\cases\details.blade.php:17
 msgid "TARGET AUDIENCE"
-msgstr ""
+msgstr "PUBLIC CIBLE"
 
 #: resources\views\cases\details.blade.php:22
 msgid "TARGET AUDIENCE'S PRIORITIES AND VALUES"
-msgstr ""
+msgstr "LES PRIORITÉS ET LES VALEURS DU PUBLIC CIBLE"
 
 #: resources\views\cases\details.blade.php:27
 msgid "FRAMING OF THE ARGUMENT"
-msgstr ""
+msgstr "CADRE DU CAS"
 
 #: resources\views\cases\details.blade.php:32
 msgid "STRATEGY"
-msgstr ""
+msgstr "STRATÉGIE"
 
 #: resources\views\cases\details.blade.php:37
 msgid "CALLS TO ACTION"
-msgstr ""
+msgstr "APPELS À L'ACTION"
 
 #: resources\views\cases\index.blade.php:10
 #: resources\views\home\recent-cases.blade.php:21
-#: resources\views\livewire\search-cases.blade.php:239
+#: resources\views\livewire\search-cases.blade.php:247
+#: resources\views\livewire\search-cases.blade.php:269
 msgid "CASE"
-msgstr ""
+msgstr "CAS"
 
 #: resources\views\cases\index.blade.php:58
 #: resources\views\home\recent-cases.blade.php:49
-#: resources\views\livewire\search-cases.blade.php:288
+#: resources\views\livewire\search-cases.blade.php:297
 msgid "Countries covered"
-msgstr ""
+msgstr "Pays concernés"
 
 #: resources\views\cases\index.blade.php:81
 #: resources\views\cases\products.blade.php:6
 msgid "Communication product"
-msgstr ""
+msgstr "Produit de communication"
+
+#: resources\views\cases\index.blade.php:81
+#: resources\views\cases\products.blade.php:6
+msgid "Communication products"
+msgstr "Produits de communication"
 
 #: resources\views\cases\index.blade.php:86
 msgid "Jump to..."
-msgstr ""
+msgstr "Aller à..."
 
 #: resources\views\cases\index.blade.php:88
 msgid "Case details"
-msgstr ""
+msgstr "Informations du cas"
 
 #: resources\views\cases\index.blade.php:89
 msgid "Claims and evidence"
-msgstr ""
+msgstr "Affirmations et preuves"
 
 #: resources\views\cases\index.blade.php:90
 msgid "Other details"
-msgstr ""
+msgstr "Autres informations"
 
 #: resources\views\cases\other.blade.php:4
 msgid "OTHER DETAILS"
-msgstr ""
+msgstr "AUTRES INFORMATIONS"
 
-#: resources\views\cases\other.blade.php:72
+#: resources\views\cases\other.blade.php:75
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
-#: resources\views\cases\other.blade.php:86
+#: resources\views\cases\other.blade.php:90
 msgid "Partner organisation"
-msgstr ""
+msgstr "Organisation partenaire"
 
-#: resources\views\cases\other.blade.php:86
+#: resources\views\cases\other.blade.php:90
 msgid "Partner organisations"
-msgstr ""
+msgstr "Organisations partenaires"
 
 #: resources\views\cases\products.blade.php:9
 msgid ""
 "Communication products developed to present the case to the target audience.\n"
 "                                These may be videos, presentations, documents or other relevant formats."
 msgstr ""
+"Produits de communication développés pour présenter le cas au public cible.\n"
+"                                Il peut s'agir de vidéos, de présentations, de documents ou d'autres formats pertinents."
 
 #: resources\views\cases\products.blade.php:43
 msgid "Download "
-msgstr ""
+msgstr "Télécharger"
 
 #: resources\views\cases\products.blade.php:43
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: resources\views\cases\products.blade.php:53
 msgid "Visit link"
-msgstr ""
+msgstr "Suivre le lien"
 
 #: resources\views\footer.blade.php:3
 msgid "Grassroots evidence for agroecology cases supported by the"
-msgstr ""
+msgstr "Preuves fournies par des associations pour des cas lies à l'agroécologie supportés par"
 
 #: resources\views\footer.blade.php:5
 msgid "Agroecology Fund"
-msgstr ""
+msgstr "Fonds pour l'agroécologie"
 
 #: resources\views\footer.blade.php:6
 msgid "Technical support by "
-msgstr ""
+msgstr "Assistance technique par "
 
 #: resources\views\footer.blade.php:8
 msgid "Statistics for Sustainable Development"
-msgstr ""
+msgstr "Statistics for Sustainable Development"
 
 #: resources\views\footer.blade.php:10
 msgid "Login"
 msgstr "Identifiant"
 
-#: resources\views\header.blade.php:17
+#: resources\views\header.blade.php:25
+#: resources\views\header.blade.php:51
 msgid "Home"
 msgstr "Page d'accueil"
 
-#: resources\views\header.blade.php:18
+#: resources\views\header.blade.php:26
+#: resources\views\header.blade.php:52
 msgid "About"
 msgstr "À propos"
 
 #: resources\views\header.blade.php:30
+#: resources\views\header.blade.php:56
 #: resources\views\languageSelector.blade.php:5
 msgid "Change Language"
 msgstr "Changer de langue"
 
-#: resources\views\home\index.blade.php:8
-msgid "GRASSROOTS EVIDENCE FOR AGROECOLOGY"
-msgstr ""
-
-#: resources\views\home\index.blade.php:9
-msgid "CASES AND EVIDENCE"
-msgstr ""
-
 #: resources\views\home\index.blade.php:11
-#: resources\views\home\info.blade.php:15
-#: resources\views\home\info.blade.php:43
+msgid "GRASSROOTS EVIDENCE FOR AGROECOLOGY"
+msgstr "PREUVES FOURNIES PAR DES ASSOCIATIONS POUR DES CAS LIÉS À L'AGROÉCOLOGIE"
+
+#: resources\views\home\index.blade.php:15
+msgid "CASES AND EVIDENCE"
+msgstr "CAS ET PREUVES"
+
+#: resources\views\home\index.blade.php:20
+#: resources\views\home\info.blade.php:18
+#: resources\views\home\info.blade.php:52
 msgid "BROWSE CASES"
-msgstr ""
+msgstr "RECHERCHER DES CAS"
 
-#: resources\views\home\index.blade.php:12
-#: resources\views\home\info.blade.php:2
-#: resources\views\home\info.blade.php:32
+#: resources\views\home\index.blade.php:24
+#: resources\views\home\info.blade.php:3
+#: resources\views\home\info.blade.php:38
 msgid "FIND OUT MORE"
-msgstr ""
+msgstr "EN SAVOIR PLUS"
 
-#: resources\views\home\index.blade.php:21
+#: resources\views\home\index.blade.php:35
 msgid ""
 "An evidence base to support and promote agroecological policies \n"
 "            and practices, working towards more sustainable food systems worldwide."
-msgstr ""
+msgstr "Une base empirique pour soutenir et promouvoir les politiques et pratiques agroécologiques, et aller vers des systèmes alimentaires plus durables dans le monde entier."
 
-#: resources\views\home\info.blade.php:10
+#: resources\views\home\info.blade.php:12
 msgid "EVIDENCE BASE"
+msgstr "FONDÉ SUR DES PREUVES"
+
+#: resources\views\home\info.blade.php:14
+msgid "Cases and evidence for agroecology from organisations and projects all over the world are collected in one searchable database."
 msgstr ""
 
-#: resources\views\home\info.blade.php:11
-msgid ""
-"Cases and evidence for agroecology from organisations and projects all over the world are\n"
-"                            collected in one searchable database."
-msgstr ""
-
-#: resources\views\home\info.blade.php:27
+#: resources\views\home\info.blade.php:32
 msgid "DEVELOPING CASES"
+msgstr "CAS EN DÉVELOPPEMENT"
+
+#: resources\views\home\info.blade.php:34
+msgid "We provide grants and guidance to support grassroots organisations to develop and use strong, evidence-based cases for agroecology."
 msgstr ""
 
-#: resources\views\home\info.blade.php:28
-msgid ""
-"We provide grants and guidance to support grassroots organisations to develop and use strong,\n"
-"                            evidence-based cases for agroecology."
-msgstr ""
-
-#: resources\views\home\info.blade.php:38
+#: resources\views\home\info.blade.php:46
 msgid "ADVOCATING FOR AGROECOLOGY"
-msgstr ""
+msgstr "PLAIDER EN FAVEUR DE L'AGROÉCOLOGIE"
 
-#: resources\views\home\info.blade.php:39
-msgid ""
-"By providing knowledge and evidence for agroecology we aim to empower researchers, cooperatives,\n"
-"                            and policymakers to promote ecological balance and sustainable agriculture."
+#: resources\views\home\info.blade.php:48
+msgid "By providing knowledge and evidence for agroecology we aim to empower researchers, cooperatives, and policymakers to promote ecological balance and sustainable agriculture."
 msgstr ""
 
 #: resources\views\home\recent-cases.blade.php:6
 msgid "RECENTLY ADDED CASES"
-msgstr ""
+msgstr "CAS RÉCEMMENT AJOUTÉS"
 
 #: resources\views\home\recent-cases.blade.php:63
 msgid "BROWSE ALL CASES"
-msgstr ""
+msgstr "PARCOURIR L'ENSEMBLE DES CAS"
 
 #: resources\views\livewire\search-cases.blade.php:4
 msgid "BROWSE OR SEARCH CASES"
-msgstr ""
+msgstr "PARCOURIR OU RECHERCHER DES CAS"
 
-#: resources\views\livewire\search-cases.blade.php:41
+#: resources\views\livewire\search-cases.blade.php:46
 msgid "LANGUAGE"
-msgstr ""
+msgstr "LANGUE"
 
-#: resources\views\livewire\search-cases.blade.php:52
+#: resources\views\livewire\search-cases.blade.php:56
 msgid "All Languages"
-msgstr ""
+msgstr "Toutes les langues"
 
-#: resources\views\livewire\search-cases.blade.php:71
+#: resources\views\livewire\search-cases.blade.php:75
 msgid "TAG"
-msgstr ""
+msgstr "TAG"
 
-#: resources\views\livewire\search-cases.blade.php:83
+#: resources\views\livewire\search-cases.blade.php:87
 msgid "All Tags"
-msgstr ""
+msgstr "Toutes les étiquettes"
 
-#: resources\views\livewire\search-cases.blade.php:102
+#: resources\views\livewire\search-cases.blade.php:106
 msgid "INDICATOR"
-msgstr ""
+msgstr "INDICATEUR"
 
-#: resources\views\livewire\search-cases.blade.php:114
+#: resources\views\livewire\search-cases.blade.php:118
 msgid "All Indicators"
-msgstr ""
+msgstr "Tous les indicateurs"
 
-#: resources\views\livewire\search-cases.blade.php:133
+#: resources\views\livewire\search-cases.blade.php:137
 msgid "COUNTRY"
-msgstr ""
+msgstr "PAYS"
 
-#: resources\views\livewire\search-cases.blade.php:145
+#: resources\views\livewire\search-cases.blade.php:149
 msgid "All Countries"
-msgstr ""
+msgstr "Tous les pays"
 
-#: resources\views\livewire\search-cases.blade.php:230
+#: resources\views\livewire\search-cases.blade.php:237
 msgid "CLEAR FILTERS"
-msgstr ""
+msgstr "EFFACER LES FILTRES"
 
-#: resources\views\livewire\search-cases.blade.php:239
+#: resources\views\livewire\search-cases.blade.php:247
 msgid "SHOWING "
-msgstr ""
+msgstr "AFFICHAGE "
 
-#: resources\views\livewire\search-cases.blade.php:295
+#: resources\views\livewire\search-cases.blade.php:304
 msgid "No cases found matching your search criteria."
-msgstr ""
+msgstr "Aucun cas ne correspond à vos critères de recherche."
