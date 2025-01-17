@@ -66,7 +66,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                             </svg>
                                             <a href="{{ $evidenceAttachment->getMedia('evidence')->first()->getUrl() }}" class="text-ochre hover:underline break-words" target="_blank">
-                                                {{ $evidenceAttachment->getMedia('evidence')->first()->file_name }} | {{ round($evidenceAttachment->getMedia('evidence')->first()->size / 1000, 0) }}MB
+                                                {{ $evidenceAttachment->getMedia('evidence')->first()->file_name }} | {{ Number::fileSize($evidenceAttachment->getMedia('evidence')->first()->size) }}
                                             </a>
                                         </div>
                                     @endif
