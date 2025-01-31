@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-16T14:22:00+00:00\n"
-"PO-Revision-Date: 2025-01-16 15:22+0100\n"
+"POT-Creation-Date: 2025-01-31T12:52:18+00:00\n"
+"PO-Revision-Date: 2025-01-31 13:52+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -213,15 +213,15 @@ msgstr "Organizaciones asociadas"
 #: app\Filament\App\Resources\StudyCaseResource.php:82
 #: app\Filament\App\Resources\StudyCaseResource.php:131
 #: resources\views\cases\other.blade.php:64
-#: resources\views\cases\other.blade.php:108
+#: resources\views\cases\other.blade.php:110
 msgid "Name"
 msgstr "Nombre"
 
 #: app\Filament\App\Resources\OrganisationResource.php:48
 #: app\Filament\App\Resources\OrganisationResource.php:83
 #: app\Filament\App\Resources\StudyCaseResource.php:135
-#: resources\views\cases\other.blade.php:67
-#: resources\views\cases\other.blade.php:111
+#: resources\views\cases\other.blade.php:68
+#: resources\views\cases\other.blade.php:114
 msgid "Website"
 msgstr "Página web"
 
@@ -495,8 +495,10 @@ msgid "communication products"
 msgstr "productos de comunicación"
 
 #: resources\views\cases\claims.blade.php:54
-msgid " for source details"
-msgstr "para detalles de la fuente"
+msgid " for source details."
+msgstr ""
+"para detalles de la fuente.\n"
+""
 
 #: resources\views\cases\details.blade.php:4
 msgid "CASE DETAILS"
@@ -569,15 +571,15 @@ msgstr "Otros datos"
 msgid "OTHER DETAILS"
 msgstr "OTROS DATOS"
 
-#: resources\views\cases\other.blade.php:75
+#: resources\views\cases\other.blade.php:77
 msgid "Contact"
 msgstr "Contacto:"
 
-#: resources\views\cases\other.blade.php:90
+#: resources\views\cases\other.blade.php:92
 msgid "Partner organisation"
 msgstr "Organización asociada"
 
-#: resources\views\cases\other.blade.php:90
+#: resources\views\cases\other.blade.php:92
 msgid "Partner organisations"
 msgstr "Organizaciones asociadas"
 
@@ -592,10 +594,6 @@ msgstr ""
 #: resources\views\cases\products.blade.php:43
 msgid "Download "
 msgstr "Descargar"
-
-#: resources\views\cases\products.blade.php:43
-msgid "MB"
-msgstr "MB"
 
 #: resources\views\cases\products.blade.php:53
 msgid "Visit link"

@@ -45,7 +45,7 @@
                                         <span class="inline-block whitespace-normal">
                                             {{ t("See section") }}
                                             <a href="#case-products" class="text-ochre"> {{ t("communication products")}}</a>
-                                            {{ t(" for source details") }}
+                                            {{ t(" for source details.") }}
                                         </span>
                                     </div>
                                 @else
