@@ -125,8 +125,9 @@
             {{ t("Register Today") }}
         </p>
         <p class="mt-2">
-            {!! t("You are invited to <b>register now</b> and benefit from the experiences of AEF grantees shared throughout the course. Visit 
-                <a href='https://courses.stats4sd.org/' class='text-ochre hover:underline font-bold' target='_blank'>courses.stats4sd.org</a> and register for the “Grassroots Evidence for Agroecology” course.") !!}
+            {!! t("You are invited to <b>register now</b> and benefit from the experiences of AEF grantees shared throughout the course. Visit ") !!}
+            <a href='https://courses.stats4sd.org/' class='text-ochre hover:underline font-bold' target='_blank'>courses.stats4sd.org</a>
+            {{ t("and register for the “Grassroots Evidence for Agroecology” course.") }}
         </p>
         <p class="mt-2">
             {!! t("In the future, AEF plans to continue supporting the development of these types of cases, and applicants may be required to have a 
