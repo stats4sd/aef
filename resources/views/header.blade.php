@@ -23,13 +23,26 @@
         <nav class="hidden sm:flex">
             <ul class="flex space-x-6">
                 <li><a href="/home" class="text-gray-800 hover:text-gray-600">{{ t("Home") }}</a></li>
-                <li><a href="/about" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
-                <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">{{ t("Cases") }}</a></li>
-                <li class="relative nav-item dropdown hover:text-gray-600" x-data="{ open: false }">
+                <li><a href="/home#info" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
+                <!-- Cases Dropdown -->
+                <li class="relative nav-item dropdown text-gray-800 hover:text-gray-600" x-data="{ open: false }">
+                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" x-on:click="open = !open">
+                        {{ t("Cases") }}
+                    </a>
+                    <div class="cases-dropdown-menu" x-show="open" x-on:click.outside="open = false" style="display:none">
+                        <a class="dropdown-item" href="/home#cases">{{ t("Browse all cases") }}</a>
+                        <a class="dropdown-item" href="/home#recent-cases">{{ t("Recently added cases") }}</a>
+                        <a class="dropdown-item" href="/home#evidence-base-case">{{ t("What is an evidence-base case?") }}</a>
+                        <a class="dropdown-item" href="/home#developing-cases">{{ t("Developing cases") }}</a>
+                        <a class="dropdown-item" href="/home#advocating-agroecology">{{ t("Advocating for agroecology") }}</a>
+                    </div>
+                </li>
+                <!-- Language Dropdown -->
+                <li class="relative nav-item dropdown text-gray-800 hover:text-gray-600" x-data="{ open: false }">
                     <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" x-on:click="open = !open">
                         {{ t("Change Language") }}
                     </a>
-                    <div class="dropdown-menu" x-show="open" x-on:click.outside="open = false" style="display:none">
+                    <div class="language-dropdown-menu" x-show="open" x-on:click.outside="open = false" style="display:none">
                         <a class="dropdown-item" href="{{ URL::current() . '?locale=en' }}">English</a>
                         <a class="dropdown-item" href="{{ URL::current() . '?locale=es' }}">Español</a>
                         <a class="dropdown-item" href="{{ URL::current() . '?locale=fr' }}">Français</a>
@@ -48,8 +61,19 @@
         <nav class="bg-white text-right">
             <ul class="flex flex-col space-y-2 px-6 pb-4">
                 <li><a href="/home" class="text-gray-800 hover:text-gray-600">{{ t("Home") }}</a></li>
-                <li><a href="/about" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
-                <li><a href="/home#cases" class="text-gray-800 hover:text-gray-600">{{ t("Cases") }}</a></li>
+                <li><a href="/home#info" class="text-gray-800 hover:text-gray-600">{{ t("About") }}</a></li>
+                <li class="relative nav-item text-gray-800" x-data="{ open: false }">
+                    <a class="nav-link" role="button" x-on:click="open = !open">
+                        {{ t("Cases") }}
+                    </a>
+                    <ul class="cases-options" x-show="open" x-on:click.outside="open = false" style="display:none">
+                        <li><a class="pt-2" href="/home#cases">{{ t("Browse all cases") }}</a></li>
+                        <li><a class="py-2" href="/home#recent-cases">{{ t("Recently added cases") }}</a></li>
+                        <li><a href="/home#evidence-base-case">{{ t("What is an evidence-base case?") }}</a></li>
+                        <li><a href="/home#developing-cases">{{ t("Developing cases") }}</a></li>
+                        <li><a href="/home#advocating-agroecology">{{ t("Advocating for agroecology") }}</a></li>
+                    </ul>
+                </li>
                 <li class="relative nav-item pt-2 text-gray-800" x-data="{ open: false }">
                     <a class="nav-link" role="button" x-on:click="open = !open">
                         {{ t("Change Language") }}
