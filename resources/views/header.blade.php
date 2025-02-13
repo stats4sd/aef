@@ -32,7 +32,7 @@
                     <div class="cases-dropdown-menu" x-show="open" x-on:click.outside="open = false" style="display:none">
                         <a class="dropdown-item" href="/home#cases">{{ t("Browse all cases") }}</a>
                         <a class="dropdown-item" href="/home#recent-cases">{{ t("Recently added cases") }}</a>
-                        <a class="dropdown-item" href="/home#evidence-base-case">{{ t("What is an evidence-base case?") }}</a>
+                        <a class="dropdown-item" href="/home#evidence-base-case">{{ t("What is an evidence-based case?") }}</a>
                         <a class="dropdown-item" href="/home#developing-cases">{{ t("Developing cases") }}</a>
                         <a class="dropdown-item" href="/home#advocating-agroecology">{{ t("Advocating for agroecology") }}</a>
                     </div>
@@ -69,7 +69,7 @@
                     <ul class="cases-options" x-show="open" x-on:click.outside="open = false" style="display:none">
                         <li><a class="pt-2" href="/home#cases">{{ t("Browse all cases") }}</a></li>
                         <li><a class="py-2" href="/home#recent-cases">{{ t("Recently added cases") }}</a></li>
-                        <li><a href="/home#evidence-base-case">{{ t("What is an evidence-base case?") }}</a></li>
+                        <li><a href="/home#evidence-base-case">{{ t("What is an evidence-based case?") }}</a></li>
                         <li><a href="/home#developing-cases">{{ t("Developing cases") }}</a></li>
                         <li><a href="/home#advocating-agroecology">{{ t("Advocating for agroecology") }}</a></li>
                     </ul>

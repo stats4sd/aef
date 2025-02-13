@@ -5,7 +5,7 @@
 
 <div class="py-8 px-12 md:px-20">
         <p class="mb-4">{!! t("Welcome to our <b>Catalogue of Evidence-Based Cases for Agroecology</b> — a collaborative platform showcasing real-world experiences 
-            from grassroots organizations worldwide.") !!}
+            from grassroots organisations worldwide.") !!}
         </p>
 
         <p class="mb-4">{{ t("Building and using evidence to drive agroecological transformation was highlighted as a key focus of the ") }}     
@@ -15,9 +15,9 @@
             <a href="https://stats4sd.org/"class="text-ochre font-bold hover:underline"  target='_blank'>{{ t("Statistics for Sustainable Development (Stats4SD)") }}</a>.
         </p>
 
-        <p class="mb-4">{{ t("Through this initiative, grassroots organizations have developed compelling, evidence-based cases that highlight what 
-            agroecology has enabled them to achieve in their work for their constituencies and the propositions they are taking about the need for agroecological 
-            approaches to a variety of audiences. With technical support from Stats4SD and small grants from the Agroecology Fund, these organizations have 
+        <p class="mb-4">{{ t("Through this initiative, grassroots organisations have developed compelling, evidence-based cases that highlight what 
+            agroecology has enabled them to achieve. As a result, they argue for a variety of audiences to embrace agroecological approaches. 
+            With technical support from Stats4SD and small grants from the Agroecology Fund, these organisations have 
             built a growing body of knowledge that informs and inspires agroecological transitions worldwide.") }}
         </p>
 
@@ -35,7 +35,7 @@
     <!-- EVIDENCE BASE -->
     <div id="evidence-base-case" class="sm:order-1 order-1 bg-light-yellow flex flex-col items-start justify-center p-6 md:py-28 md:px-16">
         <img src="/images/icon_evidencebase.png" alt="Icon Evidence Base" class="w-16 h-16">
-        <div class="text-teal text-xl font-bold mt-4">{{ t("WHAT IS AN EVIDENCE-BASE CASE?") }}</div>
+        <div class="text-teal text-xl font-bold mt-4">{{ t("WHAT IS AN EVIDENCE-BASED CASE?") }}</div>
         <div class="text-black mt-2 pb-8">
             <h2 class="font-bold text-dark-teal mb-4">{{ t("What is a Case?") }}</h2>
             <p class="mb-4">{!! t("In this collection, a case is more than just information; it is a <b>persuasive argument</b> designed to <b>change minds</b> or 
@@ -149,7 +149,7 @@
         </p>
         <p class="mt-2">
             {{ t("We believe that the experience and knowledge accumulated by millions of grassroots organisation members are crucial in advocating for agroecology as a 
-                means of transforming food systems. Strong, logical arguments, supported by diverse and relevant information, are essential for encouraging changes in how 
+                means of transforming food systems. Strong, logical arguments, supported by diverse and relevant evidence, are essential for encouraging changes in how 
                 we produce, exchange, and consume food. Such arguments will help influencing the minds of agents of change and decision-makers.") }}
         </p>
         <p class="mt-2">
