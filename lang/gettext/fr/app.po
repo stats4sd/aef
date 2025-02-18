@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-13T11:04:01+00:00\n"
-"PO-Revision-Date: 2025-02-13 12:04+0100\n"
+"POT-Creation-Date: 2025-02-18T17:57:51+00:00\n"
+"PO-Revision-Date: 2025-02-18 18:57+0100\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
@@ -783,6 +783,8 @@ msgstr ""
 #: resources\views\home\info.blade.php:60
 msgid "<b>A call to action</b> - a targeted message encouraging a concrete response."
 msgstr ""
+"\n"
+""
 
 #: resources\views\home\info.blade.php:63
 msgid ""
