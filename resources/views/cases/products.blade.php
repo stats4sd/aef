@@ -22,7 +22,14 @@
                 $file_name = $media->file_name;
                 $file_size = Number::fileSize($media->size);
                 $file_url = $media->getUrl();
-                $file_type = basename($media->mime_type);
+
+                $mime_map = [
+                    "application/msword" => "doc",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "docx",
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" => "xlsx"
+                ];
+
+                $file_type = $mime_map[$media->mime_type] ?? basename($media->mime_type);
             }
         @endphp
 
