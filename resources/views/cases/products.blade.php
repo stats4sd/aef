@@ -1,5 +1,5 @@
 <!-- Header Section -->
-<div class="bg-dark-teal text-white py-6 px-12 md:px-20">
+<div class="bg-dark-teal text-white py-6 px-6 sm:px-12 md:px-20">
     <div class="flex flex-col items-start">
         @php
             $productCount = $studycase->communicationProducts()->count();
@@ -12,7 +12,7 @@
 </div>
 
 <!-- Main Section -->
-<div class="bg-white shadow-xl p-4 mb-4 px-12 md:px-20">
+<div class="bg-white shadow-xl p-4 mb-4 px-6 sm:px-12 md:px-20">
 
     <!-- Communication Product -->
     @foreach($studycase->communicationProducts as $communicationProduct)

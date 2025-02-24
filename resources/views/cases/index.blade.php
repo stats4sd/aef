@@ -17,7 +17,7 @@
     </div>
 
     <!-- Main Section -->
-    <div class="bg-white py-8 px-12 md:px-20 shadow-xl">
+    <div class="bg-white py-8 px-6 sm:px-12 md:px-20 shadow-xl">
         <!-- Case Metadata -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 container mx-auto">
             <!-- Languages -->
@@ -86,10 +86,10 @@
         <!-- Component Buttons -->
         <div class="flex flex-wrap justify-center items-center gap-4 pt-6">
             <p class="text-dark-teal font-bold mr-4">{{ t("Jump to...") }}</p>
-            <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ $productText }}</a>
-            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Case details") }}</a>
-            <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Claims and evidence") }}</a>
-            <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white">{{ t("Other details") }}</a>
+            <a href="#case-products" class="text-xl rounded-button hover-effect bg-ochre text-white w-full sm:w-fit">{{ $productText }}</a>
+            <a href="#case-details" class="text-xl rounded-button hover-effect bg-ochre text-white w-full sm:w-fit">{{ t("Case details") }}</a>
+            <a href="#case-claims" class="text-xl rounded-button hover-effect bg-ochre text-white w-full sm:w-fit">{{ t("Claims and evidence") }}</a>
+            <a href="#case-other-details" class="text-xl rounded-button hover-effect bg-ochre text-white w-full sm:w-fit">{{ t("Other details") }}</a>
         </div>
 
     </div>

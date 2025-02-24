@@ -1,12 +1,12 @@
 <!-- Header Section -->
-<div class="bg-dark-teal text-white py-6 px-12 md:px-20">
+<div class="bg-dark-teal text-white py-6 px-6 sm:px-12 md:px-20">
     <div class="flex flex-col items-start">
         <h1 class="text-2xl font-bold">{{ t("OTHER DETAILS") }}</h1>
     </div>
 </div>
 
 <!-- Main Section -->
-<div class="bg-white mt-4 shadow-xl px-12 md:px-20">
+<div class="bg-white mt-4 shadow-xl px-6 sm:px-12 md:px-20">
     <!-- Photos -->
     @if($studycase->photos->isNotEmpty())
         <h1 class="text-xl font-bold text-dark-teal py-8">{{ t("Photos") }}</h1>
@@ -54,30 +54,30 @@
                     ? $studycase->getMedia('logo_image')->first()->getUrl() 
                     : asset('/images/nologo.png');
             @endphp
-            <div class="w-full md:w-1/4 flex items-center justify-center mb-4 md:mb-0">
+            <div class="w-full md:w-1/6 lg:w-2/6 flex items-center justify-center mb-4 md:mb-0">
                 <img src={{ $lead_org_logo }} alt="lead-org-logo" class="h-8 w-auto">
             </div>
 
             <!-- Details -->
-            <div class="w-full md:w-3/4">
-                <div class="grid grid-cols-1 md:grid-cols-6 gap-x-2 items-center">
-                    <div class="font-semibold text-lg text-left">{{ t("Name") }}</div>
-                    <div class="col-span-5 text-left">{{ $studycase->team->name }}</div>
+            <div class="w-full md:w-5/6 lg:w-4/6">
+                <div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-6 gap-x-2 items-center">
+                    <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Name") }}</div>
+                    <div class="col-span-5 lg:col-span-5 text-left">{{ $studycase->team->name }}</div>
 
                     @if($studycase->team->website)
-                        <div class="font-semibold text-lg text-left">{{ t("Website") }}</div>
-                        <div class="col-span-5 text-ochre text-left flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 mr-2">
+                        <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Website") }}</div>
+                        <div class="col-span-5 lg:col-span-5 text-ochre text-left flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                             </svg>
-                            <a href="{{ $studycase->team->website }}" class="text-ochre hover:underline" target="_blank">{{ $studycase->team->website }}</a>
+                            <a href="{{ $studycase->team->website }}" class="text-ochre hover:underline " target="_blank">{{ $studycase->team->website }}</a>
                         </div>
                     @endif
 
-                    <div class="font-semibold text-lg text-left">{{ t("Contact") }}</div>
-                    <div class="col-span-5 text-left flex items-center">
+                    <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Contact") }}</div>
+                    <div class="col-span-5 lg:col-span-5 text-left sm:flex items-center">
                         <span class="text-black inline">{{ $studycase->contact_person_name }} | </span>
-                        <span class="text-ochre inline ml-1">{{ $studycase->contact_person_email }}</span>
+                        <span class="text-ochre block sm:inline sm:ml-1">{{ $studycase->contact_person_email }}</span>
                     </div>
                 </div>
             </div>
@@ -100,18 +100,18 @@
                     ? $partner_org->getMedia('logo')->first()->getUrl() 
                     : asset('/images/nologo.png');
                 @endphp
-                <div class="w-full md:w-1/4 flex items-center justify-center mb-4 md:mb-0">
+                <div class="w-full md:w-1/6 lg:w-2/6 flex items-center justify-center mb-4 md:mb-0">
                     <img src={{ $partner_org_logo }} alt="partner-org-logo" class="h-12 w-auto">
                 </div>
 
                 <!-- Details -->
-                <div class="w-full md:w-3/4">
-                    <div class="grid grid-cols-1 md:grid-cols-6 gap-x-2 items-center">
-                        <div class="font-semibold text-lg text-left">{{ t("Name") }}</div>
+                <div class="w-full md:w-5/6 lg:w-4/6">
+                    <div class="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-6 gap-x-2 items-center">
+                        <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Name") }}</div>
                         <div class="col-span-5 text-left">{{ $partner_org->name }}</div>
 
                         @if($partner_org->website)
-                            <div class="font-semibold text-lg text-left">{{ t("Website") }}</div>
+                            <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Website") }}</div>
                             <div class="col-span-5 text-ochre text-left flex items-center">
                                 <svg xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 mr-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />

@@ -1,12 +1,12 @@
 <!-- Header Section -->
-<div class="bg-dark-teal text-white py-6 px-12 md:px-20">
+<div class="bg-dark-teal text-white py-6 px-6 sm:px-12 md:px-20">
     <div class="flex flex-col items-start">
         <h1 class="text-2xl font-bold">{{ t("CASE DETAILS") }}</h1>
     </div>
 </div>
 
 <!-- Main Section -->
-<div class="bg-white mt-4 shadow-xl px-12 md:px-20">
+<div class="bg-white mt-4 shadow-xl px-6 sm:px-12 md:px-20">
 
     <div class="py-6">
         <h1 class="text-xl font-bold pb-1">{{ t("STATEMENT") }}</h1>
