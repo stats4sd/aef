@@ -1,5 +1,5 @@
 <!-- Header Section -->
-<div class="bg-dark-teal text-white py-6 px-12 md:px-20">
+<div class="bg-dark-teal text-white py-6 px-6 sm:px-12 md:px-20">
     <div class="flex flex-col items-start">
         <h1 class="text-2xl font-bold">{{ t("CLAIMS AND EVIDENCE") }}</h1>
         <p class="text-base md:text-lg mt-4">{{ t("This section contains each claim made by the case, along with the evidence provided to prove that claim.
@@ -10,7 +10,7 @@
 <!-- Main Section -->
 <!-- Claims-->
 @foreach($studycase->claims as $claim)
-    <div class="bg-white mt-4 shadow-xl px-12 md:px-20 py-8">
+    <div class="bg-white mt-4 shadow-xl px-6 sm:px-12 md:px-20 py-8">
 
         <!-- Claim Header -->
         <div class="mb-4">
