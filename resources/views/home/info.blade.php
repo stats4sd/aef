@@ -87,7 +87,7 @@
 
     <!-- DEVELOPING CASES -->
     <div id="developing-cases" class="lg:order-4 order-4 bg-light-yellow flex flex-col items-start justify-center py-12 lg:py-28 px-16">
-        <img src="/images/icon_developingcases.png" alt="Icon Developing Cases" class="w-16 h-16">
+        <img src="/images/icon_developingcases.png" alt="Icon Developing Cases" class="w-16 ">
         <div class="text-teal text-xl font-bold mt-4">{{ t("DEVELOPING CASES") }}</div>
         <p class="mt-2">
             {!! t("Building strong, evidence-based cases for agroecology requires <b>critical thinking, structured argumentation,</b> 
@@ -140,7 +140,7 @@
 
     <!-- ADVOCATING FOR AGROECOLOGY -->
     <div id="advocating-agroecology" class="lg:order-5 order-6 bg-light-yellow flex flex-col items-start justify-center py-12 lg:py-28 px-16">
-        <img src="/images/icon_advocating.png" alt="Icon Advocating" class="w-16 h-16">
+        <img src="/images/icon_advocating.png" alt="Icon Advocating" class="h-12">
         <div class="text-teal text-xl font-bold mt-4">{{ t("ADVOCATING FOR AGROECOLOGY") }}</div>
         <p class="mt-2">
             {{ t("Agroecology is essential today because it provides a holistic approach to food production that addresses pressing global challenges such 
