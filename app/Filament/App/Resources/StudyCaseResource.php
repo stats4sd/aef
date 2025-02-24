@@ -45,6 +45,9 @@ class StudyCaseResource extends Resource
                             ->icon('heroicon-m-information-circle')
                             ->schema([
 
+                                Forms\Components\Hidden::make('order')
+                                    ->default(fn() => (StudyCase::max('order') ?? 0) + 1),
+
                                 Forms\Components\TextInput::make('title')
                                     ->label(t('Title'))
                                     ->required()

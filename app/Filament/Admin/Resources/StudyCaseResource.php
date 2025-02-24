@@ -85,6 +85,8 @@ class StudyCaseResource extends Resource
                                 ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
                                 ->openUrlInNewTab()
             ])
+            ->defaultSort('order')
+            ->reorderable('order')
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

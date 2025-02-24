@@ -7,8 +7,8 @@
         $cover_photo_url = $cover_photo ? $cover_photo->getUrl() : null;
      @endphp
     <div class="relative h-112 bg-cover bg-center"  style="height: 600px; background-image: url('{{ $cover_photo_url }}');">
-        <div class="absolute bottom-0 w-full h-1/3 bg-dark-teal-70 flex justify-left">
-            <div class="text-left px-2 md:px-12 m-4">
+        <div class="absolute bottom-0 w-full h-fit bg-dark-teal-70 flex justify-left " style="min-height: 33%;">
+            <div class="text-left px-4  mx-auto my-4 container">
                 <div class="text-xl md:text-3xl text-ochre">{{ t("CASE") }}</div>
                 <div class="text-xl md:text-3xl text-white font-bold">{{ $studycase->title }}</div>
                 <div class="text-lg md:text-2xl text-white mt-4">{{ $studycase->team->name }}, {{ $studycase->year_of_development }}</div>
@@ -19,7 +19,7 @@
     <!-- Main Section -->
     <div class="bg-white py-8 px-12 md:px-20 shadow-xl">
         <!-- Case Metadata -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 container mx-auto">
             <!-- Languages -->
             <div class="flex items-start">
                 <div class="flex-shrink-0 mr-4">
@@ -94,7 +94,7 @@
 
     </div>
 
-    <div class="py-8 px-4 md:px-20">
+    <div class="py-8 mx-auto container md:px-4">
         <!-- Include blades for components-->
         <div id="case-products" class="mt-8">@include('cases.products')</div>
         <div id="case-details" class="mt-4"> @include('cases.details')</div>
