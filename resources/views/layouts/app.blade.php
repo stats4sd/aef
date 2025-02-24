@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <div class="container mx-auto">
+        <div class=" mx-auto">
             @yield('content')
             @livewireScripts
         </div>

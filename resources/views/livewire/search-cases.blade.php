@@ -244,27 +244,28 @@
 
     <!-- Cases -->
     <div class="bg-light-yellow pb-20 px-12 md:px-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 py-4">
             @forelse($cases as $case)
                 @php
                     $cover_photo = $case->getMedia('cover_photo')->first();
                     $cover_photo_url = $cover_photo ? $cover_photo->getUrl() : null;
                 @endphp
-                <a href="{{ url('/cases/'.$case->id) }}" class="shadow-xl overflow-hidden flex flex-col hover-effect">
+                <a href="{{ url('/cases/'.$case->id) }}" class="shadow-xl bg-white overflow-hidden flex flex-col hover-effect">
                     <!-- Image -->
                     <div class="h-48 bg-cover bg-center" style="background-image: url('{{ $cover_photo_url }}');"></div>
 
                     <!-- Content -->
-                    <div class="bg-white p-6 flex-grow flex flex-col justify-between">
-                        <p class="text-ochre font-semibold">{{ t("CASE") }}</p>
-                        <h2 class="text-teal font-bold text-lg uppercase mb-1">{{ $case->title }}</h2>
-                        <p class="text-black">{{ $case->team->name }}, {{ $case->year_of_development }}</p>
-
+                    <div class="bg-white p-6 flex flex-col justify-between ">
+                        <div class=" flex flex-col justify-start cases_heading">
+                            <p class="text-ochre font-semibold">{{ t("CASE") }}</p>
+                            <h2 class="text-teal font-bold text-lg uppercase mb-1">{{ $case->title }}</h2>
+                            <p class="text-black">{{ $case->team->name }}, {{ $case->year_of_development }}</p>
+                        </div>
                         <!-- Divider -->
-                        <div class="h-1 w-full bg-teal my-3"></div>
+                        <div class="h-1 w-full bg-teal mt-3 mb-6"></div>
 
                         <!-- Languages -->
-                        <div class="flex items-start mb-4">
+                        <div class="flex items-start mb-4 ">
                             <div class="flex-shrink-0 mr-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--mint)" class="w-8 h-8 text-gray-600">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
