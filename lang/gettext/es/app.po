@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-18T17:57:51+00:00\n"
-"PO-Revision-Date: 2025-02-18 18:57+0100\n"
+"POT-Creation-Date: 2025-02-24T10:55:39+00:00\n"
+"PO-Revision-Date: 2025-02-24 11:55+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -744,7 +744,7 @@ msgstr ""
 msgid ""
 "We extend our gratitude to the farmers, Indigenous communities, and grassroots groups whose experiences shape \n"
 "            this work. <b>Join us in sharing and building up the evidence for agroecology!</b>"
-msgstr "Extendemos nuestra gratitud a los agricultores, las comunidades indígenas y los grupos de base cuyas experiencias dan forma a este trabajo. <b>Únase a nosotros para compartir y aumentar evidencia a favor de la agroecología</b>"
+msgstr "Extendemos nuestra gratitud a los agricultores, las comunidades indígenas y los grupos de base cuyas experiencias dan forma a este trabajo. <b>¡Únase a nosotros para compartir y aumentar evidencia a favor de la agroecología!</b>"
 
 #: resources\views\home\info.blade.php:44
 msgid "WHAT IS AN EVIDENCE-BASED CASE?"
@@ -829,7 +829,7 @@ msgstr "<b>Es acumulativa</b>: se apoya en múltiples fuentes para reforzar la c
 
 #: resources\views\home\info.blade.php:75
 msgid "<b>Is interpreted</b> - not just raw data but analyzed and explained to reinforce the argument."
-msgstr "<b>Es interpretativ</b>: no son sólo datos brutos, sino que se analizan y explican para reforzar el argumento."
+msgstr "<b>Es interpretativa</b>: no son sólo datos brutos, sino que se analizan y explican para reforzar el argumento."
 
 #: resources\views\home\info.blade.php:76
 msgid "<b>Is coherent</b> - linking context, framework, and supporting information into a compelling narrative."

@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-18T17:57:51+00:00\n"
-"PO-Revision-Date: 2025-02-18 18:57+0100\n"
+"POT-Creation-Date: 2025-02-24T10:55:39+00:00\n"
+"PO-Revision-Date: 2025-02-24 11:55+0100\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
@@ -488,7 +488,7 @@ msgstr "Voir section"
 
 #: resources\views\cases\claims.blade.php:53
 msgid "communication products"
-msgstr ""
+msgstr "produits de communication"
 
 #: resources\views\cases\claims.blade.php:54
 msgid " for source details."
@@ -626,27 +626,27 @@ msgstr "À propos"
 #: resources\views\header.blade.php:34
 #: resources\views\header.blade.php:73
 msgid "Browse all cases"
-msgstr ""
+msgstr "Parcourir l'ensemble des cas"
 
 #: resources\views\header.blade.php:35
 #: resources\views\header.blade.php:74
 msgid "Recently added cases"
-msgstr ""
+msgstr "Cas récemment ajoutés"
 
 #: resources\views\header.blade.php:36
 #: resources\views\header.blade.php:75
 msgid "What is an evidence-based case?"
-msgstr ""
+msgstr "Qu'est-ce qu'un cas fondé sur des preuves ?"
 
 #: resources\views\header.blade.php:37
 #: resources\views\header.blade.php:76
 msgid "Developing cases"
-msgstr ""
+msgstr "Développer des cas"
 
 #: resources\views\header.blade.php:38
 #: resources\views\header.blade.php:77
 msgid "Advocating for agroecology"
-msgstr ""
+msgstr "Encourager l'agroécologie"
 
 #: resources\views\header.blade.php:44
 #: resources\views\header.blade.php:82
@@ -678,42 +678,42 @@ msgid ""
 "            using a structured approach to turn their knowledge and experiences into compelling arguments for agroecology. By using rigorous evidence to \n"
 "            support their claims, these cases aim to <b>influence farmers, communities, donors, policymakers, researchers and consumers</b>—key actors in the \n"
 "            transformation of food systems."
-msgstr ""
+msgstr "Les cas présentés dans ce catalogue ont été élaborés par des ONGs en utilisant une approche structurée permettant de transformer leurs connaissances et leurs expériences en arguments convaincants en faveur de l'agroécologie. En s'appuyant sur des preuves rigoureuses, ces cas visent à <b>influencer les agriculteurs, les communautés, les bailleurs de fonds, les décideurs politiques, les chercheurs et les consommateurs - </b>acteurs <b>clés</b>de la transformation des systèmes alimentaires."
 
 #: resources\views\home\index.blade.php:42
 msgid ""
 "This collection is an evolving resource, and we invite more contributions from grassroots organisations working to build the case for agroecology. \n"
 "            <b>Explore the cases, learn from their insights, and join us in strengthening the movement, the practice and the science that drives the quest for \n"
 "            sustainable and just food systems.</b>"
-msgstr ""
+msgstr "Cette collection est une ressource évolutive, et nous invitons les ONGs qui travaillent à la promotion de l'agroécologie à y apporter leurs contributions. <b>Explorez les cas, profitez de leur expérience et rejoignez-nous pour renforcer le mouvement, la pratique et la science qui animent cette quête pour des systèmes alimentaires durables et justes.</b>"
 
 #: resources\views\home\info.blade.php:3
 msgid "Grassroots Evidence for Agroecology: A Growing Collection of Impactful Cases"
-msgstr ""
+msgstr "Preuves des ONGs en faveur de l'agroécologie : Une collection de cas probants qui ne cesse de s'enrichir"
 
 #: resources\views\home\info.blade.php:8
 msgid ""
 "Welcome to our <b>Catalogue of Evidence-Based Cases for Agroecology</b> — a collaborative platform showcasing real-world experiences \n"
 "            from grassroots organisations worldwide."
-msgstr ""
+msgstr "Bienvenue dans notre <b>Catalogue de cas fondés sur des preuves en faveur de l'agroécologie</b> - une plateforme collaborative présentant des expériences réelles d'ONGs du monde entier."
 
 #: resources\views\home\info.blade.php:13
 msgid "Building and using evidence to drive agroecological transformation was highlighted as a key focus of the "
-msgstr ""
+msgstr "L'élaboration et l'utilisation de données probantes pour stimuler la transformation agroécologique ont été mises en évidence comme un élément clé de l'initiative de l'UE "
 
 #: resources\views\home\info.blade.php:14
 msgid "Agroecology Fund (AEF)"
-msgstr ""
+msgstr "Fonds pour l'agroécologie (AEF)"
 
 #: resources\views\home\info.blade.php:15
 msgid ""
 "and its grantees since the Global Learning Exchange in India in 2020. In response to the need for a more inclusive and participatory approach to \n"
 "            evidence gathering, the Grassroots Evidence for Agroecology (GEA) initiative was launched as a partnership between the AEF, AEF grantees, and "
-msgstr ""
+msgstr "et ses bénéficiaires depuis le Global Learning Exchange qui s'est tenu en Inde en 2020. En réponse à la nécessité d'une approche plus inclusive et participative de la collecte de preuves, l'initiative Grassroots Evidence for Agroecology (GEA) a été lancée comme partenariat entre l'AEF, les partenaires de l'AEF, et "
 
 #: resources\views\home\info.blade.php:18
 msgid "Statistics for Sustainable Development (Stats4SD)"
-msgstr ""
+msgstr "Statistics for Sustainable Development (Stats4SD)"
 
 #: resources\views\home\info.blade.php:21
 msgid ""
@@ -721,116 +721,114 @@ msgid ""
 "            agroecology has enabled them to achieve. As a result, they argue for a variety of audiences to embrace agroecological approaches. \n"
 "            With technical support from Stats4SD and small grants from the Agroecology Fund, these organisations have \n"
 "            built a growing body of knowledge that informs and inspires agroecological transitions worldwide."
-msgstr ""
+msgstr "Grâce à cette initiative, les ONGs ont élaboré des cas fondés sur des preuves convaincants qui mettent en évidence ce que l'agroécologie leur a permis d'accomplir. Ceci met en avant de sérieux arguments pour encourager divers publics à adopter des approches agroécologiques. Avec le soutien technique de Stats4SD et de petites subventions du Fonds pour l'agroécologie, ces organisations ont construit un ensemble croissant de connaissances qui informent et inspirent les transitions agroécologiques dans le monde entier."
 
 #: resources\views\home\info.blade.php:28
 msgid ""
 "This catalogue presents the cases developed in 2024 and remains open for future contributions. We invite you to explore, learn, \n"
 "            and share as we continue building a collective vision for sustainable and just food systems."
-msgstr ""
+msgstr "Ce catalogue présente les cas développés en 2024 et reste ouvert aux contributions futures. Nous vous invitons à explorer, à apprendre et à partager, à mesure que nous continuons à construire ensemble les contours d'un système alimentaire durable et juste."
 
 #: resources\views\home\info.blade.php:33
 msgid ""
 "We extend our gratitude to the farmers, Indigenous communities, and grassroots groups whose experiences shape \n"
 "            this work. <b>Join us in sharing and building up the evidence for agroecology!</b>"
-msgstr ""
+msgstr "Nous exprimons notre gratitude aux agriculteurs, communautés autochtones et ONGs dont les expériences ont façonné ce travail. <b>Rejoignez-nous pour partager et rassembler les preuves en faveur de l'agroécologie !</b>"
 
 #: resources\views\home\info.blade.php:44
 msgid "WHAT IS AN EVIDENCE-BASED CASE?"
-msgstr ""
+msgstr "QU'EST-CE QU'UN CAS FONDÉ SUR DES PREUVES ?"
 
 #: resources\views\home\info.blade.php:46
 msgid "What is a Case?"
-msgstr ""
+msgstr "Qu'est-ce qu'un cas ?"
 
 #: resources\views\home\info.blade.php:47
 msgid ""
 "In this collection, a case is more than just information; it is a <b>persuasive argument</b> designed to <b>change minds</b> or \n"
 "                <b>influence decisions.</b> Unlike general reports or narratives that aim to inform, a case is built to convince a <b>target audience</b> to take \n"
 "                action—whether by supporting agroecological initiatives, adopting sustainable practices, or influencing policies."
-msgstr ""
+msgstr "Dans cette collection, un cas est plus qu'une simple information ; il s'agit d'un <b>argument persuasif</b> destiné à <b>changer les esprits</b> ou à <b>influencer les décisions.</b> Contrairement aux rapports généraux ou aux récits qui visent à informer, un cas est conçu pour convaincre un <b>public cible</b> d'agir, que ce soit en soutenant des initiatives agroécologiques, en adoptant des pratiques durables ou en influençant les politiques."
 
 #: resources\views\home\info.blade.php:51
 msgid "Structure of the Cases"
-msgstr ""
+msgstr "Organisation des cas"
 
 #: resources\views\home\info.blade.php:52
 msgid ""
 "Each case follows a structured approach to ensure <b>clarity, coherence, and impact.</b> The cases presented in this \n"
 "                catalogue are built around:"
-msgstr ""
+msgstr "Chaque cas suit une approche structurée afin de garantir <b>clarté, cohérence et impact.</b> Les cas présentés dans ce catalogue s'articulent autour de:"
 
 #: resources\views\home\info.blade.php:55
 msgid "<b>A clear claim</b> - a specific statement or argument that demonstrates the value of agroecology."
-msgstr ""
+msgstr "<b>Un énoncé clair</b> - un énoncé ou un argument spécifique qui démontre la valeur de l'agroécologie."
 
 #: resources\views\home\info.blade.php:56
 msgid "<b>A defined target audience</b> - shaping the case based on the values and priorities of the intended audience."
-msgstr ""
+msgstr "<b>Un public cible défini</b> - des cas élaborés en fonction des valeurs et des priorités du public visé."
 
 #: resources\views\home\info.blade.php:57
 msgid "<b>A strategic approach</b> - outlining how the case will be argued effectively."
-msgstr ""
+msgstr "<b>Une approche stratégique</b> - décrivant la manière avec laquelle le cas sera efficacement défendu."
 
 #: resources\views\home\info.blade.php:58
 msgid "<b>Supporting evidence</b> - carefully selected information that substantiates the claim."
-msgstr ""
+msgstr "<b>Preuves à l'appui</b> - avec des informations soigneusement sélectionnées qui étayent l'affirmation."
 
 #: resources\views\home\info.blade.php:59
 msgid "<b>Context and interpretation</b> - explaining how the evidence is relevant and compelling for the audience."
-msgstr ""
+msgstr "<b>Contexte et interprétation</b> - afin d'expliquer en quoi les preuves sont pertinentes et convaincantes pour le public cible."
 
 #: resources\views\home\info.blade.php:60
 msgid "<b>A call to action</b> - a targeted message encouraging a concrete response."
-msgstr ""
-"\n"
-""
+msgstr "<b>Un appel à l'action</b> - un message ciblé encourageant une réponse concrète."
 
 #: resources\views\home\info.blade.php:63
 msgid ""
 "To effectively communicate these cases, participants developed <b>tailored communication products</b> for the target \n"
 "                audiences. These materials are showcased throughout the catalogue."
-msgstr ""
+msgstr "Pour communiquer efficacement sur ces cas, les participants ont élaboré des <b>produits de communication adaptés</b> aux publics cibles. Ces produits sont présentés dans le catalogue."
 
 #: resources\views\home\info.blade.php:66
 msgid "What is Considered Evidence?"
-msgstr ""
+msgstr "Qu'est-ce qu'une preuve ?"
 
 #: resources\views\home\info.blade.php:67
 msgid ""
 "Not all information qualifies as evidence. In the context of this catalogue, evidence is information actively \n"
 "                used to support a claim. Information only becomes evidence when it serves this function."
-msgstr ""
+msgstr "Toutes les informations ne sont pas des preuves. Dans le contexte de ce catalogue, une preuve est une information utilisée intentionnellement pour étayer une affirmation. Une information ne devient une preuve que lorsqu'elle remplit cette fonction."
 
 #: resources\views\home\info.blade.php:70
 msgid "Evidence in these cases:"
-msgstr ""
+msgstr "Preuve dans ces cas :"
 
 #: resources\views\home\info.blade.php:72
 msgid "<b>Is purposeful</b> - compiled specifically to support a claim and persuade an audience."
-msgstr ""
+msgstr "<b>Est intentionnel</b> - compilé spécifiquement pour soutenir une affirmation et persuader un public."
 
 #: resources\views\home\info.blade.php:73
 msgid "<b>Is integrated</b> - presented in context, alongside other relevant information."
-msgstr ""
+msgstr "<b>Est intégré</b> - présenté dans son contexte, accompagné d'autres informations pertinentes."
 
 #: resources\views\home\info.blade.php:74
 msgid "<b>Is cumulative</b> - drawn from multiple sources to strengthen credibility."
-msgstr ""
+msgstr "<b>Est cumulatif</b> - tiré de plusieurs sources pour renforcer la crédibilité."
 
 #: resources\views\home\info.blade.php:75
 msgid "<b>Is interpreted</b> - not just raw data but analyzed and explained to reinforce the argument."
-msgstr ""
+msgstr "<b>Est interprété</b> - il ne s'agit pas simplement de données brutes, mais de leur analyse et explication afin d'appuyer l'argumentation."
 
 #: resources\views\home\info.blade.php:76
 msgid "<b>Is coherent</b> - linking context, framework, and supporting information into a compelling narrative."
-msgstr ""
+msgstr "<b>Est cohérent</b> - relie le contexte, le cadre et les informations complémentaires dans un récit convaincant."
 
 #: resources\views\home\info.blade.php:79
 msgid ""
 "By following this approach, the cases in this catalogue provide <b>strong, evidence-based arguments</b> that \n"
 "                support agroecology and advocate for meaningful change."
-msgstr ""
+msgstr "En suivant cette approche, les cas présentés dans ce catalogue fournissent des <b>arguments solides, fondés sur des preuves</b>. qui <b>soutiennent</b> l'agroécologie et <b>encouragent</b> un changement profond."
 
 #: resources\views\home\info.blade.php:98
 msgid "DEVELOPING CASES"
@@ -843,73 +841,73 @@ msgid ""
 "                agroecology in partnership with grassroots organisations, we have developed an online training course to support building new cases. \n"
 "                This course provides a clear framework to help you create compelling cases that persuade target audiences about the <b>value and \n"
 "                impact of agroecology.</b>"
-msgstr ""
+msgstr "L'élaboration d'arguments solides et fondés sur des preuves en faveur de l'agroécologie nécessite une <b>réflexion critique, une argumentation structurée</b> et <b>une communication efficace.</b> A partir de l'expérience acquise lors de l'élaboration de la méthodologie de construction d'arguments fondés sur des preuves en faveur de l'agroécologie en partenariat avec des ONGs, nous avons développé un cours de formation en ligne pour soutenir la construction de nouveaux cas. Ce cours fournit un cadre clair pour vous aider à créer des cas convaincants qui persuadent les publics cibles de l'<b>utilité et de l'impact de l'agroécologie.</b>"
 
 #: resources\views\home\info.blade.php:108
 msgid "The course is <b>free of charge</b> and available online, allowing you to take it at your own convenience."
-msgstr ""
+msgstr "Le cours est <b>gratuit</b> et disponible en ligne, ce qui vous permet de le suivre à votre convenance."
 
 #: resources\views\home\info.blade.php:112
 msgid "Those who have taken part in this process describe it as both <b>challenging and rewarding:</b>"
-msgstr ""
+msgstr "Les personnes qui ont participé à ce processus le décrivent comme étant à la fois <b>stimulant et gratifiant :</b>"
 
 #: resources\views\home\info.blade.php:117
 msgid "“We gained a broader understanding of how to collect and present evidence around a case.”"
-msgstr ""
+msgstr "\"Nous avons acquis une meilleure compréhension de la manière de recueillir et de présenter des preuves lors de l'élaboration d'un cas\""
 
 #: resources\views\home\info.blade.php:118
 msgid "“It has helped us motivate the youth practising agroecology… They feel appreciated when their work is shared and their testimonies are highlighted.”"
-msgstr ""
+msgstr "\"Cela nous a permis de motiver les jeunes qui pratiquent l'agroécologie... Ils se sentent appréciés lorsque leur travail est partagé et que leurs témoignages sont mis en valeur.\""
 
 #: resources\views\home\info.blade.php:119
 msgid "“I got lost in the details… It was a hard mental exercise to keep all the aspects together. But this was also the best part of the entire learning process.”"
-msgstr ""
+msgstr "\"Je me suis perdu dans les détails... C'était un exercice mental difficile de bien garder tous les aspects en tête. Mais c'était aussi la meilleure partie de tout le processus d'apprentissage.\""
 
 #: resources\views\home\info.blade.php:123
 msgid "The course objectives are:"
-msgstr ""
+msgstr "Les objectifs du cours sont les suivants :"
 
 #: resources\views\home\info.blade.php:128
 msgid "To explore <b>real-world examples</b> of evidence-based cases and understand how they were developed."
-msgstr ""
+msgstr "Explorer des <b>exemples réels</b> de cas fondés sur des preuves et comprendre comment ils ont été élaborés."
 
 #: resources\views\home\info.blade.php:129
 msgid "To learn how to <b>tailor a case to a specific audience</b> for maximum impact."
-msgstr ""
+msgstr "Apprendre à <b>élaborer un cas envers un public spécifique</b> en vue d'un impact maximal."
 
 #: resources\views\home\info.blade.php:130
 msgid "To develop skills to <b>select and present evidence</b> effectively."
-msgstr ""
+msgstr "Développer des compétences pour <b>sélectionner et présenter des preuves</b> de manière efficace."
 
 #: resources\views\home\info.blade.php:131
 msgid "To follow a <b>step-by-step process</b> for developing an evidence-based case."
-msgstr ""
+msgstr "Suivre un <b>processus étape par étape</b> d'élaboration de cas fondé sur des preuves."
 
 #: resources\views\home\info.blade.php:132
 msgid "And to be prepared to <b>use their case for advocacy</b> and awareness-raising."
-msgstr ""
+msgstr "Et se préparer à <b>utiliser leur cas pour défendre leur cause</b> et sensibiliser l'opinion publique."
 
 #: resources\views\home\info.blade.php:136
 msgid "Register Today"
-msgstr ""
+msgstr "S'inscrire aujourd'hui"
 
 #: resources\views\home\info.blade.php:140
 msgid "You are invited to <b>register now</b> and benefit from the experiences of AEF grantees shared throughout the course. Visit "
-msgstr ""
+msgstr "Nous vous invitons à vous <b>inscrire dès maintenant</b> et à profiter des expériences partagées par les bénéficiaires de l'AEF tout au long de la formation. Allez vers"
 
 #: resources\views\home\info.blade.php:143
 msgid "and register for the “Grassroots Evidence for Agroecology” course."
-msgstr ""
+msgstr "et s'inscrire au cours \"Grassroots Evidence for Agroecology\"."
 
 #: resources\views\home\info.blade.php:147
 msgid ""
 "In the future, AEF plans to continue supporting the development of these types of cases, and applicants may be required to have a \n"
 "                <b>certificate of completion</b> of the course."
-msgstr ""
+msgstr "À l'avenir, l'AEF prévoit de continuer à soutenir le développement de ce type de cas, et les candidats pourraient être tenus d'obtenir un <b>certificat d'achèvement du</b> cours."
 
 #: resources\views\home\info.blade.php:152
 msgid "REGISTER"
-msgstr ""
+msgstr "S'INSCRIRE"
 
 #: resources\views\home\info.blade.php:160
 msgid "ADVOCATING FOR AGROECOLOGY"
@@ -921,19 +919,21 @@ msgid ""
 "                as climate change, food insecurity, biodiversity loss, and social inequity. By integrating ecological principles throughout the food system—from \n"
 "                plot to plate—agroecology fosters sustainable, resilient food systems while promoting social justice and empowering communities."
 msgstr ""
+"L'agroécologie est aujourd'hui essentielle car elle propose une approche holistique de la production alimentaire qui permet de relever les défis urgents de la planète tels que le changement climatique, l'insécurité alimentaire, la perte de biodiversité et l'inégalité sociale. \n"
+"En intégrant des principes écologiques dans l'ensemble du système alimentaire - de la parcelle à l'assiette - l'agroécologie permet de mettre en place des systèmes alimentaires durables et résistants tout en promouvant la justice sociale et en renforçant l'autonomie des communautés."
 
 #: resources\views\home\info.blade.php:168
 msgid ""
 "We believe that the experience and knowledge accumulated by millions of grassroots organisation members are crucial in advocating for agroecology as a \n"
 "                means of transforming food systems. Strong, logical arguments, supported by diverse and relevant evidence, are essential for encouraging changes in how \n"
 "                we produce, exchange, and consume food. Such arguments will help influencing the minds of agents of change and decision-makers."
-msgstr ""
+msgstr "Nous pensons que l'expérience et les connaissances accumulées par des millions d'ONGs sont essentielles pour promouvoir l'agroécologie comme moyen de transformation des systèmes alimentaires. Des arguments solides, étayés par des preuves diverses et pertinentes, sont essentiels pour encourager les changements dans la manière dont nous produisons, échangeons et consommons la nourriture. Ces arguments permettront d'influencer les opinions des agents du changement et des décideurs."
 
 #: resources\views\home\info.blade.php:174
 msgid ""
 "Evidence-based advocacy for agroecology raises awareness, engages people in working toward healthier food systems, influences decision-makers, and \n"
 "                sustains or restores healthier ecosystems impacted by the unsustainable exploitation of natural resources."
-msgstr ""
+msgstr "La promotion de l'agroécologie à partir de preuves concrètes permet de sensibiliser les gens, de les inciter à travailler pour des systèmes alimentaires plus sains, d'influencer les décideurs, et de maintenir ou restaurer des écosystèmes touchés par l'exploitation non durable des ressources naturelles."
 
 #: resources\views\home\recent-cases.blade.php:6
 msgid "RECENTLY ADDED CASES"
