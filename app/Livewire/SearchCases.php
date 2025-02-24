@@ -31,7 +31,9 @@ class SearchCases extends Component
     public function mount()
     {
         // Retrieve all cases and the related languages, tags, and countries
-        $this->cases = StudyCase::where('reviewed', 1)->get();
+        $this->cases = StudyCase::where('reviewed', 1)
+            ->orderBy('order', 'asc')
+            ->get();
         $this->caseCount = $this->cases->count();
 
         // Retrieve languages, tags, and countries that have related reviewed cases
