@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-24T10:55:39+00:00\n"
-"PO-Revision-Date: 2025-02-24 11:55+0100\n"
+"POT-Creation-Date: 2025-02-25T09:06:47+00:00\n"
+"PO-Revision-Date: 2025-02-25 10:06+0100\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
@@ -35,8 +35,8 @@ msgstr "Langue"
 
 #: app\Filament\Admin\Resources\LanguageResource.php:31
 #: resources\views\cases\index.blade.php:29
-#: resources\views\home\recent-cases.blade.php:36
-#: resources\views\livewire\search-cases.blade.php:284
+#: resources\views\home\recent-cases.blade.php:37
+#: resources\views\livewire\search-cases.blade.php:285
 msgid "Languages"
 msgstr "Langues"
 
@@ -53,37 +53,37 @@ msgid "Cases"
 msgstr "Cas"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:50
-#: app\Filament\App\Resources\StudyCaseResource.php:49
-#: app\Filament\App\Resources\StudyCaseResource.php:394
+#: app\Filament\App\Resources\StudyCaseResource.php:52
+#: app\Filament\App\Resources\StudyCaseResource.php:397
 msgid "Title"
 msgstr "Titre"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:55
-#: app\Filament\App\Resources\StudyCaseResource.php:103
+#: app\Filament\App\Resources\StudyCaseResource.php:106
 #: resources\views\cases\other.blade.php:49
 msgid "Leading organisation"
 msgstr "Organisation principale"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:61
-#: app\Filament\App\Resources\StudyCaseResource.php:55
-#: app\Filament\App\Resources\StudyCaseResource.php:399
+#: app\Filament\App\Resources\StudyCaseResource.php:58
+#: app\Filament\App\Resources\StudyCaseResource.php:402
 msgid "Year of development"
 msgstr "Année de développement"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:67
 #: app\Filament\Admin\Resources\StudyCaseResource.php:77
-#: app\Filament\App\Resources\StudyCaseResource.php:405
+#: app\Filament\App\Resources\StudyCaseResource.php:408
 msgid "Ready for review"
 msgstr "Prêt à être examiné"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:72
 #: app\Filament\Admin\Resources\StudyCaseResource.php:78
-#: app\Filament\App\Resources\StudyCaseResource.php:410
+#: app\Filament\App\Resources\StudyCaseResource.php:413
 msgid "Reviewed"
 msgstr "Examiné"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:83
-#: app\Filament\App\Resources\StudyCaseResource.php:427
+#: app\Filament\App\Resources\StudyCaseResource.php:430
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -144,19 +144,19 @@ msgid "Has this source already been added in the communication products section?
 msgstr "Cette source a-t-elle déjà été ajoutée dans la section des produits de communication ?"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:52
-#: app\Filament\App\Resources\StudyCaseResource.php:260
-#: app\Filament\App\Resources\StudyCaseResource.php:331
+#: app\Filament\App\Resources\StudyCaseResource.php:263
+#: app\Filament\App\Resources\StudyCaseResource.php:334
 msgid "Description"
 msgstr "Description"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:57
-#: app\Filament\App\Resources\StudyCaseResource.php:265
+#: app\Filament\App\Resources\StudyCaseResource.php:268
 msgid "URL"
 msgstr "URL"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:67
-#: app\Filament\App\Resources\StudyCaseResource.php:278
-#: app\Filament\App\Resources\StudyCaseResource.php:336
+#: app\Filament\App\Resources\StudyCaseResource.php:281
+#: app\Filament\App\Resources\StudyCaseResource.php:339
 msgid "File"
 msgstr "Fichier"
 
@@ -210,8 +210,8 @@ msgstr "Organisations partenaires"
 
 #: app\Filament\App\Resources\OrganisationResource.php:44
 #: app\Filament\App\Resources\OrganisationResource.php:79
-#: app\Filament\App\Resources\StudyCaseResource.php:82
-#: app\Filament\App\Resources\StudyCaseResource.php:131
+#: app\Filament\App\Resources\StudyCaseResource.php:85
+#: app\Filament\App\Resources\StudyCaseResource.php:134
 #: resources\views\cases\other.blade.php:64
 #: resources\views\cases\other.blade.php:110
 msgid "Name"
@@ -219,7 +219,7 @@ msgstr "Nom"
 
 #: app\Filament\App\Resources\OrganisationResource.php:48
 #: app\Filament\App\Resources\OrganisationResource.php:83
-#: app\Filament\App\Resources\StudyCaseResource.php:135
+#: app\Filament\App\Resources\StudyCaseResource.php:138
 #: resources\views\cases\other.blade.php:68
 #: resources\views\cases\other.blade.php:114
 msgid "Website"
@@ -227,7 +227,7 @@ msgstr "Site web"
 
 #: app\Filament\App\Resources\OrganisationResource.php:67
 #: app\Filament\App\Resources\OrganisationResource.php:87
-#: app\Filament\App\Resources\StudyCaseResource.php:143
+#: app\Filament\App\Resources\StudyCaseResource.php:146
 msgid "Note"
 msgstr "Note"
 
@@ -235,190 +235,190 @@ msgstr "Note"
 msgid "Basic Information"
 msgstr "Informations de base"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:62
+#: app\Filament\App\Resources\StudyCaseResource.php:65
 msgid "Language(s)"
 msgstr "Langue(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:63
+#: app\Filament\App\Resources\StudyCaseResource.php:66
 msgid "An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it."
 msgstr "Une première liste de langue(s) sera fournie, mais si la langue de votre cas n'y figure pas, vous pourrez la saisir."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:70
+#: app\Filament\App\Resources\StudyCaseResource.php:73
 msgid "Other language(s)"
 msgstr "Autre(s) langue(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:71
+#: app\Filament\App\Resources\StudyCaseResource.php:74
 msgid "Please enter other language(s) here if they are not existed in the language(s) selection box above"
 msgstr "Veuillez indiquer ici une ou plusieurs autres langues si elles n'existent pas dans le champ de sélection des langues ci-dessus"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:75
+#: app\Filament\App\Resources\StudyCaseResource.php:78
 msgid "Tag(s) / keyword(s)"
 msgstr "Étiquette(s) / Mot(s)-clé(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:88
+#: app\Filament\App\Resources\StudyCaseResource.php:91
 msgid "Country(ies) covered"
 msgstr "Pays concerné(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:89
+#: app\Filament\App\Resources\StudyCaseResource.php:92
 msgid "Select the country(ies) covered in your case"
 msgstr "Sélectionnez le(s) pays concerné(s) par votre cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:96
+#: app\Filament\App\Resources\StudyCaseResource.php:99
 #: resources\views\cases\index.blade.php:72
 msgid "Geographic area"
 msgstr "Zone géographique"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:97
+#: app\Filament\App\Resources\StudyCaseResource.php:100
 msgid "If you want to be more specific about the geographic area, please describe it here"
 msgstr "Si vous souhaitez être plus précis sur la zone géographique, veuillez la décrire ici"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:106
+#: app\Filament\App\Resources\StudyCaseResource.php:109
 msgid "Organisation name"
 msgstr "Nom de l'organisation"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:110
+#: app\Filament\App\Resources\StudyCaseResource.php:113
 msgid "Contact person name"
 msgstr "Nom de la personne de contact"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:115
+#: app\Filament\App\Resources\StudyCaseResource.php:118
 msgid "Contact person email"
 msgstr "Courriel de la personne de contact"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:121
 #: app\Filament\App\Resources\StudyCaseResource.php:124
+#: app\Filament\App\Resources\StudyCaseResource.php:127
 msgid "Partner organisation(s)"
 msgstr "Organisation(s) partenaire(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:125
+#: app\Filament\App\Resources\StudyCaseResource.php:128
 msgid "List of partner organisation(s) that worked in the development of the case"
 msgstr "Liste des organisations partenaires qui ont participé à l'élaboration du cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:153
+#: app\Filament\App\Resources\StudyCaseResource.php:156
 msgid "Case Details"
 msgstr "Détails du cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:159
+#: app\Filament\App\Resources\StudyCaseResource.php:162
 msgid "Statement(s)"
 msgstr "Énoncés(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:160
+#: app\Filament\App\Resources\StudyCaseResource.php:163
 msgid "e.g., If __________ then __________"
 msgstr "par exemple, Si __________ alors __________"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:174
+#: app\Filament\App\Resources\StudyCaseResource.php:177
 msgid "Description of the target audience(s)"
 msgstr "Description du/des public(s) cible(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:188
+#: app\Filament\App\Resources\StudyCaseResource.php:191
 msgid "Target audience(s)'s priorities and values"
 msgstr "Priorités et valeurs du/des public(s) cible(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:189
+#: app\Filament\App\Resources\StudyCaseResource.php:192
 msgid "if you have more than one target audience/s, you can list them separately"
 msgstr "si vous avez plus d'un public cible, vous pouvez les énumérer séparément"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:203
+#: app\Filament\App\Resources\StudyCaseResource.php:206
 msgid "Framing(s) of the case"
 msgstr "Cadre(s) du cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:204
+#: app\Filament\App\Resources\StudyCaseResource.php:207
 msgid "based on your audience's priorities and way of understanding the issues at hand"
 msgstr "en fonction des priorités de votre public cible et de sa façon de comprendre les questions en jeu"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:218
+#: app\Filament\App\Resources\StudyCaseResource.php:221
 msgid "Description of the strategy(ies) to argue the case"
 msgstr "Description de la (des) stratégie(s) utilisée(s) pour argumenter le cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:219
+#: app\Filament\App\Resources\StudyCaseResource.php:222
 msgid "e.g., is it a comparison? A value and rights-based argument?"
 msgstr "par exemple, s'agit-il d'une comparaison ? D'un argument fondé sur des valeurs et des droits ?"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:233
+#: app\Filament\App\Resources\StudyCaseResource.php:236
 msgid "Call to action(s)"
 msgstr "Appel à l'action"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:248
+#: app\Filament\App\Resources\StudyCaseResource.php:251
 msgid "Communication Product(s)"
 msgstr "Produit(s) de communication"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:254
+#: app\Filament\App\Resources\StudyCaseResource.php:257
 msgid "Communication product(s)"
 msgstr "Produit(s) de communication"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:255
+#: app\Filament\App\Resources\StudyCaseResource.php:258
 msgid "Description, web address and link to upload communication products: documents, videos and/or audio files"
 msgstr "Description, adresse web et lien pour télécharger les produits de communication : documents, vidéos et/ou fichiers audio"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:274
+#: app\Filament\App\Resources\StudyCaseResource.php:277
 msgid "Youtube ID"
 msgstr "ID Youtube"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:275
+#: app\Filament\App\Resources\StudyCaseResource.php:278
 msgid "To enbed a youtube video, add the id. On YouTube, when you hit \"share\", the id is the random-like string after https://youtu.be/"
 msgstr "Pour insérer une vidéo YouTube, ajoutez l'identifiant. Sur YouTube, lorsque vous cliquez sur \"partager/share\", l'identifiant est la chaîne de caractères aléatoire qui suit https://youtu.be/"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:287
+#: app\Filament\App\Resources\StudyCaseResource.php:290
 msgid "Add communication product"
 msgstr "Ajouter un produit de communication"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:293
+#: app\Filament\App\Resources\StudyCaseResource.php:296
 #: resources\views\cases\other.blade.php:12
 msgid "Photos"
 msgstr "Photos"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:299
+#: app\Filament\App\Resources\StudyCaseResource.php:302
 msgid "Cover photo"
 msgstr "Photo de couverture"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:300
+#: app\Filament\App\Resources\StudyCaseResource.php:303
 msgid "Please upload 1 cover photo for the case entry."
 msgstr "Veuillez télécharger une photo de couverture pour le cas."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:313
+#: app\Filament\App\Resources\StudyCaseResource.php:316
 msgid "Organisation or project logo image"
 msgstr "Image du logo de l'organisation ou du projet"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:314
+#: app\Filament\App\Resources\StudyCaseResource.php:317
 msgid "Please upload 1 organisation or project logo image for the case entry."
 msgstr "Veuillez charger une image du logo de l'organisation ou du projet pour le cas."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:325
+#: app\Filament\App\Resources\StudyCaseResource.php:328
 msgid "Catalogue photo(s)"
 msgstr "Photo(s) du catalogue"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:326
+#: app\Filament\App\Resources\StudyCaseResource.php:329
 msgid "Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!"
 msgstr "Veuillez télécharger ici jusqu'à 5 photos pour l'entrée du cas dans le catalogue. Ces photos nous aideront à mettre en valeur votre entrée dans le catalogue !"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:348
+#: app\Filament\App\Resources\StudyCaseResource.php:351
 msgid "Add photo"
 msgstr "Ajouter une photo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:352
+#: app\Filament\App\Resources\StudyCaseResource.php:355
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:357
+#: app\Filament\App\Resources\StudyCaseResource.php:360
 msgid "Case Submitter Confirmation"
 msgstr "Confirmation de l'auteur du cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:363
+#: app\Filament\App\Resources\StudyCaseResource.php:366
 msgid "I confirm that all content is correct. This case is now ready for reviewer to review."
 msgstr "Je confirme que tout le contenu est correct. Ce cas est maintenant prêt à être examiné par le réviseur."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:364
+#: app\Filament\App\Resources\StudyCaseResource.php:367
 msgid "This is to be confirmed by case submitter"
 msgstr "Cette information doit être confirmée par la personne enregistrant le cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:369
+#: app\Filament\App\Resources\StudyCaseResource.php:372
 msgid "Case Reviewer Confirmation"
 msgstr "Confirmation du reviseur du cas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:375
+#: app\Filament\App\Resources\StudyCaseResource.php:378
 msgid "I confirm that all content has been reviewed. This case is now ready for publishing."
 msgstr "Je confirme que tout le contenu a été revu. Ce cas est maintenant prêt à être publié."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:376
+#: app\Filament\App\Resources\StudyCaseResource.php:379
 msgid "This is to be confirmed by case reviewer"
 msgstr "Ceci doit être confirmé par la personne révisant le cas"
 
@@ -523,15 +523,15 @@ msgid "CALLS TO ACTION"
 msgstr "APPELS À L'ACTION"
 
 #: resources\views\cases\index.blade.php:10
-#: resources\views\home\recent-cases.blade.php:21
+#: resources\views\home\recent-cases.blade.php:22
 #: resources\views\livewire\search-cases.blade.php:247
-#: resources\views\livewire\search-cases.blade.php:269
+#: resources\views\livewire\search-cases.blade.php:270
 msgid "CASE"
 msgstr "CAS"
 
 #: resources\views\cases\index.blade.php:58
-#: resources\views\home\recent-cases.blade.php:49
-#: resources\views\livewire\search-cases.blade.php:297
+#: resources\views\home\recent-cases.blade.php:50
+#: resources\views\livewire\search-cases.blade.php:298
 msgid "Countries covered"
 msgstr "Pays concernés"
 
@@ -585,17 +585,17 @@ msgstr ""
 "Produits de communication développés pour présenter le cas au public cible.\n"
 "                                Il peut s'agir de vidéos, de présentations, de documents ou d'autres formats pertinents."
 
-#: resources\views\cases\products.blade.php:43
+#: resources\views\cases\products.blade.php:50
 msgid "Download "
 msgstr "Télécharger"
 
-#: resources\views\cases\products.blade.php:53
+#: resources\views\cases\products.blade.php:60
 msgid "Visit link"
 msgstr "Suivre le lien"
 
 #: resources\views\footer.blade.php:3
 msgid "Grassroots evidence for agroecology cases supported by the"
-msgstr "Preuves fournies par des associations pour des cas lies à l'agroécologie supportés par"
+msgstr "Preuves d'organisations locales pour l'agroécologie, supportées par le"
 
 #: resources\views\footer.blade.php:5
 msgid "Agroecology Fund"
@@ -656,7 +656,7 @@ msgstr "Changer de langue"
 
 #: resources\views\home\index.blade.php:11
 msgid "GRASSROOTS EVIDENCE FOR AGROECOLOGY"
-msgstr "PREUVES FOURNIES PAR DES ASSOCIATIONS POUR DES CAS LIÉS À L'AGROÉCOLOGIE"
+msgstr "PREUVES D'ORGANISATIONS LOCALES POUR L'AGROÉCOLOGIE"
 
 #: resources\views\home\index.blade.php:15
 msgid "CASES AND EVIDENCE"
@@ -678,24 +678,24 @@ msgid ""
 "            using a structured approach to turn their knowledge and experiences into compelling arguments for agroecology. By using rigorous evidence to \n"
 "            support their claims, these cases aim to <b>influence farmers, communities, donors, policymakers, researchers and consumers</b>—key actors in the \n"
 "            transformation of food systems."
-msgstr "Les cas présentés dans ce catalogue ont été élaborés par des ONGs en utilisant une approche structurée permettant de transformer leurs connaissances et leurs expériences en arguments convaincants en faveur de l'agroécologie. En s'appuyant sur des preuves rigoureuses, ces cas visent à <b>influencer les agriculteurs, les communautés, les bailleurs de fonds, les décideurs politiques, les chercheurs et les consommateurs - </b>acteurs <b>clés</b>de la transformation des systèmes alimentaires."
+msgstr "Les cas présentés dans ce catalogue ont été élaborés par des organisations locales en utilisant une approche structurée permettant de transformer leurs connaissances et leurs expériences en arguments convaincants en faveur de l'agroécologie. En s'appuyant sur des preuves rigoureuses, ces cas visent à <b>influencer les agriculteurs, les communautés, les bailleurs de fonds, les décideurs politiques, les chercheurs et les consommateurs - </b>acteurs <b>clés</b> de la transformation des systèmes alimentaires."
 
 #: resources\views\home\index.blade.php:42
 msgid ""
 "This collection is an evolving resource, and we invite more contributions from grassroots organisations working to build the case for agroecology. \n"
 "            <b>Explore the cases, learn from their insights, and join us in strengthening the movement, the practice and the science that drives the quest for \n"
 "            sustainable and just food systems.</b>"
-msgstr "Cette collection est une ressource évolutive, et nous invitons les ONGs qui travaillent à la promotion de l'agroécologie à y apporter leurs contributions. <b>Explorez les cas, profitez de leur expérience et rejoignez-nous pour renforcer le mouvement, la pratique et la science qui animent cette quête pour des systèmes alimentaires durables et justes.</b>"
+msgstr "Cette collection est une ressource évolutive, et nous invitons les organisations locales qui travaillent à la promotion de l'agroécologie à y apporter leurs contributions. <b>Explorez les cas, profitez de leur expérience et rejoignez-nous pour renforcer le mouvement, la pratique et la science qui animent cette quête pour des systèmes alimentaires durables et justes.</b>"
 
 #: resources\views\home\info.blade.php:3
 msgid "Grassroots Evidence for Agroecology: A Growing Collection of Impactful Cases"
-msgstr "Preuves des ONGs en faveur de l'agroécologie : Une collection de cas probants qui ne cesse de s'enrichir"
+msgstr "Preuves d'organisations locales pour l'agroécologie : Une collection croissante de cas probants"
 
 #: resources\views\home\info.blade.php:8
 msgid ""
 "Welcome to our <b>Catalogue of Evidence-Based Cases for Agroecology</b> — a collaborative platform showcasing real-world experiences \n"
 "            from grassroots organisations worldwide."
-msgstr "Bienvenue dans notre <b>Catalogue de cas fondés sur des preuves en faveur de l'agroécologie</b> - une plateforme collaborative présentant des expériences réelles d'ONGs du monde entier."
+msgstr "Bienvenue dans notre <b>Catalogue de cas fondés sur des preuves en faveur de l'agroécologie</b> - une plateforme collaborative présentant des expériences réelles dorganisations locales du monde entier."
 
 #: resources\views\home\info.blade.php:13
 msgid "Building and using evidence to drive agroecological transformation was highlighted as a key focus of the "
@@ -721,7 +721,7 @@ msgid ""
 "            agroecology has enabled them to achieve. As a result, they argue for a variety of audiences to embrace agroecological approaches. \n"
 "            With technical support from Stats4SD and small grants from the Agroecology Fund, these organisations have \n"
 "            built a growing body of knowledge that informs and inspires agroecological transitions worldwide."
-msgstr "Grâce à cette initiative, les ONGs ont élaboré des cas fondés sur des preuves convaincants qui mettent en évidence ce que l'agroécologie leur a permis d'accomplir. Ceci met en avant de sérieux arguments pour encourager divers publics à adopter des approches agroécologiques. Avec le soutien technique de Stats4SD et de petites subventions du Fonds pour l'agroécologie, ces organisations ont construit un ensemble croissant de connaissances qui informent et inspirent les transitions agroécologiques dans le monde entier."
+msgstr "Grâce à cette initiative, les organisations locales ont élaboré des cas fondés sur des preuves percutants qui mettent en évidence ce que l'agroécologie leur a permis d'accomplir. En mettant leurs cas en avant, ces organisations encouragent ainsi des publics divers à adopter des approches agroécologiques. Avec le soutien technique de Stats4SD et de petites subventions du Fonds pour l'agroécologie, ces organisations ont construit un ensemble croissant de connaissances qui informent et inspirent les transitions agroécologiques dans le monde entier."
 
 #: resources\views\home\info.blade.php:28
 msgid ""
@@ -733,7 +733,7 @@ msgstr "Ce catalogue présente les cas développés en 2024 et reste ouvert aux 
 msgid ""
 "We extend our gratitude to the farmers, Indigenous communities, and grassroots groups whose experiences shape \n"
 "            this work. <b>Join us in sharing and building up the evidence for agroecology!</b>"
-msgstr "Nous exprimons notre gratitude aux agriculteurs, communautés autochtones et ONGs dont les expériences ont façonné ce travail. <b>Rejoignez-nous pour partager et rassembler les preuves en faveur de l'agroécologie !</b>"
+msgstr "Nous exprimons notre gratitude aux agriculteurs, communautés autochtones et organisations locales dont les expériences ont façonné ce travail. <b>Rejoignez-nous pour partager et rassembler les preuves en faveur de l'agroécologie !</b>"
 
 #: resources\views\home\info.blade.php:44
 msgid "WHAT IS AN EVIDENCE-BASED CASE?"
@@ -762,11 +762,11 @@ msgstr "Chaque cas suit une approche structurée afin de garantir <b>clarté, co
 
 #: resources\views\home\info.blade.php:55
 msgid "<b>A clear claim</b> - a specific statement or argument that demonstrates the value of agroecology."
-msgstr "<b>Un énoncé clair</b> - un énoncé ou un argument spécifique qui démontre la valeur de l'agroécologie."
+msgstr "<b>Un énoncé clair</b> - une affirmation ou un argument spécifique qui démontre la valeur de l'agroécologie."
 
 #: resources\views\home\info.blade.php:56
 msgid "<b>A defined target audience</b> - shaping the case based on the values and priorities of the intended audience."
-msgstr "<b>Un public cible défini</b> - des cas élaborés en fonction des valeurs et des priorités du public visé."
+msgstr "<b>Un public cible défini</b> - les cas sont élaborés en fonction des valeurs et des priorités du public visé."
 
 #: resources\views\home\info.blade.php:57
 msgid "<b>A strategic approach</b> - outlining how the case will be argued effectively."
@@ -774,11 +774,11 @@ msgstr "<b>Une approche stratégique</b> - décrivant la manière avec laquelle 
 
 #: resources\views\home\info.blade.php:58
 msgid "<b>Supporting evidence</b> - carefully selected information that substantiates the claim."
-msgstr "<b>Preuves à l'appui</b> - avec des informations soigneusement sélectionnées qui étayent l'affirmation."
+msgstr "<b>Des preuves</b> - informations soigneusement sélectionnées qui étayent l'affirmation."
 
 #: resources\views\home\info.blade.php:59
 msgid "<b>Context and interpretation</b> - explaining how the evidence is relevant and compelling for the audience."
-msgstr "<b>Contexte et interprétation</b> - afin d'expliquer en quoi les preuves sont pertinentes et convaincantes pour le public cible."
+msgstr "<b>Un contexte réfléchi</b> - afin d'expliquer en quoi les preuves sont pertinentes et convaincantes pour le public cible."
 
 #: resources\views\home\info.blade.php:60
 msgid "<b>A call to action</b> - a targeted message encouraging a concrete response."
@@ -802,27 +802,27 @@ msgstr "Toutes les informations ne sont pas des preuves. Dans le contexte de ce 
 
 #: resources\views\home\info.blade.php:70
 msgid "Evidence in these cases:"
-msgstr "Preuve dans ces cas :"
+msgstr "Une preuve appuyant un cas est :"
 
 #: resources\views\home\info.blade.php:72
 msgid "<b>Is purposeful</b> - compiled specifically to support a claim and persuade an audience."
-msgstr "<b>Est intentionnel</b> - compilé spécifiquement pour soutenir une affirmation et persuader un public."
+msgstr "<b>Intentionnelle</b> - compilée spécifiquement pour soutenir une affirmation et persuader un public."
 
 #: resources\views\home\info.blade.php:73
 msgid "<b>Is integrated</b> - presented in context, alongside other relevant information."
-msgstr "<b>Est intégré</b> - présenté dans son contexte, accompagné d'autres informations pertinentes."
+msgstr "<b>Intégrée</b> - présentée dans son contexte et accompagnée d'autres informations pertinentes."
 
 #: resources\views\home\info.blade.php:74
 msgid "<b>Is cumulative</b> - drawn from multiple sources to strengthen credibility."
-msgstr "<b>Est cumulatif</b> - tiré de plusieurs sources pour renforcer la crédibilité."
+msgstr "<b>Cumulative</b> - tirée de plusieurs sources pour renforcer la crédibilité."
 
 #: resources\views\home\info.blade.php:75
 msgid "<b>Is interpreted</b> - not just raw data but analyzed and explained to reinforce the argument."
-msgstr "<b>Est interprété</b> - il ne s'agit pas simplement de données brutes, mais de leur analyse et explication afin d'appuyer l'argumentation."
+msgstr "<b>Interprétée</b> - il ne s'agit pas simplement de données brutes. Une preuve est analysée et expliquée afin d'appuyer l'argumentation."
 
 #: resources\views\home\info.blade.php:76
 msgid "<b>Is coherent</b> - linking context, framework, and supporting information into a compelling narrative."
-msgstr "<b>Est cohérent</b> - relie le contexte, le cadre et les informations complémentaires dans un récit convaincant."
+msgstr "<b>Cohérente</b> - elle relie le contexte, le cadre et les informations complémentaires dans un récit convaincant."
 
 #: resources\views\home\info.blade.php:79
 msgid ""
@@ -841,7 +841,7 @@ msgid ""
 "                agroecology in partnership with grassroots organisations, we have developed an online training course to support building new cases. \n"
 "                This course provides a clear framework to help you create compelling cases that persuade target audiences about the <b>value and \n"
 "                impact of agroecology.</b>"
-msgstr "L'élaboration d'arguments solides et fondés sur des preuves en faveur de l'agroécologie nécessite une <b>réflexion critique, une argumentation structurée</b> et <b>une communication efficace.</b> A partir de l'expérience acquise lors de l'élaboration de la méthodologie de construction d'arguments fondés sur des preuves en faveur de l'agroécologie en partenariat avec des ONGs, nous avons développé un cours de formation en ligne pour soutenir la construction de nouveaux cas. Ce cours fournit un cadre clair pour vous aider à créer des cas convaincants qui persuadent les publics cibles de l'<b>utilité et de l'impact de l'agroécologie.</b>"
+msgstr "L'élaboration d'arguments solides et fondés sur des preuves en faveur de l'agroécologie nécessite une <b>réflexion critique, une argumentation structurée</b> et <b>une communication efficace.</b> A partir de l'expérience acquise lors de l'élaboration d'une méthodologie de construction d'arguments fondés sur des preuves en faveur de l'agroécologie en partenariat avec des organisations locales, nous avons développé un cours de formation en ligne pour soutenir la construction de nouveaux cas. Ce cours fournit un cadre clair pour vous aider à créer des cas convaincants qui persuadent les publics cibles de l'<b>utilité et de l'impact de l'agroécologie.</b>"
 
 #: resources\views\home\info.blade.php:108
 msgid "The course is <b>free of charge</b> and available online, allowing you to take it at your own convenience."
@@ -885,7 +885,7 @@ msgstr "Suivre un <b>processus étape par étape</b> d'élaboration de cas fond�
 
 #: resources\views\home\info.blade.php:132
 msgid "And to be prepared to <b>use their case for advocacy</b> and awareness-raising."
-msgstr "Et se préparer à <b>utiliser leur cas pour défendre leur cause</b> et sensibiliser l'opinion publique."
+msgstr "Et être préparé à <b>utiliser un cas pour défendre une cause</b> et sensibiliser l'opinion publique."
 
 #: resources\views\home\info.blade.php:136
 msgid "Register Today"
@@ -897,7 +897,7 @@ msgstr "Nous vous invitons à vous <b>inscrire dès maintenant</b> et à profite
 
 #: resources\views\home\info.blade.php:143
 msgid "and register for the “Grassroots Evidence for Agroecology” course."
-msgstr "et s'inscrire au cours \"Grassroots Evidence for Agroecology\"."
+msgstr "et inscrivez-vous au cours \"Grassroots Evidence for Agroecology\"."
 
 #: resources\views\home\info.blade.php:147
 msgid ""
@@ -927,7 +927,7 @@ msgid ""
 "We believe that the experience and knowledge accumulated by millions of grassroots organisation members are crucial in advocating for agroecology as a \n"
 "                means of transforming food systems. Strong, logical arguments, supported by diverse and relevant evidence, are essential for encouraging changes in how \n"
 "                we produce, exchange, and consume food. Such arguments will help influencing the minds of agents of change and decision-makers."
-msgstr "Nous pensons que l'expérience et les connaissances accumulées par des millions d'ONGs sont essentielles pour promouvoir l'agroécologie comme moyen de transformation des systèmes alimentaires. Des arguments solides, étayés par des preuves diverses et pertinentes, sont essentiels pour encourager les changements dans la manière dont nous produisons, échangeons et consommons la nourriture. Ces arguments permettront d'influencer les opinions des agents du changement et des décideurs."
+msgstr "Nous pensons que l'expérience et les connaissances accumulées par des millions d'organisations locales sont essentielles pour promouvoir l'agroécologie comme moyen de transformation des systèmes alimentaires. Des arguments solides, étayés par des preuves diverses et pertinentes, sont essentiels pour encourager les changements dans la manière dont nous produisons, échangeons et consommons la nourriture. Ces arguments permettront d'influencer les opinions des agents du changement et des décideurs."
 
 #: resources\views\home\info.blade.php:174
 msgid ""
@@ -939,7 +939,7 @@ msgstr "La promotion de l'agroécologie à partir de preuves concrètes permet d
 msgid "RECENTLY ADDED CASES"
 msgstr "CAS RÉCEMMENT AJOUTÉS"
 
-#: resources\views\home\recent-cases.blade.php:63
+#: resources\views\home\recent-cases.blade.php:64
 msgid "BROWSE ALL CASES"
 msgstr "PARCOURIR L'ENSEMBLE DES CAS"
 
@@ -987,6 +987,6 @@ msgstr "EFFACER LES FILTRES"
 msgid "SHOWING "
 msgstr "AFFICHAGE "
 
-#: resources\views\livewire\search-cases.blade.php:304
+#: resources\views\livewire\search-cases.blade.php:305
 msgid "No cases found matching your search criteria."
 msgstr "Aucun cas ne correspond à vos critères de recherche."
