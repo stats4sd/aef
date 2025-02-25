@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-24T10:55:39+00:00\n"
-"PO-Revision-Date: 2025-02-24 11:55+0100\n"
+"POT-Creation-Date: 2025-02-25T09:06:47+00:00\n"
+"PO-Revision-Date: 2025-02-25 10:06+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -35,8 +35,8 @@ msgstr "Idioma"
 
 #: app\Filament\Admin\Resources\LanguageResource.php:31
 #: resources\views\cases\index.blade.php:29
-#: resources\views\home\recent-cases.blade.php:36
-#: resources\views\livewire\search-cases.blade.php:284
+#: resources\views\home\recent-cases.blade.php:37
+#: resources\views\livewire\search-cases.blade.php:285
 msgid "Languages"
 msgstr "Idiomas"
 
@@ -53,37 +53,37 @@ msgid "Cases"
 msgstr "Casos"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:50
-#: app\Filament\App\Resources\StudyCaseResource.php:49
-#: app\Filament\App\Resources\StudyCaseResource.php:394
+#: app\Filament\App\Resources\StudyCaseResource.php:52
+#: app\Filament\App\Resources\StudyCaseResource.php:397
 msgid "Title"
 msgstr "Título"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:55
-#: app\Filament\App\Resources\StudyCaseResource.php:103
+#: app\Filament\App\Resources\StudyCaseResource.php:106
 #: resources\views\cases\other.blade.php:49
 msgid "Leading organisation"
 msgstr "Organización líder"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:61
-#: app\Filament\App\Resources\StudyCaseResource.php:55
-#: app\Filament\App\Resources\StudyCaseResource.php:399
+#: app\Filament\App\Resources\StudyCaseResource.php:58
+#: app\Filament\App\Resources\StudyCaseResource.php:402
 msgid "Year of development"
 msgstr "Año de desarrollo"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:67
 #: app\Filament\Admin\Resources\StudyCaseResource.php:77
-#: app\Filament\App\Resources\StudyCaseResource.php:405
+#: app\Filament\App\Resources\StudyCaseResource.php:408
 msgid "Ready for review"
 msgstr "Listo para revisión"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:72
 #: app\Filament\Admin\Resources\StudyCaseResource.php:78
-#: app\Filament\App\Resources\StudyCaseResource.php:410
+#: app\Filament\App\Resources\StudyCaseResource.php:413
 msgid "Reviewed"
 msgstr "Revisado"
 
 #: app\Filament\Admin\Resources\StudyCaseResource.php:83
-#: app\Filament\App\Resources\StudyCaseResource.php:427
+#: app\Filament\App\Resources\StudyCaseResource.php:430
 msgid "Preview"
 msgstr "Vista previa"
 
@@ -144,19 +144,19 @@ msgid "Has this source already been added in the communication products section?
 msgstr "¿Se ha añadido ya esta fuente en la sección de productos de comunicación?"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:52
-#: app\Filament\App\Resources\StudyCaseResource.php:260
-#: app\Filament\App\Resources\StudyCaseResource.php:331
+#: app\Filament\App\Resources\StudyCaseResource.php:263
+#: app\Filament\App\Resources\StudyCaseResource.php:334
 msgid "Description"
 msgstr "Descripción"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:57
-#: app\Filament\App\Resources\StudyCaseResource.php:265
+#: app\Filament\App\Resources\StudyCaseResource.php:268
 msgid "URL"
 msgstr "URL"
 
 #: app\Filament\App\Resources\ClaimResource\RelationManagers\EvidencesRelationManager.php:67
-#: app\Filament\App\Resources\StudyCaseResource.php:278
-#: app\Filament\App\Resources\StudyCaseResource.php:336
+#: app\Filament\App\Resources\StudyCaseResource.php:281
+#: app\Filament\App\Resources\StudyCaseResource.php:339
 msgid "File"
 msgstr "Archivo"
 
@@ -210,8 +210,8 @@ msgstr "Organizaciones asociadas"
 
 #: app\Filament\App\Resources\OrganisationResource.php:44
 #: app\Filament\App\Resources\OrganisationResource.php:79
-#: app\Filament\App\Resources\StudyCaseResource.php:82
-#: app\Filament\App\Resources\StudyCaseResource.php:131
+#: app\Filament\App\Resources\StudyCaseResource.php:85
+#: app\Filament\App\Resources\StudyCaseResource.php:134
 #: resources\views\cases\other.blade.php:64
 #: resources\views\cases\other.blade.php:110
 msgid "Name"
@@ -219,7 +219,7 @@ msgstr "Nombre"
 
 #: app\Filament\App\Resources\OrganisationResource.php:48
 #: app\Filament\App\Resources\OrganisationResource.php:83
-#: app\Filament\App\Resources\StudyCaseResource.php:135
+#: app\Filament\App\Resources\StudyCaseResource.php:138
 #: resources\views\cases\other.blade.php:68
 #: resources\views\cases\other.blade.php:114
 msgid "Website"
@@ -227,7 +227,7 @@ msgstr "Página web"
 
 #: app\Filament\App\Resources\OrganisationResource.php:67
 #: app\Filament\App\Resources\OrganisationResource.php:87
-#: app\Filament\App\Resources\StudyCaseResource.php:143
+#: app\Filament\App\Resources\StudyCaseResource.php:146
 msgid "Note"
 msgstr "Nota"
 
@@ -235,190 +235,190 @@ msgstr "Nota"
 msgid "Basic Information"
 msgstr "Información básica"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:62
+#: app\Filament\App\Resources\StudyCaseResource.php:65
 msgid "Language(s)"
 msgstr "Idioma(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:63
+#: app\Filament\App\Resources\StudyCaseResource.php:66
 msgid "An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it."
 msgstr "Se le proporcionará una lista inicial de idiomas, pero si el idioma de su caso no figura en la lista, podrá escribirla."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:70
+#: app\Filament\App\Resources\StudyCaseResource.php:73
 msgid "Other language(s)"
 msgstr "Otros idiomas"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:71
+#: app\Filament\App\Resources\StudyCaseResource.php:74
 msgid "Please enter other language(s) here if they are not existed in the language(s) selection box above"
 msgstr "Por favor, introduzca aquí otro(s) idioma(s) si no existe(n) en la casilla de selección de idioma(s) anterior(es)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:75
+#: app\Filament\App\Resources\StudyCaseResource.php:78
 msgid "Tag(s) / keyword(s)"
 msgstr "Etiqueta(s) / palabra(s) clave(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:88
+#: app\Filament\App\Resources\StudyCaseResource.php:91
 msgid "Country(ies) covered"
 msgstr "Países cubiertos"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:89
+#: app\Filament\App\Resources\StudyCaseResource.php:92
 msgid "Select the country(ies) covered in your case"
 msgstr "Seleccione el país o los países relacionados con su caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:96
+#: app\Filament\App\Resources\StudyCaseResource.php:99
 #: resources\views\cases\index.blade.php:72
 msgid "Geographic area"
 msgstr "Zona geográfica"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:97
+#: app\Filament\App\Resources\StudyCaseResource.php:100
 msgid "If you want to be more specific about the geographic area, please describe it here"
 msgstr "Si desea ser más específico sobre la zona geográfica, descríbala aquí"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:106
+#: app\Filament\App\Resources\StudyCaseResource.php:109
 msgid "Organisation name"
 msgstr "Nombre de la organización"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:110
+#: app\Filament\App\Resources\StudyCaseResource.php:113
 msgid "Contact person name"
 msgstr "Nombre de la persona de contacto"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:115
+#: app\Filament\App\Resources\StudyCaseResource.php:118
 msgid "Contact person email"
 msgstr "Correo electrónico de la persona de contacto"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:121
 #: app\Filament\App\Resources\StudyCaseResource.php:124
+#: app\Filament\App\Resources\StudyCaseResource.php:127
 msgid "Partner organisation(s)"
 msgstr "Organización(es) asociada(s)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:125
+#: app\Filament\App\Resources\StudyCaseResource.php:128
 msgid "List of partner organisation(s) that worked in the development of the case"
 msgstr "Lista de organizaciones asociadas que han trabajado en el desarrollo del caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:153
+#: app\Filament\App\Resources\StudyCaseResource.php:156
 msgid "Case Details"
 msgstr "Detalles del caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:159
+#: app\Filament\App\Resources\StudyCaseResource.php:162
 msgid "Statement(s)"
 msgstr "Declaración(es)"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:160
+#: app\Filament\App\Resources\StudyCaseResource.php:163
 msgid "e.g., If __________ then __________"
 msgstr "por ejemplo, Si __________ entonces __________"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:174
+#: app\Filament\App\Resources\StudyCaseResource.php:177
 msgid "Description of the target audience(s)"
 msgstr "Descripción de las audiencias objectivo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:188
+#: app\Filament\App\Resources\StudyCaseResource.php:191
 msgid "Target audience(s)'s priorities and values"
 msgstr "Prioridades y valores del audiencia objetivo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:189
+#: app\Filament\App\Resources\StudyCaseResource.php:192
 msgid "if you have more than one target audience/s, you can list them separately"
 msgstr "si tiene más de un audiencia objetivo, puede enumerarlos por separado"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:203
+#: app\Filament\App\Resources\StudyCaseResource.php:206
 msgid "Framing(s) of the case"
 msgstr "Encuadre(s) del caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:204
+#: app\Filament\App\Resources\StudyCaseResource.php:207
 msgid "based on your audience's priorities and way of understanding the issues at hand"
 msgstr "en función de las prioridades y la forma de entender los temas de su audiencia objetivo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:218
+#: app\Filament\App\Resources\StudyCaseResource.php:221
 msgid "Description of the strategy(ies) to argue the case"
 msgstr "Descripción de la(s) estrategia(s) para argumentar el caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:219
+#: app\Filament\App\Resources\StudyCaseResource.php:222
 msgid "e.g., is it a comparison? A value and rights-based argument?"
 msgstr "por ejemplo, ¿se trata de una comparación? ¿Un argumento basado en valores y derechos?"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:233
+#: app\Filament\App\Resources\StudyCaseResource.php:236
 msgid "Call to action(s)"
 msgstr "Llamada a la acción"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:248
+#: app\Filament\App\Resources\StudyCaseResource.php:251
 msgid "Communication Product(s)"
 msgstr "Producto(s) de comunicación"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:254
+#: app\Filament\App\Resources\StudyCaseResource.php:257
 msgid "Communication product(s)"
 msgstr "Producto(s) de comunicación"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:255
+#: app\Filament\App\Resources\StudyCaseResource.php:258
 msgid "Description, web address and link to upload communication products: documents, videos and/or audio files"
 msgstr "Descripción, dirección web y enlace para cargar productos de comunicación: documentos, vídeos y/o archivos de audio"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:274
+#: app\Filament\App\Resources\StudyCaseResource.php:277
 msgid "Youtube ID"
 msgstr "Youtube ID"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:275
+#: app\Filament\App\Resources\StudyCaseResource.php:278
 msgid "To enbed a youtube video, add the id. On YouTube, when you hit \"share\", the id is the random-like string after https://youtu.be/"
 msgstr "Para incrustar un vídeo de YouTube, añade el id. En YouTube, cuando pulsas \"compartir\", el id es la cadena aleatoria que aparece después de https://youtu.be/"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:287
+#: app\Filament\App\Resources\StudyCaseResource.php:290
 msgid "Add communication product"
 msgstr "Añadir producto de comunicación"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:293
+#: app\Filament\App\Resources\StudyCaseResource.php:296
 #: resources\views\cases\other.blade.php:12
 msgid "Photos"
 msgstr "Fotos"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:299
+#: app\Filament\App\Resources\StudyCaseResource.php:302
 msgid "Cover photo"
 msgstr "Foto de portada"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:300
+#: app\Filament\App\Resources\StudyCaseResource.php:303
 msgid "Please upload 1 cover photo for the case entry."
 msgstr "Por favor, cargue 1 foto de portada para la entrada del caso."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:313
+#: app\Filament\App\Resources\StudyCaseResource.php:316
 msgid "Organisation or project logo image"
 msgstr "Imagen del logotipo de la organización o del proyecto"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:314
+#: app\Filament\App\Resources\StudyCaseResource.php:317
 msgid "Please upload 1 organisation or project logo image for the case entry."
 msgstr "Por favor, cargue 1 imagen del logotipo de la organización o proyecto para la entrada del caso."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:325
+#: app\Filament\App\Resources\StudyCaseResource.php:328
 msgid "Catalogue photo(s)"
 msgstr "Fotos del catálogo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:326
+#: app\Filament\App\Resources\StudyCaseResource.php:329
 msgid "Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!"
 msgstr "Por favor, suba aquí hasta 5 fotos para la entrada del caso en el catálogo. Estas fotos nos ayudarán a que su entrada en el catálogo tenga un aspecto estupendo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:348
+#: app\Filament\App\Resources\StudyCaseResource.php:351
 msgid "Add photo"
 msgstr "Añadir foto"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:352
+#: app\Filament\App\Resources\StudyCaseResource.php:355
 msgid "Confirmation"
 msgstr "Confirmación"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:357
+#: app\Filament\App\Resources\StudyCaseResource.php:360
 msgid "Case Submitter Confirmation"
 msgstr "Confirmación del remitente del caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:363
+#: app\Filament\App\Resources\StudyCaseResource.php:366
 msgid "I confirm that all content is correct. This case is now ready for reviewer to review."
 msgstr "Confirmo que todo el contenido es correcto. Este caso ya está listo para que lo revise el revisor."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:364
+#: app\Filament\App\Resources\StudyCaseResource.php:367
 msgid "This is to be confirmed by case submitter"
 msgstr "El remitente del caso deberá confirmarlo"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:369
+#: app\Filament\App\Resources\StudyCaseResource.php:372
 msgid "Case Reviewer Confirmation"
 msgstr "Confirmación del revisor del caso"
 
-#: app\Filament\App\Resources\StudyCaseResource.php:375
+#: app\Filament\App\Resources\StudyCaseResource.php:378
 msgid "I confirm that all content has been reviewed. This case is now ready for publishing."
 msgstr "Confirmo que todo el contenido ha sido revisado. Este caso está listo para su publicación."
 
-#: app\Filament\App\Resources\StudyCaseResource.php:376
+#: app\Filament\App\Resources\StudyCaseResource.php:379
 msgid "This is to be confirmed by case reviewer"
 msgstr "Esto debe ser confirmado por el revisor del caso"
 
@@ -523,15 +523,15 @@ msgid "CALLS TO ACTION"
 msgstr "LLAMADAS A LA ACCIÓN"
 
 #: resources\views\cases\index.blade.php:10
-#: resources\views\home\recent-cases.blade.php:21
+#: resources\views\home\recent-cases.blade.php:22
 #: resources\views\livewire\search-cases.blade.php:247
-#: resources\views\livewire\search-cases.blade.php:269
+#: resources\views\livewire\search-cases.blade.php:270
 msgid "CASE"
 msgstr "CASO"
 
 #: resources\views\cases\index.blade.php:58
-#: resources\views\home\recent-cases.blade.php:49
-#: resources\views\livewire\search-cases.blade.php:297
+#: resources\views\home\recent-cases.blade.php:50
+#: resources\views\livewire\search-cases.blade.php:298
 msgid "Countries covered"
 msgstr "Países cubiertos"
 
@@ -585,11 +585,11 @@ msgstr ""
 "Productos de comunicación desarrollados para presentar el caso al público destinatario.\n"
 "                                Puede tratarse de vídeos, presentaciones, documentos u otros formatos pertinentes."
 
-#: resources\views\cases\products.blade.php:43
+#: resources\views\cases\products.blade.php:50
 msgid "Download "
 msgstr "Descargar"
 
-#: resources\views\cases\products.blade.php:53
+#: resources\views\cases\products.blade.php:60
 msgid "Visit link"
 msgstr "Visitar el enlace"
 
@@ -631,7 +631,7 @@ msgstr "Ver todos los casos"
 #: resources\views\header.blade.php:35
 #: resources\views\header.blade.php:74
 msgid "Recently added cases"
-msgstr "CASOS AÑADIDOS RECIENTEMENTE"
+msgstr "Casos añadidos recientemente"
 
 #: resources\views\header.blade.php:36
 #: resources\views\header.blade.php:75
@@ -948,7 +948,7 @@ msgstr "La incidencia, basada en pruebas evidencia, para promover la agroecolog�
 msgid "RECENTLY ADDED CASES"
 msgstr "CASOS AÑADIDOS RECIENTEMENTE"
 
-#: resources\views\home\recent-cases.blade.php:63
+#: resources\views\home\recent-cases.blade.php:64
 msgid "BROWSE ALL CASES"
 msgstr "VER TODOS LOS CASOS"
 
@@ -996,6 +996,6 @@ msgstr "LIMPIAR LOS FILTROS"
 msgid "SHOWING "
 msgstr "MOSTRANDO "
 
-#: resources\views\livewire\search-cases.blade.php:304
+#: resources\views\livewire\search-cases.blade.php:305
 msgid "No cases found matching your search criteria."
 msgstr "No se han encontrado casos que coincidan con sus criterios de búsqueda."
