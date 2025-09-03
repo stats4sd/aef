@@ -6,11 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css'])
-        @include('header')
         @livewireStyles
+        <script defer data-domain="{{ config('app.url') }}" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.js"></script>
     </head>
 
     <body>
+        @include('header')
         <div class=" mx-auto">
             @yield('content')
             @livewireScripts
