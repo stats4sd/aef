@@ -1,28 +1,35 @@
 <?php
 
-namespace App\Filament\App\Resources\StudyCaseResource\RelationManagers;
+namespace App\Filament\App\Resources\StudyCaseResource\Pages;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Filament\Facades\Filament;
-use Filament\Forms\Components\Wizard;
-use Filament\Forms\Components\Section;
-use Filament\Tables\Actions\EditAction;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\App\Resources\ClaimResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Resources\RelationManagers\RelationManager;
+use App\Filament\App\Resources\StudyCaseResource;
+use Filament\Facades\Filament;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Pages\ManageRelatedRecords;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
-class ClaimsRelationManager extends RelationManager
+class ManageCaseStudyClaims extends ManageRelatedRecords
 {
+    protected static string $resource = StudyCaseResource::class;
+
     protected static string $relationship = 'claims';
 
-    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    public static function getNavigationLabel(): string
+    {
+        return t('Claims and Evidence');
+    }
+
+    public static function getNavigationIcon(): string|Htmlable|null
+    {
+        return 'heroicon-o-arrow-trending-up';
+    }
+
+    public function getTitle(): string
     {
         return t('Claims and Evidence');
     }
@@ -69,14 +76,14 @@ class ClaimsRelationManager extends RelationManager
             ])
             ->actions([
                 // redirect to Claim edit page instead of editing a claim in popup modal
-                Tables\Actions\EditAction::make()
-                    ->url(fn(Model $record, $livewire): string => ClaimResource::getUrl(
-                        'edit',
-                        ['record' => $record, 'ownerRecord' => $livewire->ownerRecord->getKey()],
-                        true,
-                        null,
-                        auth()->user()->getDefaultTenant(Filament::getCurrentPanel())
-                    )),
+                //                Tables\Actions\EditAction::make()
+                //                    ->url(fn (Model $record, $livewire): string => ClaimResource::getUrl(
+                //                        'edit',
+                //                        ['record' => $record, 'ownerRecord' => $livewire->getOwnerRecord()->getKey()],
+                //                        true,
+                //                        null,
+                //                        auth()->user()->getDefaultTenant(Filament::getCurrentPanel())
+                //                    )),
 
                 // customise modal heading in popup modal
                 // claim statement is a long rich text which is not suitable to be showed as modal heading
