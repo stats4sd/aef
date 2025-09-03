@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css'])
         @livewireStyles
-        <script defer data-domain="{{ config('app.url') }}" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.js"></script>
+        <script defer data-domain="{{ \Illuminate\Support\Str::replace('https://', '', config('app.url')) }}" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.js"></script>
     </head>
 
     <body>
