@@ -25,10 +25,10 @@ class EditClaim extends EditRecord
         $casesUrl = route('filament.admin.resources.study-cases.index');
         $breadcrumbs[$casesUrl] = 'Cases';
 
-        $studyCaseEditUrl = route('filament.admin.resources.study-cases.edit', ['record' => $studyCase->id]);
+        $studyCaseEditUrl = route('filament.admin.resources.study-cases.manage-case-study-claims', ['record' => $studyCase->id]);
         $breadcrumbs[$studyCaseEditUrl] = $studyCase->title;
     
-        $claimsUrl = $studyCaseEditUrl . '?tab=-tab-1-tab&activeRelationManager=0';
+        $claimsUrl = $studyCaseEditUrl;
         $breadcrumbs[$claimsUrl] = 'Claims';
 
         $breadcrumbs[] = 'Edit';
@@ -51,7 +51,8 @@ class EditClaim extends EditRecord
 
         $ownerRecordId = $params['ownerRecord'];
 
-        $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
+        // $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
+        $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/manage-case-study-claims';
 
         return $redirectUrl;
     }
