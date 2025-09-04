@@ -39,6 +39,8 @@ class EditBasicInformation extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            // TODO: support multiple languages
+            Actions\Action::make('Save')->action('save')->label('Save changes'),
             Actions\DeleteAction::make(),
         ];
     }
