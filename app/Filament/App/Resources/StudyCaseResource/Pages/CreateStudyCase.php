@@ -26,14 +26,14 @@ class CreateStudyCase extends CreateRecord
         return $data;
     }
 
-    // redirect to Edit view tab 2 after record creation
+    // redirect to Edit basic information page after record creation
     protected function getRedirectUrl(): string
     {
         $appUrl = config('app.url');
         $latestTeamId = auth()->user()->latestTeam->id;
         $recordId = $this->record->id;
 
-        $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $recordId . '/edit?tab=-tab-2-tab';
+        $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $recordId . '/edit-basic-information';
 
         return $redirectUrl;
     }

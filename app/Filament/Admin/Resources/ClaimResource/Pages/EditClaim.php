@@ -51,7 +51,6 @@ class EditClaim extends EditRecord
 
         $ownerRecordId = $params['ownerRecord'];
 
-        // $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
         $redirectUrl = $appUrl . '/admin/study-cases/' . $ownerRecordId . '/manage-case-study-claims';
 
         return $redirectUrl;

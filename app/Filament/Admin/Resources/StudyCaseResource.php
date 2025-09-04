@@ -121,7 +121,7 @@ class StudyCaseResource extends Resource
             'index' => Pages\ListStudyCases::route('/'),
 
             // TODO:
-            // disable route for creating a new study case
+            // remove or disable route for creating a new study case
             // reviewer should not be able to create new study case.
             // study case should be created by leading organisation member.
             'create' => Pages\CreateStudyCase::route('/create'),
