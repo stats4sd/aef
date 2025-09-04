@@ -29,7 +29,7 @@ class EditClaim extends EditRecord
         ]);
         $breadcrumbs[$casesUrl] = 'Cases';
 
-        $studyCaseEditUrl = route('filament.app.resources.study-cases.edit', [
+        $studyCaseEditUrl = route('filament.app.resources.study-cases.manage-case-study-claims', [
             'tenant' => $latestTeamId,
             'record' => $studyCase->id,
         ]);
