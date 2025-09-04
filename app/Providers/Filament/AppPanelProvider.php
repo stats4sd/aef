@@ -113,6 +113,6 @@ class AppPanelProvider extends PanelProvider
                             ]),
                     ]);
             })
-        ;
+            ->unsavedChangesAlerts();
     }
 }

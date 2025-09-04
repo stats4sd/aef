@@ -16,14 +16,29 @@ use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
 use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
-use App\Filament\Admin\Resources\StudyCaseResource\Pages;
 use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
+use Filament\Pages\SubNavigationPosition;
+use Filament\Resources\Pages\Page;
+use App\Filament\App\Resources\StudyCaseResource\Pages;
 
 class StudyCaseResource extends Resource
 {
     protected static ?string $model = StudyCase::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            Pages\EditBasicInformation::class,
+            Pages\EditCaseDetails::class,
+            Pages\EditCommunicationProducts::class,
+            Pages\EditPhotos::class,
+            Pages\ManageCaseStudyClaims::class,
+        ]);
+    }
 
     // define translatable string in function
     public static function getModelLabel(): string
@@ -97,9 +112,7 @@ class StudyCaseResource extends Resource
     // re-use app panel Study case relation manager for claims
     public static function getRelations(): array
     {
-        return [
-            AppPanelClaimsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -107,13 +120,19 @@ class StudyCaseResource extends Resource
         return [
             'index' => Pages\ListStudyCases::route('/'),
 
-            // disable route for creating a new study case
+            // TODO:
+            // remove or disable route for creating a new study case
             // reviewer should not be able to create new study case.
             // study case should be created by leading organisation member.
+            'create' => Pages\CreateStudyCase::route('/create'),
 
-            // 'create' => Pages\CreateStudyCase::route('/create'),
-
-            'edit' => Pages\EditStudyCase::route('/{record}/edit'),
+            'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
+            'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
+            'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
+            'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
+            'view' => Pages\ViewStudyCase::route('/{record}'),
+            'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
     }
+
 }
