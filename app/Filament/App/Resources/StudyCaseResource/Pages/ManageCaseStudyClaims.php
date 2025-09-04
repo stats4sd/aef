@@ -76,14 +76,14 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
             ])
             ->actions([
                 // redirect to Claim edit page instead of editing a claim in popup modal
-                //                Tables\Actions\EditAction::make()
-                //                    ->url(fn (Model $record, $livewire): string => ClaimResource::getUrl(
-                //                        'edit',
-                //                        ['record' => $record, 'ownerRecord' => $livewire->getOwnerRecord()->getKey()],
-                //                        true,
-                //                        null,
-                //                        auth()->user()->getDefaultTenant(Filament::getCurrentPanel())
-                //                    )),
+                Tables\Actions\EditAction::make()
+                    ->url(fn (Model $record, $livewire): string => ClaimResource::getUrl(
+                        'edit',
+                       ['record' => $record, 'ownerRecord' => $livewire->getOwnerRecord()->getKey()],
+                        true,
+                        null,
+                        auth()->user()->getDefaultTenant(Filament::getCurrentPanel())
+                    )),
 
                 // customise modal heading in popup modal
                 // claim statement is a long rich text which is not suitable to be showed as modal heading
