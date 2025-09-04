@@ -47,6 +47,8 @@ class AppPanelProvider extends PanelProvider
             ])
             ->login()
             ->passwordReset()
+            // change sidebar to top navigation, to discriminate from Admin panel
+            ->topNavigation()
             ->profile() // TODO: Implement more full-featured profile page
             ->darkMode(false)
             ->colors([
@@ -93,11 +95,12 @@ class AppPanelProvider extends PanelProvider
                     ...StudyCaseResource::getNavigationItems(),
                 ])
                     ->groups([
-                        NavigationGroup::make('Definitions')
-                            ->label(t('Definitions'))
-                            ->items([
-                                ...OrganisationResource::getNavigationItems(),
-                            ]),
+                        // remove "Partner Organisations" from sidebar
+                        // NavigationGroup::make('Definitions')
+                        //     ->label(t('Definitions'))
+                        //     ->items([
+                        //         ...OrganisationResource::getNavigationItems(),
+                        //     ]),
                         // create a navigation group without label, nothing will be showed for non admin user
                         NavigationGroup::make('')
                             ->items([
