@@ -33,6 +33,7 @@ class StudyCaseResource extends Resource
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
             Pages\ManageCaseStudyClaims::class,
+            Pages\EditConfirmation::class,
         ]);
     }
 
@@ -107,6 +108,7 @@ class StudyCaseResource extends Resource
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
+            'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
             'view' => Pages\ViewStudyCase::route('/{record}'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];

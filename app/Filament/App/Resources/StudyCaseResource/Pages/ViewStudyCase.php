@@ -15,4 +15,7 @@ class ViewStudyCase extends ViewRecord
     {
         return true;
     }
+
+    // TODO: when user click "View" button in list page, it should show study case Basic Information page in read-only mode
+    
 }
