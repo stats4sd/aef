@@ -14,7 +14,12 @@ enum StudyCaseStatus: string implements HasLabel, HasDescription
 
     public function getLabel(): ?string
     {
-        return $this->name;
+        return match ($this) {
+            self::Proposal => 'Proposal',
+            self::Development => 'Development',
+            self::ReadyForReview => 'Ready for review',
+            self::Reviewed => 'Reviewed',
+        };
     }
 
     public function getDescription(): ?string
