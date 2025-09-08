@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources;
 
+use App\Enums\StudyCaseStatus;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
 use App\Models\StudyCase;
 use Filament\Forms;
@@ -75,12 +76,13 @@ class StudyCaseResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
                     ->hidden(function ($record) {
-                        return $record->reviewed;
+                        return $record->status == StudyCaseStatus::Reviewed;
                     }),
                 // view action only available when case can no longer be edited
-                Tables\Actions\ViewAction::make()->hidden(function ($record) {
-                    return !$record->reviewed;
-                }),
+                Tables\Actions\ViewAction::make()
+                    ->visible(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
                 Tables\Actions\Action::make('preview_catalogue')
                     ->label(t('Preview'))
                     ->icon('heroicon-o-book-open')
