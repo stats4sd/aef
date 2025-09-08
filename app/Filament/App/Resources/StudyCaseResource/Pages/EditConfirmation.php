@@ -57,6 +57,24 @@ class EditConfirmation extends EditRecord
             // TODO: check if user has ticked checkbox
             // TODO: it is more preferred to move this button inside the corresponding section, instead of adding it as a header button
 
+            // Proposal for reviewer, further develop proposal
+            Actions\Action::make('further_develop_proposal')
+                ->requiresConfirmation()
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && auth()->user()->isAdmin())
+                ->action(function ($record) {                    
+                    $record->status = StudyCaseStatus::Development;
+                    $record->save();
+                }),
+
+            // Proposal for reviewer, close proposal
+            Actions\Action::make('close_proposal')
+                ->requiresConfirmation()
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && auth()->user()->isAdmin())
+                ->action(function ($record) {                    
+                    $record->status = StudyCaseStatus::Closed;
+                    $record->save();
+                }),
+
             // Development for case submitter
             Actions\Action::make('send_request_for_review')
                 ->label('Send request')
@@ -88,6 +106,26 @@ class EditConfirmation extends EditRecord
         // show the corresponding section per status per role
 
         return $form->schema([
+
+            // Proposal for submitter
+            Section::make(t('Proposal to be reviewed'))
+                ->icon('heroicon-o-check-circle')
+                ->description(t('It is now pending on reviewer to review and determine to further develop or close this study case'))
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && !auth()->user()->isAdmin()),
+                
+            // Proposal for reviewer
+            Section::make(t('Case Reviewer Confirmation'))
+                ->icon('heroicon-o-check-circle')
+                ->description(t('Review and determine to further develop or close this study case'))
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && auth()->user()->isAdmin()),
+
+
+            // Closed
+            Section::make(t('Reviewed and closed'))
+                ->icon('heroicon-o-check-circle')
+                ->description(t('The case has been reviewed and closed'))
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Closed),
+
 
             // Development for submitter
             Section::make(t('Case Submitter Confirmation'))
