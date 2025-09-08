@@ -63,6 +63,11 @@ class StudyCase extends Model implements HasMedia
                 }
             }
         });
+
+        // newly created study case should have status "Proposal"
+        static::creating(function ($item) {
+            $item->status = StudyCaseStatus::Proposal;
+        });
     }
 
     // leading organisation
