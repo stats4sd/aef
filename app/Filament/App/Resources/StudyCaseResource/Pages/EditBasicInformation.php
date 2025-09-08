@@ -113,7 +113,7 @@ class EditBasicInformation extends EditRecord
 
                     Section::make(t('Leading organisation'))
                         // hide this section when status is Proposal or Ready for development
-                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal || $record->status == StudyCaseStatus::ReadyForDevelopment)
+                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal)
                         ->schema([
                             Placeholder::make('leading_organisation')
                                 ->label(t('Organisation name'))
@@ -133,7 +133,7 @@ class EditBasicInformation extends EditRecord
 
                     Section::make(t('Partner organisation(s)'))
                         // hide this section when status is Proposal or Ready for development
-                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal || $record->status == StudyCaseStatus::ReadyForDevelopment)
+                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal)
                         ->schema([
                             Select::make('organisations')
                                 ->label(t('Partner organisation(s)'))

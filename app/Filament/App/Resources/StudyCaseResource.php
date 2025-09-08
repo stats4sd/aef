@@ -28,6 +28,8 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
+        // Question: how to hide (or not adding) Confirmation page when study case status is Proposal?
+
         return $page->generateNavigationItems([
             Pages\EditBasicInformation::class,
             Pages\EditCaseDetails::class,

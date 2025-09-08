@@ -54,30 +54,8 @@ class EditConfirmation extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            // TODO: check if user has ticked checkbox "request_for_development"
+            // TODO: check if user has ticked checkbox
             // TODO: it is more preferred to move this button inside the corresponding section, instead of adding it as a header button
-
-            // Proposal for case submitter
-            Actions\Action::make('send_request_for_development')
-                ->label('Send request')
-                ->requiresConfirmation()
-                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && !auth()->user()->isAdmin())
-                // Question: How to check if user has ticked checkbox when user click "Send request" button?
-                ->action(function ($record) {                    
-                    $record->status = StudyCaseStatus::ReadyForDevelopment;
-                    $record->save();
-                }),
-
-            // Ready for development for reviewer
-            Actions\Action::make('approve_request_for_development')
-                ->label('Approve')
-                ->requiresConfirmation()
-                ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForDevelopment && auth()->user()->isAdmin())
-                // Question: How to check if user has ticked checkbox when user click "Approve" button?
-                ->action(function ($record) {                    
-                    $record->status = StudyCaseStatus::Development;
-                    $record->save();
-                }),
 
             // Development for case submitter
             Actions\Action::make('send_request_for_review')
@@ -110,47 +88,6 @@ class EditConfirmation extends EditRecord
         // show the corresponding section per status per role
 
         return $form->schema([
-
-            // Proposal for case submitter
-            Section::make(t('Case Submitter Confirmation'))
-                ->icon('heroicon-o-check-circle')
-                ->description(t('Request to change status from Proposal to Development'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && !auth()->user()->isAdmin())
-                ->schema([
-                    Checkbox::make('request_for_development')
-                        ->label(t('I confirm that all content is correct. This case is now ready for development.'))
-                        ->hint(t('This is to be confirmed by case submitter'))
-                        // Note: Validation is performed when user click "Save changes" button. ("Save changes" button is already hidden)
-                        // No validation is performed when user click "Send request" button.
-                        ->accepted()
-                        ->columnSpanFull(),
-               ]),
-
-            // Proposal for reviewer
-            Section::make(t('Status is Proposal'))
-                ->icon('heroicon-o-check-circle')
-                ->description(t('Case submitter is filling study case details.'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && auth()->user()->isAdmin()),
-
-
-            // Ready for development for case submitter
-            Section::make(t('Status is Ready for development'))
-                ->icon('heroicon-o-check-circle')
-                ->description(t('It is now pending on reviewer to approve to change status to Development'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForDevelopment && !auth()->user()->isAdmin()),
-
-            // Ready for development for reviewer
-            Section::make(t('Case Reviewer Confirmation'))
-                ->icon('heroicon-o-check-circle')
-                ->description(t('Request to change status from Proposal to Development'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForDevelopment && auth()->user()->isAdmin())
-                ->schema([
-                    Checkbox::make('approve_for_development')
-                        ->label(t('I confirm that all content is correct. This case is now ready for development.'))
-                        ->hint(t('This is to be confirmed by case reviewer'))
-                        ->columnSpanFull(),
-                ]),
-
 
             // Development for submitter
             Section::make(t('Case Submitter Confirmation'))
