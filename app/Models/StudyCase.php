@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Image\Enums\Fit;
 use Laravel\Scout\Searchable;
+use App\Enums\StudyCaseStatus;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -23,6 +24,7 @@ class StudyCase extends Model implements HasMedia
     protected $casts = [
         'ready_for_review' => 'boolean',
         'reviewed' => 'boolean',
+        'status' => StudyCaseStatus::class,
     ];
 
     protected static function booted()

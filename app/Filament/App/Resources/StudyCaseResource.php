@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources;
 
+use App\Enums\StudyCaseStatus;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
 use App\Models\StudyCase;
 use Filament\Forms;
@@ -33,6 +34,7 @@ class StudyCaseResource extends Resource
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
             Pages\ManageCaseStudyClaims::class,
+            Pages\EditConfirmation::class,
         ]);
     }
 
@@ -62,14 +64,8 @@ class StudyCaseResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->wrapHeader(),
-                Tables\Columns\IconColumn::make('ready_for_review')
-                    ->label(t('Ready for review'))
-                    ->boolean()
-                    ->sortable()
-                    ->wrapHeader(),
-                Tables\Columns\IconColumn::make('reviewed')
-                    ->label(t('Reviewed'))
-                    ->boolean()
+                Tables\Columns\TextColumn::make('status')
+                    ->label(t('Status'))
                     ->sortable(),
             ])
             ->filters([
@@ -80,12 +76,13 @@ class StudyCaseResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
                     ->hidden(function ($record) {
-                        return $record->reviewed;
+                        return $record->status == StudyCaseStatus::Reviewed;
                     }),
                 // view action only available when case can no longer be edited
-                Tables\Actions\ViewAction::make()->hidden(function ($record) {
-                    return !$record->reviewed;
-                }),
+                Tables\Actions\ViewAction::make()
+                    ->visible(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
                 Tables\Actions\Action::make('preview_catalogue')
                     ->label(t('Preview'))
                     ->icon('heroicon-o-book-open')
@@ -113,6 +110,7 @@ class StudyCaseResource extends Resource
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
+            'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
             'view' => Pages\ViewStudyCase::route('/{record}'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
