@@ -7,20 +7,21 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
+use App\Enums\StudyCaseStatus;
 use Filament\Resources\Resource;
+use Filament\Resources\Pages\Page;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
-use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
-use Filament\Pages\SubNavigationPosition;
-use Filament\Resources\Pages\Page;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
+use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
+use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
 use App\Filament\Admin\Resources\StudyCaseResource\Pages\ListStudyCases as AdminPanelListStudyCases;
+use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
 
 
 class StudyCaseResource extends Resource
@@ -81,19 +82,14 @@ class StudyCaseResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->wrapHeader(),
-                Tables\Columns\IconColumn::make('ready_for_review')
-                    ->label(t('Ready for review'))
-                    ->boolean()
-                    ->sortable()
-                    ->wrapHeader(),
-                Tables\Columns\IconColumn::make('reviewed')
-                    ->label(t('Reviewed'))
-                    ->boolean()
+                Tables\Columns\TextColumn::make('status')
+                    ->label(t('Status'))
                     ->sortable(),
+
             ])
             ->filters([
-                TernaryFilter::make('ready_for_review')->label(t('Ready for review')),
-                TernaryFilter::make('reviewed')->label(t('Reviewed')),
+                SelectFilter::make('status')
+                    ->options(StudyCaseStatus::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
