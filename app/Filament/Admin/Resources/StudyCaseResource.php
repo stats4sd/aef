@@ -20,6 +20,8 @@ use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
+use App\Filament\Admin\Resources\StudyCaseResource\Pages\ListStudyCases as AdminPanelListStudyCases;
+
 
 class StudyCaseResource extends Resource
 {
@@ -119,13 +121,8 @@ class StudyCaseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStudyCases::route('/'),
-
-            // TODO:
-            // remove or disable route for creating a new study case
-            // reviewer should not be able to create new study case.
-            // study case should be created by leading organisation member.
-            'create' => Pages\CreateStudyCase::route('/create'),
+            // use admin panel ListStudyCases, so that it will use table() function of this class
+            'index' => AdminPanelListStudyCases::route('/'),
 
             'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
