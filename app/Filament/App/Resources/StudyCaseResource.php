@@ -28,19 +28,20 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-        // Question: how to hide (or not adding) Confirmation page when study case status is Proposal?
-        //
-        // For case submitter to view study case with Proposal status, we may considered to show a message to indicate that 
-        // this study case is pending on reviewer to review and determine to further develop or close
-
-        return $page->generateNavigationItems([
+        $navigation = [
             Pages\EditBasicInformation::class,
             Pages\EditCaseDetails::class,
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
             Pages\ManageCaseStudyClaims::class,
-            Pages\EditConfirmation::class,
-        ]);
+        ];
+
+        // only show confirmation step if case is not in proposal stage
+        if ($page->getRecord()?->status !== StudyCaseStatus::Proposal) {
+            $navigation[] = Pages\EditConfirmation::class;
+        }
+
+        return $page->generateNavigationItems($navigation);
     }
 
     // define translatable string in function
