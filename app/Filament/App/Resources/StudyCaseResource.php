@@ -28,14 +28,20 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-        return $page->generateNavigationItems([
+        $navigation = [
             Pages\EditBasicInformation::class,
             Pages\EditCaseDetails::class,
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
             Pages\ManageCaseStudyClaims::class,
-            Pages\EditConfirmation::class,
-        ]);
+        ];
+
+        // only show confirmation step if case is not in proposal stage
+        if ($page->getRecord()?->status !== StudyCaseStatus::Proposal) {
+            $navigation[] = Pages\EditConfirmation::class;
+        }
+
+        return $page->generateNavigationItems($navigation);
     }
 
     // define translatable string in function
@@ -66,6 +72,7 @@ class StudyCaseResource extends Resource
                     ->wrapHeader(),
                 Tables\Columns\TextColumn::make('status')
                     ->label(t('Status'))
+                    ->badge()
                     ->sortable(),
             ])
             ->filters([

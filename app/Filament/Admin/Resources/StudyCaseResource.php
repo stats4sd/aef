@@ -7,19 +7,22 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
+use App\Enums\StudyCaseStatus;
 use Filament\Resources\Resource;
+use Filament\Resources\Pages\Page;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
-use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
-use Filament\Pages\SubNavigationPosition;
-use Filament\Resources\Pages\Page;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
+use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
+use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
+use App\Filament\Admin\Resources\StudyCaseResource\Pages\ListStudyCases as AdminPanelListStudyCases;
+use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
+use Filament\Tables\Filters\Filter;
 
 class StudyCaseResource extends Resource
 {
@@ -79,19 +82,26 @@ class StudyCaseResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->wrapHeader(),
-                Tables\Columns\IconColumn::make('ready_for_review')
-                    ->label(t('Ready for review'))
-                    ->boolean()
-                    ->sortable()
-                    ->wrapHeader(),
-                Tables\Columns\IconColumn::make('reviewed')
-                    ->label(t('Reviewed'))
-                    ->boolean()
+                Tables\Columns\TextColumn::make('status')
+                    ->label(t('Status'))
+                    ->badge()
                     ->sortable(),
+
             ])
             ->filters([
-                TernaryFilter::make('ready_for_review')->label(t('Ready for review')),
-                TernaryFilter::make('reviewed')->label(t('Reviewed')),
+                // apply this filter by default to exclude study case with status "closed"
+                //
+                // To show study cases with "closed" status, user needs to:
+                // 1. untick the checkbox of this filter
+                // 2. select "Closed" in "status" filter
+                Filter::make('hide_closed_cases')
+                    ->label('Hide closed cases')
+                    ->default()
+                    ->query(fn (Builder $query): Builder => $query->where('status', '!=', 'closed')),
+
+                // this filter works properly to show study cases for a selected status
+                SelectFilter::make('status')
+                    ->options(StudyCaseStatus::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -119,13 +129,8 @@ class StudyCaseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStudyCases::route('/'),
-
-            // TODO:
-            // remove or disable route for creating a new study case
-            // reviewer should not be able to create new study case.
-            // study case should be created by leading organisation member.
-            'create' => Pages\CreateStudyCase::route('/create'),
+            // use admin panel ListStudyCases, so that it will use table() function of this class
+            'index' => AdminPanelListStudyCases::route('/'),
 
             'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),

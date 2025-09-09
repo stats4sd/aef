@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources\StudyCaseResource\Pages;
 
+use App\Enums\StudyCaseStatus;
 use App\Filament\App\Resources\StudyCaseResource;
 use App\Models\StudyCase;
 use Filament\Actions;
@@ -111,6 +112,8 @@ class EditBasicInformation extends EditRecord
                         ->columnSpanFull(),
 
                     Section::make(t('Leading organisation'))
+                        // hide this section when status is Proposal or Ready for development
+                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal)
                         ->schema([
                             Placeholder::make('leading_organisation')
                                 ->label(t('Organisation name'))
@@ -129,6 +132,8 @@ class EditBasicInformation extends EditRecord
                         ]),
 
                     Section::make(t('Partner organisation(s)'))
+                        // hide this section when status is Proposal or Ready for development
+                        ->hidden(fn ($record) => $record->status == StudyCaseStatus::Proposal)
                         ->schema([
                             Select::make('organisations')
                                 ->label(t('Partner organisation(s)'))
