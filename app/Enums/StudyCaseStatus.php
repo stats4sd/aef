@@ -4,15 +4,18 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Contracts\HasDescription;
+use Filament\Support\Contracts\HasColor;
 
-enum StudyCaseStatus: string implements HasLabel, HasDescription
+enum StudyCaseStatus: string implements HasLabel, HasDescription, HasColor
 {
+    // define string values
     case Proposal = 'proposal';
     case Closed = 'closed';
     case Development = 'development';
     case ReadyForReview = 'ready_for_review';
     case Reviewed = 'reviewed';
 
+    // define labels
     public function getLabel(): ?string
     {
         return match ($this) {
@@ -24,6 +27,7 @@ enum StudyCaseStatus: string implements HasLabel, HasDescription
         };
     }
 
+    // define descritpions
     public function getDescription(): ?string
     {
         // Proposal       : user created a new study case (assumes user will inform reviewer offline when the study case is ready for review)
@@ -38,6 +42,23 @@ enum StudyCaseStatus: string implements HasLabel, HasDescription
             self::Development => 'This has been reviewed by reviewer, and decided to further develop',
             self::ReadyForReview => 'This is ready for a reviewer to review',
             self::Reviewed => 'This has been approved by a reviewer. This has been published on the website',
+        };
+    }
+
+    // define badge colors
+    public function getColor(): string | array | null
+    {
+        // warning (yellow) : pending on reviewer to review
+        // danger (red)     : unsuccessful study case that decided not to further develop
+        // gray (gray)      : no action required from reviewer
+        // success (green)  : reviewer has reviewed and published
+
+        return match ($this) {
+            self::Proposal => 'warning',
+            self::Closed => 'danger',
+            self::Development => 'gray',
+            self::ReadyForReview => 'warning',
+            self::Reviewed => 'success',            
         };
     }
 }

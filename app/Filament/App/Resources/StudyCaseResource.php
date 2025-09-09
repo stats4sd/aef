@@ -71,6 +71,7 @@ class StudyCaseResource extends Resource
                     ->wrapHeader(),
                 Tables\Columns\TextColumn::make('status')
                     ->label(t('Status'))
+                    ->badge()
                     ->sortable(),
             ])
             ->filters([
