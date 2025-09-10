@@ -118,6 +118,8 @@ class StudyCaseResource extends Resource
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
             'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
+
+            // TODO: show edit-basic-information when user click "View" button
             'view' => Pages\ViewStudyCase::route('/{record}'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
