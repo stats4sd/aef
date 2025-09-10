@@ -52,7 +52,7 @@ class StudyCaseController extends Controller
         }
 
         if (!$canPreview) {
-            abort(403);
+            abort(404);
         } else {
             return view('cases.index', ['studycase' => $studycase]);
         }
