@@ -23,45 +23,29 @@ class StudyCasePolicy
     {
         // ray('StudyCasePolicy.view()...');
 
-        // add access control for viewing study case content in front-end
-        // 1. Public can only access study case with status Reviewed
-        // 2. Admin can access study case with all status
-        // 3. All teammates of study case creator can access study case with all status
+        // add access control for logged in user for viewing study case content in front-end
+        // 1. Admin can access study case with all status
+        // 2. All teammates of study case creator can access study case with all status
 
         // initialse study case cannot be preview by default
         $canPreview = false;
 
-        // there is no logged in user, assumes it is accessed by public
-        if ($user == null) {
-            // ray('there is no logged in user');
-            // ray('study case status: ' . $studyCase->status->value);
-
-            // only study case with status Reviewed can be accessed by public
-            if ($studyCase->status == StudyCaseStatus::Reviewed) {
-                $canPreview = true;
-            }
+        // the logged in user is admin user
+        if ($user->isAdmin()) {
+            // ray('logged in user is admin user');
+            // admin user can view all study cases with any status
+            $canPreview = true;
         }
-        // there is a logged in user
-        else 
-        {
-            // the logged in user is admin user
-            if ($user->isAdmin()) {
-                // ray('logged in user is admin user');
-                // admin user can view all study cases with any status
+        // the logged in user is normal user
+        else {
+            // ray('logged in user is normal user');
+
+            // ray($studyCase->team);
+            // ray($user->latestTeam);
+
+            // if the study case is created by a user who belongs to user's team, user can view it with any status
+            if ($studyCase->team == $user->latestTeam) {
                 $canPreview = true;
-            } 
-            // the logged in user is normal user
-            else 
-            {
-                // ray('logged in user is normal user');
-
-                // ray($studyCase->team);
-                // ray($user->latestTeam);
-
-                // if the study case is created by a user who belongs to user's team, user can view it with any status
-                if ($studyCase->team == $user->latestTeam) {
-                    $canPreview = true;
-                }
             }
         }
 
