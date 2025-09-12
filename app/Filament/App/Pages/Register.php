@@ -17,6 +17,7 @@ use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 
+// this class contains business logic for creating a new user account via email invitation
 class Register extends BaseRegister
 {
     #[Url]

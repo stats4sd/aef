@@ -11,6 +11,7 @@ use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
 use Filament\Navigation\NavigationItem;
 use App\Filament\App\Pages\RegisterTeam;
+use App\Filament\App\Pages\RegisterNewUser;
 use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
@@ -46,6 +47,8 @@ class AppPanelProvider extends PanelProvider
                 SetLatestTeamMiddleware::class,
             ])
             ->login()
+            // enable "sign up" feature, anyone can register an account
+            ->registration(RegisterNewUser::class)
             ->passwordReset()
             // change sidebar to top navigation, to discriminate from Admin panel
             ->topNavigation()
