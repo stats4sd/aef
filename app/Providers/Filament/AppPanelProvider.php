@@ -11,10 +11,11 @@ use Filament\Support\Colors\Color;
 use Filament\View\PanelsRenderHook;
 use Filament\Navigation\NavigationItem;
 use App\Filament\App\Pages\RegisterTeam;
-use App\Filament\App\Pages\RegisterNewUser;
 use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
+use App\Filament\App\Pages\RegisterNewUser;
+use App\Filament\App\Resources\TeamResource;
 use Illuminate\Session\Middleware\StartSession;
 use Tio\Laravel\Middleware\SetLocaleMiddleware;
 use App\Http\Middleware\SetLatestTeamMiddleware;
@@ -104,6 +105,17 @@ class AppPanelProvider extends PanelProvider
                         //     ->items([
                         //         ...OrganisationResource::getNavigationItems(),
                         //     ]),
+
+                        // create a navitation group without label
+                        NavigationGroup::make('')
+                            ->items([
+                                // Add "My Team" that links to app panel Teams resource list page
+                                NavigationItem::make('My Team')
+                                    ->label(t('My Team'))
+                                    ->url('/app/' . auth()->user()->latestTeam->id . '/teams/' . auth()->user()->latestTeam->id)
+                                    ->icon('heroicon-o-users'),
+                            ]),
+
                         // create a navigation group without label, nothing will be showed for non admin user
                         NavigationGroup::make('')
                             ->items([

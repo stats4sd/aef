@@ -18,7 +18,7 @@ class RegisterNewUser extends BaseRegister
 
         // do below after filament creating a new user account:
         // 1. create a new team. Team name will be user's name + ' Team'. e.g. user name is "Peter Pan", team name will be "Peter Pan Team"
-        // 2. attach user to the newly created team, set user as team admin. Team admin will be able to invite users by sending email invitation
+        // 2. attach user to the newly created team, set user as team admin
 
         // create a new team
         $team = Team::create([
