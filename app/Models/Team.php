@@ -4,17 +4,18 @@ namespace App\Models;
 
 use App\Models\StudyCase;
 use Illuminate\Support\Str;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
 use App\Mail\TeamManagement\InviteMember;
 use App\Models\TeamManagement\TeamInvite;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Enums\Fit;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model implements HasMedia
 {
@@ -94,6 +95,13 @@ class Team extends Model implements HasMedia
     public function organisations(): HasMany
     {
         return $this->hasMany(Organisation::class);
+    }
+
+    // add relationship to refer to team model itself, so that app panel > Teams resource can show the selected team for editing
+    /** @return HasOne<self, $this> */
+    public function team(): HasOne
+    {
+        return $this->hasOne(Team::class, 'id');
     }
 
     // for Spatie media library

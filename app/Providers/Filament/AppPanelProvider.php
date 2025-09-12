@@ -14,6 +14,8 @@ use App\Filament\App\Pages\RegisterTeam;
 use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Navigation\NavigationBuilder;
+use App\Filament\App\Pages\RegisterNewUser;
+use App\Filament\App\Resources\TeamResource;
 use Illuminate\Session\Middleware\StartSession;
 use Tio\Laravel\Middleware\SetLocaleMiddleware;
 use App\Http\Middleware\SetLatestTeamMiddleware;
@@ -46,6 +48,8 @@ class AppPanelProvider extends PanelProvider
                 SetLatestTeamMiddleware::class,
             ])
             ->login()
+            // enable "sign up" feature, anyone can register an account
+            ->registration(RegisterNewUser::class)
             ->passwordReset()
             // change sidebar to top navigation, to discriminate from Admin panel
             ->topNavigation()
@@ -101,6 +105,17 @@ class AppPanelProvider extends PanelProvider
                         //     ->items([
                         //         ...OrganisationResource::getNavigationItems(),
                         //     ]),
+
+                        // create a navitation group without label
+                        NavigationGroup::make('')
+                            ->items([
+                                // Add "My Team" that links to app panel Teams resource list page
+                                NavigationItem::make('My Team')
+                                    ->label(t('My Team'))
+                                    ->url('/app/' . auth()->user()->latestTeam?->id . '/teams/' . auth()->user()->latestTeam?->id)
+                                    ->icon('heroicon-o-users'),
+                            ]),
+
                         // create a navigation group without label, nothing will be showed for non admin user
                         NavigationGroup::make('')
                             ->items([
