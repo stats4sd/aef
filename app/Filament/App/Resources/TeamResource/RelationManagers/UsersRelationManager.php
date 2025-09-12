@@ -75,6 +75,8 @@ class UsersRelationManager extends RelationManager
                             ->addActionLabel('Add Another Email Address')
                     ])
                     ->action(fn(array $data, RelationManager $livewire) => $this->handleInvitation($data, $livewire->getOwnerRecord())),
+                Tables\Actions\AttachAction::make()
+                    ->label('Add Existing User to team'),
             ])
             ->actions([
                 // hide "Edit User Role" button as team admin is not being used in this application

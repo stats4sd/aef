@@ -112,7 +112,7 @@ class AppPanelProvider extends PanelProvider
                                 // Add "My Team" that links to app panel Teams resource list page
                                 NavigationItem::make('My Team')
                                     ->label(t('My Team'))
-                                    ->url('/app/' . auth()->user()->latestTeam->id . '/teams/' . auth()->user()->latestTeam->id)
+                                    ->url('/app/' . auth()->user()->latestTeam?->id . '/teams/' . auth()->user()->latestTeam?->id)
                                     ->icon('heroicon-o-users'),
                             ]),
 
