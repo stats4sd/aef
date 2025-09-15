@@ -36,8 +36,10 @@ class StudyCaseResource extends Resource
             Pages\ManageCaseStudyClaims::class,
         ];
 
-        // only show confirmation step if case is not in proposal stage
-        if ($page->getRecord()?->status !== StudyCaseStatus::Proposal) {
+        // show confirmation step if:
+        // 1. study case status is not proposal OR 
+        // 2. logged in user is admin
+        if ($page->getRecord()?->status !== StudyCaseStatus::Proposal || auth()->user()->isAdmin()) {
             $navigation[] = Pages\EditConfirmation::class;
         }
 
