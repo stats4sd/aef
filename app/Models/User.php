@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+// Note: I enabled the email verification feature but it does not work. There is no email received after user registration.
+// I will comment email verification feature first. We already added course code so public people cannot register.
+
+// class User extends Authenticatable implements FilamentUser, HasTenants, HasDefaultTenant, MustVerifyEmail
 class User extends Authenticatable implements FilamentUser, HasTenants, HasDefaultTenant
 {
     use HasFactory, Notifiable;

@@ -50,6 +50,9 @@ class AppPanelProvider extends PanelProvider
             ->login()
             // enable "sign up" feature, anyone can register an account
             ->registration(RegisterNewUser::class)
+            // Note: I enabled the email verification feature but it does not work. There is no email received after user registration.
+            // I will comment email verification feature first. We already added course code so public people cannot register.
+            // ->emailVerification()
             ->passwordReset()
             // change sidebar to top navigation, to discriminate from Admin panel
             ->topNavigation()
