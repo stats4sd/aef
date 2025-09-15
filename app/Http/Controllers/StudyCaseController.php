@@ -31,4 +31,10 @@ class StudyCaseController extends Controller
 
         return view('home.index', ['recentCases' => $recentCases]);
     }
+
+    public function create()
+    {
+        return view('home.create');
+    }
+
 }
