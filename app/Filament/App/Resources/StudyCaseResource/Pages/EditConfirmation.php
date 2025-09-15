@@ -6,9 +6,6 @@ use App\Enums\StudyCaseStatus;
 use Filament\Actions;
 use Filament\Forms\Form;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Actions\Action as ComponentAction;
-use Filament\Forms\Get;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\App\Resources\StudyCaseResource;
@@ -107,68 +104,45 @@ class EditConfirmation extends EditRecord
 
         return $form->schema([
 
-            // Proposal for submitter
-            Section::make(t('Proposal to be reviewed'))
-                ->icon('heroicon-o-check-circle')
-                ->description(t('It is now pending on reviewer to review and determine to further develop or close this study case'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && !auth()->user()->isAdmin()),
-                
             // Proposal for reviewer
-            Section::make(t('Case Reviewer Confirmation'))
+            Section::make(t('Review and determine to further develop or close this study case'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('Review and determine to further develop or close this study case'))
                 ->visible(fn($record) => $record->status == StudyCaseStatus::Proposal && auth()->user()->isAdmin()),
 
 
-            // Closed
-            Section::make(t('Reviewed and closed'))
+            // Closed for both case submitter and reviewer
+            Section::make(t('The case has been reviewed and closed'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('The case has been reviewed and closed'))
                 ->visible(fn($record) => $record->status == StudyCaseStatus::Closed),
 
 
-            // Development for submitter
-            Section::make(t('Case Submitter Confirmation'))
+            // Development for case submitter
+            Section::make(t('Request to change status from Development to Reviewed'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('Request to change status from Development to Reviewed'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::Development && !auth()->user()->isAdmin())
-                ->schema([
-                    Checkbox::make('request_for_review')
-                        ->label(t('I confirm that all content is correct. This case is now ready for review.'))
-                        ->hint(t('This is to be confirmed by case submitter'))
-                        ->columnSpanFull(),
-                ]),
+                ->description(t('I confirm that all content is correct. This case is now ready for review.'))
+                ->visible(fn($record) => $record->status == StudyCaseStatus::Development && !auth()->user()->isAdmin()),
 
             // Development for reviewer
-            Section::make(t('Status is Development'))
+            Section::make(t('Case submitter is further developing by filling in more details'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('Case submitter is further developing by filling in more details.'))
                 ->visible(fn($record) => $record->status == StudyCaseStatus::Development && auth()->user()->isAdmin()),
 
 
             // Ready for review for case submitter
-            Section::make(t('Status is Ready for review'))
+            Section::make(t('It is now pending on reviewer to approve to change status to Reviewed'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('It is now pending on reviewer to approve to change status to Reviewed'))
                 ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForReview && !auth()->user()->isAdmin()),
 
             // Ready for review for reviewer
-            Section::make(t('Case Reviewer Confirmation'))
+            Section::make(t('Request to change status from Development to Reviewed'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('Request to change status from Development to Reviewed'))
-                ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForReview && auth()->user()->isAdmin())
-                ->schema([
-                    Checkbox::make('approve_for_development')
-                        ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                        ->hint(t('This is to be confirmed by case reviewer'))
-                        ->columnSpanFull(),
-                ]),
+                ->description(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
+                ->visible(fn($record) => $record->status == StudyCaseStatus::ReadyForReview && auth()->user()->isAdmin()),
 
 
             // Reviewed for both case submitter and reviewer
-            Section::make(t('Reviewed and published'))
+            Section::make(t('The case has been reviewed and published'))
                 ->icon('heroicon-o-check-circle')
-                ->description(t('The case has been reviewed and published'))
                 ->visible(fn($record) => $record->status == StudyCaseStatus::Reviewed),
 
             ]);
