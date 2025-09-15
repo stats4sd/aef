@@ -104,7 +104,17 @@ class StudyCaseResource extends Resource
                     ->options(StudyCaseStatus::class),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // study case can be edited only if reviewer has not reviewed it yet
+                Tables\Actions\EditAction::make()
+                    ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
+                // view action only available when case can no longer be edited
+                Tables\Actions\ViewAction::make()
+                    ->visible(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
                 Tables\Actions\Action::make('preview_catalogue')
                                 ->label(t('Preview'))
                                 ->icon('heroicon-o-book-open')
