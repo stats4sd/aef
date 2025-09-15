@@ -37,7 +37,7 @@ class StudyCaseResource extends Resource
         ];
 
         // show confirmation step if:
-        // 1. study case status is not proposal OR 
+        // 1. study case status is not proposal OR
         // 2. logged in user is admin
         if ($page->getRecord()?->status !== StudyCaseStatus::Proposal || auth()->user()->isAdmin()) {
             $navigation[] = Pages\EditConfirmation::class;
@@ -82,14 +82,10 @@ class StudyCaseResource extends Resource
             ])
             ->actions([
                 // study case can be edited only if reviewer has not reviewed it yet
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make()
                     ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
                     ->hidden(function ($record) {
-                        return $record->status == StudyCaseStatus::Reviewed;
-                    }),
-                // view action only available when case can no longer be edited
-                Tables\Actions\ViewAction::make()
-                    ->visible(function ($record) {
                         return $record->status == StudyCaseStatus::Reviewed;
                     }),
                 Tables\Actions\Action::make('preview_catalogue')
@@ -122,7 +118,7 @@ class StudyCaseResource extends Resource
             'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
 
             // TODO: show edit-basic-information when user click "View" button
-            'view' => Pages\ViewStudyCase::route('/{record}'),
+            'view' => Pages\ViewBasicInformation::route('/{record}'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
     }

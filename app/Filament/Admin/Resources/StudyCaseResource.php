@@ -147,7 +147,7 @@ class StudyCaseResource extends Resource
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
             'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
-            'view' => Pages\ViewStudyCase::route('/{record}'),
+            'view' => Pages\ViewBasicInformation::route('/{record}'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
     }
