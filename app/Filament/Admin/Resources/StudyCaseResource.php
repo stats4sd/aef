@@ -37,9 +37,9 @@ class StudyCaseResource extends Resource
         return $page->generateNavigationItems([
             Pages\EditBasicInformation::class,
             Pages\EditCaseDetails::class,
+            Pages\ManageCaseStudyClaims::class,
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
-            Pages\ManageCaseStudyClaims::class,
             Pages\EditConfirmation::class,
         ]);
     }

@@ -31,9 +31,9 @@ class StudyCaseResource extends Resource
         $navigation = [
             Pages\EditBasicInformation::class,
             Pages\EditCaseDetails::class,
+            Pages\ManageCaseStudyClaims::class,
             Pages\EditCommunicationProducts::class,
             Pages\EditPhotos::class,
-            Pages\ManageCaseStudyClaims::class,
         ];
 
         // show confirmation step if:
