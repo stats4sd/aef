@@ -35,12 +35,15 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-        if ($page instanceof ViewRecord) {
+        // hardcode to check page's route name to determine if it is the "view page" for Claims nad Evidence
+        if ($page instanceof ViewRecord || 
+            $page->getRoutename() == 'filament.app.resources.study-cases.view-case-study-claims' ||
+            $page->getRoutename() == 'filament.admin.resources.study-cases.view-case-study-claims') {
+
             $navigation = [
                 Pages\ViewBasicInformation::class,
                 Pages\ViewCaseDetails::class,
-                // TODO: read-only version
-                Pages\ManageCaseStudyClaims::class,
+                Pages\ViewCaseStudyClaims::class,
                 Pages\ViewCommunicationProducts::class,
                 Pages\ViewPhotos::class,
                 Pages\ViewConfirmation::class,
@@ -119,22 +122,25 @@ class StudyCaseResource extends Resource
                     ->options(StudyCaseStatus::class),
             ])
             ->actions([
+                // view action only available when case can no longer be edited
+                Tables\Actions\ViewAction::make()
+                    ->url(fn($record) => static::getUrl('view-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status != StudyCaseStatus::Reviewed;
+                    }),
+
                 // study case can be edited only if reviewer has not reviewed it yet
                 Tables\Actions\EditAction::make()
                     ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
                     ->hidden(function ($record) {
                         return $record->status == StudyCaseStatus::Reviewed;
                     }),
-                // view action only available when case can no longer be edited
-                Tables\Actions\ViewAction::make()
-                    ->visible(function ($record) {
-                        return $record->status == StudyCaseStatus::Reviewed;
-                    }),
+
                 Tables\Actions\Action::make('preview_catalogue')
-                                ->label(t('Preview'))
-                                ->icon('heroicon-o-book-open')
-                                ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
-                                ->openUrlInNewTab()
+                    ->label(t('Preview'))
+                    ->icon('heroicon-o-book-open')
+                    ->url(fn(StudyCase $record): string => '/cases/' . $record->id)
+                    ->openUrlInNewTab()
             ])
             ->defaultSort('order')
             ->reorderable('order')
@@ -156,18 +162,21 @@ class StudyCaseResource extends Resource
         return [
             // use admin panel ListStudyCases, so that it will use table() function of this class
             'index' => AdminPanelListStudyCases::route('/'),
+
             'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
+            'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
             'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
+
             'view' => Pages\ViewBasicInformation::route('/{record}'),
             'view-basic-information' => Pages\ViewBasicInformation::route('/{record}/view-basic-information'),
             'view-case-details' => Pages\ViewCaseDetails::route('/{record}/view-case-details'),
+            'view-case-study-claims' => Pages\ViewCaseStudyClaims::route('/{record}/view-case-study-claims'),
             'view-communication-products' => Pages\ViewCommunicationProducts::route('/{record}/view-communication-products'),
             'view-photos' => Pages\ViewPhotos::route('/{record}/view-photos'),
-            'view-confirmation' => Pages\ViewConfirmation::route('/{record}/view-confirmation'),
-            'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
+            'view-confirmation' => Pages\ViewConfirmation::route('/{record}/view-confirmation'),          
         ];
     }
 

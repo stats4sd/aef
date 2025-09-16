@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 
-class ManageCaseStudyClaims extends ManageRelatedRecords
+class ViewCaseStudyClaims extends ManageRelatedRecords
 {
     protected static string $resource = StudyCaseResource::class;
 
@@ -66,34 +66,17 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
                     ->label(t('Evidence count'))
                     ->counts('evidences'),
             ])
-            ->filters([
-                //
-            ])
-            ->headerActions([
-                // hide "Create & create another" button in popup modal
-                Tables\Actions\CreateAction::make()
-                    ->createAnother(false),
-            ])
             ->actions([
                 // redirect to Claim edit page instead of editing a claim in popup modal
-                Tables\Actions\EditAction::make()
+                Tables\Actions\ViewAction::make()
                     ->url(fn (Model $record, $livewire): string => ClaimResource::getUrl(
-                        'edit',
+                        'view',
                        ['record' => $record, 'ownerRecord' => $livewire->getOwnerRecord()->getKey()],
                         true,
                         null,
                         auth()->user()->getDefaultTenant(Filament::getCurrentPanel())
                     )),
-
-                // customise modal heading in popup modal
-                // claim statement is a long rich text which is not suitable to be showed as modal heading
-                Tables\Actions\DeleteAction::make()
-                    ->modalHeading(t('Delete claim')),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
+
     }
 }
