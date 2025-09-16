@@ -29,7 +29,6 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-
         if ($page instanceof ViewRecord) {
             $navigation = [
                 Pages\ViewBasicInformation::class,

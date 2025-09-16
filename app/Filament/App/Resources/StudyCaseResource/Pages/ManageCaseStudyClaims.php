@@ -19,6 +19,13 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
 
     protected static string $relationship = 'claims';
 
+    // tried to change relation manager to read-only but failed
+    // Ref: https://filamentphp.com/docs/3.x/panels/resources/relation-managers#read-only-mode
+    public function isReadOnly(): bool
+    {
+        return true;
+    }
+
     public static function getNavigationLabel(): string
     {
         return t('Claims and Evidence');

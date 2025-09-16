@@ -48,6 +48,16 @@ class EditConfirmation extends EditRecord
             });
     }
 
+    // getRedirectUrl() is not necessary here, as message can be showed to case submitter or reviewer 
+    // immediately after clicking action button. e.g. Further develop proposal, Close proposal, Send Request, Approve
+    //
+    // getRedirectUrl() will not be triggered by clicking custom action buttons, as it is not save button.
+    //
+    // protected function getRedirectUrl(): string
+    // {
+    //     return $this->getResource()::getUrl('index');
+    // }
+
     protected function getHeaderActions(): array
     {
         return [

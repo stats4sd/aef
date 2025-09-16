@@ -32,8 +32,6 @@ class ListStudyCases extends ListRecords
                     ]);
 
                     $this->redirect(StudyCaseResource::getUrl('edit-basic-information', ['record' => $studyCase->id]));
-
-
                 }),
         ];
     }
