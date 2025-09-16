@@ -11,7 +11,9 @@ use App\Enums\StudyCaseStatus;
 use Filament\Resources\Resource;
 use Filament\Resources\Pages\Page;
 use Filament\Forms\Components\Tabs;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,7 +24,6 @@ use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
 use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
 use App\Filament\Admin\Resources\StudyCaseResource\Pages\ListStudyCases as AdminPanelListStudyCases;
 use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
-use Filament\Tables\Filters\Filter;
 
 class StudyCaseResource extends Resource
 {
@@ -34,14 +35,28 @@ class StudyCaseResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-        return $page->generateNavigationItems([
-            Pages\EditBasicInformation::class,
-            Pages\EditCaseDetails::class,
-            Pages\ManageCaseStudyClaims::class,
-            Pages\EditCommunicationProducts::class,
-            Pages\EditPhotos::class,
-            Pages\EditConfirmation::class,
-        ]);
+        if ($page instanceof ViewRecord) {
+            $navigation = [
+                Pages\ViewBasicInformation::class,
+                Pages\ViewCaseDetails::class,
+                // TODO: read-only version
+                Pages\ManageCaseStudyClaims::class,
+                Pages\ViewCommunicationProducts::class,
+                Pages\ViewPhotos::class,
+                Pages\ViewConfirmation::class,
+            ];
+        } else {
+            $navigation = [
+                Pages\EditBasicInformation::class,
+                Pages\EditCaseDetails::class,
+                Pages\ManageCaseStudyClaims::class,
+                Pages\EditCommunicationProducts::class,
+                Pages\EditPhotos::class,
+                Pages\EditConfirmation::class,
+            ];
+        }
+
+        return $page->generateNavigationItems($navigation);
     }
 
     // define translatable string in function
@@ -141,13 +156,17 @@ class StudyCaseResource extends Resource
         return [
             // use admin panel ListStudyCases, so that it will use table() function of this class
             'index' => AdminPanelListStudyCases::route('/'),
-
             'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
             'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
             'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
             'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
             'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
             'view' => Pages\ViewBasicInformation::route('/{record}'),
+            'view-basic-information' => Pages\ViewBasicInformation::route('/{record}/view-basic-information'),
+            'view-case-details' => Pages\ViewCaseDetails::route('/{record}/view-case-details'),
+            'view-communication-products' => Pages\ViewCommunicationProducts::route('/{record}/view-communication-products'),
+            'view-photos' => Pages\ViewPhotos::route('/{record}/view-photos'),
+            'view-confirmation' => Pages\ViewConfirmation::route('/{record}/view-confirmation'),
             'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
         ];
     }
