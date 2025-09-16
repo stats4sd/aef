@@ -6,14 +6,14 @@ use App\Filament\App\Resources\StudyCaseResource;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewBasicInformation extends ViewRecord
+class ViewPhotos extends ViewRecord
 {
     protected static string $resource = StudyCaseResource::class;
 
 
     public function form(Form $form): Form
     {
-        return (new EditBasicInformation())->form($form);
+        return (new EditPhotos())->form($form);
     }
 
 }
