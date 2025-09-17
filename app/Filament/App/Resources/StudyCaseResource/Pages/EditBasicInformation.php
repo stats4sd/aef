@@ -46,6 +46,11 @@ class EditBasicInformation extends EditRecord
         ];
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit-case-details', ['record' => $this->record->id]);
+    }
+
     public function form(Form $form): Form
     {
         return $form->schema([

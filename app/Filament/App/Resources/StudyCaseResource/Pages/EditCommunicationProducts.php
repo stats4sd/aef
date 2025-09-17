@@ -43,6 +43,11 @@ class EditCommunicationProducts extends EditRecord
         ];
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit-photos', ['record' => $this->record->id]);
+    }
+
     public function form(Form $form): Form
     {
 

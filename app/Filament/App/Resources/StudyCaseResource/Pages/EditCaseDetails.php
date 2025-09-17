@@ -39,6 +39,11 @@ class EditCaseDetails extends EditRecord
         ];
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('manage-case-study-claims', ['record' => $this->record->id]);
+    }
+
     public function form(Form $form): Form
     {
         return $form->schema([

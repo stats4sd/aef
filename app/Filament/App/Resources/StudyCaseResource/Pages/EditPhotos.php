@@ -2,15 +2,16 @@
 
 namespace App\Filament\App\Resources\StudyCaseResource\Pages;
 
-use App\Filament\App\Resources\StudyCaseResource;
 use Filament\Actions;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use App\Enums\StudyCaseStatus;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Contracts\Support\Htmlable;
+use App\Filament\App\Resources\StudyCaseResource;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class EditPhotos extends EditRecord
 {
@@ -38,6 +39,19 @@ class EditPhotos extends EditRecord
             Actions\Action::make('Save')->action('save')->label('Save changes'),
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        // for case submitter and study case status is Proposal, redirect to list page
+        if ($this->record->status == StudyCaseStatus::Proposal && !auth()->user()->isAdmin()) {
+            return $this->getResource()::getUrl('index', ['record' => $this->record->id]);
+        } 
+        // otherwise, redirect to EditConfirmation page
+        else 
+        {
+            return $this->getResource()::getUrl('edit-confirmation', ['record' => $this->record->id]);
+        }
     }
 
     public function form(Form $form): Form
