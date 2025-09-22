@@ -8,9 +8,11 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Htmlable;
 
 use Filament\Resources\Pages\EditRecord;
@@ -91,5 +93,16 @@ class EditCommunicationProducts extends EditRecord
                             ->columnSpanFull(),
                     ]),
             ]);
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }

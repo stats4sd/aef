@@ -12,10 +12,12 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Htmlable;
 
 class EditBasicInformation extends EditRecord
@@ -84,7 +86,7 @@ class EditBasicInformation extends EditRecord
 
                     TextInput::make('other_languages')
                         ->label(t('Other language(s)'))
-                        ->hint(t('Please enter other language(s) here if they do not existed in the language(s) selection box above'))
+                        ->hint(t('Please enter other language(s) here if they do not exist in the language(s) selection box above'))
                         ->maxLength(255),
 
                     Select::make('tags')
@@ -166,5 +168,16 @@ class EditBasicInformation extends EditRecord
                         ]),
                 ]),
         ]);
+    }
+
+    protected static function trimUrlContent(Forms\Set $set, Forms\Get $get, string $fieldName): void
+    {
+        $fieldValue = $get($fieldName);
+
+        if (! $fieldValue) {
+            return;
+        }
+
+        $set($fieldName, Str::trim($fieldValue));
     }
 }
