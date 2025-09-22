@@ -84,7 +84,7 @@ class EditBasicInformation extends EditRecord
 
                     TextInput::make('other_languages')
                         ->label(t('Other language(s)'))
-                        ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above'))
+                        ->hint(t('Please enter other language(s) here if they do not existed in the language(s) selection box above'))
                         ->maxLength(255),
 
                     Select::make('tags')
@@ -112,7 +112,6 @@ class EditBasicInformation extends EditRecord
                         ->label(t('Geographic area'))
                         ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
                         ->rows(3)
-                        ->required()
                         ->maxLength(65535)
                         ->columnSpanFull(),
 
