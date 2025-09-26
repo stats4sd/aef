@@ -79,6 +79,7 @@ class ClaimResource extends Resource
             'index' => Pages\ListClaims::route('/'),
             'create' => Pages\CreateClaim::route('/create'),
             'edit' => Pages\EditClaim::route('/{record}/edit'),
+            'view' => Pages\ViewClaim::route('/{record}'),
         ];
     }
 }

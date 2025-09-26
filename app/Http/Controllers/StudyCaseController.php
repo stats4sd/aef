@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudyCase;
-use Illuminate\Http\Request;
+use App\Enums\StudyCaseStatus;
 
 class StudyCaseController extends Controller
 {
     public function getData(StudyCase $studycase) {
+        // StudyCasePolicy.view() will be called only when there is a logged in user
+        if (auth()->user()?->cannot('view', $studycase)) {
+            abort(404);
+        }
+
+        // access control handling when there is no logged in user (public access)
+        if (auth()->user() == null && $studycase->status != StudyCaseStatus::Reviewed) {
+            abort(404);
+        }
 
         return view('cases.index', ['studycase' => $studycase]);
     }
@@ -22,4 +31,10 @@ class StudyCaseController extends Controller
 
         return view('home.index', ['recentCases' => $recentCases]);
     }
+
+    public function create()
+    {
+        return view('home.create');
+    }
+
 }

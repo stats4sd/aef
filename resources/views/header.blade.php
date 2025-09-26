@@ -37,6 +37,7 @@
                         <a class="dropdown-item" href="/home#advocating-agroecology">{{ t("Advocating for agroecology") }}</a>
                     </div>
                 </li>
+                <li><a href="/create-your-case" class="text-gray-800 hover:text-gray-600">{{ t("Create Your Case") }}</a></li>
                 <!-- Language Dropdown -->
                 <li class="relative nav-item dropdown text-gray-800 hover:text-gray-600" x-data="{ open: false }">
                     <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" x-on:click="open = !open">

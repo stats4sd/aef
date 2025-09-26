@@ -8,19 +8,67 @@ use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use App\Enums\StudyCaseStatus;
 use Filament\Resources\Resource;
+use Filament\Resources\Pages\Page;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\ViewRecord;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Forms\Components\Placeholder;
 use App\Filament\App\Resources\StudyCaseResource\Pages;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers;
 
 class StudyCaseResource extends Resource
 {
     protected static ?string $model = StudyCase::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        // hardcode to check page's route name to determine if it is the "view page" for Claims nad Evidence
+        if ($page instanceof ViewRecord || 
+            $page->getRoutename() == 'filament.app.resources.study-cases.view-case-study-claims' ||
+            $page->getRoutename() == 'filament.admin.resources.study-cases.view-case-study-claims') {
+
+            $navigation = [
+                Pages\ViewBasicInformation::class,
+                Pages\ViewCaseDetails::class,
+                Pages\ViewCaseStudyClaims::class,
+                Pages\ViewCommunicationProducts::class,
+                Pages\ViewPhotos::class,
+            ];
+
+            // show confirmation step if:
+            // 1. study case status is not proposal OR
+            // 2. logged in user is admin
+            if ($page->getRecord()?->status !== StudyCaseStatus::Proposal || auth()->user()->isAdmin()) {
+                $navigation[] = Pages\ViewConfirmation::class;
+            }
+
+        } else {
+
+            $navigation = [
+                Pages\EditBasicInformation::class,
+                Pages\EditCaseDetails::class,
+                Pages\ManageCaseStudyClaims::class,
+                Pages\EditCommunicationProducts::class,
+                Pages\EditPhotos::class,
+            ];
+
+            // show confirmation step if:
+            // 1. study case status is not proposal OR
+            // 2. logged in user is admin
+            if ($page->getRecord()?->status !== StudyCaseStatus::Proposal || auth()->user()->isAdmin()) {
+                $navigation[] = Pages\EditConfirmation::class;
+            }
+        }
+
+        return $page->generateNavigationItems($navigation);
+    }
 
     // define translatable string in function
     public static function getModelLabel(): string
@@ -31,362 +79,6 @@ class StudyCaseResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return t('Cases');
-    }
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-
-                Tabs::make('Tabs')
-                    ->tabs([
-                        Tabs\Tab::make('tab-1')
-                            ->label(t('Basic Information'))
-                            ->icon('heroicon-m-information-circle')
-                            ->schema([
-
-                                Forms\Components\Hidden::make('order')
-                                    ->default(fn() => (StudyCase::max('order') ?? 0) + 1),
-
-                                Forms\Components\TextInput::make('title')
-                                    ->label(t('Title'))
-                                    ->required()
-                                    ->maxLength(65535)
-                                    ->columnSpanFull(),
-
-                                Forms\Components\TextInput::make('year_of_development')
-                                    ->label(t('Year of development'))
-                                    ->required()
-                                    ->numeric()
-                                    ->minValue(1900)
-                                    ->maxValue(3000),
-
-                                Forms\Components\Select::make('languages')
-                                    ->label(t('Language(s)'))
-                                    ->hint(t('An initial list of language(s) will be provided, but if the language of your case is not listed, you will be able to type it.'))
-                                    ->multiple()
-                                    ->relationship('languages', 'name')
-                                    ->required()
-                                    ->preload(),
-
-                                Forms\Components\TextInput::make('other_languages')
-                                    ->label(t('Other language(s)'))
-                                    ->hint(t('Please enter other language(s) here if they are not existed in the language(s) selection box above'))
-                                    ->maxLength(255),
-
-                                Forms\Components\Select::make('tags')
-                                    ->label(t('Tag(s) / keyword(s)'))
-                                    ->multiple()
-                                    ->relationship('tags', 'name')
-                                    ->required()
-                                    ->preload()
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label(t('Name'))
-                                            ->unique()
-                                            ->required(),
-                                    ]),
-
-                                Forms\Components\Select::make('countries')
-                                    ->label(t('Country(ies) covered'))
-                                    ->hint(t('Select the country(ies) covered in your case'))
-                                    ->multiple()
-                                    ->relationship('countries', 'name')
-                                    ->required()
-                                    ->preload(),
-
-                                Forms\Components\Textarea::make('geographic_area')
-                                    ->label(t('Geographic area'))
-                                    ->hint(t('If you want to be more specific about the geographic area, please describe it here'))
-                                    ->rows(3)
-                                    ->required()
-                                    ->maxLength(65535)
-                                    ->columnSpanFull(),
-
-                                Section::make(t('Leading organisation'))
-                                    ->schema([
-                                        Placeholder::make('leading_organisation')
-                                            ->label(t('Organisation name'))
-                                            ->content(fn(?StudyCase $record): string => $record === null ? auth()->user()->latestTeam->name : $record->team->name),
-
-                                        Forms\Components\TextInput::make('contact_person_name')
-                                            ->label(t('Contact person name'))
-                                            ->required()
-                                            ->maxLength(255),
-
-                                        Forms\Components\TextInput::make('contact_person_email')
-                                            ->label(t('Contact person email'))
-                                            ->required()
-                                            ->email()
-                                            ->maxLength(255),
-                                    ]),
-
-                                Section::make(t('Partner organisation(s)'))
-                                    ->schema([
-                                        Forms\Components\Select::make('organisations')
-                                            ->label(t('Partner organisation(s)'))
-                                            ->hint(t('List of partner organisation(s) that worked in the development of the case'))
-                                            ->multiple()
-                                            ->relationship('organisations', 'name')
-                                            ->preload()
-                                            ->createOptionForm([
-                                                Forms\Components\TextInput::make('name')
-                                                    ->label(t('Name'))
-                                                    ->required()
-                                                    ->maxLength(255),
-                                                Forms\Components\TextInput::make('website')
-                                                    ->label(t('Website'))
-                                                    ->url()
-                                                    ->maxLength(255)
-                                                    ->live(onBlur: true)
-                                                    ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
-                                                        static::trimUrlContent($set, $get, 'website');
-                                                    }),
-                                                Forms\Components\Textarea::make('note')
-                                                    ->label(t('Note'))
-                                                    ->maxLength(65535)
-                                                    ->columnSpanFull(),
-                                            ]),
-
-
-                                    ]),
-                            ]),
-
-                        Tabs\Tab::make('tab-2')
-                            ->label(t('Case Details'))
-                            ->icon('heroicon-m-document-text')
-                            ->disabled($form->getRecord() == null)
-                            ->schema([
-
-                                Forms\Components\RichEditor::make('statement')
-                                    ->label(t('Statement(s)'))
-                                    ->hint(t('e.g., If __________ then __________'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-
-                                Forms\Components\RichEditor::make('target_audience')
-                                    ->label(t('Description of the target audience(s)'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-
-                                Forms\Components\RichEditor::make('target_audience_priorities_and_values')
-                                    ->label(t('Target audience(s)\'s priorities and values'))
-                                    ->hint(t('if you have more than one target audience/s, you can list them separately'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-
-                                Forms\Components\RichEditor::make('framing')
-                                    ->label(t('Framing(s) of the case'))
-                                    ->hint(t('based on your audience\'s priorities and way of understanding the issues at hand'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-
-                                Forms\Components\RichEditor::make('strategy_to_argue')
-                                    ->label(t('Description of the strategy(ies) to argue the case'))
-                                    ->hint(t('e.g., is it a comparison? A value and rights-based argument?'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-
-                                Forms\Components\RichEditor::make('call_to_action')
-                                    ->label(t('Call to action(s)'))
-                                    ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-                                    ->columnSpanFull()
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'bulletList',
-                                        'orderedList',
-                                        'undo',
-                                        'redo',
-                                    ]),
-                            ]),
-
-                        Tabs\Tab::make('tab-3')
-                            ->label(t('Communication Product(s)'))
-                            ->icon('heroicon-m-paper-clip')
-                            ->disabled($form->getRecord() == null)
-                            ->schema([
-
-                                Forms\Components\Repeater::make('communicationProducts')
-                                    ->label(t('Communication product(s)'))
-                                    ->hint(t('Description, web address and link to upload communication products: documents, videos and/or audio files'))
-                                    ->relationship()
-                                    ->schema([
-
-                                        TextInput::make('description')
-                                            ->label(t('Description'))
-                                            ->required()
-                                            ->maxLength(65535),
-
-                                        TextInput::make('url')
-                                            ->label(t('URL'))
-                                            ->url()
-                                            ->maxLength(65535)
-                                            ->live(onBlur: true)
-                                            ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get) {
-                                                static::trimUrlContent($set, $get, 'url');
-                                            }),
-
-                                        TextInput::make('youtube_id')
-                                            ->label(t('Youtube ID'))
-                                            ->hint(t('To enbed a youtube video, add the id. On YouTube, when you hit "share", the id is the random-like string after https://youtu.be/')),
-
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                            ->label(t('File'))
-                                            ->collection('comms_products')
-                                            ->preserveFilenames()
-                                            ->downloadable()
-                                            ->maxSize(512000)
-                                            ->disk('s3'),
-
-                                    ])
-                                    ->defaultItems(0)
-                                    ->addActionLabel(t('Add communication product'))
-                                    ->columnSpanFull(),
-
-                            ]),
-
-                        Tabs\Tab::make('tab-4')
-                            ->label(t('Photos'))
-                            ->icon('heroicon-m-camera')
-                            ->disabled($form->getRecord() == null)
-                            ->schema([
-
-                                Forms\Components\SpatieMediaLibraryFileUpload::make('cover_photo')
-                                    ->label(t('Cover photo'))
-                                    ->hint(t('Please upload 1 cover photo for the case entry.'))
-                                    ->collection('cover_photo')
-                                    ->downloadable()
-                                    ->preserveFilenames()
-                                    ->maxFiles(1)
-                                    ->maxSize(512000)
-                                    ->columnSpanFull()
-                                    ->image()
-                                    ->imageEditor()
-                                    ->imageEditorAspectRatios(['16:9'])
-                                    ->disk('s3'),
-
-                                Forms\Components\SpatieMediaLibraryFileUpload::make('logo_image')
-                                    ->label(t('Organisation or project logo image'))
-                                    ->hint(t('Please upload 1 organisation or project logo image for the case entry.'))
-                                    ->collection('logo_image')
-                                    ->downloadable()
-                                    ->preserveFilenames()
-                                    ->maxFiles(1)
-                                    ->maxSize(512000)
-                                    ->columnSpanFull()
-                                    ->image()
-                                    ->disk('s3'),
-
-                                Forms\Components\Repeater::make('photos')
-                                    ->label(t('Catalogue photo(s)'))
-                                    ->hint(t('Please upload here up to 5 photos for the case entry into the catalogue. These photos will help us make your entry in the catalogue look great!'))
-                                    ->relationship()
-                                    ->schema([
-
-                                        TextInput::make('description')
-                                            ->label(t('Description'))
-                                            ->required()
-                                            ->maxLength(65535),
-
-                                        Forms\Components\SpatieMediaLibraryFileUpload::make('file')
-                                            ->label(t('File'))
-                                            ->collection('catalogue_photos')
-                                            ->preserveFilenames()
-                                            ->downloadable()
-                                            ->required()
-                                            ->maxSize(512000)
-                                            ->image()
-                                            ->disk('s3'),
-
-                                    ])
-                                    ->defaultItems(0)
-                                    ->maxItems(5)
-                                    ->addActionLabel(t('Add photo'))
-                            ]),
-
-                        Tabs\Tab::make('tab-6')
-                            ->label(t('Confirmation'))
-                            ->icon('heroicon-m-check-circle')
-                            ->disabled($form->getRecord() == null)
-                            ->schema([
-
-                                Section::make(t('Case Submitter Confirmation'))
-                                    ->icon('heroicon-o-check-circle')
-                                    ->schema([
-                                        // This checkbox is for submitter only, not for reviewer
-                                        // It should be disabled for user with admin role
-                                        Forms\Components\Checkbox::make('ready_for_review')
-                                            ->label(t('I confirm that all content is correct. This case is now ready for reviewer to review.'))
-                                            ->hint(t('This is to be confirmed by case submitter'))
-                                            ->disabled(auth()->user()->isAdmin())
-                                            ->columnSpanFull(),
-                                    ]),
-
-                                Section::make(t('Case Reviewer Confirmation'))
-                                    ->icon('heroicon-o-shield-check')
-                                    ->schema([
-                                        // This checkbox is for reviewer only, not for submitter
-                                        // It should be disabled for user without admin role
-                                        Forms\Components\Checkbox::make('reviewed')
-                                            ->label(t('I confirm that all content has been reviewed. This case is now ready for publishing.'))
-                                            ->hint(t('This is to be confirmed by case reviewer'))
-                                            ->disabled(!auth()->user()->isAdmin())
-                                            ->columnSpanFull(),
-                                    ]),
-
-                            ]),
-
-                    ])->columnSpanFull()
-                    ->persistTabInQueryString()
-
-            ]);
     }
 
     public static function table(Table $table): Table
@@ -404,33 +96,34 @@ class StudyCaseResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->wrapHeader(),
-                Tables\Columns\IconColumn::make('ready_for_review')
-                    ->label(t('Ready for review'))
-                    ->boolean()
-                    ->sortable()
-                    ->wrapHeader(),
-                Tables\Columns\IconColumn::make('reviewed')
-                    ->label(t('Reviewed'))
-                    ->boolean()
+                Tables\Columns\TextColumn::make('status')
+                    ->label(t('Status'))
+                    ->badge()
                     ->sortable(),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                // study case can be edited only if reviewer has not reviewed it yet
-                Tables\Actions\EditAction::make()->hidden(function ($record) {
-                    return $record->reviewed;
-                }),
+            ->actions([                
                 // view action only available when case can no longer be edited
-                Tables\Actions\ViewAction::make()->hidden(function ($record) {
-                    return !$record->reviewed;
-                }),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn($record) => static::getUrl('view-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status != StudyCaseStatus::Reviewed;
+                    }),
+
+                // study case can be edited only if reviewer has not reviewed it yet
+                Tables\Actions\EditAction::make()
+                    ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
+
                 Tables\Actions\Action::make('preview_catalogue')
                     ->label(t('Preview'))
                     ->icon('heroicon-o-book-open')
                     ->url(fn(StudyCase $record): string => '/cases/' . $record->id)
-                    ->openUrlInNewTab()
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -441,18 +134,30 @@ class StudyCaseResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            RelationManagers\ClaimsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListStudyCases::route('/'),
+
             'create' => Pages\CreateStudyCase::route('/create'),
-            'edit' => Pages\EditStudyCase::route('/{record}/edit'),
-            'view' => Pages\ViewStudyCase::route('/{record}'),
+
+            'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
+            'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
+            'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
+            'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
+            'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
+            'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
+
+            'view' => Pages\ViewBasicInformation::route('/{record}'),
+            'view-basic-information' => Pages\ViewBasicInformation::route('/{record}/view-basic-information'),
+            'view-case-details' => Pages\ViewCaseDetails::route('/{record}/view-case-details'),
+            'view-case-study-claims' => Pages\ViewCaseStudyClaims::route('/{record}/view-case-study-claims'),
+            'view-communication-products' => Pages\ViewCommunicationProducts::route('/{record}/view-communication-products'),
+            'view-photos' => Pages\ViewPhotos::route('/{record}/view-photos'),
+            'view-confirmation' => Pages\ViewConfirmation::route('/{record}/view-confirmation'),
         ];
     }
 
@@ -460,7 +165,7 @@ class StudyCaseResource extends Resource
     {
         $fieldValue = $get($fieldName);
 
-        if (! $fieldValue) {
+        if (!$fieldValue) {
             return;
         }
 

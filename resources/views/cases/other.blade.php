@@ -74,11 +74,17 @@
                         </div>
                     @endif
 
-                    <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Contact") }}</div>
-                    <div class="col-span-5 lg:col-span-5 text-left sm:flex items-center">
-                        <span class="text-black inline">{{ $studycase->contact_person_name }} | </span>
-                        <span class="text-ochre block sm:inline sm:ml-1">{{ $studycase->contact_person_email }}</span>
-                    </div>
+                    <!-- Study case with status Proposal and Closed does not have leading organisation contact person details yet -->
+                    @if($studycase->status == App\Enums\StudyCaseStatus::Development || 
+                        $studycase->status == App\Enums\StudyCaseStatus::ReadyForReview || 
+                        $studycase->status == App\Enums\StudyCaseStatus::Reviewed)
+                        <div class="col-span-3 lg:col-span-1 pt-2 md:pt-0 font-semibold text-lg text-left">{{ t("Contact") }}</div>
+                        <div class="col-span-5 lg:col-span-5 text-left sm:flex items-center">
+                            <span class="text-black inline">{{ $studycase->contact_person_name }} | </span>
+                            <span class="text-ochre block sm:inline sm:ml-1">{{ $studycase->contact_person_email }}</span>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

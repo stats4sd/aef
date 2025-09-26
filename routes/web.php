@@ -16,6 +16,8 @@ Route::group([
 
     Route::get('/home', [StudyCaseController::class, 'index'])->name('home');
 
+    Route::get('/create-your-case', [StudyCaseController::class, 'create'])->name('create');
+
     Route::get('/cases/{studycase}', [StudyCaseController::class, 'getData']);
 
     Route::get('/login', static function () {

@@ -68,6 +68,7 @@ class ClaimsRelationManager extends RelationManager
                     ->createAnother(false),
             ])
             ->actions([
+                // TODO: check why "Edit" button is not showed
                 // redirect to Claim edit page instead of editing a claim in popup modal
                 Tables\Actions\EditAction::make()
                     ->url(fn(Model $record, $livewire): string => ClaimResource::getUrl(

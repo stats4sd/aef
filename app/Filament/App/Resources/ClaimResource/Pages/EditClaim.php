@@ -29,13 +29,13 @@ class EditClaim extends EditRecord
         ]);
         $breadcrumbs[$casesUrl] = 'Cases';
 
-        $studyCaseEditUrl = route('filament.app.resources.study-cases.edit', [
+        $studyCaseEditUrl = route('filament.app.resources.study-cases.manage-case-study-claims', [
             'tenant' => $latestTeamId,
             'record' => $studyCase->id,
         ]);
         $breadcrumbs[$studyCaseEditUrl] = $studyCase->title;
     
-        $claimsUrl = $studyCaseEditUrl . '?tab=-tab-1-tab&activeRelationManager=0';
+        $claimsUrl = $studyCaseEditUrl;
         $breadcrumbs[$claimsUrl] = 'Claims';
 
         $breadcrumbs[] = 'Edit';
@@ -59,7 +59,7 @@ class EditClaim extends EditRecord
 
         $ownerRecordId = $params['ownerRecord'];
 
-        $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $ownerRecordId . '/edit?tab=-tab-1-tab&activeRelationManager=0';
+        $redirectUrl = $appUrl . '/app/' . $latestTeamId . '/study-cases/' . $ownerRecordId . '/manage-case-study-claims';
 
         return $redirectUrl;
     }
