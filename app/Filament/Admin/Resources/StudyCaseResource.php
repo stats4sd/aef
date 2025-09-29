@@ -7,23 +7,60 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\StudyCase;
 use Filament\Tables\Table;
+use App\Enums\StudyCaseStatus;
 use Filament\Resources\Resource;
+use Filament\Resources\Pages\Page;
 use Filament\Forms\Components\Tabs;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\TextInput;
+use Filament\Resources\Pages\ViewRecord;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
-use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
-use App\Filament\Admin\Resources\StudyCaseResource\Pages;
+use App\Filament\App\Resources\StudyCaseResource\Pages;
 use App\Filament\Admin\Resources\StudyCaseResource\RelationManagers;
+use App\Filament\App\Resources\StudyCaseResource as AppPanelStudyCaseResource;
+use App\Filament\Admin\Resources\StudyCaseResource\Pages\ListStudyCases as AdminPanelListStudyCases;
+use App\Filament\App\Resources\StudyCaseResource\RelationManagers\ClaimsRelationManager as AppPanelClaimsRelationManager;
 
 class StudyCaseResource extends Resource
 {
     protected static ?string $model = StudyCase::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        // hardcode to check page's route name to determine if it is the "view page" for Claims nad Evidence
+        if ($page instanceof ViewRecord || 
+            $page->getRoutename() == 'filament.app.resources.study-cases.view-case-study-claims' ||
+            $page->getRoutename() == 'filament.admin.resources.study-cases.view-case-study-claims') {
+
+            $navigation = [
+                Pages\ViewBasicInformation::class,
+                Pages\ViewCaseDetails::class,
+                Pages\ViewCaseStudyClaims::class,
+                Pages\ViewCommunicationProducts::class,
+                Pages\ViewPhotos::class,
+                Pages\ViewConfirmation::class,
+            ];
+        } else {
+            $navigation = [
+                Pages\EditBasicInformation::class,
+                Pages\EditCaseDetails::class,
+                Pages\ManageCaseStudyClaims::class,
+                Pages\EditCommunicationProducts::class,
+                Pages\EditPhotos::class,
+                Pages\EditConfirmation::class,
+            ];
+        }
+
+        return $page->generateNavigationItems($navigation);
+    }
 
     // define translatable string in function
     public static function getModelLabel(): string
@@ -63,27 +100,47 @@ class StudyCaseResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->wrapHeader(),
-                Tables\Columns\IconColumn::make('ready_for_review')
-                    ->label(t('Ready for review'))
-                    ->boolean()
-                    ->sortable()
-                    ->wrapHeader(),
-                Tables\Columns\IconColumn::make('reviewed')
-                    ->label(t('Reviewed'))
-                    ->boolean()
+                Tables\Columns\TextColumn::make('status')
+                    ->label(t('Status'))
+                    ->badge()
                     ->sortable(),
+
             ])
             ->filters([
-                TernaryFilter::make('ready_for_review')->label(t('Ready for review')),
-                TernaryFilter::make('reviewed')->label(t('Reviewed')),
+                // apply this filter by default to exclude study case with status "closed"
+                //
+                // To show study cases with "closed" status, user needs to:
+                // 1. untick the checkbox of this filter
+                // 2. select "Closed" in "status" filter
+                Filter::make('hide_closed_cases')
+                    ->label('Hide closed cases')
+                    ->default()
+                    ->query(fn (Builder $query): Builder => $query->where('status', '!=', 'closed')),
+
+                // this filter works properly to show study cases for a selected status
+                SelectFilter::make('status')
+                    ->options(StudyCaseStatus::class),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // view action only available when case can no longer be edited
+                Tables\Actions\ViewAction::make()
+                    ->url(fn($record) => static::getUrl('view-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status != StudyCaseStatus::Reviewed;
+                    }),
+
+                // study case can be edited only if reviewer has not reviewed it yet
+                Tables\Actions\EditAction::make()
+                    ->url(fn($record) => static::getUrl('edit-basic-information', ['record' => $record]))
+                    ->hidden(function ($record) {
+                        return $record->status == StudyCaseStatus::Reviewed;
+                    }),
+
                 Tables\Actions\Action::make('preview_catalogue')
-                                ->label(t('Preview'))
-                                ->icon('heroicon-o-book-open')
-                                ->url(fn (StudyCase $record): string => '/cases/' . $record->id)
-                                ->openUrlInNewTab()
+                    ->label(t('Preview'))
+                    ->icon('heroicon-o-book-open')
+                    ->url(fn(StudyCase $record): string => '/cases/' . $record->id)
+                    ->openUrlInNewTab()
             ])
             ->defaultSort('order')
             ->reorderable('order')
@@ -97,23 +154,30 @@ class StudyCaseResource extends Resource
     // re-use app panel Study case relation manager for claims
     public static function getRelations(): array
     {
-        return [
-            AppPanelClaimsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStudyCases::route('/'),
+            // use admin panel ListStudyCases, so that it will use table() function of this class
+            'index' => AdminPanelListStudyCases::route('/'),
 
-            // disable route for creating a new study case
-            // reviewer should not be able to create new study case.
-            // study case should be created by leading organisation member.
+            'edit-basic-information' => Pages\EditBasicInformation::route('/{record}/edit-basic-information'),
+            'edit-case-details' => Pages\EditCaseDetails::route('/{record}/edit-case-details'),
+            'manage-case-study-claims' => Pages\ManageCaseStudyClaims::route('/{record}/manage-case-study-claims'),
+            'edit-communication-products' => Pages\EditCommunicationProducts::route('/{record}/edit-communication-products'),
+            'edit-photos' => Pages\EditPhotos::route('/{record}/edit-photos'),
+            'edit-confirmation' => Pages\EditConfirmation::route('/{record}/edit-confirmation'),
 
-            // 'create' => Pages\CreateStudyCase::route('/create'),
-
-            'edit' => Pages\EditStudyCase::route('/{record}/edit'),
+            'view' => Pages\ViewBasicInformation::route('/{record}'),
+            'view-basic-information' => Pages\ViewBasicInformation::route('/{record}/view-basic-information'),
+            'view-case-details' => Pages\ViewCaseDetails::route('/{record}/view-case-details'),
+            'view-case-study-claims' => Pages\ViewCaseStudyClaims::route('/{record}/view-case-study-claims'),
+            'view-communication-products' => Pages\ViewCommunicationProducts::route('/{record}/view-communication-products'),
+            'view-photos' => Pages\ViewPhotos::route('/{record}/view-photos'),
+            'view-confirmation' => Pages\ViewConfirmation::route('/{record}/view-confirmation'),          
         ];
     }
+
 }

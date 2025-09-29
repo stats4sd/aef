@@ -3,16 +3,17 @@
 namespace App\Filament\App\Resources\StudyCaseResource\Pages;
 
 use App\Filament\App\Resources\StudyCaseResource;
-use Filament\Actions;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewStudyCase extends ViewRecord
+class ViewPhotos extends ViewRecord
 {
     protected static string $resource = StudyCaseResource::class;
 
-    // to show relation manager in tabs
-    public function hasCombinedRelationManagerTabsWithContent(): bool
+
+    public function form(Form $form): Form
     {
-        return true;
+        return (new EditPhotos())->form($form);
     }
+
 }
