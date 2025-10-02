@@ -30,6 +30,11 @@ class StudyCasePolicy
         // initialse study case cannot be preview by default
         $canPreview = false;
 
+        // a reviewed case can be viewed by everyone
+        if ($studyCase->status == StudyCaseStatus::Reviewed) {
+            return true;
+        }
+
         // the logged in user is admin user
         if ($user->isAdmin()) {
             // ray('logged in user is admin user');
