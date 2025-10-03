@@ -9,6 +9,7 @@ use App\Models\Language;
 use App\Models\Indicator;
 use App\Models\StudyCase;
 use Livewire\WithPagination;
+use App\Enums\StudyCaseStatus;
 
 class SearchCases extends Component
 {
@@ -31,33 +32,33 @@ class SearchCases extends Component
     public function mount()
     {
         // Retrieve all cases and the related languages, tags, and countries
-        $this->cases = StudyCase::where('reviewed', 1)
+        $this->cases = StudyCase::where('status', StudyCaseStatus::Reviewed)
             ->orderBy('order', 'asc')
             ->get();
         $this->caseCount = $this->cases->count();
 
         // Retrieve languages, tags, and countries that have related reviewed cases
         $this->languages = Language::whereHas('studyCases', function ($query) {
-            $query->where('reviewed', 1);
+            $query->where('status', StudyCaseStatus::Reviewed);
         })->orderBy('name')->get();
 
         $this->tags = Tag::whereHas('studyCases', function ($query) {
-            $query->where('reviewed', 1);
+            $query->where('status', StudyCaseStatus::Reviewed);
         })->orderBy('name')->get();
 
         $this->indicators = Indicator::whereHas('evidence.claim.studyCase', function ($query) {
-            $query->where('reviewed', 1);
+            $query->where('status', StudyCaseStatus::Reviewed);
         })->orderBy('name')->get();
 
         $this->countries = Country::whereHas('studyCases', function ($query) {
-            $query->where('reviewed', 1);
+            $query->where('status', StudyCaseStatus::Reviewed);
         })->orderBy('name')->get();
     }
 
     public function searchCases()
     {
         // Setup the query and only retrieve reviewed cases
-        $query = StudyCase::query()->where('reviewed', 1);
+        $query = StudyCase::query()->where('status', StudyCaseStatus::Reviewed);
 
         // Handle the search term (if present)
         if ($this->query) {
