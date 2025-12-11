@@ -36,12 +36,20 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
 
     public function form(Form $form): Form
     {
+        // App panel > Study case > Claims and Evidence tab page > Create Claim button
+        // 
+        // Note: In filament popup modal form, ot looks like English label is always displayed regardless of 
+        // user selected language (Spanish or French) in application
+        //
+        // It may be related to a user reported case forwarded by Romina on 2025-12-11
+
         // how to show modal popup with a bigger size?
         return $form
             ->schema([
-
                 Forms\Components\Textarea::make('claim_statement')
-                    ->label(t('Claim statement'))
+                    // ->label(t('Claim statement'))
+                    // ->label(fn () => t('Claim statement'))
+                    ->label(fn () => __('Claim statement'))
                     ->hint(t('Claim made in the case statement'))
                     ->required()
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
