@@ -44,18 +44,72 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
         // It may be related to a user reported case forwarded by Romina on 2025-12-11
 
         // how to show modal popup with a bigger size?
+        // return $form
+        //     ->schema([
+        //         Forms\Components\Textarea::make('claim_statement')
+        //             ->label(t('Claim statement'))
+        //             ->hint(t('Claim made in the case statement'))
+        //             ->required()
+        //             ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
+        //             ->columnSpanFull(),
+        //     ]);
+
+        ray(app()->getLocale());
+
         return $form
             ->schema([
+
+// TextInput::make('title')
+//     ->afterStateHydrated(function (TextInput $component, $state): void {
+//         // Re-set the state based on the active locale
+//         $component->state($component->getRecord()->getTranslation('title', app()->getLocale()));
+//     })
+
                 Forms\Components\Textarea::make('claim_statement')
                     // ->label(t('Claim statement'))
-                    // ->label(fn () => t('Claim statement'))
-                    ->label(fn () => __('Claim statement'))
+
+                    // ->label(function (?array $state): string {
+                    //     if ($state === null) {
+                    //         return 'Heading';
+                    //     }
+
+                    //     return $state['content'] ?? 'Untitled heading';
+                    // })
+
+                    ->label(function (?array $state): string {
+                        ray(app()->getLocale());
+
+                        ray(t('Claim statement'));
+
+                        // return t('Claim statement');
+                        return 'Aucun élément trouvé';
+                    })
+
+
                     ->hint(t('Claim made in the case statement'))
+
+                    // ->afterStateHydrated(function (Forms\Components\Textarea $component, $state): void {
+                    //     // Re-set the state based on the active locale
+
+                    //     // find the current locale
+                    //     ray(app()->getLocale());
+
+                    //     // find translation string
+                    //     ray(t('Claim statement'));
+
+                    //     // TODO: find translation string of a particular locale
+
+                    //     // TODO: set translation string to textarea label
+
+                    //     $component->state($component->getRecord()?->getTranslation('title', app()->getLocale()));
+                    // })
                     ->required()
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull(),
-
             ]);
+
+
+
     }
 
     public function table(Table $table): Table

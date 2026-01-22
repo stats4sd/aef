@@ -31,6 +31,8 @@ class SearchCases extends Component
 
     public function mount()
     {
+        ray('SearchCases.mount()...');
+
         // Retrieve all cases and the related languages, tags, and countries
         $this->cases = StudyCase::where('status', StudyCaseStatus::Reviewed)
             ->orderBy('order', 'asc')
@@ -57,6 +59,8 @@ class SearchCases extends Component
 
     public function searchCases()
     {
+        ray('SearchCases.searchCases()...');
+
         // Setup the query and only retrieve reviewed cases
         $query = StudyCase::query()->where('status', StudyCaseStatus::Reviewed);
 
@@ -109,12 +113,16 @@ class SearchCases extends Component
 
     public function clearSearch()
     {
+        ray('SearchCases.clearSearch()...');
+
         $this->reset('query');
         $this->searchCases(); // update results
     }
 
     public function toggleItem(&$selectedArray, $itemId)
     {
+        ray('SearchCases.toggleItem()...');
+
         if (is_null($itemId)) {
             // Clear the filter
             $selectedArray = [];
@@ -133,6 +141,8 @@ class SearchCases extends Component
 
     public function toggleFilter($filterType, $id)
     {
+        ray('SearchCases.toggleFilter()...');
+
         switch ($filterType) {
             case 'language':
                 $this->toggleItem($this->selectedLanguages, $id);
@@ -152,12 +162,16 @@ class SearchCases extends Component
     
     public function clearAllFilters()
     {
+        ray('SearchCases.clearAllFilters()...');
+
         $this->reset(['selectedLanguages', 'selectedTags', 'selectedIndicators', 'selectedCountries']);
         $this->searchCases(); // update results
     }
 
     public function render()
     {
+        ray('SearchCases.render()...');
+
         return view('livewire.search-cases', [
             'languages' => $this->languages,
             'tags' => $this->tags,
