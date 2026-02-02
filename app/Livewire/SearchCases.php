@@ -8,13 +8,13 @@ use Livewire\Component;
 use App\Models\Language;
 use App\Models\Indicator;
 use App\Models\StudyCase;
-use Livewire\WithPagination;
 use App\Enums\StudyCaseStatus;
+use Illuminate\Support\Collection;
 
 class SearchCases extends Component
 {
     public $query = '';
-    public $cases = [];
+    public Collection $cases;
     public $caseCount = 0;
 
     // Filters
@@ -31,6 +31,8 @@ class SearchCases extends Component
 
     public function mount()
     {
+        $this->cases = collect();
+
         // Retrieve all cases and the related languages, tags, and countries
         $this->cases = StudyCase::where('status', StudyCaseStatus::Reviewed)
             ->orderBy('order', 'asc')
