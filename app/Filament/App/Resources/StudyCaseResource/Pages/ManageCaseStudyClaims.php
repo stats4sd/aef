@@ -38,77 +38,72 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
     {
         // App panel > Study case > Claims and Evidence tab page > Create Claim button
         // 
-        // Note: In filament popup modal form, ot looks like English label is always displayed regardless of 
-        // user selected language (Spanish or French) in application
+        // Note: In filament popup modal form, it looks like the translation string of browser default locale is always displayed
+        // regardless of user selected language (Spanish or French) in application
         //
         // It may be related to a user reported case forwarded by Romina on 2025-12-11
-
-        // how to show modal popup with a bigger size?
-        // return $form
-        //     ->schema([
-        //         Forms\Components\Textarea::make('claim_statement')
-        //             ->label(t('Claim statement'))
-        //             ->hint(t('Claim made in the case statement'))
-        //             ->required()
-        //             ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
-        //             ->columnSpanFull(),
-        //     ]);
-
-        ray(app()->getLocale());
 
         return $form
             ->schema([
 
-// TextInput::make('title')
-//     ->afterStateHydrated(function (TextInput $component, $state): void {
-//         // Re-set the state based on the active locale
-//         $component->state($component->getRecord()->getTranslation('title', app()->getLocale()));
-//     })
-
                 Forms\Components\Textarea::make('claim_statement')
-                    // ->label(t('Claim statement'))
-
-                    // ->label(function (?array $state): string {
-                    //     if ($state === null) {
-                    //         return 'Heading';
-                    //     }
-
-                    //     return $state['content'] ?? 'Untitled heading';
-                    // })
 
                     ->label(function (?array $state): string {
-                        ray(app()->getLocale());
 
-                        ray(t('Claim statement'));
+                        // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
+                        // ray(t('Claim statement'));
 
-                        // return t('Claim statement');
-                        return 'Aucun élément trouvé';
+                        // en: 'Claim statement'
+                        // es: 'Afirmacion de la declaración'
+                        // fr: 'Énoncé de l\'affirmation'
+
+                        // user selected locale can be obtained properly
+                        $locale = app()->getLocale();
+
+                        // as a temporary workaround, we obtain locale and return the corresponding hardcoded translation string
+                        $label = 'Claim statement';
+
+                        if ($locale == 'en') {
+                            $label = 'Claim statement';
+                        } else if ($locale == 'es') {
+                            $label = 'Afirmacion de la declaración';
+                        } else if ($locale == 'fr') {
+                            $label = 'Énoncé de l\'affirmation';
+                        }
+
+                        return $label;
                     })
 
+                    ->hint(function (?array $state): string {
 
-                    ->hint(t('Claim made in the case statement'))
+                        // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
+                        // ray(t('Claim made in the case statement'));
 
-                    // ->afterStateHydrated(function (Forms\Components\Textarea $component, $state): void {
-                    //     // Re-set the state based on the active locale
+                        // en: Claim made in the case statement
+                        // es: Afirmacion formulada en la declaración del caso
+                        // fr: Affirmation faite dans l’énoncé du cas                        
 
-                    //     // find the current locale
-                    //     ray(app()->getLocale());
+                        // user selected locale can be obtained properly
+                        $locale = app()->getLocale();
 
-                    //     // find translation string
-                    //     ray(t('Claim statement'));
+                        // as a temporary workaround, we obtain locale and return the corresponding hardcoded translation string
+                        $label = 'Claim statement';
 
-                    //     // TODO: find translation string of a particular locale
+                        if ($locale == 'en') {
+                            $label = 'Claim made in the case statement';
+                        } else if ($locale == 'es') {
+                            $label = 'Afirmacion formulada en la declaración del caso';
+                        } else if ($locale == 'fr') {
+                            $label = 'Affirmation faite dans l’énoncé du cas';
+                        }
 
-                    //     // TODO: set translation string to textarea label
+                        return $label;
+                    })
 
-                    //     $component->state($component->getRecord()?->getTranslation('title', app()->getLocale()));
-                    // })
                     ->required()
                     ->extraInputAttributes(['style' => 'height: 300px; overflow: scroll'])
                     ->columnSpanFull(),
             ]);
-
-
 
     }
 
