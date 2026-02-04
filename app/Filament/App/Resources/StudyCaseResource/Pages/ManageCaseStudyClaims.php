@@ -51,8 +51,8 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
                     ->label(function (?array $state): string {
 
                         // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
-                        // ray(t('Claim statement'));
 
+                        // translation strings for quick reference:
                         // en: 'Claim statement'
                         // es: 'Afirmacion de la declaración'
                         // fr: 'Énoncé de l\'affirmation'
@@ -77,8 +77,8 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
                     ->hint(function (?array $state): string {
 
                         // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
-                        // ray(t('Claim made in the case statement'));
 
+                        // translation strings for quick reference:
                         // en: Claim made in the case statement
                         // es: Afirmacion formulada en la declaración del caso
                         // fr: Affirmation faite dans l’énoncé du cas                        
