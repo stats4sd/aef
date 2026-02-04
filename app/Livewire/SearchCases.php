@@ -31,8 +31,6 @@ class SearchCases extends Component
 
     public function mount()
     {
-        ray('SearchCases.mount()...');
-
         // Retrieve all cases and the related languages, tags, and countries
         $this->cases = StudyCase::where('status', StudyCaseStatus::Reviewed)
             ->orderBy('order', 'asc')
@@ -59,8 +57,6 @@ class SearchCases extends Component
 
     public function searchCases()
     {
-        ray('SearchCases.searchCases()...');
-
         // Setup the query and only retrieve reviewed cases
         $query = StudyCase::query()->where('status', StudyCaseStatus::Reviewed);
 
@@ -113,16 +109,12 @@ class SearchCases extends Component
 
     public function clearSearch()
     {
-        ray('SearchCases.clearSearch()...');
-
         $this->reset('query');
         $this->searchCases(); // update results
     }
 
     public function toggleItem(&$selectedArray, $itemId)
     {
-        ray('SearchCases.toggleItem()...');
-
         if (is_null($itemId)) {
             // Clear the filter
             $selectedArray = [];
