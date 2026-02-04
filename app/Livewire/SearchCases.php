@@ -135,6 +135,8 @@ class SearchCases extends Component
 
     public function toggleFilter($filterType, $id)
     {
+        ray('SearchCases.toggleFilter()...');
+
         switch ($filterType) {
             case 'language':
                 $this->toggleItem($this->selectedLanguages, $id);
@@ -154,12 +156,16 @@ class SearchCases extends Component
     
     public function clearAllFilters()
     {
+        ray('SearchCases.clearAllFilters()...');
+
         $this->reset(['selectedLanguages', 'selectedTags', 'selectedIndicators', 'selectedCountries']);
         $this->searchCases(); // update results
     }
 
     public function render()
     {
+        ray('SearchCases.render()...');
+
         return view('livewire.search-cases', [
             'languages' => $this->languages,
             'tags' => $this->tags,
