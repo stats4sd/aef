@@ -22,8 +22,6 @@ class CheckDependencies extends Command
                     ->path(base_path())
                     ->run('composer audit');
 
-        ray($result);
-
         ray('Running command "' . $result->command() . '"');
 
         if ($result->successful()) {
@@ -35,17 +33,17 @@ class CheckDependencies extends Command
         }
 
         ray('Exit code: ' . $result->exitCode());
-        
-        ray('Output:');
-        ray($result->output());
 
-
-        // find email recipients
+        // find support admin email address (possibly multiple email addresses)
         $toRecipient = config('mail.to.support');
 
-        // send email notification
-        Mail::to($toRecipient)->send(new DependenciesEmail($result->output()));
+        // tokenise email addresses
+        $recipientsArray = explode(",", $toRecipient);
 
+        // send email notification to each recipient
+        foreach ($recipientsArray as $recipient) {
+            Mail::to($recipient)->send(new DependenciesEmail($result->output()));
+        }
 
         $this->info('End');
     }
