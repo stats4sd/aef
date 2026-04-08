@@ -41,6 +41,12 @@ class AppPanelProvider extends PanelProvider
             ->path('app')
             ->homeUrl('/home')
             ->tenant(Team::class)
+            ->brandName(fn () => match(app()->getLocale()) {
+                'es' => 'Casos GEA',
+                'fr' => 'Cas GEA',
+                default => 'GEA Cases',
+            })
+            // ->brandName(fn () => __('GEA Cases'))
             // disable "Register New Team" option in multi-tenancy
             // new team should be created by admin, user should not be able to create a new team
             // ->tenantRegistration(RegisterTeam::class)
