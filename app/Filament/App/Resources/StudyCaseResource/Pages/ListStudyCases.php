@@ -18,6 +18,7 @@ class ListStudyCases extends ListRecords
     {
         return [
             Actions\Action::make('New Case')
+                ->label(t('New case'))
                 ->action(function() {
 
                     // automatically create a new case study with status proposal and redirect to edit page

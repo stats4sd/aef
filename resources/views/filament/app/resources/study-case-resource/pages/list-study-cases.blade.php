@@ -2,7 +2,7 @@
 
     <x-filament::section
         class="mb-4"
-        heading="How to complete this section"
+        heading="{{t('How to complete this section') }}"
         icon="heroicon-o-information-circle"
         icon-color="primary"
         collapsible>
