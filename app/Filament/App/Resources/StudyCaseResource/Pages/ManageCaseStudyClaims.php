@@ -48,7 +48,7 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
 
                 Forms\Components\Textarea::make('claim_statement')
 
-                    ->label(function (?array $state): string {
+                    ->label(function (): string {
 
                         // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
 
@@ -74,7 +74,7 @@ class ManageCaseStudyClaims extends ManageRelatedRecords
                         return $label;
                     })
 
-                    ->hint(function (?array $state): string {
+                    ->hint(function (): string {
 
                         // due to unknown cause, translation string of browser default locale is always obtained regardless of user selected locale...
 
